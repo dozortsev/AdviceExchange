@@ -1,0 +1,24 @@
+# Java #
+
+*.class
+*.jar
+*.war
+*.ear
+
+
+# IntelliJ #
+
+.idea/
+out/
+.idea_modules/
+*.iml
+
+
+# Maven #
+
+target/
+
+
+# Linux #
+
+*~
