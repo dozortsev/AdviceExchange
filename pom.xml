@@ -7,12 +7,52 @@
     <version>1.0</version>
     <modules>
         <module>domain</module>
+        <module>dao</module>
     </modules>
     <name>AdviceExchange</name>
 
-    <!-- todo: create git repo and gitignore file -->
-    <!-- todo: read about Joda-Time -->
+    <properties>
+        <hibernate.version>4.3.0.Final</hibernate.version>
+
+        <mysql.version>5.1.28</mysql.version>
+
+        <hsqldb.version>2.3.1</hsqldb.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Hibernate -->
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+
+        <!-- MySQL -->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+
+        <!-- HyperSQL -->
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+        </dependency>
+
+    </dependencies>
+
     <!-- todo: read about Apache Tiles -->
+
+    <!-- todo: read about Joda-Time -->
     <!-- todo: write pattern for searching questions -->
+    <!-- todo: read about hibernate validator -->
 
 </project>
