@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.springapp</groupId>
+    <groupId>com.dozortsev.adviceexchange</groupId>
     <artifactId>AdviceExchange</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
@@ -16,6 +16,7 @@
         <spring.version>3.2.6.RELEASE</spring.version>
 
         <hibernate.version>4.3.0.Final</hibernate.version>
+        <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
 
         <mysql.version>5.1.28</mysql.version>
 
@@ -57,6 +58,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
         </dependency>
 
 
