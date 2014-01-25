@@ -2,16 +2,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>AdviceExchange</artifactId>
-        <groupId>com.springapp</groupId>
+        <groupId>com.dozortsev.adviceexchange</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+
+    <name>Domain</name>
     <groupId>com.dozortsev.adviceexchange.domain</groupId>
     <artifactId>domain</artifactId>
     <packaging>jar</packaging>
 
-    <name>Domain</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
