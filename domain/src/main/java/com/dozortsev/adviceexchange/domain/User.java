@@ -62,6 +62,9 @@ public class User extends AbstractEntity<Long> {
     @OneToMany(cascade = REMOVE, mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
+    @Transient
+    private List<Badge> badges = new ArrayList<>();
+
     public User() { }
 
     public User(String name, Integer age, StringBuilder aboutMe, String location, String site, String email, String password, Integer reputation) {
