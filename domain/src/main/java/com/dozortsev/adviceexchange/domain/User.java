@@ -13,8 +13,7 @@ import java.util.List;
 import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@Entity
-@Table(name = "user")
+@Entity @Table(name = "user")
 public class User extends AbstractEntity<Long> {
 
     @NotEmpty @Length(min = 2, max = 50)

@@ -1,29 +1,45 @@
 package com.dozortsev.adviceexchange.domain;
 
-public enum Badge {
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
-    ADMIN(1L, "Admin", "One who oversees discussions on an Internet forum"),
-    USER(2L, "User", "A person using a generic system");
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-    private final Long id;
-    private final String status;
-    private final String desc;
+@Entity @Table(name = "badge")
+public class Badge extends AbstractEntity<Long> {
 
-    Badge(Long id, String status, String desc) {
-        this.id = id;
-        this.status = status;
+    @NotEmpty @Length(min = 3, max = 30)
+    @Column(name = "bdg_name")
+    private String name;
+
+    @Lob @NotEmpty @Size(min = 10, max = 100)
+    @Column(name = "bdg_desc")
+    private String desc;
+
+
+    public Badge() { }
+
+    public Badge(String name, String desc) {
+        this.name = name;
         this.desc = desc;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getStatus() {
-        return status;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
+    }
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

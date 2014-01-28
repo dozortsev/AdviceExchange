@@ -24,6 +24,7 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
         this.id = id;
     }
 
+    /* todo: add version value / @date - 29 Jan 14 12:16 AM */
 
     @Override public boolean equals(Object o) {
         if (this == o) return true;

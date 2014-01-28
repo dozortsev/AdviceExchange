@@ -10,8 +10,7 @@ import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@Entity
-@Table(name = "comment")
+@Entity @Table(name = "comment")
 public class Comment extends AbstractEntity<Long> {
 
     @Valid @NotNull

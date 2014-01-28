@@ -12,8 +12,7 @@ import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@Entity
-@Table(name = "answer")
+@Entity @Table(name = "answer")
 public class Answer extends AbstractEntity<Long> {
 
     @Valid @NotNull

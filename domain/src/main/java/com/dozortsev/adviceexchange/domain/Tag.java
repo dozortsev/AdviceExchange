@@ -7,18 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
-@Entity
-@Table(name = "tag")
+@Entity @Table(name = "tag")
 public class Tag extends AbstractEntity<Long> {
 
     @NotEmpty @Length(min = 2, max = 20)
     @Column(name = "tag_name")
     private String name;
 
-    @Lob @NotEmpty @Length(min = 10, max = 150)
-    @Column(name = "tag_decs")
-    private StringBuilder desc = new StringBuilder(150);
+    @Lob @NotEmpty @Min(10)
+    @Column(name = "tag_desc")
+    private StringBuilder desc = new StringBuilder(1000);
 
 
     public Tag() { }
