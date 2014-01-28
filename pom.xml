@@ -8,6 +8,7 @@
     <modules>
         <module>domain</module>
         <module>dao</module>
+        <module>service</module>
     </modules>
     <name>AdviceExchange</name>
 
@@ -21,6 +22,8 @@
         <mysql.version>5.1.28</mysql.version>
 
         <hsqldb.version>2.3.1</hsqldb.version>
+
+        <slf4j.version>1.7.5</slf4j.version>
     </properties>
 
     <dependencies>
@@ -84,10 +87,37 @@
             <version>${hsqldb.version}</version>
         </dependency>
 
+
+        <!-- SLF4J LOG4J-12 binding -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
     </dependencies>
 
-    <!-- todo: read about Apache Tiles -->
 
+    <build>
+        <plugins>
+
+            <!-- Compiles Java sources -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- todo: read about Apache Tiles -->
+    <!-- todo: read about undoing changes with Git -->
     <!-- todo: read about Joda-Time -->
     <!-- todo: write pattern for searching questions -->
     <!-- todo: read about hibernate validator -->
