@@ -1,20 +1,23 @@
 package com.dozortsev.adviceexchange.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import org.hibernate.annotations.Generated;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 import static javax.persistence.GenerationType.IDENTITY;
+import static org.hibernate.annotations.GenerationTime.ALWAYS;
 
 @MappedSuperclass
 public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 
     @Id @GeneratedValue(strategy = IDENTITY) @NotNull
     @Column(name = "id", unique = true, updatable = false)
-    protected ID id;
+    private ID id;
+
+    @Version @Generated(ALWAYS)
+    private Integer version;
 
     public ID getId() {
         return id;
