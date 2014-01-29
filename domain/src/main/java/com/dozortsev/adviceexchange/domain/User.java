@@ -16,6 +16,7 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
+@AttributeOverride(name = "id", column = @Column(name = "user_id", unique = true, nullable = false))
 public class User extends AbstractEntity<Long> {
 
     @NotEmpty @Length(min = 2, max = 50)

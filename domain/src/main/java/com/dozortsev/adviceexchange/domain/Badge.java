@@ -3,13 +3,11 @@ package com.dozortsev.adviceexchange.domain;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity @Table(name = "badge")
+@AttributeOverride(name = "id", column = @Column(name = "bdg_id", unique = true, nullable = false))
 public class Badge extends AbstractEntity<Long> {
 
     @NotEmpty @Length(min = 3, max = 30)

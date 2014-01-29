@@ -12,8 +12,8 @@ import static org.hibernate.annotations.GenerationTime.ALWAYS;
 @MappedSuperclass
 public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 
-    @Id @GeneratedValue(strategy = IDENTITY) @NotNull
-    @Column(name = "id", unique = true, updatable = false)
+    @Id @GeneratedValue(strategy = IDENTITY)
+    @NotNull @Column(name = "id")
     private ID id;
 
     @Version @Generated(ALWAYS)

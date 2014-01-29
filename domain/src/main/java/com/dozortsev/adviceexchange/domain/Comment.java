@@ -11,6 +11,7 @@ import java.util.Date;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "comment")
+@AttributeOverride(name = "id", column = @Column(name = "cm_id", unique = true, nullable = false))
 public class Comment extends AbstractEntity<Long> {
 
     @Valid @NotNull

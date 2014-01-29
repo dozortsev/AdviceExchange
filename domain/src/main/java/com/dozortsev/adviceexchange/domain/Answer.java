@@ -13,6 +13,7 @@ import java.util.Date;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "answer")
+@AttributeOverride(name = "id", column = @Column(name = "asw_id", unique = true, nullable = false))
 public class Answer extends AbstractEntity<Long> {
 
     @Valid @NotNull

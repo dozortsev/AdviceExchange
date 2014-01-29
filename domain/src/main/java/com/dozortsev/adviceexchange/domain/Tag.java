@@ -3,13 +3,11 @@ package com.dozortsev.adviceexchange.domain;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 
 @Entity @Table(name = "tag")
+@AttributeOverride(name = "id", column = @Column(name = "tag_id", unique = true, nullable = false))
 public class Tag extends AbstractEntity<Long> {
 
     @NotEmpty @Length(min = 2, max = 20)
