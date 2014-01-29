@@ -18,8 +18,6 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         super(entityClass);
     }
 
-    /*  todo: create question about log convention on crud method / @date - 29 Jan 14 12:22 AM */
-
     @Override public ID create(T entity) {
         try {
             log.info(format("Create new %s", getEntityClass()));
@@ -59,7 +57,7 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         }
     }
 
-    @Override public T get(ID id) {
+    @Override public T findById(ID id) {
         try {
             log.info(format("Finding %s by Id: %s", getEntityClass(), id));
             T entity = (T) getCurrentSession().get(getEntityClass(), id);
@@ -77,8 +75,10 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
 
     @Override public T update(T entity) {
         try {
-            log.info("Updating %s. ID: %s", getEntityClass(), entity.getId());
+            log.info(format("Updating %s. ID: %s", getEntityClass(), entity.getId()));
             getCurrentSession().update(entity);
+            log.info("Successful updated");
+
         } catch (Exception e) {
             log.error("Error: ", e);
         }
