@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.domain;
 import org.hibernate.validator.constraints.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import static javax.persistence.CascadeType.REMOVE;
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
@@ -61,7 +63,10 @@ public class User extends AbstractEntity<Long> {
     @OneToMany(cascade = REMOVE, mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
-    @Transient
+    @Valid @ManyToMany(fetch = LAZY)
+    @JoinTable(name = "user_badge",
+            joinColumns = @JoinColumn(name = "ub_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))
     private List<Badge> badges = new ArrayList<>();
 
     public User() { }
