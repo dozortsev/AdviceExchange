@@ -8,18 +8,16 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="${dao.package}"/>
-
-    <context:property-placeholder location="/spring/daoContext.properties"/>
+    <context:component-scan base-package="com.dozortsev.adviceexchange.dao"/>
 
 
     <!-- Data Source -->
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 
-        <property name="driverClassName" value="${jdbc.driver}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.uname}"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/adviceexchange"/>
+        <property name="username" value="root"/>
     </bean>
 
 
@@ -29,11 +27,11 @@
 
         <property name="dataSource" ref="dataSource"/>
 
-        <property name="packagesToScan" value="${domain.package}"/>
+        <property name="packagesToScan" value="com.dozortsev.adviceexchange.domain"/>
 
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">${dialect}</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <prop key="hibernate.use_sql_comments">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.show_sql">true</prop>
@@ -44,5 +42,19 @@
 
     <!-- Queries -->
 
+    <bean id="findUserByLogin" class="java.lang.String">
 
+        <constructor-arg index="0"
+                         value="
+                         SELECT
+                            u.*
+                         FROM
+                            user u, badge b, user_badge ub
+                         WHERE
+                            u.user_id = ub.ub_user_id
+                            AND
+                            b.bdg_id = ub.ub_badge_id
+                            AND
+                            u.user_email = :login"/>
+    </bean>
 </beans>

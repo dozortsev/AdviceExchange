@@ -45,11 +45,11 @@ public class User extends AbstractEntity<Long> {
     private String site;
 
     @NotBlank @Length(min = 10, max = 120)
-    @Email @Column(name = "user_email")
+    @Email @Column(name = "user_email", unique = true)
     private String email;
 
     @NotBlank @Length(min = 5, max = 15)
-    @Column(name = "user_password")
+    @Column(name = "user_password", unique = true)
     private String password;
 
     @NotNull @Column(name = "user_reputation")
