@@ -1,4 +1,6 @@
 
+/* todo: generate and fill db of data / @date - 30 Jan 14 6:10 PM */
+
   /* Badge data */
 
 INSERT INTO badge (bdg_id, bdg_name, bdg_desc)

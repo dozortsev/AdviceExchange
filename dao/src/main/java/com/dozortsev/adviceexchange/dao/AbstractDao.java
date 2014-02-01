@@ -12,7 +12,7 @@ public abstract class AbstractDao<ID extends Serializable, T extends AbstractEnt
 
     private Class<T> entityClass;
 
-    public final Logger log = Logger.getLogger(this.getClass());
+    public final Logger log = Logger.getLogger(this.getClass().getName());
 
     @Autowired
     private SessionFactory factory;

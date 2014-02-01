@@ -9,14 +9,20 @@
         <module>domain</module>
         <module>dao</module>
         <module>service</module>
+        <module>web</module>
     </modules>
     <name>AdviceExchange</name>
 
     <properties>
 
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <spring.version>3.2.6.RELEASE</spring.version>
 
+        <spring.security.version>3.2.0.RELEASE</spring.security.version>
+
         <hibernate.version>4.3.0.Final</hibernate.version>
+
         <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
 
         <mysql.version>5.1.28</mysql.version>
@@ -52,6 +58,27 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+
+        <!-- Spring Security -->
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
 
 
@@ -109,17 +136,17 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
+    <!--  todo: watch videos about AngularJS / @date - 30 Jan 14 2:27 AM -->
     <!-- todo: read about Apache Tiles -->
     <!-- todo: read about undoing changes with Git -->
     <!-- todo: read about Joda-Time -->
-    <!-- todo: write pattern for searching questions -->
     <!-- todo: read about hibernate validator -->
 
 </project>
