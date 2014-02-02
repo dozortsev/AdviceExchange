@@ -8,4 +8,5 @@ import java.io.Serializable;
 @Service
 public class GenericServiceImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericService<ID, T> {
 
+
 }
