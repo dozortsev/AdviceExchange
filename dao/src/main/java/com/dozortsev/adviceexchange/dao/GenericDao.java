@@ -10,7 +10,7 @@ public interface GenericDao<ID extends Serializable, T extends AbstractEntity<ID
 
     public void delete(T entity);
 
-    public void delete(ID id);
+    public void deleteById(ID id);
 
     public T findById(ID id);
 

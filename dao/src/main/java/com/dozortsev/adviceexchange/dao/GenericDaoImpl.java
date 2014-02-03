@@ -2,11 +2,14 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.AbstractEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
 import static java.lang.String.format;
+import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
+@Transactional(propagation = MANDATORY)
 @SuppressWarnings("unchecked")
 @Repository
 public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>>
@@ -41,7 +44,7 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         }
     }
 
-    @Override public void delete(ID id) {
+    @Override public void deleteById(ID id) {
         try {
             log.info(format("Deleting %s by Id: %s", getEntityClass(), id));
             T entity = (T) getCurrentSession().get(getEntityClass(), id);
@@ -57,6 +60,7 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         }
     }
 
+    @Transactional(readOnly = true)
     @Override public T findById(ID id) {
         try {
             log.info(format("Finding %s by Id: %s", getEntityClass(), id));
