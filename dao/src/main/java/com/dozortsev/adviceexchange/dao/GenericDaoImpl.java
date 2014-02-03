@@ -1,6 +1,10 @@
 package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.AbstractEntity;
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,13 +16,19 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Transactional(propagation = MANDATORY)
 @SuppressWarnings("unchecked")
 @Repository
-public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>>
-        extends AbstractDao<ID, T> implements GenericDao<ID, T> {
+public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
 
-    private GenericDaoImpl() { }
+    private Class<T> entityClass;
 
-    protected GenericDaoImpl(Class<T> entityClass) {
-        super(entityClass);
+    public final Logger log = Logger.getLogger(this.getClass().getName());
+
+    @Autowired
+    private SessionFactory factory;
+
+    public GenericDaoImpl() { }
+
+    public GenericDaoImpl(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
 
     @Override public ID create(T entity) {
@@ -87,5 +97,13 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
             log.error("Error: ", e);
         }
         return entity;
+    }
+
+    public Session getCurrentSession() {
+        return factory.getCurrentSession();
+    }
+
+    public Class<T> getEntityClass() {
+        return entityClass;
     }
 }

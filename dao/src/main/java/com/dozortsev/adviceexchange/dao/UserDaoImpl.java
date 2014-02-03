@@ -3,8 +3,10 @@ package com.dozortsev.adviceexchange.dao;
 import com.dozortsev.adviceexchange.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.String.format;
+import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
@@ -15,6 +17,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
         super(User.class);
     }
 
+    @Transactional(propagation = MANDATORY)
     @Override public User findByLogin(String login) {
         try {
             log.info(format("Finding %s by Login: %s", getEntityClass(), login));
