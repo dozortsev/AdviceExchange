@@ -1,70 +1,74 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.*;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static javax.persistence.CascadeType.REMOVE;
-import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
 @AttributeOverride(name = "id", column = @Column(name = "user_id", unique = true, nullable = false))
 public class User extends AbstractEntity<Long> {
 
-    @NotEmpty @Length(min = 2, max = 50)
+    @NotBlank @Size(min = 2, max = 50)
     @Column(name = "user_name")
     private String name;
 
-    @Min(6) @Max(150)
+    @Range(min = 1, max = 100)
     @Column(name = "user_age")
     private Integer age;
 
-    @Length(min = 5, max = 1000)
+    @Size(min = 5, max = 1000)
     @Column(name = "user_about_me")
     private StringBuilder aboutMe = new StringBuilder(1000);
 
-    @NotNull @Temporal(TIMESTAMP)
+    @Temporal(TIMESTAMP)
     @Column(name = "user_joined", updatable = false)
     private Date joined;
 
-    @Length(min = 3, max = 150)
+    @Size(min = 3, max = 150)
     @Column(name = "user_location")
     private String location;
 
     @URL(protocol = "http")
-    @Length(min = 10, max = 120)
+    @Size(min = 10, max = 120)
     @Column(name = "user_site")
     private String site;
 
-    @NotBlank @Length(min = 10, max = 120)
+    @NotBlank @Size(min = 10, max = 120)
     @Email @Column(name = "user_email", unique = true)
     private String email;
 
-    @NotBlank @Length(min = 5, max = 15)
+    @NotBlank @Size(min = 5, max = 15)
     @Column(name = "user_password", unique = true)
     private String password;
 
     @NotNull @Column(name = "user_reputation")
     private Integer reputation = 1;
 
+    @Valid
     @OneToMany(cascade = REMOVE, mappedBy = "user")
     private List<Question> questions = new ArrayList<>();
 
+    @Valid
     @OneToMany(cascade = REMOVE, mappedBy = "user")
     private List<Answer> answers = new ArrayList<>();
 
+    @Valid
     @OneToMany(cascade = REMOVE, mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
-    @Valid @ManyToMany(fetch = LAZY)
+    @Valid @ManyToMany
     @JoinTable(name = "user_badge",
             joinColumns = @JoinColumn(name = "ub_user_id"),
             inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))

@@ -1,11 +1,9 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -20,41 +18,38 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @AttributeOverride(name = "id", column = @Column(name = "qs_id", unique = true, nullable = false))
 public class Question extends AbstractEntity<Long> {
 
-    @NotEmpty @Length(min = 30, max = 200)
+    @NotBlank @Size(min = 30, max = 200)
     @Column(name = "qs_name")
     private String name;
 
-    @Valid @NotNull
     @ManyToOne
+    @Valid @NotNull
     @JoinColumn(name = "qs_user_id")
     private User user;
 
     @NotNull @Column(name = "qs_votes")
     private Integer votes = 0;
 
-    @NotNull @Temporal(TIMESTAMP)
+    @Temporal(TIMESTAMP)
     @Column(name = "qs_created", updatable = false)
     private Date created;
 
-    @Lob @NotEmpty @Min(100)
+    @Lob @NotBlank @Size(min = 100)
     @Column(name = "qs_content")
     private StringBuilder content = new StringBuilder(1000);
 
-    @NotNull @Min(1) @Column(name = "qs_views")
-    private Integer views;
-
-    @Valid @NotNull @Size(min = 1, max = 5)
+    @Valid @Size(min = 1, max = 5)
     @ManyToMany(fetch = LAZY)
     @JoinTable(name = "question_tag",
             joinColumns = @JoinColumn(name = "qt_question_id"),
             inverseJoinColumns = @JoinColumn(name = "qt_tag_id"))
     private List<Tag> tags = new ArrayList<>();
 
-    @Valid @NotNull
+    @Valid
     @OneToMany(fetch = LAZY, cascade = REMOVE, mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
-    @Valid @NotNull
+    @Valid
     @OneToMany(fetch = LAZY, cascade = REMOVE, mappedBy = "question")
     private List<Comment> comments = new ArrayList<>();
 
@@ -65,7 +60,6 @@ public class Question extends AbstractEntity<Long> {
         this.user = user;
         this.votes = votes;
         this.content = content;
-        this.views += views;
     }
 
     public Question(String name, User user, Integer votes, StringBuilder content, Integer views, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
@@ -73,7 +67,6 @@ public class Question extends AbstractEntity<Long> {
         this.user = user;
         this.votes = votes;
         this.content = content;
-        this.views += views;
         this.tags = tags;
         this.answers = answers;
         this.comments = comments;
@@ -114,13 +107,6 @@ public class Question extends AbstractEntity<Long> {
     }
     public void setContent(StringBuilder content) {
         this.content = content;
-    }
-
-    public Integer getViews() {
-        return views;
-    }
-    public void setViews(Integer views) {
-        this.views = views;
     }
 
     public List<Tag> getTags() {

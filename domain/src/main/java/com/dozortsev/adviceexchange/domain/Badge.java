@@ -1,7 +1,6 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -10,11 +9,11 @@ import javax.validation.constraints.Size;
 @AttributeOverride(name = "id", column = @Column(name = "bdg_id", unique = true, nullable = false))
 public class Badge extends AbstractEntity<Long> {
 
-    @NotEmpty @Length(min = 3, max = 30)
+    @NotBlank @Size(min = 3, max = 30)
     @Column(name = "bdg_name")
     private String name;
 
-    @Lob @NotEmpty @Size(min = 10, max = 100)
+    @Lob @NotBlank @Size(min = 10, max = 100)
     @Column(name = "bdg_desc")
     private String desc;
 

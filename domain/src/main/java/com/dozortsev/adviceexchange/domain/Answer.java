@@ -1,13 +1,11 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.AssertFalse;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -16,28 +14,28 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @AttributeOverride(name = "id", column = @Column(name = "asw_id", unique = true, nullable = false))
 public class Answer extends AbstractEntity<Long> {
 
-    @Valid @NotNull
     @ManyToOne
+    @Valid @NotNull
     @JoinColumn(name = "asw_question_id")
     private Question question;
 
-    @Valid @NotNull
     @ManyToOne
+    @Valid @NotNull
     @Column(name = "asw_user_id")
     private User user;
 
     @NotNull @Column(name = "asw_votes")
     private Integer votes = 0;
 
-    @NotNull @Temporal(TIMESTAMP)
+    @Temporal(TIMESTAMP)
     @Column(name = "asw_created", updatable = false)
     private Date created;
 
-    @Lob @NotEmpty @Min(50)
+    @Lob @NotBlank @Size(min = 50)
     @Column(name = "asw_content")
     private StringBuilder content = new StringBuilder(1000);
 
-    @NotNull @AssertFalse
+    @NotNull
     @Column(name = "asw_accepted")
     private Boolean isAccepted;
 

@@ -1,11 +1,11 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -14,21 +14,21 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @AttributeOverride(name = "id", column = @Column(name = "cm_id", unique = true, nullable = false))
 public class Comment extends AbstractEntity<Long> {
 
-    @Valid @NotNull
     @ManyToOne
+    @Valid @NotNull
     @JoinColumn(name = "cm_question_id")
     private Question question;
 
-    @Valid @NotNull
     @ManyToOne
+    @Valid @NotNull
     @JoinColumn(name = "cm_user_id")
     private User user;
 
-    @Lob @NotEmpty @Length(min = 20, max = 1000)
+    @Lob @NotBlank @Size(min = 20, max = 1000)
     @Column(name = "cm_content")
     private StringBuilder content = new StringBuilder(1000);
 
-    @NotNull @Temporal(TIMESTAMP)
+    @Temporal(TIMESTAMP)
     @Column(name = "cm_created", updatable = false)
     private Date created;
 
