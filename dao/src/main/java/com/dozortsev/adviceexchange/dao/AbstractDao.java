@@ -23,8 +23,15 @@ public abstract class AbstractDao<ID extends Serializable, T extends AbstractEnt
         this.entityClass = entityClass;
     }
 
+    public SessionFactory getFactory() {
+        return factory;
+    }
+    public void setFactory(SessionFactory factory) {
+        this.factory = factory;
+    }
+
     public Session getCurrentSession() {
-        return factory.getCurrentSession();
+        return getFactory().getCurrentSession();
     }
 
     public Class<T> getEntityClass() {
