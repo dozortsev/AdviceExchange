@@ -186,4 +186,28 @@ public class User extends AbstractEntity<Long> {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!email.equals(user.email)) return false;
+        if (!joined.equals(user.joined)) return false;
+        if (!name.equals(user.name)) return false;
+        if (!password.equals(user.password)) return false;
+        if (!reputation.equals(user.reputation)) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + joined.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + reputation.hashCode();
+        return result;
+    }
 }

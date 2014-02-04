@@ -39,4 +39,22 @@ public class Badge extends AbstractEntity<Long> {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Badge badge = (Badge) o;
+
+        if (!desc.equals(badge.desc)) return false;
+        if (!name.equals(badge.name)) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + desc.hashCode();
+        return result;
+    }
 }

@@ -70,4 +70,22 @@ public class Comment extends AbstractEntity<Long> {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Comment comment = (Comment) o;
+
+        if (!content.equals(comment.content)) return false;
+        if (!created.equals(comment.created)) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = content.hashCode();
+        result = 31 * result + created.hashCode();
+        return result;
+    }
 }

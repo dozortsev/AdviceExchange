@@ -129,4 +129,24 @@ public class Question extends AbstractEntity<Long> {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Question question = (Question) o;
+
+        if (!created.equals(question.created)) return false;
+        if (!name.equals(question.name)) return false;
+        if (!votes.equals(question.votes)) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + votes.hashCode();
+        result = 31 * result + created.hashCode();
+        return result;
+    }
 }

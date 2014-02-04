@@ -37,4 +37,22 @@ public class Tag extends AbstractEntity<Long> {
     public void setDesc(StringBuilder desc) {
         this.desc = desc;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tag tag = (Tag) o;
+
+        if (!desc.equals(tag.desc)) return false;
+        if (!name.equals(tag.name)) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + desc.hashCode();
+        return result;
+    }
 }
