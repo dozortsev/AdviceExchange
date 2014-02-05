@@ -26,7 +26,7 @@ public class TestContext {
         db = new EmbeddedDatabaseBuilder().addDefaultScripts().build();
     }
 
-    @AfterClass public void tearDown() {
+    @AfterClass public static void tearDown() {
         log.info("shutdown database");
         db.shutdown();
     }
