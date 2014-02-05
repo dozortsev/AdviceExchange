@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <import resource="application-context-dao.xml"/>
@@ -27,9 +25,13 @@
     </bean>
 
 
-    <!-- Define configuration for embedded database -->
+    <!--
+        Define configuration for embedded database
+        Build HSQL database for unit testing in-memory
+    -->
 
-    <jdbc:embedded-database type="HSQL">
+    <jdbc:embedded-database id="embeddedDatabase" type="HSQL">
+
         <jdbc:script location="classpath:database/test-ddl.sql"/>
         <jdbc:script location="classpath:database/test-dml.sql"/>
     </jdbc:embedded-database>
