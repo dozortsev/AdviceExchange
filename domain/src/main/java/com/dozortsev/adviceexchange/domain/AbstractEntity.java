@@ -22,6 +22,4 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
     public void setId(ID id) {
         this.id = id;
     }
-
-    /* todo: override hashcode and equals methods in entity classes / @date - 03 Feb 14 4:08 PM */
 }

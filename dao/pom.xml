@@ -14,6 +14,8 @@
 
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <apache.dbcp.version>1.4</apache.dbcp.version>
     </properties>
 
@@ -25,6 +27,7 @@
             <artifactId>domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+
 
         <!-- Commons Database Connection Pooling -->
 
