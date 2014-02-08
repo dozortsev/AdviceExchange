@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class BadgeDaoImpl extends GenericDaoImpl<Long, Badge> implements BadgeDao {
 
     protected BadgeDaoImpl() {
-        super(Badge.class);
+        this.entityClass = Badge.class;
     }
 }

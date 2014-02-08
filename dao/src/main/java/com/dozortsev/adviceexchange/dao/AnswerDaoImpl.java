@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class AnswerDaoImpl extends GenericDaoImpl<Long, Answer> implements AnswerDao {
 
     protected AnswerDaoImpl() {
-        super(Answer.class);
+        this.entityClass = Answer.class;
     }
 }

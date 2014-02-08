@@ -1,5 +1,6 @@
 package com.dozortsev.adviceexchange.service;
 
+import com.dozortsev.adviceexchange.dao.GenericDao;
 import com.dozortsev.adviceexchange.domain.AbstractEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,10 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 @Transactional(propagation = REQUIRES_NEW, rollbackFor = Exception.class)
 @Service
 public abstract class GenericServiceImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericService<ID, T> {
+
+    private Class<T> entityClass;
+
+    public abstract GenericDao<ID, T> getDao();
 
     @Override public ID create(T entity) {
         return getDao().create(entity);

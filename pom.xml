@@ -17,13 +17,13 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.version>3.2.6.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
 
-        <spring.security.version>3.2.0.RELEASE</spring.security.version>
+        <spring.security.version>3.1.4.RELEASE</spring.security.version>
 
-        <hibernate.version>4.3.0.Final</hibernate.version>
+        <hibernate.version>4.2.6.Final</hibernate.version>
 
-        <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
+        <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
 
         <mysql.version>5.1.28</mysql.version>
 
@@ -44,8 +44,37 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- JUnit -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -58,27 +87,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-
-        <!-- Spring Security -->
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>
         </dependency>
 
 
@@ -143,7 +151,7 @@
         </plugins>
     </build>
 
-    <!--  todo: watch videos about AngularJS / @date - 30 Jan 14 2:27 AM -->
+    <!--  todo: watch videos about AngularJS -->
     <!-- todo: read about Apache Tiles -->
     <!-- todo: read about undoing changes with Git -->
     <!-- todo: read about Joda-Time -->

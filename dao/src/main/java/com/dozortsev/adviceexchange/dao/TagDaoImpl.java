@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TagDaoImpl extends GenericDaoImpl<Long, Tag> implements TagDao {
 
-    protected TagDaoImpl() {
-        super(Tag.class);
+    public TagDaoImpl() {
+        this.entityClass = Tag.class;
     }
 }

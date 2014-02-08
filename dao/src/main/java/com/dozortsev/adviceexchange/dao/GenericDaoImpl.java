@@ -18,18 +18,12 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
 
-    private Class<T> entityClass;
+    public Class<T> entityClass;
 
     final Logger log = Logger.getLogger(this.getClass().getName());
 
     @Autowired
     private SessionFactory factory;
-
-    public GenericDaoImpl() { }
-
-    public GenericDaoImpl(Class<T> entityClass) {
-        this.entityClass = entityClass;
-    }
 
     @Override public ID create(T entity) {
         try {

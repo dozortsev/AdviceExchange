@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class CommentDaoImpl extends GenericDaoImpl<Long, Comment> implements CommentDao {
 
     protected CommentDaoImpl() {
-        super(Comment.class);
+        this.entityClass = Comment.class;
     }
 }

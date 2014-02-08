@@ -6,18 +6,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.String.format;
-import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
+@Transactional
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     @Autowired private String findUserByLogin;
 
-    protected UserDaoImpl() {
-        super(User.class);
+    public UserDaoImpl() {
+        this.entityClass = User.class;
     }
 
-    @Transactional(propagation = MANDATORY)
     @Override public User findByLogin(String login) {
         try {
             log.info(format("Finding %s by Login: %s", getEntityClass(), login));
