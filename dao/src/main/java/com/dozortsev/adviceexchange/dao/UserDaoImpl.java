@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.String.format;
+import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
-@Transactional
+@Transactional(propagation = MANDATORY)
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
