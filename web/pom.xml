@@ -12,12 +12,49 @@
     <artifactId>web</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+
+        <servlet.version>2.5</servlet.version>
+
+        <jsp.version>2.1</jsp.version>
+
+        <jstl.version>1.2</jstl.version>
+
+    </properties>
+
     <dependencies>
 
         <dependency>
             <groupId>com.dozortsev.adviceexchange.service</groupId>
             <artifactId>service</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+
+        <!-- Java Servlet container -->
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- JSTL -->
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
