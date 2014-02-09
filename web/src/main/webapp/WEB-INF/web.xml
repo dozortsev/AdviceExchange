@@ -1,0 +1,58 @@
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         metadata-complete="true">
+
+    <display-name>Advice Exchange deploy descriptor</display-name>
+
+
+    <!-- DispatcherServlet declaration -->
+
+    <servlet>
+        <servlet-name>mvcDispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mvcDispatcher</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Location of configuration -->
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/mvc-dispatcher-servlet.xml
+        </param-value>
+    </context-param>
+
+
+    <!-- Bootstrap listener to start up and shut down Spring's root web application -->
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- URL encoding -->
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
