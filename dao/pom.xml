@@ -8,7 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>DAO</name>
-    <groupId>com.dozortsev.adviceexchange.dao</groupId>
     <artifactId>dao</artifactId>
     <packaging>jar</packaging>
 
@@ -23,7 +22,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.dozortsev.adviceexchange.domain</groupId>
+            <groupId>com.dozortsev.adviceexchange</groupId>
             <artifactId>domain</artifactId>
             <version>${project.version}</version>
         </dependency>

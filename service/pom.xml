@@ -8,20 +8,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>Service</name>
-    <groupId>com.dozortsev.adviceexchange.service</groupId>
     <artifactId>service</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
 
         <dependency>
-            <groupId>com.dozortsev.adviceexchange.domain</groupId>
-            <artifactId>domain</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.dozortsev.adviceexchange.dao</groupId>
+            <groupId>com.dozortsev.adviceexchange</groupId>
             <artifactId>dao</artifactId>
             <version>${project.version}</version>
         </dependency>

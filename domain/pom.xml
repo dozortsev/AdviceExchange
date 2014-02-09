@@ -8,7 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>Domain</name>
-    <groupId>com.dozortsev.adviceexchange.domain</groupId>
     <artifactId>domain</artifactId>
     <packaging>jar</packaging>
 
