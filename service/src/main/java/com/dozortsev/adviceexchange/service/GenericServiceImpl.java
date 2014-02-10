@@ -15,7 +15,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     private Class<T> entityClass;
 
-    public abstract GenericDao<ID, T> getDao();
+    protected abstract GenericDao<ID, T> getDao();
 
     @Override public ID create(T entity) {
         return getDao().create(entity);

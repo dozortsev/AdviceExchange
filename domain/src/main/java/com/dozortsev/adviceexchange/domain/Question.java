@@ -55,14 +55,14 @@ public class Question extends AbstractEntity<Long> {
 
     public Question() { }
 
-    public Question(String name, User user, Integer votes, StringBuilder content, Integer views) {
+    public Question(String name, User user, Integer votes, StringBuilder content) {
         this.name = name;
         this.user = user;
         this.votes = votes;
         this.content = content;
     }
 
-    public Question(String name, User user, Integer votes, StringBuilder content, Integer views, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+    public Question(String name, User user, Integer votes, StringBuilder content, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
         this.name = name;
         this.user = user;
         this.votes = votes;

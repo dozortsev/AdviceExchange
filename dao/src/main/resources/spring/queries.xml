@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- Queries -->
+
+    <bean id="findUserByLogin" class="java.lang.String">
+
+        <constructor-arg index="0"
+                         value="
+                         SELECT
+                            u.*
+                         FROM
+                            user u, badge b, user_badge ub
+                         WHERE
+                            u.user_id = ub.ub_user_id
+                            AND
+                            b.bdg_id = ub.ub_badge_id
+                            AND
+                            u.user_email = :login"/>
+    </bean>
+</beans>
