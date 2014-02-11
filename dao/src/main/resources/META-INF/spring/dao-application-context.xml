@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+    <!-- Queries -->
+
+    <import resource="/META-INF/spring/queries.xml"/>
+
 
     <!-- Data Source -->
 
@@ -26,8 +30,6 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-                <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
-                <prop key="hibernate.use_sql_comments">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
@@ -42,25 +44,6 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 
         <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-
-    <!-- Queries -->
-
-    <bean id="findUserByLogin" class="java.lang.String">
-
-        <constructor-arg index="0"
-                         value="
-                         SELECT
-                            u.*
-                         FROM
-                            user u, badge b, user_badge ub
-                         WHERE
-                            u.user_id = ub.ub_user_id
-                            AND
-                            b.bdg_id = ub.ub_badge_id
-                            AND
-                            u.user_email = :login"/>
     </bean>
 
 </beans>
