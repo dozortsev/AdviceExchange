@@ -74,12 +74,15 @@ public class User extends AbstractEntity<Long> {
             inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))
     private List<Badge> badges = new ArrayList<>();
 
-    public User() { }
+    public User() {
+        this.joined = new Date();
+    }
 
     public User(String name, Integer age, StringBuilder aboutMe, String location, String site, String email, String password, Integer reputation) {
         this.name = name;
         this.age = age;
         this.aboutMe = aboutMe;
+        this.joined = new Date();
         this.location = location;
         this.site = site;
         this.email = email;
@@ -91,6 +94,7 @@ public class User extends AbstractEntity<Long> {
         this.name = name;
         this.age = age;
         this.aboutMe = aboutMe;
+        this.joined = new Date();
         this.location = location;
         this.site = site;
         this.email = email;
