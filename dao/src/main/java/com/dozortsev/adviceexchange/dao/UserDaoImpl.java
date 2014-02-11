@@ -12,11 +12,10 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
-    @Autowired
-    private String findUserByLogin;
+    @Autowired private String findUserByLogin;
 
     public UserDaoImpl() {
-        this.entityClass = User.class;
+        setEntityClass(User.class);
     }
 
     @Override public User findByLogin(String login) {

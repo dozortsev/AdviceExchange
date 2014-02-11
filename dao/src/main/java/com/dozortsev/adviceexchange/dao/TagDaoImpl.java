@@ -11,6 +11,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class TagDaoImpl extends GenericDaoImpl<Long, Tag> implements TagDao {
 
     public TagDaoImpl() {
-        this.entityClass = Tag.class;
+        setEntityClass(Tag.class);
     }
 }

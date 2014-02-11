@@ -10,7 +10,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class BadgeDaoImpl extends GenericDaoImpl<Long, Badge> implements BadgeDao {
 
-    protected BadgeDaoImpl() {
-        this.entityClass = Badge.class;
+    public BadgeDaoImpl() {
+        setEntityClass(Badge.class);
     }
 }

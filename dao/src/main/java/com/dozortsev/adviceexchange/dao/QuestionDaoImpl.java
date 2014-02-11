@@ -11,6 +11,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements QuestionDao {
 
     public QuestionDaoImpl() {
-        this.entityClass = Question.class;
+        setEntityClass(Question.class);
     }
 }

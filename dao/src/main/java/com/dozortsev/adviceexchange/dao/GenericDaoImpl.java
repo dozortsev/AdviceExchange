@@ -22,8 +22,7 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
 
     final Logger log = Logger.getLogger(this.getClass().getName());
 
-    @Autowired
-    private SessionFactory factory;
+    @Autowired private SessionFactory factory;
 
     @Override public ID create(T entity) {
         try {
@@ -93,11 +92,15 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         return entity;
     }
 
-    Session getCurrentSession() {
+    protected Session getCurrentSession() {
         return factory.getCurrentSession();
     }
 
-    Class<T> getEntityClass() {
+    protected Class<T> getEntityClass() {
         return entityClass;
+    }
+
+    protected void setEntityClass(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
 }

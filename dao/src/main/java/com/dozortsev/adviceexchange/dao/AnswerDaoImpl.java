@@ -10,7 +10,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class AnswerDaoImpl extends GenericDaoImpl<Long, Answer> implements AnswerDao {
 
-    protected AnswerDaoImpl() {
-        this.entityClass = Answer.class;
+    public AnswerDaoImpl() {
+        setEntityClass(Answer.class);
     }
 }

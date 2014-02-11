@@ -10,7 +10,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class CommentDaoImpl extends GenericDaoImpl<Long, Comment> implements CommentDao {
 
-    protected CommentDaoImpl() {
-        this.entityClass = Comment.class;
+    public CommentDaoImpl() {
+        setEntityClass(Comment.class);
     }
 }
