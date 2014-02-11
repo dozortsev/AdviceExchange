@@ -21,7 +21,7 @@ public class Answer extends AbstractEntity<Long> {
 
     @ManyToOne
     @Valid @NotNull
-    @Column(name = "asw_user_id")
+    @JoinColumn(name = "asw_user_id")
     private User user;
 
     @NotNull @Column(name = "asw_votes")

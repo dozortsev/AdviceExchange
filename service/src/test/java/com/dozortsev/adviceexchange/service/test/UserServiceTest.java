@@ -2,18 +2,19 @@ package com.dozortsev.adviceexchange.service.test;
 
 import com.dozortsev.adviceexchange.domain.User;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class UserServiceTest extends TestContext {
 
-    @Test public void testFindByLogin() {
+    @Ignore public void testFindByLogin() {
 
         final String login = "sed.dui.Fusce@torquentperconubia.net";
 
         Assert.assertNotNull(userService);
         User user = userService.findByLogin(login);
 
-        Assert.assertNotNull("User must be not null", user);
+        Assert.assertNotNull(user);
     }
 
     @Test public void testCreate() {

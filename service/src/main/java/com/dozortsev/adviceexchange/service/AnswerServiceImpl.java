@@ -14,10 +14,6 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
 
     @Autowired private AnswerDao answerDao;
 
-    public AnswerServiceImpl(AnswerDao answerDao) {
-
-    }
-
     @Override public AnswerDao getDao() {
         return answerDao;
     }

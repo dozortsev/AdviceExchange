@@ -5,14 +5,34 @@
        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="classpath:/spring/dao-application-context.xml"/>
-
 
     <!-- Scanning and managed components -->
 
     <context:annotation-config/>
 
     <context:component-scan base-package="com.dozortsev.adviceexchange"/>
+
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <property name="dataSource" ref="embeddedDatabase"/>
+
+        <property name="packagesToScan" value="com.dozortsev.adviceexchange.domain"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 
     <!--
@@ -22,8 +42,8 @@
 
     <jdbc:embedded-database id="embeddedDatabase" type="HSQL">
 
-        <jdbc:script location="classpath:database/test-ddl.sql"/>
-        <jdbc:script location="classpath:database/test-dml.sql"/>
+        <jdbc:script location="/META-INF/database/test-ddl.sql"/>
+        <jdbc:script location="/META-INF/database/test-dml.sql"/>
     </jdbc:embedded-database>
 
 </beans>

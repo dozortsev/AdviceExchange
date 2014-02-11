@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:/spring/test-application-context.xml")
+@ContextConfiguration(locations = "/META-INF/spring/test-application-context.xml")
 public abstract class TestContext {
 
     static final Logger log = Logger.getLogger(TestContext.class);
