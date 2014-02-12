@@ -11,13 +11,11 @@
     <artifactId>dao</artifactId>
     <packaging>jar</packaging>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <apache.dbcp.version>1.4</apache.dbcp.version>
     </properties>
-
 
     <dependencies>
 
