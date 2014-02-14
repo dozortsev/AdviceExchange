@@ -17,7 +17,7 @@ import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
-@AttributeOverride(name = "id", column = @Column(name = "user_id", unique = true, nullable = false))
+@AttributeOverride(name = "id", column = @Column(name = "user_id", unique = true, updatable = false))
 public class User extends AbstractEntity<Long> {
 
     @NotBlank @Size(min = 2, max = 50)
@@ -79,10 +79,10 @@ public class User extends AbstractEntity<Long> {
     }
 
     public User(String name, Integer age, StringBuilder aboutMe, String location, String site, String email, String password, Integer reputation) {
+        this();
         this.name = name;
         this.age = age;
         this.aboutMe = aboutMe;
-        this.joined = new Date();
         this.location = location;
         this.site = site;
         this.email = email;
@@ -91,20 +91,11 @@ public class User extends AbstractEntity<Long> {
     }
 
     public User(String name, Integer age, StringBuilder aboutMe, String location, String site, String email, String password, Integer reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
-        this.name = name;
-        this.age = age;
-        this.aboutMe = aboutMe;
-        this.joined = new Date();
-        this.location = location;
-        this.site = site;
-        this.email = email;
-        this.password = password;
-        this.reputation += reputation;
+        this(name, age, aboutMe, location, site, email, password, reputation);
         this.questions = questions;
         this.answers = answers;
         this.comments = comments;
     }
-
 
     public String getName() {
         return name;
@@ -189,6 +180,13 @@ public class User extends AbstractEntity<Long> {
     }
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+    public void setBadges(List<Badge> badges) {
+        this.badges = badges;
     }
 
     @Override public boolean equals(Object o) {

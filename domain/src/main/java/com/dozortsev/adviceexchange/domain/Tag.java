@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity @Table(name = "tag")
-@AttributeOverride(name = "id", column = @Column(name = "tag_id", unique = true, nullable = false))
+@AttributeOverride(name = "id", column = @Column(name = "tag_id", unique = true, updatable = false))
 public class Tag extends AbstractEntity<Long> {
 
     @NotBlank @Size(min = 2, max = 20)
@@ -15,11 +15,11 @@ public class Tag extends AbstractEntity<Long> {
 
     @Lob @NotBlank @Size(min = 10)
     @Column(name = "tag_desc")
-    private StringBuilder desc = new StringBuilder(1000);
+    private String desc;
 
     public Tag() { }
 
-    public Tag(String name, StringBuilder desc) {
+    public Tag(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }
@@ -31,10 +31,11 @@ public class Tag extends AbstractEntity<Long> {
         this.name = name;
     }
 
-    public StringBuilder getDesc() {
+    public String getDesc() {
         return desc;
     }
-    public void setDesc(StringBuilder desc) {
+
+    public void setDesc(String desc) {
         this.desc = desc;
     }
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity @Table(name = "badge")
-@AttributeOverride(name = "id", column = @Column(name = "bdg_id", unique = true, nullable = false))
+@AttributeOverride(name = "id", column = @Column(name = "bdg_id", unique = true, updatable = false))
 public class Badge extends AbstractEntity<Long> {
 
     @NotBlank @Size(min = 3, max = 30)
@@ -17,14 +17,12 @@ public class Badge extends AbstractEntity<Long> {
     @Column(name = "bdg_desc")
     private String desc;
 
-
     public Badge() { }
 
     public Badge(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }
-
 
     public String getName() {
         return name;

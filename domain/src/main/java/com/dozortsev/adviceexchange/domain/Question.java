@@ -15,14 +15,14 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "question")
-@AttributeOverride(name = "id", column = @Column(name = "qs_id", unique = true, nullable = false))
+@AttributeOverride(name = "id", column = @Column(name = "qs_id", unique = true, updatable = false))
 public class Question extends AbstractEntity<Long> {
 
     @NotBlank @Size(min = 30, max = 200)
     @Column(name = "qs_name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @Valid @NotNull
     @JoinColumn(name = "qs_user_id")
     private User user;
@@ -36,7 +36,7 @@ public class Question extends AbstractEntity<Long> {
 
     @Lob @NotBlank @Size(min = 100)
     @Column(name = "qs_content")
-    private StringBuilder content = new StringBuilder(1000);
+    private String content;
 
     @Valid @Size(min = 1, max = 5)
     @ManyToMany(fetch = LAZY)
@@ -53,25 +53,24 @@ public class Question extends AbstractEntity<Long> {
     @OneToMany(fetch = LAZY, cascade = REMOVE, mappedBy = "question")
     private List<Comment> comments = new ArrayList<>();
 
-    public Question() { }
+    public Question() {
+        this.created = new Date();
+    }
 
-    public Question(String name, User user, Integer votes, StringBuilder content) {
+    public Question(String name, User user, Integer votes, String content) {
+        this();
         this.name = name;
         this.user = user;
         this.votes = votes;
         this.content = content;
     }
 
-    public Question(String name, User user, Integer votes, StringBuilder content, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
-        this.name = name;
-        this.user = user;
-        this.votes = votes;
-        this.content = content;
+    public Question(String name, User user, Integer votes, String content, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+        this(name, user, votes, content);
         this.tags = tags;
         this.answers = answers;
         this.comments = comments;
     }
-
 
     public String getName() {
         return name;
@@ -97,15 +96,14 @@ public class Question extends AbstractEntity<Long> {
     public Date getCreated() {
         return created;
     }
-    @SuppressWarnings("unused")
     public void setCreated(Date created) {
         this.created = created;
     }
 
-    public StringBuilder getContent() {
+    public String getContent() {
         return content;
     }
-    public void setContent(StringBuilder content) {
+    public void setContent(String content) {
         this.content = content;
     }
 

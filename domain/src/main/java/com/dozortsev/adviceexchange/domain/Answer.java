@@ -11,7 +11,7 @@ import java.util.Date;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "answer")
-@AttributeOverride(name = "id", column = @Column(name = "asw_id", unique = true, nullable = false))
+@AttributeOverride(name = "id", column = @Column(name = "asw_id", unique = true, updatable = false))
 public class Answer extends AbstractEntity<Long> {
 
     @ManyToOne
@@ -33,23 +33,24 @@ public class Answer extends AbstractEntity<Long> {
 
     @Lob @NotBlank @Size(min = 50)
     @Column(name = "asw_content")
-    private StringBuilder content = new StringBuilder(1000);
+    private String content;
 
     @NotNull
     @Column(name = "asw_accepted")
     private Boolean isAccepted;
 
+    public Answer() {
+        this.created = new Date();
+    }
 
-    public Answer() { }
-
-    public Answer(Question question, Integer votes, User user, StringBuilder content, Boolean isAccepted) {
+    public Answer(Question question, Integer votes, User user, String content, Boolean isAccepted) {
+        this();
         this.question = question;
         this.votes += votes;
         this.user = user;
         this.content = content;
         this.isAccepted = isAccepted;
     }
-
 
     public Question getQuestion() {
         return question;
@@ -80,10 +81,11 @@ public class Answer extends AbstractEntity<Long> {
         this.created = created;
     }
 
-    public StringBuilder getContent() {
+    public String getContent() {
         return content;
     }
-    public void setContent(StringBuilder content) {
+
+    public void setContent(String content) {
         this.content = content;
     }
 
