@@ -1,13 +1,9 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.service.UserService;
+import com.dozortsev.adviceexchange.service.*;
 import org.apache.log4j.Logger;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,20 +13,13 @@ public abstract class TestContext {
 
     static final Logger log = Logger.getLogger(TestContext.class);
 
-    @Autowired
-    public UserService userService;
+    @Autowired protected TagService tagService;
 
-    private static EmbeddedDatabase db;
+    @Autowired protected UserService userService;
 
-    @BeforeClass
-    public static void setUp() {
-        log.info("creates an HSQL in-memory database");
-        db = new EmbeddedDatabaseBuilder().setName("embeddedDatabase").build();
-    }
+    @Autowired protected QuestionService questionService;
 
-    @AfterClass
-    public static void tearDown() {
-        log.info("shutdown database");
-        db.shutdown();
-    }
+    @Autowired protected AnswerService answerService;
+
+    @Autowired protected CommentService commentService;
 }
