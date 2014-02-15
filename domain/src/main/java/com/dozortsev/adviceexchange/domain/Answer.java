@@ -11,7 +11,7 @@ import java.util.Date;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "answer")
-@AttributeOverride(name = "id", column = @Column(name = "asw_id", unique = true, updatable = false))
+@AttributeOverride(name = "id", column = @Column(name = "asw_id"))
 public class Answer extends AbstractEntity<Long> {
 
     @ManyToOne

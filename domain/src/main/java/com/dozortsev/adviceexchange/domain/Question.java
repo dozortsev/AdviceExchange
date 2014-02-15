@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "question")
-@AttributeOverride(name = "id", column = @Column(name = "qs_id", unique = true, updatable = false))
+@AttributeOverride(name = "id", column = @Column(name = "qs_id"))
 public class Question extends AbstractEntity<Long> {
 
     @NotBlank @Size(min = 30, max = 200)
@@ -34,7 +34,7 @@ public class Question extends AbstractEntity<Long> {
     @Column(name = "qs_created", updatable = false)
     private Date created;
 
-    @Lob @NotBlank @Size(min = 100)
+    @Lob @NotBlank @Size(min = 100, max = 30000)
     @Column(name = "qs_content")
     private String content;
 
@@ -96,6 +96,7 @@ public class Question extends AbstractEntity<Long> {
     public Date getCreated() {
         return created;
     }
+    @SuppressWarnings("unused")
     public void setCreated(Date created) {
         this.created = created;
     }

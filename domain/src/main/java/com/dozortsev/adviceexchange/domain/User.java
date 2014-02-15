@@ -17,7 +17,7 @@ import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
-@AttributeOverride(name = "id", column = @Column(name = "user_id", unique = true, updatable = false))
+@AttributeOverride(name = "id", column = @Column(name = "user_id"))
 public class User extends AbstractEntity<Long> {
 
     @NotBlank @Size(min = 2, max = 50)
