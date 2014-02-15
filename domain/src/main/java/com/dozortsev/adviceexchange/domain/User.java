@@ -52,7 +52,7 @@ public class User extends AbstractEntity<Long> {
     private String password;
 
     @NotNull @Column(name = "user_reputation")
-    private Integer reputation = 1;
+    private Integer reputation = 0;
 
     @Valid
     @OneToMany(cascade = REMOVE, mappedBy = "user")
@@ -156,7 +156,7 @@ public class User extends AbstractEntity<Long> {
         return reputation;
     }
     public void setReputation(Integer reputation) {
-        this.reputation = reputation;
+        this.reputation += reputation;
     }
 
     public List<Question> getQuestions() {
