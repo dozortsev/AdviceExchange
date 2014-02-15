@@ -23,7 +23,7 @@ public class User extends AbstractEntity<Long> {
     @Column(name = "user_name")
     private String name;
 
-    @Range(min = 1, max = 100)
+    @Range(min = 21, max = 100)
     @Column(name = "user_age")
     private Integer age;
 
