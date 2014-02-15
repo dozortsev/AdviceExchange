@@ -3,7 +3,6 @@ package com.dozortsev.adviceexchange.domain;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -28,9 +27,9 @@ public class User extends AbstractEntity<Long> {
     @Column(name = "user_age")
     private Integer age;
 
-    @Size(min = 5, max = 1000)
+    @Size(min = 5, max = 10000)
     @Column(name = "user_about_me")
-    private StringBuilder aboutMe = new StringBuilder(1000);
+    private String aboutMe;
 
     @Temporal(TIMESTAMP)
     @Column(name = "user_joined", updatable = false)
@@ -40,7 +39,6 @@ public class User extends AbstractEntity<Long> {
     @Column(name = "user_location")
     private String location;
 
-    @URL(protocol = "http")
     @Size(min = 10, max = 120)
     @Column(name = "user_site")
     private String site;
@@ -78,7 +76,7 @@ public class User extends AbstractEntity<Long> {
         this.joined = new Date();
     }
 
-    public User(String name, Integer age, StringBuilder aboutMe, String location, String site, String email, String password, Integer reputation) {
+    public User(String name, Integer age, String aboutMe, String location, String site, String email, String password, Integer reputation) {
         this();
         this.name = name;
         this.age = age;
@@ -90,7 +88,7 @@ public class User extends AbstractEntity<Long> {
         this.reputation += reputation;
     }
 
-    public User(String name, Integer age, StringBuilder aboutMe, String location, String site, String email, String password, Integer reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
+    public User(String name, Integer age, String aboutMe, String location, String site, String email, String password, Integer reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
         this(name, age, aboutMe, location, site, email, password, reputation);
         this.questions = questions;
         this.answers = answers;
@@ -111,10 +109,10 @@ public class User extends AbstractEntity<Long> {
         this.age = age;
     }
 
-    public StringBuilder getAboutMe() {
+    public String getAboutMe() {
         return aboutMe;
     }
-    public void setAboutMe(StringBuilder aboutMe) {
+    public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
     }
 
