@@ -3,6 +3,8 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.User;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class UserServiceTest extends TestContext {
@@ -73,11 +75,14 @@ public class UserServiceTest extends TestContext {
 
         final String changedEmail = "new_email@gmail.com";
         final Integer upReputation = 15, oldReputation = user.getReputation();
+        final Date joined = user.getJoined();
 
+        // set updates
         user.setEmail(changedEmail);
         user.setReputation(upReputation);
         userService.update(user);
-        
+
+        assertEquals(joined, user.getJoined());
         assertEquals(changedEmail, user.getEmail());
         assertTrue(new Integer(upReputation + oldReputation).equals(user.getReputation()));
     }
