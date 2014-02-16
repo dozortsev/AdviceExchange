@@ -5,7 +5,71 @@
     <!-- Find user by login(email) -->
 
     <bean id="findUserByLogin" class="java.lang.String">
+        <constructor-arg index="0" value="
+            SELECT
+                  user.*
+            FROM
+                user
+            WHERE
+                user_email = :login
+        "/>
+    </bean>
 
-        <constructor-arg index="0" value="SELECT * FROM user WHERE user_email = :login"/>
+
+    <!-- Find all the Badges that were assigned User -->
+
+    <bean id="findBadgesByUserId" class="java.lang.String">
+        <constructor-arg index="0" value="
+            SELECT
+                badge.*
+            FROM
+                badge
+            JOIN
+                user_badge
+                ON
+                    ub_badge_id = bdg_id
+            JOIN
+                user
+                ON
+                    ub_user_id = user_id
+            WHERE
+                user_id = :userId
+        "/>
+    </bean>
+
+
+    <!-- Find all Question by User id -->
+
+    <bean id="findQuestionsByUserId" class="java.lang.String">
+        <constructor-arg index="0" value="
+            SELECT
+                question.*
+            FROM
+                question
+            JOIN
+                user
+                ON
+                    qs_user_id = user_id
+            WHERE
+                user_id = :userId
+        "/>
+    </bean>
+
+
+    <!-- Find all Answers by User id -->
+
+    <bean id="findAnswersByUserId" class="java.lang.String">
+        <constructor-arg index="0" value="
+            SELECT
+                answer.*
+            FROM
+                answer
+            JOIN
+                user
+                ON
+                    asw_user_id = user_id
+            WHERE
+                user_id = :userId
+        "/>
     </bean>
 </beans>
