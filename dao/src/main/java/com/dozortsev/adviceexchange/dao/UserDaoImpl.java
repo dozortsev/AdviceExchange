@@ -18,9 +18,11 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
         setEntityClass(User.class);
     }
 
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
     @Override public User findByLogin(String login) {
         try {
-            log.info(format("Finding %s by Login: %s", getEntityClass(), login));
+            log.info(format("Find %s by Login: %s", getEntityClass().getSimpleName(), login));
             User user = (User) getCurrentSession().createSQLQuery(findUserByLogin)
                         .addEntity(getEntityClass()).setString("login", login)
                         .uniqueResult();

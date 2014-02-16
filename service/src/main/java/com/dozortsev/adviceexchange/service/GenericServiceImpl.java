@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
@@ -31,6 +32,10 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Override public T findById(ID id) {
         return getDao().findById(id);
+    }
+
+    @Override public Set<T> findByUserId(ID userId) {
+        return getDao().findByUserId(userId);
     }
 
     @Override public T update(T entity) {

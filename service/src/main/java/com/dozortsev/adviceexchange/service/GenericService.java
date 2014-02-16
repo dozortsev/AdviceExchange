@@ -3,16 +3,19 @@ package com.dozortsev.adviceexchange.service;
 import com.dozortsev.adviceexchange.domain.AbstractEntity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public interface GenericService<ID extends Serializable, T extends AbstractEntity<ID>> {
 
-    public ID create(T entity);
+    ID create(T entity);
 
-    public void delete(T entity);
+    void delete(T entity);
 
-    public void deleteById(ID id);
+    void deleteById(ID id);
 
-    public T findById(ID id);
+    T findById(ID id);
 
-    public T update(T entity);
+    Set<T> findByUserId(ID userId);
+
+    T update(T entity);
 }

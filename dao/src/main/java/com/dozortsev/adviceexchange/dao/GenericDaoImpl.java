@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
@@ -16,9 +18,11 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Transactional(propagation = MANDATORY)
 @SuppressWarnings("unchecked")
 @Repository
-public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
+public abstract class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
 
-    public Class<T> entityClass;
+    private String query;
+
+    private Class<T> entityClass;
 
     final Logger log = Logger.getLogger(this.getClass().getName());
 
@@ -28,7 +32,7 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         try {
             log.info(format("Create new %s", getEntityClass()));
             getCurrentSession().save(entity);
-            log.info(format("Successful created. ID: %s", entity.getId()));
+            log.info(format("Success create; ID: %s", entity.getId()));
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -38,9 +42,9 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
 
     @Override public void delete(T entity) {
         try {
-            log.info(format("Deleting %s", getEntityClass()));
+            log.info(format("Delete %s", getEntityClass()));
             getCurrentSession().delete(entity);
-            log.info("Successful deleted");
+            log.info("Success delete");
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -49,12 +53,12 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
 
     @Override public void deleteById(ID id) {
         try {
-            log.info(format("Deleting %s by Id: %s", getEntityClass(), id));
+            log.info(format("Delete %s by Id: %s", getEntityClass(), id));
             T entity = (T) getCurrentSession().get(getEntityClass(), id);
 
             if (entity != null) {
                 getCurrentSession().delete(entity);
-                log.info("Successful deleted");
+                log.info("Success deleted");
                 return;
             }
             log.info(format("%s with this ID not exist", getEntityClass()));
@@ -66,11 +70,11 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
     @Transactional(readOnly = true)
     @Override public T findById(ID id) {
         try {
-            log.info(format("Finding %s by Id: %s", getEntityClass(), id));
+            log.info(format("Find %s by Id: %s", getEntityClass(), id));
             T entity = (T) getCurrentSession().get(getEntityClass(), id);
 
             if (entity != null) {
-                log.info("Successful found");
+                log.info("Success found");
                 return entity;
             }
             log.info("%s with this ID not exist");
@@ -80,11 +84,29 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         return null;
     }
 
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    @Override public Set<T> findByUserId(ID userId) {
+        Set<T> set = new HashSet<>();
+        try {
+            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
+            set.addAll(
+                    getCurrentSession().createSQLQuery(getQuery())
+                            .addEntity(getEntityClass()).setLong("userId", (Long) userId)
+                            .list()
+            );
+            log.info(format("Set of %s have size: %s", getEntityClass(), set.size()));
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return set;
+    }
+
     @Override public T update(T entity) {
         try {
-            log.info(format("Updating %s. ID: %s", getEntityClass(), entity.getId()));
+            log.info(format("Update %s. ID: %s", getEntityClass(), entity.getId()));
             getCurrentSession().update(entity);
-            log.info("Successful updated");
+            log.info("Success updated");
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -92,15 +114,21 @@ public class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID
         return entity;
     }
 
-    protected Session getCurrentSession() {
+    Session getCurrentSession() {
         return factory.getCurrentSession();
     }
 
-    protected Class<T> getEntityClass() {
+    Class<T> getEntityClass() {
         return entityClass;
     }
-
-    protected void setEntityClass(Class<T> entityClass) {
+    void setEntityClass(Class<T> entityClass) {
         this.entityClass = entityClass;
+    }
+
+    String getQuery() {
+        return query;
+    }
+    void setQuery(String query) {
+        this.query = query;
     }
 }
