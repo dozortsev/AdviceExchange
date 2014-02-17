@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
@@ -19,8 +17,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @SuppressWarnings("unchecked")
 @Repository
 public abstract class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
-
-    private String query;
 
     private Class<T> entityClass;
 
@@ -84,24 +80,6 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
         return null;
     }
 
-    @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
-    @Override public Set<T> findByUserId(ID userId) {
-        Set<T> set = new HashSet<>();
-        try {
-            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
-            set.addAll(
-                    getCurrentSession().createSQLQuery(getQuery())
-                            .addEntity(getEntityClass()).setLong("userId", (Long) userId)
-                            .list()
-            );
-            log.info(format("Set of %s have size: %s", getEntityClass(), set.size()));
-        } catch (Exception e) {
-            log.error("Error: ", e);
-        }
-        return set;
-    }
-
     @Override public T update(T entity) {
         try {
             log.info(format("Update %s. ID: %s", getEntityClass(), entity.getId()));
@@ -123,12 +101,5 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
     }
     void setEntityClass(Class<T> entityClass) {
         this.entityClass = entityClass;
-    }
-
-    String getQuery() {
-        return query;
-    }
-    void setQuery(String query) {
-        this.query = query;
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -16,5 +18,9 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
 
     @Override public QuestionDao getDao() {
         return questionDao;
+    }
+
+    @Override public Set<Question> findQuestionByUserId(Long userId) {
+        return getDao().findQuestionByUserId(userId);
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -16,5 +18,9 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
 
     @Override public BadgeDao getDao() {
         return badgeDao;
+    }
+
+    @Override public Set<Badge> findBadgesByUserId(Long userId) {
+        return getDao().findBadgesByUserId(userId);
     }
 }
