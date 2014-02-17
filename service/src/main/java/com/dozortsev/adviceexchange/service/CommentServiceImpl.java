@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -16,5 +18,9 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
 
     @Override public CommentDao getDao() {
         return commentDao;
+    }
+
+    @Override public Set<Comment> findCommentsByQuestionId(Long questionId) {
+        return getDao().findCommentsByQuestionId(questionId);
     }
 }
