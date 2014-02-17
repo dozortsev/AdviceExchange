@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static javax.persistence.CascadeType.REMOVE;
+import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -18,11 +18,11 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @AttributeOverride(name = "id", column = @Column(name = "qs_id"))
 public class Question extends AbstractEntity<Long> {
 
-    @NotBlank @Size(min = 30, max = 200)
+    @NotBlank @Size(min = 10, max = 200)
     @Column(name = "qs_name")
     private String name;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY, cascade = { MERGE, PERSIST })
     @Valid @NotNull
     @JoinColumn(name = "qs_user_id")
     private User user;
@@ -34,7 +34,7 @@ public class Question extends AbstractEntity<Long> {
     @Column(name = "qs_created", updatable = false)
     private Date created;
 
-    @Lob @NotBlank @Size(min = 100, max = 30000)
+    @Lob @NotBlank @Size(min = 50, max = 30000)
     @Column(name = "qs_content")
     private String content;
 

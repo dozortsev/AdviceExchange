@@ -8,18 +8,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "answer")
 @AttributeOverride(name = "id", column = @Column(name = "asw_id"))
 public class Answer extends AbstractEntity<Long> {
 
-    @ManyToOne
+    @ManyToOne(cascade = { MERGE, PERSIST })
     @Valid @NotNull
     @JoinColumn(name = "asw_question_id")
     private Question question;
 
-    @ManyToOne
+    @ManyToOne(cascade = { MERGE, PERSIST })
     @Valid @NotNull
     @JoinColumn(name = "asw_user_id")
     private User user;
