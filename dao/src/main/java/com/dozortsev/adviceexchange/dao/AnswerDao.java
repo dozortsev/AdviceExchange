@@ -2,9 +2,9 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.Answer;
 
-import java.util.Set;
+import java.util.List;
 
 public interface AnswerDao extends GenericDao<Long, Answer> {
 
-    Set<Answer> findAnswersByUserId(Long userId);
+    List<Answer> findAnswersByUserId(Long userId);
 }

@@ -2,9 +2,9 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.Badge;
 
-import java.util.Set;
+import java.util.List;
 
 public interface BadgeDao extends GenericDao<Long, Badge> {
 
-    Set<Badge> findBadgesByUserId(Long userId);
+    List<Badge> findBadgesByUserId(Long userId);
 }

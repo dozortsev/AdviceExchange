@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -20,7 +22,21 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return questionDao;
     }
 
+    public QuestionServiceImpl() {
+        setEntityClass(Question.class);
+    }
+
+    @Transactional(readOnly = true)
     @Override public Set<Question> findQuestionByUserId(Long userId) {
-        return getDao().findQuestionByUserId(userId);
+        Set<Question> questions = new HashSet<>();
+        try {
+            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
+            questions.addAll(getDao().findQuestionByUserId(userId));
+            log.info(format("Set of %s have size: %s", getEntityClass(), questions.size()));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return questions;
     }
 }

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -20,7 +22,21 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
         return badgeDao;
     }
 
+    public BadgeServiceImpl() {
+        setEntityClass(Badge.class);
+    }
+
+    @Transactional(readOnly = true)
     @Override public Set<Badge> findBadgesByUserId(Long userId) {
-        return getDao().findBadgesByUserId(userId);
+        Set<Badge> badges = new HashSet<>();
+        try {
+            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
+            badges.addAll(getDao().findBadgesByUserId(userId));
+            log.info(format("Set of %s have size: %s", getEntityClass(), badges.size()));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return badges;
     }
 }

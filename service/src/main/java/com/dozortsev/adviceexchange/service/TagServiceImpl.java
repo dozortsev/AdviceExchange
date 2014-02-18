@@ -17,4 +17,8 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
     @Override public TagDao getDao() {
         return tagDao;
     }
+
+    public TagServiceImpl() {
+        setEntityClass(Tag.class);
+    }
 }

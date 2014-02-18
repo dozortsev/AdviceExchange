@@ -2,9 +2,9 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.Comment;
 
-import java.util.Set;
+import java.util.List;
 
 public interface CommentDao extends GenericDao<Long, Comment> {
 
-    Set<Comment> findCommentsByQuestionId(Long questionId);
+    List<Comment> findCommentsByQuestionId(Long questionId);
 }
