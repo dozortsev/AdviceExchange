@@ -3,9 +3,28 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Test;
 
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 public class QuestionServiceTest extends TestContext {
+
+    @Test public void testUserQuestions() {
+
+        final Long userId = 26L;
+
+        Set<Question> userQuestions = questionService.findQuestionByUserId(userId);
+
+        assertNotNull(userQuestions);
+        assertNotEquals(0, userQuestions.size());
+
+        for (Question question : userQuestions) {
+
+            Question expectQuestion = questionService.findById(question.getId());
+
+            assertEquals(expectQuestion, question);
+        }
+    }
 
     @Test public void testFindQuestionById() {
 
@@ -19,16 +38,18 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testCreateQuestion() {
 
-        final Long userId1 = 10L, userId2 = 5L, userId3 = 6L, tagId1 = 1L, tagId2 = 12L;
-
         // prepare data for test of create
+        final Integer votes = 2;
+        final String name = "Lorem ipsum dolor sit amet, consectetur adipisicing.";
+        final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deleniti dolorem dolores dolorum enim id obcaecati quae quam quasi rem?";
+
         Question question = new Question();
 
         // User how asked this Question
-        User qsUser = userService.findById(userId1);
+        User user = userService.findById(10L);
 
         // first Answer
-        User awUser1 = userService.findById(userId2);
+        User awUser1 = userService.findById(5L);
         assertNotNull(awUser1);
         String awContent1 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, cupiditate!";
         Answer answer1 = new Answer(
@@ -36,7 +57,7 @@ public class QuestionServiceTest extends TestContext {
         );
 
         // second Answer (was accepted)
-        User awUser2 = userService.findById(userId3);
+        User awUser2 = userService.findById(6L);
         assertNotNull(awUser2);
         String awContent2 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure labore optio perspiciatis quos? Voluptates.";
         Answer answer2 = new Answer(
@@ -44,19 +65,19 @@ public class QuestionServiceTest extends TestContext {
         );
 
         // Question have 2 tags
-        Tag tag1 = tagService.findById(tagId1);
+        Tag tag1 = tagService.findById(1L);
         assertNotNull(tag1);
-        Tag tag2 = tagService.findById(tagId2);
+        Tag tag2 = tagService.findById(2L);
         assertNotNull(tag2);
 
         // also Question have 1 comment
         Comment comment = new Comment(question, awUser1, "Lorem ipsum dolor sit.");
 
-        // other data
-        question.setName("Lorem ipsum dolor sit amet, consectetur adipisicing.");
-        question.setUser(qsUser);
-        question.setContent("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deleniti dolorem dolores dolorum enim id obcaecati quae quam quasi rem?");
-        question.setVotes(2);
+        // set another data
+        question.setName(name);
+        question.setUser(user);
+        question.setContent(content);
+        question.setVotes(votes);
 
         question.getComments().add(comment);
         question.getAnswers().add(answer1);
@@ -64,8 +85,27 @@ public class QuestionServiceTest extends TestContext {
         question.getTags().add(tag1);
         question.getTags().add(tag2);
 
+        // try to create new Question
         assertNull(question.getId());
         questionService.create(question);
         assertNotNull(question.getId());
+
+        // also save Comment
+        assertNull(comment.getId());
+        commentService.create(comment);
+        assertNotNull(comment.getId());
+
+        // reload
+        question = questionService.findById(question.getId());
+        assertNotNull(question);
+
+        // check on the expected data
+        assertEquals(name, question.getName());
+        assertEquals(content, question.getContent());
+        assertEquals(votes, question.getVotes());
+
+        Set<Comment> questionComments = commentService.findCommentsByQuestionId(question.getId());
+        assertEquals(1, questionComments.size());
+        assertTrue(questionComments.contains(comment));
     }
 }

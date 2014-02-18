@@ -3,8 +3,8 @@
 
 INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
 
-  (1, 'Admin', 'One who oversees discussions on an Internet forum'),
-  (2, 'User', 'A person using a generic system');
+  (1, 'Admin', 'Lorem ipsum dolor.'),
+  (2, 'User', 'Lorem ipsum dolor sit amet.');
 
 
   /* User data */

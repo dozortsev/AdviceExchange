@@ -17,9 +17,11 @@ public abstract class TestContext {
 
     @Autowired protected UserService userService;
 
-    @Autowired protected QuestionService questionService;
+    @Autowired protected BadgeService badgeService;
 
     @Autowired protected AnswerService answerService;
 
     @Autowired protected CommentService commentService;
+
+    @Autowired protected QuestionService questionService;
 }
