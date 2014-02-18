@@ -9,6 +9,7 @@ public class TagServiceTest extends TestContext {
 
     @Test public void testFindTagById() {
 
+        // choose random Tag Id
         final Long id = 1L;
 
         Tag tag = tagService.findById(id);

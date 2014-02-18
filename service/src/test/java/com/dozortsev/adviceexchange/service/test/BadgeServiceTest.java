@@ -11,6 +11,7 @@ public class BadgeServiceTest extends TestContext {
 
     @Test public void testUserBadges() {
 
+        // choose random Badge Id
         final Long userId = 23L;
 
         Set<Badge> userBadges = badgeService.findBadgesByUserId(userId);

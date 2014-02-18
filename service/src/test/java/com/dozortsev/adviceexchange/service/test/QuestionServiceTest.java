@@ -11,12 +11,13 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testUserQuestions() {
 
+        // choose random Question Id
         final Long userId = 26L;
 
         Set<Question> userQuestions = questionService.findQuestionByUserId(userId);
 
         assertNotNull(userQuestions);
-        assertNotEquals(0, userQuestions.size());
+        assertFalse(userQuestions.isEmpty());
 
         for (Question question : userQuestions) {
 
@@ -28,6 +29,7 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testFindQuestionById() {
 
+        // choose random Question Id
         final Long id = 1L;
 
         Question question = questionService.findById(id);
@@ -90,11 +92,6 @@ public class QuestionServiceTest extends TestContext {
         questionService.create(question);
         assertNotNull(question.getId());
 
-        // also save Comment
-        assertNull(comment.getId());
-        commentService.create(comment);
-        assertNotNull(comment.getId());
-
         // reload
         question = questionService.findById(question.getId());
         assertNotNull(question);
@@ -107,5 +104,17 @@ public class QuestionServiceTest extends TestContext {
         Set<Comment> questionComments = commentService.findCommentsByQuestionId(question.getId());
         assertEquals(1, questionComments.size());
         assertTrue(questionComments.contains(comment));
+    }
+
+    @Test public void testDeleteQuestion() {
+
+        // choose random Question Question Id
+        final Long id = 15L;
+
+        questionService.deleteById(id);
+        assertNull(questionService.findById(id));
+
+        // With Question should be deleted all related Comments
+        assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
     }
 }

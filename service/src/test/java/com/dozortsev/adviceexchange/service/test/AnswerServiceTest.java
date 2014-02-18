@@ -13,6 +13,7 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testFindAnswerById() {
 
+        // choose random Answer Id
         final Long id = 1L;
 
         Answer answer = answerService.findById(id);
@@ -25,6 +26,7 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testCreateAnswer() {
 
+        // choose random Question and User Id
         final Long qsId = 10L, userId = 10L;
 
         // prepare data for test of create
@@ -63,6 +65,7 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testUpdateAnswer() {
 
+        // choose random Answer Id
         final Long id = 1L;
 
         Answer answer = answerService.findById(id);

@@ -1,5 +1,6 @@
 package com.dozortsev.adviceexchange.service.test;
 
+import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.Tag;
 import com.dozortsev.adviceexchange.domain.User;
@@ -15,6 +16,7 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testFindUserById() {
 
+        // choose random User Id
         final Long id = 1L;
 
         final String expectPassword = "3938233";
@@ -30,6 +32,7 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testFindUserByLogin() {
 
+        // choose random User email(login)
         final String login = "dolor.Quisque.tincidunt@tellusnon.edu";
 
         final Long expectId = 1L;
@@ -60,6 +63,12 @@ public class UserServiceTest extends TestContext {
         );
         // add to Question 1 Tag
         question.setTags(new ArrayList<Tag>() {{ add(tagService.findById(4L)); }});
+
+        // Question have 1 accepted Answer
+        final Answer answer = new Answer(
+                question, 10, userService.findById(50L), "consectetur adipisicing elit Content Aut blanditiis dolore eum ex explicabo", true
+        );
+        question.setAnswers(new ArrayList<Answer>() {{ add(answer); }});
 
         // set this Question to User
         user.setQuestions(new ArrayList<Question>(){{ add(question); }});
@@ -95,6 +104,7 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testUpdateUser() {
 
+        // choose random User Id
         final Long id = 2L;
 
         User user = userService.findById(id);
@@ -116,6 +126,7 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testDelete() {
 
+        // choose random User Id
         final Long id = 3L;
         User user = userService.findById(id);
 
@@ -123,6 +134,11 @@ public class UserServiceTest extends TestContext {
         userService.delete(user);
 
         assertNull(userService.findById(id));
+
+        // With User should be delete all him Questions
+        assertTrue(questionService.findQuestionByUserId(id).isEmpty());
+        // and Answers
+        assertTrue(answerService.findAnswersByUserId(id).isEmpty());
     }
 
     @Test public void testDeleteUserById() {

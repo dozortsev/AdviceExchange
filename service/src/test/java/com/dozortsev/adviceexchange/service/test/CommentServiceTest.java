@@ -10,6 +10,7 @@ public class CommentServiceTest extends TestContext {
 
     @Test public void testLoadCommentById() {
 
+        // choose random Comment Id
         final Long id = 1L;
 
         Comment comment = commentService.findById(id);
