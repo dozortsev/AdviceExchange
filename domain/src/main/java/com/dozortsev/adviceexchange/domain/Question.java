@@ -46,11 +46,11 @@ public class Question extends AbstractEntity<Long> {
     private List<Tag> tags = new ArrayList<>();
 
     @Valid
-    @OneToMany(fetch = LAZY, cascade = REMOVE, mappedBy = "question")
+    @OneToMany(fetch = LAZY, cascade = ALL, mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
     @Valid
-    @OneToMany(fetch = LAZY, cascade = REMOVE, mappedBy = "question")
+    @OneToMany(fetch = LAZY, cascade = ALL, mappedBy = "question")
     private List<Comment> comments = new ArrayList<>();
 
     public Question() {
