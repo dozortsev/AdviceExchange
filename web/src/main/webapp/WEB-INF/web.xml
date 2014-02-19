@@ -9,15 +9,32 @@
     <!-- DispatcherServlet declaration -->
 
     <servlet>
-        <servlet-name>mvcDispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-name>mvcServletDispatcher</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>mvcDispatcher</servlet-name>
+        <servlet-name>mvcServletDispatcher</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+
+
+    <!-- Register a a DelegatingFilterProxy instance -->
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>
+            org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
     <!-- Location of configuration -->
@@ -25,7 +42,8 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/mvc-dispatcher-servlet.xml
+            /WEB-INF/mvc-dispatcher-servlet.xml,
+            /WEB-INF/spring-security.xml
         </param-value>
     </context-param>
 
