@@ -26,8 +26,8 @@
 
     <jdbc:embedded-database id="embeddedDatabase" type="HSQL">
 
-        <jdbc:script location="/META-INF/database/test-ddl.sql"/>
-        <jdbc:script location="/META-INF/database/test-dml.sql"/>
+        <jdbc:script location="/META-INF/database/test-ddl.sql" encoding="UTF-8"/>
+        <jdbc:script location="/META-INF/database/test-dml.sql" encoding="UTF-8"/>
     </jdbc:embedded-database>
 
 
