@@ -108,7 +108,7 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testDeleteQuestion() {
 
-        // choose random Question Question Id
+        // choose random Question Id
         final Long id = 15L;
 
         questionService.deleteById(id);

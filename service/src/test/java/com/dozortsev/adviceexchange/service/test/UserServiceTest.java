@@ -137,8 +137,10 @@ public class UserServiceTest extends TestContext {
 
         // With User should be delete all him Questions
         assertTrue(questionService.findQuestionByUserId(id).isEmpty());
-        // and Answers
+        // Answers
         assertTrue(answerService.findAnswersByUserId(id).isEmpty());
+        // also Badges
+        assertTrue(badgeService.findBadgesByUserId(id).isEmpty());
     }
 
     @Test public void testDeleteUserById() {
