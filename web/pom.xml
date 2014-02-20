@@ -58,4 +58,26 @@
 
     </dependencies>
 
+
+    <build>
+        <plugins>
+
+            <!-- Maven WAR Plugin -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warName>
+                        ${project.parent.artifactId}
+                    </warName>
+                    <filteringDeploymentDescriptors>
+                        true
+                    </filteringDeploymentDescriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
