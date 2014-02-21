@@ -2,14 +2,13 @@ package com.dozortsev.adviceexchange.service.test;
 
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.domain.Tag;
 import com.dozortsev.adviceexchange.domain.User;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class UserServiceTest extends TestContext {
@@ -62,16 +61,16 @@ public class UserServiceTest extends TestContext {
                 "consectetur adipisicing elit. Aut blanditiis dolore eum ex explicabo"
         );
         // add to Question 1 Tag
-        question.setTags(new ArrayList<Tag>() {{ add(tagService.findById(4L)); }});
+        question.setTags(asList(tagService.findById(4L)));
 
         // Question have 1 accepted Answer
         final Answer answer = new Answer(
                 question, 10, userService.findById(50L), "consectetur adipisicing elit Content Aut blanditiis dolore eum ex explicabo", true
         );
-        question.setAnswers(new ArrayList<Answer>() {{ add(answer); }});
+        question.setAnswers(asList(answer));
 
         // set this Question to User
-        user.setQuestions(new ArrayList<Question>(){{ add(question); }});
+        user.setQuestions(asList(question));
 
         // try to create new User
         assertNull(user.getId());
