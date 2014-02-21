@@ -101,9 +101,11 @@ public class Answer extends AbstractEntity<Long> {
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Answer answer = (Answer) o;
 
+        if (!content.equals(answer.content)) return false;
         if (!created.equals(answer.created)) return false;
         if (!isAccepted.equals(answer.isAccepted)) return false;
         if (!votes.equals(answer.votes)) return false;
@@ -112,8 +114,10 @@ public class Answer extends AbstractEntity<Long> {
     }
 
     @Override public int hashCode() {
-        int result = votes.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + votes.hashCode();
         result = 31 * result + created.hashCode();
+        result = 31 * result + content.hashCode();
         result = 31 * result + isAccepted.hashCode();
         return result;
     }

@@ -77,6 +77,7 @@ public class Comment extends AbstractEntity<Long> {
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Comment comment = (Comment) o;
 
@@ -87,7 +88,8 @@ public class Comment extends AbstractEntity<Long> {
     }
 
     @Override public int hashCode() {
-        int result = content.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + content.hashCode();
         result = 31 * result + created.hashCode();
         return result;
     }

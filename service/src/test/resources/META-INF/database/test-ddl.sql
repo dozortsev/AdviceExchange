@@ -11,8 +11,8 @@ CREATE TABLE user (
   user_joined     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_location   VARCHAR(120),
   user_site       VARCHAR(120),
-  user_email      VARCHAR(120),
-  user_password   VARCHAR(15),
+  user_email      VARCHAR(120) NOT NULL,
+  user_password   VARCHAR(15) NOT NULL,
   user_reputation INT DEFAULT 1 NOT NULL,
 
   UNIQUE (user_email, user_password)

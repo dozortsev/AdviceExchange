@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS user (
   user_joined     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_location   VARCHAR(120),
   user_site       VARCHAR(120),
-  user_email      VARCHAR(120) UNIQUE,
-  user_password   VARCHAR(15) UNIQUE,
+  user_email      VARCHAR(120) NOT NULL UNIQUE,
+  user_password   VARCHAR(15) NOT NULL UNIQUE,
   user_reputation INT         NOT NULL DEFAULT 1
 )
   ENGINE =InnoDB;

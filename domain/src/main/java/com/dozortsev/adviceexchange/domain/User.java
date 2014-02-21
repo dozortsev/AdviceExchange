@@ -190,21 +190,31 @@ public class User extends AbstractEntity<Long> {
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         User user = (User) o;
 
+        if (aboutMe != null ? !aboutMe.equals(user.aboutMe) : user.aboutMe != null) return false;
+        if (age != null ? !age.equals(user.age) : user.age != null) return false;
         if (!email.equals(user.email)) return false;
         if (!joined.equals(user.joined)) return false;
+        if (location != null ? !location.equals(user.location) : user.location != null) return false;
         if (!name.equals(user.name)) return false;
         if (!password.equals(user.password)) return false;
         if (!reputation.equals(user.reputation)) return false;
+        if (site != null ? !site.equals(user.site) : user.site != null) return false;
 
         return true;
     }
 
     @Override public int hashCode() {
-        int result = name.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (aboutMe != null ? aboutMe.hashCode() : 0);
         result = 31 * result + joined.hashCode();
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (site != null ? site.hashCode() : 0);
         result = 31 * result + email.hashCode();
         result = 31 * result + password.hashCode();
         result = 31 * result + reputation.hashCode();
