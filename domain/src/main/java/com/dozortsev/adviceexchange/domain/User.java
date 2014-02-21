@@ -90,9 +90,9 @@ public class User extends AbstractEntity<Long> {
 
     public User(String name, Integer age, String aboutMe, String location, String site, String email, String password, Integer reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
         this(name, age, aboutMe, location, site, email, password, reputation);
-        this.questions = questions;
-        this.answers = answers;
-        this.comments = comments;
+        this.questions.addAll(questions);
+        this.answers.addAll(answers);
+        this.comments.addAll(comments);
     }
 
     public String getName() {
@@ -163,28 +163,28 @@ public class User extends AbstractEntity<Long> {
         return questions;
     }
     public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+        this.questions.addAll(questions);
     }
 
     public List<Answer> getAnswers() {
         return answers;
     }
     public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+        this.answers.addAll(answers);
     }
 
     public List<Comment> getComments() {
         return comments;
     }
     public void setComments(List<Comment> comments) {
-        this.comments = comments;
+        this.comments.addAll(comments);
     }
 
     public List<Badge> getBadges() {
         return badges;
     }
     public void setBadges(List<Badge> badges) {
-        this.badges = badges;
+        this.badges.addAll(badges);
     }
 
     @Override public boolean equals(Object o) {

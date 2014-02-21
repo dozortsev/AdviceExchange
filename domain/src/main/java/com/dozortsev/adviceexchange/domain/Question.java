@@ -67,9 +67,9 @@ public class Question extends AbstractEntity<Long> {
 
     public Question(String name, User user, Integer votes, String content, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
         this(name, user, votes, content);
-        this.tags = tags;
-        this.answers = answers;
-        this.comments = comments;
+        this.tags.addAll(tags);
+        this.answers.addAll(answers);
+        this.comments.addAll(comments);
     }
 
     public String getName() {
@@ -112,21 +112,21 @@ public class Question extends AbstractEntity<Long> {
         return tags;
     }
     public void setTags(List<Tag> tags) {
-        this.tags = tags;
+        this.tags.addAll(tags);
     }
 
     public List<Answer> getAnswers() {
         return answers;
     }
     public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+        this.answers.addAll(answers);
     }
 
     public List<Comment> getComments() {
         return comments;
     }
     public void setComments(List<Comment> comments) {
-        this.comments = comments;
+        this.comments.addAll(comments);
     }
 
     @Override public boolean equals(Object o) {
