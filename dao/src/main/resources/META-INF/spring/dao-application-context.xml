@@ -6,7 +6,7 @@
 
     <!-- Queries -->
 
-    <import resource="/META-INF/spring/queries.xml"/>
+    <import resource="classpath:/META-INF/spring/queries.xml"/>
 
 
     <!-- Data Source -->
