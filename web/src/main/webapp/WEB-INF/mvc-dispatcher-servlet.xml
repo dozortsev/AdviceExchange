@@ -25,6 +25,14 @@
     </bean>
 
 
+    <!-- MessageSource which belong to View -->
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+
+        <property name="basename" value="view" />
+    </bean>
+
+
     <!-- Configures the @Controller programming model -->
 
     <mvc:annotation-driven/>
