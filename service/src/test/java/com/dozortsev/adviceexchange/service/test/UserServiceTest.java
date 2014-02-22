@@ -37,7 +37,7 @@ public class UserServiceTest extends TestContext {
         final Long expectId = 1L;
         final String expectPassword = "3938233";
 
-        User user = userService.findByLogin(login);
+        User user = userService.findUserByLogin(login);
 
         assertNotNull(user);
         assertEquals(expectId, user.getId());

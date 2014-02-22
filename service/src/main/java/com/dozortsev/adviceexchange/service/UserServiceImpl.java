@@ -24,10 +24,10 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
     }
 
     @Transactional(readOnly = true)
-    @Override public User findByLogin(String login) {
+    @Override public User findUserByLogin(String login) {
         try {
             log.info(format("Find %s by Login: %s", getEntityClass(), login));
-            User user = getDao().findByLogin(login);
+            User user = getDao().findUserByLogin(login);
 
             if (user != null) {
                 log.info("Successful found");

@@ -18,7 +18,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
     }
 
     @SuppressWarnings("unchecked")
-    @Override public User findByLogin(String login) {
+    @Override public User findUserByLogin(String login) {
 
         return (User) getCurrentSession().createSQLQuery(findUserByLogin)
                 .addEntity(getEntityClass()).setString("login", login)
