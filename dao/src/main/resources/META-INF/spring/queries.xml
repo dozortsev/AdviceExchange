@@ -6,12 +6,8 @@
 
     <bean id="findUserByLogin" class="java.lang.String">
         <constructor-arg index="0" value="
-            SELECT
-                  user.*
-            FROM
-                user
-            WHERE
-                user_email = :login
+
+            SELECT user.* FROM user WHERE user_email = :login
         "/>
     </bean>
 
@@ -20,20 +16,14 @@
 
     <bean id="findBadgesByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
-            SELECT
-                badge.*
-            FROM
-                badge
-            JOIN
-                user_badge
-                ON
-                    ub_badge_id = bdg_id
-            JOIN
-                user
-                ON
-                    ub_user_id = user_id
-            WHERE
-                user_id = :userId
+
+            SELECT badge.* FROM badge
+
+                JOIN user_badge ON ub_badge_id = bdg_id
+
+                JOIN user ON ub_user_id = user_id
+
+            WHERE user_id = :userId
         "/>
     </bean>
 
@@ -42,16 +32,21 @@
 
     <bean id="findQuestionsByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
-            SELECT
-                question.*
-            FROM
-                question
-            JOIN
-                user
-                ON
-                    qs_user_id = user_id
-            WHERE
-                user_id = :userId
+
+            SELECT question.* FROM question
+
+                JOIN user ON qs_user_id = user_id
+
+            WHERE user_id = :userId
+        "/>
+    </bean>
+
+
+    <!-- Find all Question by array of Tag id -->
+
+    <bean id="findQuestionsByTagsId" class="java.lang.String">
+        <constructor-arg index="0" value="
+
         "/>
     </bean>
 
@@ -60,16 +55,12 @@
 
     <bean id="findAnswersByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
-            SELECT
-                answer.*
-            FROM
-                answer
-            JOIN
-                user
-                ON
-                    asw_user_id = user_id
-            WHERE
-                user_id = :userId
+
+            SELECT answer.* FROM answer
+
+                JOIN user ON asw_user_id = user_id
+
+            WHERE user_id = :userId
         "/>
     </bean>
 
@@ -78,16 +69,12 @@
 
     <bean id="findCommentsByQuestionId" class="java.lang.String">
         <constructor-arg index="0" value="
-            SELECT
-                comment.*
-            FROM
-                comment
-            JOIN
-                question
-                ON
-                    cm_question_id = qs_id
-            WHERE
-                qs_id = :questionId
+
+            SELECT comment.* FROM comment
+
+                JOIN question ON cm_question_id = qs_id
+
+            WHERE qs_id = :questionId
         "/>
     </bean>
 </beans>
