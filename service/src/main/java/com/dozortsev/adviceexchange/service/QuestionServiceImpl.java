@@ -27,11 +27,11 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Question> findQuestionByUserId(Long userId) {
+    @Override public Set<Question> findQuestionsByUserId(Long userId) {
         Set<Question> questions = new HashSet<>();
         try {
             log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
-            questions.addAll(getDao().findQuestionByUserId(userId));
+            questions.addAll(getDao().findQuestionsByUserId(userId));
             log.info(format("Set of %s have size: %s", getEntityClass(), questions.size()));
 
         } catch (Exception e) {
