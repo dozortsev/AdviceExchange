@@ -1,12 +1,14 @@
 package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.Question;
+import com.dozortsev.adviceexchange.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.hibernate.criterion.CriteriaSpecification.ROOT_ENTITY;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY, readOnly = true)
@@ -32,7 +34,9 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
     @Override public List<Question> findQuestionsByTagId(Long... tagId) {
 
         return getCurrentSession().createSQLQuery(findQuestionsByTagsId)
-                .addEntity(getEntityClass()).setParameterList("arrTagId", tagId)
+                .addEntity("tag", Tag.class).addEntity("qs", getEntityClass())
+                .setResultTransformer(ROOT_ENTITY)
+                .setParameterList("arrTagId", tagId)
                 .list();
     }
 }

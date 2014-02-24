@@ -39,7 +39,7 @@ public class Question extends AbstractEntity<Long> {
     private String content;
 
     @Valid @Size(min = 1, max = 5)
-    @ManyToMany(fetch = LAZY)
+    @ManyToMany
     @JoinTable(name = "question_tag",
             joinColumns = @JoinColumn(name = "qt_question_id"),
             inverseJoinColumns = @JoinColumn(name = "qt_tag_id"))

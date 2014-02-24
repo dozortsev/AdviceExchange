@@ -96,7 +96,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(password, user.getPassword());
         assertEquals(reputation, user.getReputation());
 
-        Set<Question> userQuestions = questionService.findQuestionByUserId(user.getId());
+        Set<Question> userQuestions = questionService.findQuestionsByUserId(user.getId());
         assertEquals(1, userQuestions.size());
         assertTrue(userQuestions.contains(question));
     }
@@ -135,7 +135,7 @@ public class UserServiceTest extends TestContext {
         assertNull(userService.findById(id));
 
         // With User should be delete all him Questions
-        assertTrue(questionService.findQuestionByUserId(id).isEmpty());
+        assertTrue(questionService.findQuestionsByUserId(id).isEmpty());
         // Answers
         assertTrue(answerService.findAnswersByUserId(id).isEmpty());
         // also Badges

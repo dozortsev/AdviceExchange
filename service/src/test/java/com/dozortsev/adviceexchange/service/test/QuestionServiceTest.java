@@ -3,6 +3,8 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -14,7 +16,7 @@ public class QuestionServiceTest extends TestContext {
         // choose random Question Id
         final Long userId = 26L;
 
-        Set<Question> userQuestions = questionService.findQuestionByUserId(userId);
+        Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
 
         assertNotNull(userQuestions);
         assertFalse(userQuestions.isEmpty());
@@ -30,7 +32,7 @@ public class QuestionServiceTest extends TestContext {
     @Test public void testFindQuestionById() {
 
         // choose random Question Id
-        final Long id = 1L;
+        final Long id = 2L;
 
         Question question = questionService.findById(id);
 
@@ -116,5 +118,18 @@ public class QuestionServiceTest extends TestContext {
 
         // With Question should be deleted all related Comments
         assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
+    }
+
+//    @Ignore
+    @Test public void testFindQuestionsByTagsId() {
+
+        Set<Question> questions = questionService.findQuestionsByTagsId(1L, 2L);
+
+        List<Long> listTagsId = Arrays.asList(1L, 2L);
+
+        for (Question question : questions) {
+            assertNotNull(question.getTags());
+            assertNotEquals(0, question.getTags().size());
+        }
     }
 }
