@@ -4,5 +4,5 @@ import com.dozortsev.adviceexchange.domain.User;
 
 public interface UserService extends GenericService<Long, User> {
 
-    public User findUserByLogin(String login);
+    User findUserByLogin(String login);
 }

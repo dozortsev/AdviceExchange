@@ -7,7 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
-@Transactional(propagation = MANDATORY)
+@Transactional(propagation = MANDATORY, readOnly = true)
+@SuppressWarnings("unchecked")
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
@@ -17,7 +18,6 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
         setEntityClass(User.class);
     }
 
-    @SuppressWarnings("unchecked")
     @Override public User findUserByLogin(String login) {
 
         return (User) getCurrentSession().createSQLQuery(findUserByLogin)

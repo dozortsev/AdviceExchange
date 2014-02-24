@@ -120,16 +120,12 @@ public class QuestionServiceTest extends TestContext {
         assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
     }
 
-//    @Ignore
     @Test public void testFindQuestionsByTagsId() {
 
         Set<Question> questions = questionService.findQuestionsByTagsId(1L, 2L);
 
-        List<Long> listTagsId = Arrays.asList(1L, 2L);
+        assertNotEquals(0, questions.size());
 
-        for (Question question : questions) {
-            assertNotNull(question.getTags());
-            assertNotEquals(0, question.getTags().size());
-        }
+        List<Long> listTagsId = Arrays.asList(1L, 2L);
     }
 }
