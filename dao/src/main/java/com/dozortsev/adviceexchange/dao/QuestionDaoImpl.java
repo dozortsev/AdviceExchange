@@ -11,7 +11,7 @@ import java.util.List;
 import static org.hibernate.criterion.CriteriaSpecification.ROOT_ENTITY;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
-@Transactional(propagation = MANDATORY, readOnly = true)
+@Transactional(propagation = MANDATORY)
 @SuppressWarnings("unchecked")
 @Repository
 public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements QuestionDao {

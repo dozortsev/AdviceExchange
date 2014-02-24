@@ -9,22 +9,30 @@ import java.util.List;
 
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
-@Transactional(propagation = MANDATORY)
+@Transactional(propagation = MANDATORY, readOnly = true)
+@SuppressWarnings("unchecked")
 @Repository
 public class AnswerDaoImpl extends GenericDaoImpl<Long, Answer> implements AnswerDao {
 
-    @Autowired
-    private String findAnswersByUserId;
+    @Autowired private String findAnswersByUserId;
+
+    @Autowired private String findAnswersByQuestionId;
 
     public AnswerDaoImpl() {
         setEntityClass(Answer.class);
     }
 
-    @SuppressWarnings("unchecked")
     @Override public List<Answer> findAnswersByUserId(Long userId) {
 
         return getCurrentSession().createSQLQuery(findAnswersByUserId)
                 .addEntity(getEntityClass()).setLong("userId", userId)
+                .list();
+    }
+
+    @Override public List<Answer> findAnswersByQuestionId(Long questionId) {
+
+        return getCurrentSession().createSQLQuery(findAnswersByQuestionId)
+                .addEntity(getEntityClass()).setLong("questionId", questionId)
                 .list();
     }
 }

@@ -1,6 +1,7 @@
 package com.dozortsev.adviceexchange.service.test;
 
 import com.dozortsev.adviceexchange.domain.*;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -120,7 +121,7 @@ public class QuestionServiceTest extends TestContext {
         assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
     }
 
-//    @Ignore
+    @Ignore
     @Test public void testFindQuestionsByTagsId() {
 
         Set<Question> questions = questionService.findQuestionsByTagsId(1L, 2L);

@@ -72,6 +72,20 @@
     </bean>
 
 
+    <!-- Find all Answers by Question id -->
+
+    <bean id="findAnswersByQuestionId" class="java.lang.String">
+        <constructor-arg index="0" value="
+
+            SELECT answer.* FROM answer
+
+                JOIN question ON asw_question_id = qs_id
+
+            WHERE qs_id = :questionId
+        "/>
+    </bean>
+
+
     <!-- Find all Comments by Question id -->
 
     <bean id="findCommentsByQuestionId" class="java.lang.String">

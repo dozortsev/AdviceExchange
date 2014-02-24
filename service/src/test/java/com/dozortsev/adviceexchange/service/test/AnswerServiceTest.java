@@ -20,8 +20,6 @@ public class AnswerServiceTest extends TestContext {
 
         assertNotNull(answer);
         assertEquals(id, answer.getId());
-        assertNotNull(answer.getUser());
-        assertNotNull(answer.getQuestion());
     }
 
     @Test public void testCreateAnswer() {
