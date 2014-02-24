@@ -4,5 +4,5 @@ import com.dozortsev.adviceexchange.domain.User;
 
 public interface UserDao extends GenericDao<Long, User> {
 
-    public User findUserByLogin(String login);
+    User findUserByLogin(String login);
 }

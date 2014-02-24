@@ -47,11 +47,11 @@
     <bean id="findQuestionsByTagsId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT {qs.*}, question_tag.*, {tag.*} FROM question {qs}
+            SELECT question.* FROM question
 
                 JOIN question_tag ON qs_id = qt_question_id
 
-                JOIN tag {tag} ON tag_id = qt_tag_id
+                JOIN tag ON tag_id = qt_tag_id
 
             WHERE tag_id IN(:arrTagId)
         "/>
