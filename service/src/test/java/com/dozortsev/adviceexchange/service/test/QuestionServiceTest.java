@@ -108,7 +108,7 @@ public class QuestionServiceTest extends TestContext {
         assertTrue(questionComments.contains(comment));
     }
 
-    @Test public void testDeleteQuestion() {
+    @Test public void testDeleteQuestionById() {
 
         // choose random Question Id
         final Long id = 15L;
@@ -118,6 +118,7 @@ public class QuestionServiceTest extends TestContext {
 
         // With Question should be deleted all related Comments
         assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
+        assertTrue(answerService.findAnswersByQuestionId(id).isEmpty());
     }
 
     @Test public void testFindQuestionsByTagsId() {

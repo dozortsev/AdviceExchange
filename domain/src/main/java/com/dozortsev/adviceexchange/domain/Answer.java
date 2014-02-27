@@ -10,18 +10,19 @@ import java.util.Date;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "answer")
 @AttributeOverride(name = "id", column = @Column(name = "asw_id"))
 public class Answer extends AbstractEntity<Long> {
 
-    @ManyToOne(cascade = { MERGE, PERSIST })
+    @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
     @Valid @NotNull
     @JoinColumn(name = "asw_question_id")
     private Question question;
 
-    @ManyToOne(cascade = { MERGE, PERSIST })
+    @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
     @Valid @NotNull
     @JoinColumn(name = "asw_user_id")
     private User user;

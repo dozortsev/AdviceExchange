@@ -41,6 +41,7 @@ public class AnswerServiceTest extends TestContext {
         Question question = questionService.findById(qsId);
         assertNotNull(question);
 
+        // Answer set data
         answer.setContent(content);
         answer.setVotes(votes);
         answer.setIsAccepted(true);
@@ -51,14 +52,25 @@ public class AnswerServiceTest extends TestContext {
         answerService.create(answer);
         assertNotNull(answer.getId());
 
+        // reload
         answer = answerService.findById(answer.getId());
 
         assertNotNull(answer);
         assertEquals(content, answer.getContent());
         assertEquals(votes, answer.getVotes());
         assertEquals(true, answer.getIsAccepted());
-        assertEquals(user, answer.getUser());
-        assertEquals(question, answer.getQuestion());
+        assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
+        assertTrue(answerService.findAnswersByQuestionId(qsId).contains(answer));
+    }
+
+    @Test public void testDeleteAnswer() {
+
+        // choose random Answer Id
+        final Long id = 20L;
+
+        answerService.deleteById(id);
+
+        assertNull(answerService.findById(id));
     }
 
     @Test public void testUpdateAnswer() {
@@ -79,7 +91,7 @@ public class AnswerServiceTest extends TestContext {
         answer = answerService.findById(id);
 
         assertEquals(id, answer.getId());
-        assertEquals(created, answer.getCreated());
+        assertEquals(created, answer.getCreated()); // should be not updated
         assertNotEquals(oldContent, answer.getContent());
     }
 }
