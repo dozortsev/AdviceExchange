@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS user (
 DROP TABLE IF EXISTS badge;
 CREATE TABLE IF NOT EXISTS badge (
 
-  bdg_id   INT                   NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  bdg_name ENUM('Admin', 'User') NOT NULL,
-  bdg_desc TEXT(100)             NOT NULL
+  bdg_id   INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  bdg_name VARCHAR(30) NOT NULL,
+  bdg_desc TEXT(100)   NOT NULL
 )
   ENGINE =InnoDB;
 

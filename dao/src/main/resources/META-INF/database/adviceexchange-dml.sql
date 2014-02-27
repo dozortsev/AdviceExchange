@@ -2,8 +2,8 @@
 
 INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
 
-  (1, 'Admin', 'Lorem ipsum dolor.'),
-  (2, 'User', 'Lorem ipsum dolor sit amet.');
+  (1, 'ROLE_ADMIN', 'Lorem ipsum dolor.'),
+  (2, 'ROLE_USER', 'Lorem ipsum dolor sit amet.');
 
 /* User data */
 
