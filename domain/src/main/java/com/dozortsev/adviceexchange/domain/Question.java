@@ -7,36 +7,30 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "question")
-@AttributeOverride(name = "id", column = @Column(name = "qs_id"))
-public class Question extends AbstractEntity<Long> {
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "qs_id")),
+        @AttributeOverride(name = "content", column = @Column(name = "qs_content")),
+        @AttributeOverride(name = "created", column = @Column(name = "qs_created"))
+})
+public class Question extends UserActivity {
 
     @NotBlank @Size(min = 10, max = 200)
     @Column(name = "qs_name")
     private String name;
 
-    @ManyToOne(fetch = LAZY, cascade = { MERGE, PERSIST })
+    @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
     @Valid @NotNull
     @JoinColumn(name = "qs_user_id")
     private User user;
 
     @NotNull @Column(name = "qs_votes")
     private Integer votes = 0;
-
-    @Temporal(TIMESTAMP)
-    @Column(name = "qs_created", updatable = false)
-    private Date created;
-
-    @Lob @NotBlank @Size(min = 50, max = 30000)
-    @Column(name = "qs_content")
-    private String content;
 
     @Valid @Size(min = 1, max = 5)
     @ManyToMany
@@ -54,15 +48,14 @@ public class Question extends AbstractEntity<Long> {
     private List<Comment> comments = new ArrayList<>();
 
     public Question() {
-        this.created = new Date();
+        super();
     }
 
     public Question(String name, User user, Integer votes, String content) {
-        this();
+        super(content);
         this.name = name;
         this.user = user;
         this.votes = votes;
-        this.content = content;
     }
 
     public Question(String name, User user, Integer votes, String content, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
@@ -93,20 +86,6 @@ public class Question extends AbstractEntity<Long> {
         this.votes = votes;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-    @SuppressWarnings("unused")
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public List<Tag> getTags() {
         return tags;
@@ -136,8 +115,6 @@ public class Question extends AbstractEntity<Long> {
 
         Question question = (Question) o;
 
-        if (!content.equals(question.content)) return false;
-        if (!created.equals(question.created)) return false;
         if (!name.equals(question.name)) return false;
         if (!votes.equals(question.votes)) return false;
 
@@ -148,8 +125,6 @@ public class Question extends AbstractEntity<Long> {
         int result = super.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + votes.hashCode();
-        result = 31 * result + created.hashCode();
-        result = 31 * result + content.hashCode();
         return result;
     }
 }

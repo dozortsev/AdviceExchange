@@ -1,21 +1,20 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "answer")
-@AttributeOverride(name = "id", column = @Column(name = "asw_id"))
-public class Answer extends AbstractEntity<Long> {
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "asw_id")),
+        @AttributeOverride(name = "content", column = @Column(name = "asw_content")),
+        @AttributeOverride(name = "created", column = @Column(name = "asw_created"))
+})
+public class Answer extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
     @Valid @NotNull
@@ -30,28 +29,19 @@ public class Answer extends AbstractEntity<Long> {
     @NotNull @Column(name = "asw_votes")
     private Integer votes = 0;
 
-    @Temporal(TIMESTAMP)
-    @Column(name = "asw_created", updatable = false)
-    private Date created;
-
-    @Lob @NotBlank @Size(min = 50)
-    @Column(name = "asw_content")
-    private String content;
-
     @NotNull
     @Column(name = "asw_accepted")
     private Boolean isAccepted;
 
     public Answer() {
-        this.created = new Date();
+        super();
     }
 
     public Answer(Question question, Integer votes, User user, String content, Boolean isAccepted) {
-        this();
+        super(content);
         this.question = question;
         this.votes += votes;
         this.user = user;
-        this.content = content;
         this.isAccepted = isAccepted;
     }
 
@@ -76,22 +66,6 @@ public class Answer extends AbstractEntity<Long> {
         this.votes += votes;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-    @SuppressWarnings("unused")
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Boolean getIsAccepted() {
         return isAccepted;
     }
@@ -106,8 +80,6 @@ public class Answer extends AbstractEntity<Long> {
 
         Answer answer = (Answer) o;
 
-        if (!content.equals(answer.content)) return false;
-        if (!created.equals(answer.created)) return false;
         if (!isAccepted.equals(answer.isAccepted)) return false;
         if (!votes.equals(answer.votes)) return false;
 
@@ -117,8 +89,6 @@ public class Answer extends AbstractEntity<Long> {
     @Override public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + votes.hashCode();
-        result = 31 * result + created.hashCode();
-        result = 31 * result + content.hashCode();
         result = 31 * result + isAccepted.hashCode();
         return result;
     }

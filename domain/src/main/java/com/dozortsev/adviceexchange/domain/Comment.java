@@ -1,20 +1,19 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "comment")
-@AttributeOverride(name = "id", column = @Column(name = "cm_id"))
-public class Comment extends AbstractEntity<Long> {
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "cm_id")),
+        @AttributeOverride(name = "content", column = @Column(name = "cm_content")),
+        @AttributeOverride(name = "created", column = @Column(name = "cm_created"))
+})
+public class Comment extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST })
     @Valid @NotNull
@@ -26,23 +25,14 @@ public class Comment extends AbstractEntity<Long> {
     @JoinColumn(name = "cm_user_id")
     private User user;
 
-    @Lob @NotBlank @Size(min = 20, max = 1000)
-    @Column(name = "cm_content")
-    private String content;
-
-    @Temporal(TIMESTAMP)
-    @Column(name = "cm_created", updatable = false)
-    private Date created;
-
     public Comment() {
-        this.created = new Date();
+        super();
     }
 
     public Comment(Question question, User user, String content) {
-        this();
+        super(content);
         this.question = question;
         this.user = user;
-        this.content = content;
     }
 
     public Question getQuestion() {
@@ -57,40 +47,5 @@ public class Comment extends AbstractEntity<Long> {
     }
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-    @SuppressWarnings("unused")
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Comment comment = (Comment) o;
-
-        if (!content.equals(comment.content)) return false;
-        if (!created.equals(comment.created)) return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + content.hashCode();
-        result = 31 * result + created.hashCode();
-        return result;
     }
 }
