@@ -35,15 +35,17 @@
 
             SELECT question.* FROM question
 
-                JOIN user ON qs_user_id = user_id
+                JOIN user_activity ON ua_id = qs_id
 
-            WHERE user_id = :userId
+                JOIN user ON user_id = ua_user_id
+
+            WHERE ua_type = 'QUESTION' AND user_id = :userId
         "/>
     </bean>
 
 
     <!-- Find all Question by array of Tag id -->
-
+    <!-- FIXME: Must be another -->
     <bean id="findQuestionsByTagsId" class="java.lang.String">
         <constructor-arg index="0" value="
 
@@ -52,6 +54,8 @@
                 JOIN question_tag ON qs_id = qt_question_id
 
                 JOIN tag ON tag_id = qt_tag_id
+
+                JOIN user_activity ON ua_id = qs_id
 
             WHERE tag_id IN(:arrTagId)
         "/>
@@ -65,9 +69,11 @@
 
             SELECT answer.* FROM answer
 
+                JOIN user_activity ON ua_id = asw_id
+
                 JOIN user ON asw_user_id = user_id
 
-            WHERE user_id = :userId
+            WHERE ua_type = 'ANSWER' AND user_id = :userId
         "/>
     </bean>
 
@@ -77,11 +83,15 @@
     <bean id="findAnswersByQuestionId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT answer.* FROM answer
+            SELECT answer.*, user_activity.*
 
-                JOIN question ON asw_question_id = qs_id
+            FROM answer
 
-            WHERE qs_id = :questionId
+                JOIN user_activity ON ua_id = asw_id
+
+                JOIN question ON qs_id = asw_question_id
+
+            WHERE ua_type = 'ANSWER' AND qs_id = :questionId
         "/>
     </bean>
 
@@ -91,11 +101,15 @@
     <bean id="findCommentsByQuestionId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT comment.* FROM comment
+            SELECT comment.*, user_activity.*
 
-                JOIN question ON cm_question_id = qs_id
+            FROM comment
 
-            WHERE qs_id = :questionId
+                JOIN user_activity ON ua_id = cm_id
+
+                JOIN question ON qs_id = cm_question_id
+
+            WHERE ua_type = 'COMMENT' AND qs_id = :questionId
         "/>
     </bean>
 
@@ -104,23 +118,13 @@
     <bean id="findUserActivity" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            (SELECT cm_id, cm_content, cm_created FROM comment, user
+            SELECT user_activity.*
 
-                WHERE user_id = :userId AND cm_user_id = user_id)
+            FROM user_activity
 
-                UNION
+                JOIN user ON ua_user_id = user_id
 
-            (SELECT qs_id, qs_content, qs_created FROM question, user
-
-                WHERE user_id = :userId AND qs_user_id = user_id)
-
-                UNION
-
-            (SELECT asw_id, asw_content, asw_created FROM answer, user
-
-                WHERE user_id = :userId AND asw_user_id = user_id)
-
-            ORDER BY 1
+            WHERE user_id = :userId
         "/>
     </bean>
 </beans>

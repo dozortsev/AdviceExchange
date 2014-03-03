@@ -18,7 +18,7 @@ import static javax.persistence.FetchType.LAZY;
 )
 public class Question extends UserActivity {
 
-    @NotBlank @Size(min = 10, max = 200)
+    @NotBlank @Size(min = 10, max = 40)
     @Column(name = "qs_name")
     private String name;
 

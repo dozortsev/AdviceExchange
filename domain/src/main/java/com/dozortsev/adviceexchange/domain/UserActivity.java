@@ -3,12 +3,9 @@ package com.dozortsev.adviceexchange.domain;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.InheritanceType.JOINED;
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -24,11 +21,6 @@ public class UserActivity extends AbstractEntity<Long> {
     @Column(name = "ua_type", updatable = false)
     private Type type;
 
-    @Valid @NotNull
-    @ManyToOne(cascade = { MERGE, PERSIST })
-    @JoinColumn(name = "ua_id")
-    private User user;
-
     @Lob @NotBlank
     @Column(name = "ua_content")
     private String content;
@@ -41,10 +33,9 @@ public class UserActivity extends AbstractEntity<Long> {
         created = new Date();
     }
 
-    public UserActivity(Type type, User user, String content) {
+    public UserActivity(Type type, String content) {
         this();
         this.type = type;
-        this.user = user;
         this.content = content;
     }
 
@@ -53,13 +44,6 @@ public class UserActivity extends AbstractEntity<Long> {
     }
     public void setType(Type type) {
         this.type = type;
-    }
-
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getContent() {

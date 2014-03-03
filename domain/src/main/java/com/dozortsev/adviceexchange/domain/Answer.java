@@ -19,6 +19,11 @@ public class Answer extends UserActivity {
     @JoinColumn(name = "asw_question_id")
     private Question question;
 
+    @Valid @NotNull
+    @ManyToOne(cascade = { MERGE, PERSIST })
+    @JoinColumn(name = "asw_user_id")
+    private User user;
+
     @NotNull @Column(name = "asw_votes")
     private Integer votes = 0;
 
@@ -32,7 +37,8 @@ public class Answer extends UserActivity {
     }
 
     public Answer(User user, String content, Question question, Integer votes, Boolean isAccepted) {
-        super(Type.ANSWER, user, content);
+        super(Type.ANSWER, content);
+        this.user = user;
         this.question = question;
         this.votes += votes;
         this.isAccepted = isAccepted;
@@ -43,6 +49,13 @@ public class Answer extends UserActivity {
     }
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getVotes() {

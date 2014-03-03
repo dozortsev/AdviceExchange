@@ -18,9 +18,6 @@ public class CommentServiceTest extends TestContext {
         assertNotNull(comment);
         assertEquals(id, comment.getId());
         assertNotNull(comment.getUser());
-        assertNotNull(comment.getQuestion());
-
-        assertTrue(commentService.findCommentsByQuestionId(comment.getQuestion().getId()).contains(comment));
     }
 
     @Test public void testDeleteComment() {
