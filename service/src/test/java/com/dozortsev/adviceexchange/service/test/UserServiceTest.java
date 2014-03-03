@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.domain.UserActivity;
 import org.junit.Test;
 
 import java.util.Date;
@@ -148,5 +149,14 @@ public class UserServiceTest extends TestContext {
         userService.deleteById(id);
 
         assertNull(userService.findById(id));
+    }
+
+    @Test public void testUserActivity() {
+
+        final Long id = 9L;
+
+        Set<UserActivity> userActivities = userService.userActivities(id);
+
+        assertEquals(5, userActivities.size());
     }
 }

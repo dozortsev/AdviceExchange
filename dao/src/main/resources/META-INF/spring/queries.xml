@@ -98,4 +98,29 @@
             WHERE qs_id = :questionId
         "/>
     </bean>
+
+
+    <!-- User activity -->
+    <bean id="findUserActivity" class="java.lang.String">
+        <constructor-arg index="0" value="
+
+            (SELECT cm_id, cm_content, cm_created FROM comment, user
+
+                WHERE user_id = :userId AND cm_user_id = user_id)
+
+                UNION
+
+            (SELECT qs_id, qs_content, qs_created FROM question, user
+
+                WHERE user_id = :userId AND qs_user_id = user_id)
+
+                UNION
+
+            (SELECT asw_id, asw_content, asw_created FROM answer, user
+
+                WHERE user_id = :userId AND asw_user_id = user_id)
+
+            ORDER BY 1
+        "/>
+    </bean>
 </beans>
