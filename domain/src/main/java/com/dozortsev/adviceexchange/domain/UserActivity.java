@@ -2,16 +2,26 @@ package com.dozortsev.adviceexchange.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Lob;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.InheritanceType.JOINED;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@MappedSuperclass
-public abstract class UserActivity extends AbstractEntity<Long> {
+@Entity @Table
+@Inheritance(strategy = JOINED)
+public class UserActivity extends AbstractEntity<Long> {
+
+    private Type type;
+
+    @Valid @NotNull
+    @ManyToOne(cascade = { MERGE, PERSIST })
+    @JoinColumn
+    private User user;
 
     @Lob @NotBlank
     private String content;
@@ -24,9 +34,25 @@ public abstract class UserActivity extends AbstractEntity<Long> {
         created = new Date();
     }
 
-    public UserActivity(String content) {
+    public UserActivity(Type type, User user, String content) {
         this();
+        this.type = type;
+        this.user = user;
         this.content = content;
+    }
+
+    public Type getType() {
+        return type;
+    }
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getContent() {
