@@ -9,6 +9,9 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "comment")
+@AttributeOverride(
+        name = "id", column = @Column(name = "cm_id")
+)
 public class Comment extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)

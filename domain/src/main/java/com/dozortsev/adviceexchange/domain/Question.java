@@ -13,6 +13,9 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "question")
+@AttributeOverride(
+        name = "id", column = @Column(name = "qs_id")
+)
 public class Question extends UserActivity {
 
     @NotBlank @Size(min = 10, max = 200)

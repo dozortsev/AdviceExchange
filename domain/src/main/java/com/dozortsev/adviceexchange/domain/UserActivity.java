@@ -9,25 +9,32 @@ import java.util.Date;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.InheritanceType.JOINED;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-@Entity @Table
+@Entity @Table(name = "user_activity")
 @Inheritance(strategy = JOINED)
+@AttributeOverride(
+        name = "id", column = @Column(name = "ua_id")
+)
 public class UserActivity extends AbstractEntity<Long> {
 
+    @NotNull @Enumerated(STRING)
+    @Column(name = "ua_type", updatable = false)
     private Type type;
 
     @Valid @NotNull
     @ManyToOne(cascade = { MERGE, PERSIST })
-    @JoinColumn
+    @JoinColumn(name = "ua_id")
     private User user;
 
     @Lob @NotBlank
+    @Column(name = "ua_content")
     private String content;
 
     @Temporal(TIMESTAMP)
-    @Column(updatable = false)
+    @Column(name = "ua_created", updatable = false)
     private Date created;
 
     public UserActivity() {
