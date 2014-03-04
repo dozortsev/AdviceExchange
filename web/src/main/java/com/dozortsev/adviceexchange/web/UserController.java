@@ -28,7 +28,6 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "index";
-
     }
 
     @RequestMapping(value="/login", method = GET)
