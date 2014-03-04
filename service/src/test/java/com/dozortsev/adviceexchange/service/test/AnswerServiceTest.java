@@ -16,10 +16,9 @@ public class AnswerServiceTest extends TestContext {
         // choose random Answer Id
         final Long id = 1L;
 
-        Answer answer = answerService.findById(id);
+        final Answer answer = answerService.findById(id);
 
         assertNotNull(answer);
-        assertEquals(id, answer.getId());
     }
 
     @Test public void testCreateAnswer() {
@@ -31,14 +30,14 @@ public class AnswerServiceTest extends TestContext {
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, obcaecati.";
         final Integer votes = 12;
 
-        Answer answer = new Answer();
+        final Answer answer = new Answer();
 
         // User how posted this Answer
-        User user = userService.findById(userId);
+        final User user = userService.findById(userId);
         assertNotNull(user);
 
         // Question how related with this Answer
-        Question question = questionService.findById(qsId);
+        final Question question = questionService.findById(qsId);
         assertNotNull(question);
 
         // Answer set data
@@ -53,12 +52,13 @@ public class AnswerServiceTest extends TestContext {
         assertNotNull(answer.getId());
 
         // reload
-        answer = answerService.findById(answer.getId());
+        final Answer expectedAnswer = answerService.findById(answer.getId());
+        assertNotNull(expectedAnswer);
 
-        assertNotNull(answer);
-        assertEquals(content, answer.getContent());
-        assertEquals(votes, answer.getVotes());
-        assertEquals(true, answer.getIsAccepted());
+        // check on the expected data
+        assertEquals(answer.getContent(), content);
+        assertEquals(answer.getVotes(), votes);
+        assertTrue(answer.getIsAccepted());
         assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
         assertTrue(answerService.findAnswersByQuestionId(qsId).contains(answer));
     }
@@ -76,9 +76,9 @@ public class AnswerServiceTest extends TestContext {
     @Test public void testUpdateAnswer() {
 
         // choose random Answer Id
-        final Long id = 1L;
+        final Long answerId = 1L;
 
-        Answer answer = answerService.findById(id);
+        final Answer answer = answerService.findById(answerId);
         assertNotNull(answer);
 
         final String oldContent = answer.getContent();
@@ -87,11 +87,14 @@ public class AnswerServiceTest extends TestContext {
         // set new content
         answer.setContent("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
 
+        // persist changes
         answerService.update(answer);
-        answer = answerService.findById(id);
 
-        assertEquals(id, answer.getId());
-        assertEquals(created, answer.getCreated()); // should be not updated
-        assertNotEquals(oldContent, answer.getContent());
+        // reload
+        final Answer expectedAnswer = answerService.findById(answerId);
+
+        assertEquals(expectedAnswer.getId(), answerId);
+        assertEquals(expectedAnswer.getCreated(), created);
+        assertNotEquals(expectedAnswer.getContent(), oldContent);
     }
 }

@@ -20,10 +20,15 @@ public class TagServiceTest extends TestContext {
 
     @Test public void testCreateTag() {
 
-        Tag tag = new Tag("Doctor", "All things related to the doctor");
+        final String desc = "All things related to the doctor";
+        final String name = "Doctor";
+
+        final Tag tag = new Tag(name, desc);
 
         assertNull(tag.getId());
         tagService.create(tag);
         assertNotNull(tag.getId());
+
+        assertEquals(tagService.findById(tag.getId()), tag);
     }
 }

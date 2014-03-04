@@ -14,7 +14,7 @@ public class BadgeServiceTest extends TestContext {
         // choose random Badge Id
         final Long userId = 23L;
 
-        Set<Badge> userBadges = badgeService.findBadgesByUserId(userId);
+        final Set<Badge> userBadges = badgeService.findBadgesByUserId(userId);
 
         assertNotNull(userBadges);
         assertNotEquals(0, userBadges.size());

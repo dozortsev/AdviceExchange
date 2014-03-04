@@ -31,18 +31,20 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testFindUserByLogin() {
 
-        // choose random User email(login)
+        // choose User email(login)
         final String login = "dolor.Quisque.tincidunt@tellusnon.edu";
 
         final Long expectId = 1L;
         final String expectPassword = "3938233";
 
-        User user = userService.findUserByLogin(login);
-
+        final User user = userService.findUserByLogin(login);
         assertNotNull(user);
+
         assertEquals(expectId, user.getId());
         assertEquals(login, user.getEmail());
         assertEquals(expectPassword, user.getPassword());
+
+        assertEquals(userService.findById(expectId), user);
     }
 
     @Test public void testCreateUser() {
@@ -53,7 +55,7 @@ public class UserServiceTest extends TestContext {
                 location = "Switzerland, Zurich", site = "github.com/lukaseder",
                 email = "lukas.eder@gmail.com", password = "lukas_dev";
 
-        User user = new User(name, age, aboutMe, location, site, email, password, reputation);
+        final User user = new User(name, age, aboutMe, location, site, email, password, reputation);
 
         // new User asked 1 question
         final Question question = new Question(
@@ -83,30 +85,34 @@ public class UserServiceTest extends TestContext {
         assertNotNull(question.getId());
 
         // reload
-        user = userService.findById(user.getId());
+        final User expectUser = userService.findById(user.getId());
         assertNotNull(user);
 
         // check on the expected data
-        assertEquals(name, user.getName());
-        assertEquals(age, user.getAge());
-        assertEquals(aboutMe, user.getAboutMe());
-        assertEquals(location, user.getLocation());
-        assertEquals(site, user.getSite());
-        assertEquals(email, user.getEmail());
-        assertEquals(password, user.getPassword());
-        assertEquals(reputation, user.getReputation());
+        assertEquals(name, expectUser.getName());
+        assertEquals(age, expectUser.getAge());
+        assertEquals(aboutMe, expectUser.getAboutMe());
+        assertEquals(location, expectUser.getLocation());
+        assertEquals(site, expectUser.getSite());
+        assertEquals(email, expectUser.getEmail());
+        assertEquals(password, expectUser.getPassword());
+        assertEquals(reputation, expectUser.getReputation());
 
-        Set<Question> userQuestions = questionService.findQuestionsByUserId(user.getId());
+        final Set<Question> userQuestions = questionService.findQuestionsByUserId(expectUser.getId());
         assertEquals(1, userQuestions.size());
         assertTrue(userQuestions.contains(question));
+
+        final Set<Answer> userAnswers = answerService.findAnswersByUserId(expectUser.getId());
+        assertEquals(1, userAnswers.size());
+        assertTrue(userAnswers.contains(answer));
     }
 
     @Test public void testUpdateUser() {
 
         // choose random User Id
-        final Long id = 2L;
+        final Long userId = 2L;
 
-        User user = userService.findById(id);
+        final User user = userService.findById(userId);
         assertNotNull(user);
 
         final String changedEmail = "new_email@gmail.com";
@@ -116,37 +122,51 @@ public class UserServiceTest extends TestContext {
         // set updates
         user.setEmail(changedEmail);
         user.setReputation(upReputation);
+
+        // persist changes
         userService.update(user);
 
-        assertEquals(joined, user.getJoined());
-        assertEquals(changedEmail, user.getEmail());
-        assertTrue(new Integer(upReputation + oldReputation).equals(user.getReputation()));
+        // reload
+        final User expectedUser = userService.findById(userId);
+
+        assertEquals(expectedUser.getJoined(), joined);
+        assertEquals(expectedUser.getEmail(), changedEmail);
+        assertTrue(new Integer(upReputation + oldReputation).equals(expectedUser.getReputation()));
     }
 
-    @Test public void testDelete() {
+    @Test public void testDeleteUser() {
 
         // choose random User Id
-        final Long id = 3L;
-        User user = userService.findById(id);
+        final Long userId = 3L;
+        final User user = userService.findById(userId);
 
         assertNotNull(user);
         userService.delete(user);
 
-        assertNull(userService.findById(id));
+        // try to found after delete operation
+        assertNull(userService.findById(userId));
 
         // With User should be delete all him Questions
-        assertTrue(questionService.findQuestionsByUserId(id).isEmpty());
+        assertTrue(questionService.findQuestionsByUserId(userId).isEmpty());
         // Answers
-        assertTrue(answerService.findAnswersByUserId(id).isEmpty());
-        // also Badges
-        assertTrue(badgeService.findBadgesByUserId(id).isEmpty());
+        assertTrue(answerService.findAnswersByUserId(userId).isEmpty());
+        // also the reference Badges
+        assertTrue(badgeService.findBadgesByUserId(userId).isEmpty());
     }
 
     @Test public void testDeleteUserById() {
 
-        final Long id = 4L;
-        userService.deleteById(id);
+        final Long userId = 4L;
+        userService.deleteById(userId);
 
-        assertNull(userService.findById(id));
+        // try to found after delete operation
+        assertNull(userService.findById(userId));
+
+        // With User should be delete all him Questions
+        assertTrue(questionService.findQuestionsByUserId(userId).isEmpty());
+        // Answers
+        assertTrue(answerService.findAnswersByUserId(userId).isEmpty());
+        // also the reference Badges
+        assertTrue(badgeService.findBadgesByUserId(userId).isEmpty());
     }
 }

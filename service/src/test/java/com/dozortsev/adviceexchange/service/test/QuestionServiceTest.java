@@ -3,8 +3,6 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -16,9 +14,7 @@ public class QuestionServiceTest extends TestContext {
         // choose random Question Id
         final Long userId = 26L;
 
-        Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
-
-        assertNotNull(userQuestions);
+        final Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
         assertFalse(userQuestions.isEmpty());
 
         for (Question question : userQuestions) {
@@ -37,7 +33,6 @@ public class QuestionServiceTest extends TestContext {
         Question question = questionService.findById(id);
 
         assertNotNull(question);
-        assertEquals(id, question.getId());
     }
 
     @Test public void testCreateQuestion() {
@@ -47,16 +42,16 @@ public class QuestionServiceTest extends TestContext {
         final String name = "Lorem ipsum dolor sit amet, consectetur adipisicing.";
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deleniti dolorem dolores dolorum enim id obcaecati quae quam quasi rem?";
 
-        Question question = new Question();
+        final Question question = new Question();
 
         // User how asked this Question
-        User user = userService.findById(10L);
+        final User user = userService.findById(10L);
 
         // first Answer
         User awUser1 = userService.findById(5L);
         assertNotNull(awUser1);
         String awContent1 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, cupiditate!";
-        Answer answer1 = new Answer(
+        final Answer answer1 = new Answer(
                 question, 2, awUser1, awContent1, false
         );
 
@@ -64,7 +59,7 @@ public class QuestionServiceTest extends TestContext {
         User awUser2 = userService.findById(6L);
         assertNotNull(awUser2);
         String awContent2 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iure labore optio perspiciatis quos? Voluptates.";
-        Answer answer2 = new Answer(
+        final Answer answer2 = new Answer(
                 question, 5, awUser2, awContent2, true
         );
 
@@ -75,7 +70,7 @@ public class QuestionServiceTest extends TestContext {
         assertNotNull(tag2);
 
         // also Question have 1 comment
-        Comment comment = new Comment(question, awUser1, "Lorem ipsum dolor sit.");
+        final Comment comment = new Comment(question, awUser1, "Lorem ipsum dolor sit.");
 
         // set another data
         question.setName(name);
@@ -95,15 +90,15 @@ public class QuestionServiceTest extends TestContext {
         assertNotNull(question.getId());
 
         // reload
-        question = questionService.findById(question.getId());
-        assertNotNull(question);
+        final Question expectedQuestion = questionService.findById(question.getId());
+        assertNotNull(expectedQuestion);
 
         // check on the expected data
-        assertEquals(name, question.getName());
-        assertEquals(content, question.getContent());
-        assertEquals(votes, question.getVotes());
+        assertEquals(expectedQuestion.getName(), name);
+        assertEquals(expectedQuestion.getContent(), content);
+        assertEquals(expectedQuestion.getVotes(), votes);
 
-        Set<Comment> questionComments = commentService.findCommentsByQuestionId(question.getId());
+        final Set<Comment> questionComments = commentService.findCommentsByQuestionId(question.getId());
         assertEquals(1, questionComments.size());
         assertTrue(questionComments.contains(comment));
     }
@@ -119,14 +114,5 @@ public class QuestionServiceTest extends TestContext {
         // With Question should be deleted all related Comments
         assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
         assertTrue(answerService.findAnswersByQuestionId(id).isEmpty());
-    }
-
-    @Test public void testFindQuestionsByTagsId() {
-
-        Set<Question> questions = questionService.findQuestionsByTagsId(1L, 2L);
-
-        assertNotEquals(0, questions.size());
-
-        List<Long> listTagsId = Arrays.asList(1L, 2L);
     }
 }
