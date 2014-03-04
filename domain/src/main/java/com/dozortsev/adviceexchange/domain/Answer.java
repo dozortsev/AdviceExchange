@@ -9,9 +9,7 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "answer")
-@AttributeOverride(
-        name = "id", column = @Column(name = "asw_id")
-)
+@AttributeOverride(name = "id", column = @Column(name = "asw_id"))
 public class Answer extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
@@ -21,7 +19,6 @@ public class Answer extends UserActivity {
 
     @Valid @NotNull
     @ManyToOne(cascade = { MERGE, PERSIST })
-    @JoinColumn(name = "asw_user_id")
     private User user;
 
     @NotNull @Column(name = "asw_votes")

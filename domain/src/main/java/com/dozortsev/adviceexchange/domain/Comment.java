@@ -9,10 +9,12 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "comment")
-@AttributeOverride(
-        name = "id", column = @Column(name = "cm_id")
-)
+@AttributeOverride(name = "id", column = @Column(name = "cm_id"))
 public class Comment extends UserActivity {
+
+    @Valid @NotNull
+    @ManyToOne(cascade = { MERGE, PERSIST })
+    private User user;
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
     @Valid @NotNull
@@ -25,8 +27,16 @@ public class Comment extends UserActivity {
     }
 
     public Comment(User user, String content, Question question) {
-        super(Type.COMMENT, user, content);
+        super(Type.COMMENT, content);
+        this.user = user;
         this.question = question;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Question getQuestion() {

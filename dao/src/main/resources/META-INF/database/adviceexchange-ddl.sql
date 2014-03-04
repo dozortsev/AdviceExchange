@@ -127,6 +127,12 @@ CREATE TABLE IF NOT EXISTS question_tag (
 
 /* Define references */
 
+ALTER TABLE user_activity
+ADD CONSTRAINT fk_ua_user_id FOREIGN KEY (ua_user_id) REFERENCES user (user_id)
+  ON UPDATE CASCADE
+  ON DELETE CASCADE;
+
+
 ALTER TABLE comment
 ADD CONSTRAINT fk_cm_id FOREIGN KEY (cm_id) REFERENCES user_activity (ua_id)
   ON UPDATE CASCADE

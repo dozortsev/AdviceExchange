@@ -82,7 +82,7 @@
   DROP TABLE IF EXISTS question;
   CREATE TABLE question (
 
-    qs_id    INT          NOT NULL,
+    qs_id    INT          NOT NULL PRIMARY KEY,
     qs_name  VARCHAR(200) NOT NULL,
     qs_votes INT          NOT NULL
   );
@@ -111,6 +111,12 @@
 
 /* Define references */
 
+  ALTER TABLE user_activity
+  ADD CONSTRAINT fk_ua_user_id FOREIGN KEY (ua_user_id) REFERENCES user (user_id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+
   ALTER TABLE comment
   ADD CONSTRAINT fk_cm_id FOREIGN KEY (cm_id) REFERENCES user_activity (ua_id)
     ON UPDATE CASCADE
@@ -120,6 +126,12 @@
   ADD CONSTRAINT fk_asw_id FOREIGN KEY (asw_id) REFERENCES user_activity (ua_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE;
+
+
+  ALTER TABLE question_tag
+  ADD CONSTRAINT fk_qt_question_id FOREIGN KEY (qt_question_id) REFERENCES question (qs_id);
+  ALTER TABLE question_tag
+  ADD CONSTRAINT fk_qt_tag_id FOREIGN KEY (qt_tag_id) REFERENCES tag (tag_id);
 
 
   ALTER TABLE question
@@ -132,9 +144,3 @@
   ADD CONSTRAINT fk_ub_user_id FOREIGN KEY (ub_user_id) REFERENCES user (user_id);
   ALTER TABLE user_badge
   ADD CONSTRAINT fk_ub_badge_id FOREIGN KEY (ub_badge_id) REFERENCES badge (bdg_id);
-
-
-  ALTER TABLE question_tag
-  ADD CONSTRAINT fk_qt_tag_id FOREIGN KEY (qt_tag_id) REFERENCES tag (tag_id);
---   ALTER TABLE question_tag
---   ADD CONSTRAINT fk_qt_question_id FOREIGN KEY (qt_question_id) REFERENCES question (qs_id);

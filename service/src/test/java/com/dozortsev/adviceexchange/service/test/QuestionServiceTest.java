@@ -15,7 +15,7 @@ public class QuestionServiceTest extends TestContext {
     @Test public void testUserQuestions() {
 
         // choose random Question Id
-        final Long userId = 26L;
+        final Long userId = 1L;
 
         Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
 

@@ -33,7 +33,7 @@
     <bean id="findQuestionsByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT question.* FROM question
+            SELECT question.*, user_activity.* FROM question
 
                 JOIN user_activity ON ua_id = qs_id
 
@@ -67,7 +67,7 @@
     <bean id="findAnswersByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT answer.* FROM answer
+            SELECT answer.*, user_activity.* FROM answer
 
                 JOIN user_activity ON ua_id = asw_id
 
@@ -83,9 +83,7 @@
     <bean id="findAnswersByQuestionId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT answer.*, user_activity.*
-
-            FROM answer
+            SELECT answer.*, user_activity.* FROM answer
 
                 JOIN user_activity ON ua_id = asw_id
 
@@ -118,13 +116,9 @@
     <bean id="findUserActivity" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT user_activity.*
+            SELECT user_activity.* FROM user_activity
 
-            FROM user_activity
-
-                JOIN user ON ua_user_id = user_id
-
-            WHERE user_id = :userId
+            WHERE ua_user_id = :userId
         "/>
     </bean>
 </beans>
