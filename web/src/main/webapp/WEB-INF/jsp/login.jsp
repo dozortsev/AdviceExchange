@@ -7,6 +7,8 @@
     <fmt:message key="login.title"/>
 </title>
 
+<link rel="stylesheet" href="css/semantic.css" type="text/css"/>
+
 <c:if test="${not empty error}">
     <div>
         Your login attempt was not successful, try again.<br/>
@@ -19,25 +21,31 @@
 <form action="<c:url value="/j_spring_security_check" />" method="POST">
     <table>
         <tr>
-            <td>User:</td>
+            <td>
+                Email
+            </td>
             <td>
                 <input type="text" name="j_username"/>
             </td>
         </tr>
         <tr>
-            <td>Password:</td>
+            <td>
+                Password
+            </td>
             <td>
                 <input type="password" name="j_password"/>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input name="submit" type="submit" value="submit" />
+                <input name="submit" type="submit" value="submit"/>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input name="reset" type="reset" />
+                <a href="${pageContext.request.contextPath}/LogUp">
+                    Create account
+                </a>
             </td>
         </tr>
     </table>

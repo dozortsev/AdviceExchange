@@ -73,4 +73,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+
+    <!-- JSP mapping -->
+
+    <servlet>
+        <servlet-name>LogUp</servlet-name>
+        <jsp-file>/WEB-INF/jsp/logup.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogUp</servlet-name>
+        <url-pattern>/LogUp</url-pattern>
+    </servlet-mapping>
+
 </web-app>

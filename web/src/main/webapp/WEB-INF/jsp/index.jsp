@@ -6,10 +6,10 @@
     User
 </title>
 
-${user.id}
-${user.name}
-${user.age}
-${user.email}
-${user.password}
+${user.id} <br/>
+${user.name} <br/>
+${user.age} <br/>
+${user.email} <br/>
+${user.password} <br/>
 
 <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
