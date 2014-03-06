@@ -66,8 +66,9 @@ public class UserServiceTest extends TestContext {
         question.setTags(asList(tagService.findById(4L)));
 
         // Question have 1 accepted Answer
+        final User aswUser = userService.findById(50L); // User who answers
         final Answer answer = new Answer(
-                question, 10, userService.findById(50L), "consectetur adipisicing elit Content Aut blanditiis dolore eum ex explicabo", true
+                question, 10, aswUser, "consectetur adipisicing elit Content Aut blanditiis dolore eum ex explicabo", true
         );
         question.setAnswers(asList(answer));
 
@@ -99,11 +100,9 @@ public class UserServiceTest extends TestContext {
         assertEquals(reputation, expectUser.getReputation());
 
         final Set<Question> userQuestions = questionService.findQuestionsByUserId(expectUser.getId());
-        assertEquals(1, userQuestions.size());
         assertTrue(userQuestions.contains(question));
 
-        final Set<Answer> userAnswers = answerService.findAnswersByUserId(expectUser.getId());
-        assertEquals(1, userAnswers.size());
+        final Set<Answer> userAnswers = answerService.findAnswersByUserId(50L);
         assertTrue(userAnswers.contains(answer));
     }
 

@@ -99,7 +99,6 @@ public class QuestionServiceTest extends TestContext {
         assertEquals(expectedQuestion.getVotes(), votes);
 
         final Set<Comment> questionComments = commentService.findCommentsByQuestionId(question.getId());
-        assertEquals(1, questionComments.size());
         assertTrue(questionComments.contains(comment));
     }
 
