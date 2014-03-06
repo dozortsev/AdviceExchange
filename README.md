@@ -11,7 +11,7 @@ Ask about...
 
 * General question of medicine
 * Questions of human biology and health
-* Questions about the processes and methods of treatment of diseases
+* Questions about the processes and methods of treatment diseases
 
 Don't ask about...
 
