@@ -35,6 +35,9 @@
 
     <mvc:annotation-driven/>
 
-    <mvc:default-servlet-handler/>
+
+    <!-- Configuring Serving of Resources -->
+
+    <mvc:resources mapping="/**" location="/WEB-INF/resources/" />
 
 </beans>
