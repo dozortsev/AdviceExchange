@@ -121,6 +121,8 @@
   ADD CONSTRAINT fk_cm_id FOREIGN KEY (cm_id) REFERENCES user_activity (ua_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE;
+  ALTER TABLE comment
+  ADD CONSTRAINT fk_cm_question_id FOREIGN KEY (cm_question_id) REFERENCES question (qs_id);
 
   ALTER TABLE answer
   ADD CONSTRAINT fk_asw_id FOREIGN KEY (asw_id) REFERENCES user_activity (ua_id)
