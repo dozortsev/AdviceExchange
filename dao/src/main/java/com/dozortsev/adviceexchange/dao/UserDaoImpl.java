@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hibernate.criterion.CriteriaSpecification.DISTINCT_ROOT_ENTITY;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY, readOnly = true)
@@ -33,10 +32,8 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     @Override public List<UserActivity> userActivities(Long id) {
 
-        return getCurrentSession()
-                .createSQLQuery(findUserActivity)
+        return getCurrentSession().createSQLQuery(findUserActivity)
                 .addEntity(UserActivity.class)
-                .setResultTransformer(DISTINCT_ROOT_ENTITY)
                 .setLong("userId", id)
                 .list();
 

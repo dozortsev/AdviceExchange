@@ -1,7 +1,6 @@
 package com.dozortsev.adviceexchange.service.test;
 
 import com.dozortsev.adviceexchange.domain.*;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -45,7 +44,7 @@ public class QuestionServiceTest extends TestContext {
 
         // prepare data for test of create
         final Integer votes = 2;
-        final String name = "Lorem ipsum dolor sit amet, consectetur adipisicing.";
+        final String name = "Lorem ipsum dolor sit amet";
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deleniti dolorem dolores dolorum enim id obcaecati quae quam quasi rem?";
 
         Question question = new Question();
@@ -122,7 +121,6 @@ public class QuestionServiceTest extends TestContext {
         assertTrue(answerService.findAnswersByQuestionId(id).isEmpty());
     }
 
-    @Ignore
     @Test public void testFindQuestionsByTagsId() {
 
         Set<Question> questions = questionService.findQuestionsByTagsId(1L, 2L);

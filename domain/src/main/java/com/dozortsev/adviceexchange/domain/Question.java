@@ -13,12 +13,8 @@ import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "question")
-@AttributeOverride(name = "id", column = @Column(name = "qs_id"))
+@PrimaryKeyJoinColumn(name = "qs_id")
 public class Question extends UserActivity {
-
-    @NotNull @Valid
-    @ManyToOne(cascade = { MERGE, PERSIST })
-    private User user;
 
     @NotBlank @Size(min = 10, max = 40)
     @Column(name = "qs_name")
@@ -48,8 +44,7 @@ public class Question extends UserActivity {
     }
 
     public Question(User user, String content, String name, Integer votes) {
-        super(Type.QUESTION, content);
-        this.user = user;
+        super(user, Type.QUESTION, content);
         this.name = name;
         this.votes = votes;
     }
@@ -59,13 +54,6 @@ public class Question extends UserActivity {
         this.tags = tags;
         this.answers = answers;
         this.comments = comments;
-    }
-
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getName() {

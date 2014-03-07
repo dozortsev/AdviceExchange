@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -55,15 +56,18 @@ public class User extends AbstractEntity<Long> {
     private Integer reputation = 0;
 
     @Valid
-    @OneToMany(cascade = REMOVE, mappedBy = "user")
+    @OneToMany(cascade = ALL)
+    @JoinColumn(name = "qs_id")
     private List<Question> questions = new ArrayList<>();
 
     @Valid
-    @OneToMany(cascade = REMOVE, mappedBy = "user")
+    @OneToMany(cascade = REMOVE)
+    @JoinColumn(name = "asw_id")
     private List<Answer> answers = new ArrayList<>();
 
     @Valid
-    @OneToMany(cascade = REMOVE, mappedBy = "user")
+    @OneToMany(cascade = REMOVE)
+    @JoinColumn(name = "cm_id")
     private List<Comment> comments = new ArrayList<>();
 
     @Valid @ManyToMany

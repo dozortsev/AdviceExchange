@@ -13,8 +13,8 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testFindAnswerById() {
 
-        // choose random Answer Id
-        final Long id = 1L;
+        // choose Answer Id
+        final Long id = 150L;
 
         Answer answer = answerService.findById(id);
 
@@ -65,8 +65,8 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testDeleteAnswer() {
 
-        // choose random Answer Id
-        final Long id = 20L;
+        // choose Answer Id
+        final Long id = 140L;
 
         answerService.deleteById(id);
 
@@ -75,8 +75,8 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testUpdateAnswer() {
 
-        // choose random Answer Id
-        final Long id = 1L;
+        // choose Answer Id
+        final Long id = 141L;
 
         Answer answer = answerService.findById(id);
         assertNotNull(answer);
