@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hibernate.criterion.CriteriaSpecification.ROOT_ENTITY;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY)
@@ -33,7 +32,9 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
     @Override public List<Question> findQuestionsByTagId(Long... tagId) {
 
         return getCurrentSession().createSQLQuery(findQuestionsByTagsId)
-                .addEntity(getEntityClass()).setParameterList("arrTagId", tagId)
+                .addEntity(getEntityClass())
+                .setParameterList("tags", tagId)
+                .setParameter("countTag", tagId.length)
                 .list();
     }
 }

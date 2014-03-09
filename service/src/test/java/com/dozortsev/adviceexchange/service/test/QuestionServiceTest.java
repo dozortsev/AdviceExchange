@@ -114,4 +114,14 @@ public class QuestionServiceTest extends TestContext {
         assertTrue(commentService.findCommentsByQuestionId(id).isEmpty());
         assertTrue(answerService.findAnswersByQuestionId(id).isEmpty());
     }
+
+    @Test public void testFindQuestionsByTagsId() {
+
+        final Long[] arrTagId = {10L, 12L};
+
+        final Set<Question> questions = questionService.findQuestionsByTagsId(arrTagId);
+
+        assertNotNull(questions);
+        assertFalse(questions.isEmpty());
+    }
 }

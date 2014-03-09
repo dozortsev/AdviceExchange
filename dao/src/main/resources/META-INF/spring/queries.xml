@@ -49,11 +49,15 @@
 
             SELECT question.* FROM question
 
-                JOIN question_tag ON qs_id = qt_question_id
+                JOIN question_tag ON qt_question_id = qs_id
 
-                JOIN tag ON tag_id = qt_tag_id
+                JOIN tag ON qt_tag_id = tag_id
 
-            WHERE tag_id IN(:arrTagId)
+            WHERE tag_id IN (:tags)
+
+            GROUP BY qs_id
+
+            HAVING count(tag_id) >= :countTag
         "/>
     </bean>
 
