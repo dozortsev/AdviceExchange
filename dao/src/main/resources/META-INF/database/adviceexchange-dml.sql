@@ -479,7 +479,7 @@ INSERT INTO answer (asw_id, asw_user_id, asw_question_id, asw_votes, asw_content
 
 INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
 
-  (1, 'at sem', 'Cras eu tellus eu augue'),
+  (1, 'at-sem', 'Cras eu tellus eu augue'),
   (2, 'amet, risus.', 'adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu'),
   (3, 'nulla.', 'Duis sit amet diam eu dolor egestas rhoncus. Proin nisl'),
   (4, 'faucibus lectus,', 'magna'),
@@ -530,7 +530,7 @@ INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
   (49, 'Curabitur egestas', 'Donec tempus, lorem fringilla ornare placerat,'),
   (50, 'Donec', 'vehicula aliquet libero. Integer in magna. Phasellus'),
   (51, 'id, ante.', 'dui quis'),
-  (52, 'Cum sociis', 'montes, nascetur'),
+  (52, 'Cum-sociis', 'montes, nascetur'),
   (53, 'metus facilisis', 'odio. Aliquam vulputate ullamcorper magna. Sed eu eros.'),
   (54, 'ipsum.', 'interdum ligula'),
   (55, 'vulputate', 'sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra,'),
@@ -569,9 +569,9 @@ INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
   (88, 'pretium', 'adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras'),
   (89, 'Quisque porttitor', 'auctor, nunc nulla vulputate'),
   (90, 'Donec vitae', 'auctor velit. Aliquam nisl. Nulla eu neque pellentesque'),
-  (91, 'nunc sed', 'sollicitudin commodo ipsum. Suspendisse non leo.'),
+  (91, 'nunc-sed', 'sollicitudin commodo ipsum. Suspendisse non leo.'),
   (92, 'lacus', 'Sed eu nibh vulputate mauris sagittis placerat. Cras'),
-  (93, 'enim non', 'a feugiat tellus lorem eu metus. In lorem. Donec elementum,'),
+  (93, 'enim-non', 'a feugiat tellus lorem eu metus. In lorem. Donec elementum,'),
   (94, 'Pellentesque', 'arcu. Vestibulum ante ipsum primis in faucibus orci luctus et'),
   (95, 'Donec', 'eu tempor erat'),
   (96, 'ullamcorper,', 'urna et arcu imperdiet ullamcorper. Duis at lacus. Quisque'),
@@ -584,16 +584,16 @@ INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
 /* Question & Tag data */
 
 INSERT INTO question_tag (qt_question_id, qt_tag_id) VALUES
-  (9, 86), (6, 75), (8, 78), (3, 35), (9, 70), (1, 49),
-  (5, 51), (1, 97), (2, 44), (3, 18), (6, 83), (6, 80),
-  (10, 85), (5, 4), (2, 23), (7, 3), (3, 41), (8, 40),
-  (1, 38), (7, 64), (4, 91), (10, 44), (1, 74), (10, 99),
-  (2, 13), (6, 86), (8, 74), (8, 62), (6, 24), (6, 41),
-  (9, 56), (2, 13), (5, 18), (8, 44), (8, 28), (2, 2),
-  (2, 42), (3, 38), (5, 62), (4, 19), (9, 97), (9, 51),
-  (6, 25), (3, 93), (2, 13), (8, 85), (3, 8), (10, 23),
-  (9, 13), (1, 41), (7, 51), (2, 77), (6, 97), (4, 8),
-  (8, 50), (5, 67), (4, 90), (4, 31), (8, 31), (10, 53),
-  (6, 61), (5, 4), (8, 73), (10, 96), (3, 5), (10, 93),
-  (7, 28), (9, 5), (6, 60), (2, 37), (10, 87), (5, 62),
-  (3, 24), (7, 93);
+  (1, 10),  (1, 12),  (1, 90),
+  (2, 2),   (2, 10),  (2, 90),  (2, 93),
+  (3, 4),   (3, 100), (3, 90),  (3, 13),  (3, 10),
+
+  (4, 4),   (4, 1),   (4, 65),  (4, 100),
+  (5, 12),  (5, 1),   (5, 65),  (5, 5),   (5, 6),
+
+  (6, 100), (6, 12),  (6, 16),  (6, 36),  (6, 66),
+  (7, 95),  (7, 12),  (7, 16),  (7, 36),  (7, 66),
+
+  (8, 9),   (8, 10),  (8, 12),  (8, 58),  (8, 1),
+  (9, 9),   (9, 10),  (9, 12),  (9, 100),
+  (10, 100),(10, 10), (10, 9),  (10, 12);
