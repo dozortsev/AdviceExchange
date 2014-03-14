@@ -5,34 +5,24 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "question")
-@AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "qs_id")),
-        @AttributeOverride(name = "content", column = @Column(name = "qs_content")),
-        @AttributeOverride(name = "created", column = @Column(name = "qs_created"))
-})
+@PrimaryKeyJoinColumn(name = "qs_id")
 public class Question extends UserActivity {
 
-    @NotBlank @Size(min = 10, max = 200)
+    @NotBlank /*@Size(min = 5, max = 40)*/
     @Column(name = "qs_name")
     private String name;
-
-    @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
-    @Valid @NotNull
-    @JoinColumn(name = "qs_user_id")
-    private User user;
 
     @NotNull @Column(name = "qs_votes")
     private Integer votes = 0;
 
-    @Valid @Size(min = 1, max = 5)
+//    @Valid @Size(min = 1, max = 5)
     @ManyToMany
     @JoinTable(name = "question_tag",
             joinColumns = @JoinColumn(name = "qt_question_id"),
@@ -49,20 +39,20 @@ public class Question extends UserActivity {
 
     public Question() {
         super();
+        setType(Type.QUESTION);
     }
 
-    public Question(String name, User user, Integer votes, String content) {
-        super(content);
+    public Question(User user, String content, String name, Integer votes) {
+        super(user, Type.QUESTION, content);
         this.name = name;
-        this.user = user;
         this.votes = votes;
     }
 
-    public Question(String name, User user, Integer votes, String content, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
-        this(name, user, votes, content);
-        this.tags.addAll(tags);
-        this.answers.addAll(answers);
-        this.comments.addAll(comments);
+    public Question(User user, String content, String name, Integer votes, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+        this(user, content, name, votes);
+        this.tags = tags;
+        this.answers = answers;
+        this.comments = comments;
     }
 
     public String getName() {
@@ -72,13 +62,6 @@ public class Question extends UserActivity {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Integer getVotes() {
         return votes;
     }
@@ -86,26 +69,25 @@ public class Question extends UserActivity {
         this.votes = votes;
     }
 
-
     public List<Tag> getTags() {
         return tags;
     }
     public void setTags(List<Tag> tags) {
-        this.tags.addAll(tags);
+        this.tags = tags;
     }
 
     public List<Answer> getAnswers() {
         return answers;
     }
     public void setAnswers(List<Answer> answers) {
-        this.answers.addAll(answers);
+        this.answers = answers;
     }
 
     public List<Comment> getComments() {
         return comments;
     }
     public void setComments(List<Comment> comments) {
-        this.comments.addAll(comments);
+        this.comments = comments;
     }
 
     @Override public boolean equals(Object o) {

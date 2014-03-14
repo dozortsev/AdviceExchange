@@ -20,7 +20,7 @@ public class CommentServiceTest extends TestContext {
         final String content = "Lorem ipsum dolor sit.";
 
         // prepare data for test
-        final Comment comment = new Comment(question, user, content);
+        final Comment comment = new Comment(user, content, question);
 
         assertNull(comment.getId());
         commentService.create(comment);
@@ -33,38 +33,5 @@ public class CommentServiceTest extends TestContext {
         assertEquals(expectedComment.getContent(), content);
         assertEquals(expectedComment.getUser(), user);
         assertEquals(expectedComment.getQuestion(), question);
-    }
-
-    @Test public void testLoadCommentById() {
-
-        // choose random Comment Id
-        final Long commentId = 1L;
-
-        final Comment comment = commentService.findById(commentId);
-        assertNotNull(comment);
-
-        assertEquals(commentId, comment.getId());
-        assertNotNull(comment.getUser());
-        assertNotNull(comment.getQuestion());
-
-        assertTrue(commentService.findCommentsByQuestionId(comment.getQuestion().getId()).contains(comment));
-    }
-
-    @Test public void testDeleteComment() {
-
-        // choose random Comment Id
-        final Long commentId = 5L;
-
-        final Comment comment = commentService.findById(commentId);
-        assertNotNull(comment);
-
-        final User user = comment.getUser();
-        assertNotNull(user);
-
-        // try to delete Comment
-        commentService.delete(comment);
-
-        assertNull(commentService.findById(commentId));
-        assertNotNull(userService.findById(user.getId()));
     }
 }

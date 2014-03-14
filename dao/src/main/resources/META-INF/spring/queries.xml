@@ -33,21 +33,22 @@
     <bean id="findQuestionsByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT question.* FROM question
+            SELECT question.*, user_activity.*
 
-                JOIN user ON qs_user_id = user_id
+            FROM question
 
-            WHERE user_id = :userId
+                JOIN user_activity ON ua_id = qs_id
+
+            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId
         "/>
     </bean>
 
 
     <!-- Find all Question by array of Tag id -->
-
     <bean id="findQuestionsByTagsId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT question.* FROM question
+            SELECT question.*, user_activity.* user FROM question
 
                 JOIN question_tag ON qt_question_id = qs_id
 
@@ -67,11 +68,11 @@
     <bean id="findAnswersByUserId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT answer.* FROM answer
+            SELECT answer.*, user_activity.* FROM answer
 
-                JOIN user ON asw_user_id = user_id
+                JOIN user_activity ON ua_id = asw_id
 
-            WHERE user_id = :userId
+            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId
         "/>
     </bean>
 
@@ -81,11 +82,13 @@
     <bean id="findAnswersByQuestionId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT answer.* FROM answer
+            SELECT answer.*, user_activity.* FROM answer
 
-                JOIN question ON asw_question_id = qs_id
+                JOIN user_activity ON ua_id = asw_id
 
-            WHERE qs_id = :questionId
+                JOIN question ON qs_id = asw_question_id
+
+            WHERE ua_type = 'ANSWER' AND qs_id = :questionId
         "/>
     </bean>
 
@@ -95,11 +98,40 @@
     <bean id="findCommentsByQuestionId" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT comment.* FROM comment
+            SELECT comment.*, user_activity.*
 
-                JOIN question ON cm_question_id = qs_id
+            FROM comment
 
-            WHERE qs_id = :questionId
+                JOIN user_activity ON ua_id = cm_id
+
+                JOIN question ON qs_id = cm_question_id
+
+            WHERE ua_type = 'COMMENT' AND qs_id = :questionId
+        "/>
+    </bean>
+
+
+    <!-- User activity -->
+
+    <bean id="findUserActivity" class="java.lang.String">
+        <constructor-arg index="0" value="
+
+            SELECT user_activity.*, question.*, answer.*, comment.*,
+
+                CASE
+                    WHEN qs_id IS NOT NULL THEN 1
+                    WHEN cm_id IS NOT NULL THEN 2
+                    WHEN asw_id IS NOT NULL THEN 3
+                    WHEN ua_id IS NOT NULL THEN 0
+                END AS clazz_
+
+            FROM user_activity
+
+                LEFT OUTER JOIN question ON qs_id = ua_id
+                LEFT OUTER JOIN answer ON asw_id = ua_id
+                LEFT OUTER JOIN comment ON cm_id = ua_id
+
+            WHERE ua_user_id = :userId
         "/>
     </bean>
 </beans>

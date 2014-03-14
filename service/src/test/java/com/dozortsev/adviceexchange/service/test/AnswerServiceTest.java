@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.User;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -13,8 +14,8 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testFindAnswerById() {
 
-        // choose random Answer Id
-        final Long id = 1L;
+        // choose Answer Id
+        final Long id = 150L;
 
         final Answer answer = answerService.findById(id);
 
@@ -63,22 +64,26 @@ public class AnswerServiceTest extends TestContext {
         assertTrue(answerService.findAnswersByQuestionId(qsId).contains(answer));
     }
 
+    @Ignore
     @Test public void testDeleteAnswer() {
 
-        // choose random Answer Id
-        final Long id = 20L;
+        // choose Answer Id
+        final Long id = 141L;
 
-        answerService.deleteById(id);
+        final Answer answer = answerService.findById(id);
+
+        assertNotNull(answer);
+        answerService.delete(answer);
 
         assertNull(answerService.findById(id));
     }
 
     @Test public void testUpdateAnswer() {
 
-        // choose random Answer Id
-        final Long answerId = 1L;
+        // choose Answer Id
+        final Long id = 141L;
 
-        final Answer answer = answerService.findById(answerId);
+        final Answer answer = answerService.findById(id);
         assertNotNull(answer);
 
         final String oldContent = answer.getContent();
@@ -91,9 +96,9 @@ public class AnswerServiceTest extends TestContext {
         answerService.update(answer);
 
         // reload
-        final Answer expectedAnswer = answerService.findById(answerId);
+        final Answer expectedAnswer = answerService.findById(id);
 
-        assertEquals(expectedAnswer.getId(), answerId);
+        assertEquals(expectedAnswer.getId(), id);
         assertEquals(expectedAnswer.getCreated(), created);
         assertNotEquals(expectedAnswer.getContent(), oldContent);
     }

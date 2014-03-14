@@ -1,14 +1,13 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Question;
+import com.dozortsev.adviceexchange.domain.Comment;
 import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.domain.UserActivity;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.Set;
 
-import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class UserServiceTest extends TestContext {
@@ -47,63 +46,36 @@ public class UserServiceTest extends TestContext {
         assertEquals(userService.findById(expectId), user);
     }
 
-    @Test public void testCreateUser() {
+    @Test public void testCreateUserQuestion() {
 
-        // prepare User for test of create
-        final Integer age = 25, reputation = 1;
-        final String name = "Lukas Eder", aboutMe = "Java Object Oriented Querying",
-                location = "Switzerland, Zurich", site = "github.com/lukaseder",
-                email = "lukas.eder@gmail.com", password = "lukas_dev";
+        log.info("Create user with question");
 
-        final User user = new User(name, age, aboutMe, location, site, email, password, reputation);
-
-        // new User asked 1 question
-        final Question question = new Question(
-                "dolore eum ex explicabo fuga harum", user, 1,
-                "consectetur adipisicing elit. Aut blanditiis dolore eum ex explicabo"
+        User user = new User(
+                "Carlos Castaneda", 50, "Programmer", "Mexico", "github.com/Castaneda",
+                "castaneda@gmail.com", "helloCastaneda", 1000
         );
-        // add to Question 1 Tag
-        question.setTags(asList(tagService.findById(4L)));
 
-        // Question have 1 accepted Answer
-        final User aswUser = userService.findById(50L); // User who answers
-        final Answer answer = new Answer(
-                question, 10, aswUser, "consectetur adipisicing elit Content Aut blanditiis dolore eum ex explicabo", true
-        );
-        question.setAnswers(asList(answer));
-
-        // set this Question to User
-        user.setQuestions(asList(question));
-
-        // try to create new User
-        assertNull(user.getId());
         userService.create(user);
         assertNotNull(user.getId());
 
-        // also save Question
-        assertNull(question.getId());
-        questionService.create(question);
-        assertNotNull(question.getId());
+        Comment comment = new Comment(user, "jflj kjaslfkjs", questionService.findById(5L));
 
-        // reload
-        final User expectUser = userService.findById(user.getId());
-        assertNotNull(user);
+        /*Question question = new Question(
+                user, "consectetur adipisicing elit. Aut blanditiis dolore eum ex explicabo",
+                "dolore eum ex explicabo fuga harum", 100
+        );*/
 
-        // check on the expected data
-        assertEquals(name, expectUser.getName());
-        assertEquals(age, expectUser.getAge());
-        assertEquals(aboutMe, expectUser.getAboutMe());
-        assertEquals(location, expectUser.getLocation());
-        assertEquals(site, expectUser.getSite());
-        assertEquals(email, expectUser.getEmail());
-        assertEquals(password, expectUser.getPassword());
-        assertEquals(reputation, expectUser.getReputation());
+        // create Question
+        /*commentService.create(comment);
+        assertNotNull(comment.getId());*/
 
-        final Set<Question> userQuestions = questionService.findQuestionsByUserId(expectUser.getId());
-        assertTrue(userQuestions.contains(question));
+        user.getComments().add(comment);
+        userService.update(user);
 
-        final Set<Answer> userAnswers = answerService.findAnswersByUserId(50L);
-        assertTrue(userAnswers.contains(answer));
+        Set<Comment> questionComments = commentService.findCommentsByQuestionId(5L);
+
+        log.info("Create user with question - finish");
+        assertTrue(questionComments.contains(comment));
     }
 
     @Test public void testUpdateUser() {
@@ -133,39 +105,12 @@ public class UserServiceTest extends TestContext {
         assertTrue(new Integer(upReputation + oldReputation).equals(expectedUser.getReputation()));
     }
 
-    @Test public void testDeleteUser() {
+    @Test public void testUserActivity() {
 
-        // choose random User Id
-        final Long userId = 3L;
-        final User user = userService.findById(userId);
+        final Long id = 1L;
 
-        assertNotNull(user);
-        userService.delete(user);
+        Set<UserActivity> userActivities = userService.userActivities(id);
 
-        // try to found after delete operation
-        assertNull(userService.findById(userId));
-
-        // With User should be delete all him Questions
-        assertTrue(questionService.findQuestionsByUserId(userId).isEmpty());
-        // Answers
-        assertTrue(answerService.findAnswersByUserId(userId).isEmpty());
-        // also the reference Badges
-        assertTrue(badgeService.findBadgesByUserId(userId).isEmpty());
-    }
-
-    @Test public void testDeleteUserById() {
-
-        final Long userId = 4L;
-        userService.deleteById(userId);
-
-        // try to found after delete operation
-        assertNull(userService.findById(userId));
-
-        // With User should be delete all him Questions
-        assertTrue(questionService.findQuestionsByUserId(userId).isEmpty());
-        // Answers
-        assertTrue(answerService.findAnswersByUserId(userId).isEmpty());
-        // also the reference Badges
-        assertTrue(badgeService.findBadgesByUserId(userId).isEmpty());
+        assertNotEquals(0, userActivities.size());
     }
 }

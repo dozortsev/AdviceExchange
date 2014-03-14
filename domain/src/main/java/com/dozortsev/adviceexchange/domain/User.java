@@ -5,14 +5,13 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static javax.persistence.CascadeType.REMOVE;
+import static javax.persistence.CascadeType.*;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
@@ -54,19 +53,23 @@ public class User extends AbstractEntity<Long> {
     @NotNull @Column(name = "user_reputation")
     private Integer reputation = 0;
 
-    @Valid
-    @OneToMany(cascade = REMOVE, mappedBy = "user")
+//    @Valid
+    @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
+    @JoinColumn(name = "qs_id")
     private List<Question> questions = new ArrayList<>();
 
-    @Valid
-    @OneToMany(cascade = REMOVE, mappedBy = "user")
+//    @Valid
+    @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
+    @JoinColumn(name = "asw_id")
     private List<Answer> answers = new ArrayList<>();
 
-    @Valid
-    @OneToMany(cascade = REMOVE, mappedBy = "user")
+//    @Valid
+    @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
+    @JoinColumn(name = "cm_id")
     private List<Comment> comments = new ArrayList<>();
 
-    @Valid @ManyToMany
+//    @Valid
+    @ManyToMany
     @JoinTable(name = "user_badge",
             joinColumns = @JoinColumn(name = "ub_user_id"),
             inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))
@@ -90,9 +93,9 @@ public class User extends AbstractEntity<Long> {
 
     public User(String name, Integer age, String aboutMe, String location, String site, String email, String password, Integer reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
         this(name, age, aboutMe, location, site, email, password, reputation);
-        this.questions.addAll(questions);
-        this.answers.addAll(answers);
-        this.comments.addAll(comments);
+        this.questions = questions;
+        this.answers = answers;
+        this.comments = comments;
     }
 
     public String getName() {
@@ -163,28 +166,28 @@ public class User extends AbstractEntity<Long> {
         return questions;
     }
     public void setQuestions(List<Question> questions) {
-        this.questions.addAll(questions);
+        this.questions = questions;
     }
 
     public List<Answer> getAnswers() {
         return answers;
     }
     public void setAnswers(List<Answer> answers) {
-        this.answers.addAll(answers);
+        this.answers = answers;
     }
 
     public List<Comment> getComments() {
         return comments;
     }
     public void setComments(List<Comment> comments) {
-        this.comments.addAll(comments);
+        this.comments = comments;
     }
 
     public List<Badge> getBadges() {
         return badges;
     }
     public void setBadges(List<Badge> badges) {
-        this.badges.addAll(badges);
+        this.badges = badges;
     }
 
     @Override public boolean equals(Object o) {
