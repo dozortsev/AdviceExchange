@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.User;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -63,12 +64,16 @@ public class AnswerServiceTest extends TestContext {
         assertTrue(answerService.findAnswersByQuestionId(qsId).contains(answer));
     }
 
+    @Ignore
     @Test public void testDeleteAnswer() {
 
         // choose Answer Id
-        final Long id = 140L;
+        final Long id = 141L;
 
-        answerService.deleteById(id);
+        final Answer answer = answerService.findById(id);
+
+        assertNotNull(answer);
+        answerService.delete(answer);
 
         assertNull(answerService.findById(id));
     }

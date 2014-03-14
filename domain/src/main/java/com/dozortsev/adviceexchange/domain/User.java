@@ -5,15 +5,13 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.CascadeType.REMOVE;
+import static javax.persistence.CascadeType.*;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
@@ -55,22 +53,23 @@ public class User extends AbstractEntity<Long> {
     @NotNull @Column(name = "user_reputation")
     private Integer reputation = 0;
 
-    @Valid
-    @OneToMany(cascade = ALL)
+//    @Valid
+    @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "qs_id")
     private List<Question> questions = new ArrayList<>();
 
-    @Valid
-    @OneToMany(cascade = REMOVE)
+//    @Valid
+    @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "asw_id")
     private List<Answer> answers = new ArrayList<>();
 
-    @Valid
-    @OneToMany(cascade = REMOVE)
+//    @Valid
+    @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "cm_id")
     private List<Comment> comments = new ArrayList<>();
 
-    @Valid @ManyToMany
+//    @Valid
+    @ManyToMany
     @JoinTable(name = "user_badge",
             joinColumns = @JoinColumn(name = "ub_user_id"),
             inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))

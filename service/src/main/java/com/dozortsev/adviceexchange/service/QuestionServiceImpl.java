@@ -43,7 +43,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     @Override public Set<Question> findQuestionsByTagsId(Long... tagsId) {
         Set<Question> questions = new HashSet<>();
         try {
-            log.info(format("Find %s by User Id: %s", getEntityClass(), Arrays.toString(tagsId)));
+            log.info(format("Find %s by Tag Id: %s", getEntityClass(), Arrays.toString(tagsId)));
             questions.addAll(getDao().findQuestionsByTagId(tagsId));
             log.info(format("Set of %s have size: %s", getEntityClass(), questions.size()));
 

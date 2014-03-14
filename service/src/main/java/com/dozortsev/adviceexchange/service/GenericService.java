@@ -8,8 +8,10 @@ public interface GenericService<ID extends Serializable, T extends AbstractEntit
 
     ID create(T entity);
 
+    @Deprecated
     void delete(T entity);
 
+    @Deprecated
     void deleteById(ID id);
 
     T findById(ID id);

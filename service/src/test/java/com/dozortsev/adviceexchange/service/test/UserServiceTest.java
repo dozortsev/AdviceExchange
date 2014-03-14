@@ -1,16 +1,12 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.domain.UserActivity;
+import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.Set;
 
-import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class UserServiceTest extends TestContext {
@@ -47,6 +43,39 @@ public class UserServiceTest extends TestContext {
         assertEquals(expectPassword, user.getPassword());
     }
 
+    @Test public void testCreateUserQuestion() {
+
+        log.info("Create user with question");
+
+        User user = new User(
+                "Carlos Castaneda", 50, "Programmer", "Mexico", "github.com/Castaneda",
+                "castaneda@gmail.com", "helloCastaneda", 1000
+        );
+
+        userService.create(user);
+        assertNotNull(user.getId());
+
+        Comment comment = new Comment(user, "jflj kjaslfkjs", questionService.findById(5L));
+
+        /*Question question = new Question(
+                user, "consectetur adipisicing elit. Aut blanditiis dolore eum ex explicabo",
+                "dolore eum ex explicabo fuga harum", 100
+        );*/
+
+        // create Question
+        /*commentService.create(comment);
+        assertNotNull(comment.getId());*/
+
+        user.getComments().add(comment);
+        userService.update(user);
+
+        Set<Comment> questionComments = commentService.findCommentsByQuestionId(5L);
+
+        log.info("Create user with question - finish");
+        assertTrue(questionComments.contains(comment));
+    }
+
+    @Ignore
     @Test public void testCreateUser() {
 
         // prepare User for test of create
@@ -57,51 +86,59 @@ public class UserServiceTest extends TestContext {
 
         User user = new User(name, age, aboutMe, location, site, email, password, reputation);
 
+        final Badge badge = badgeService.findById(1L);
+        user.getBadges().add(badge);
+
         // new User asked 1 question
         final Question question = new Question(user,
                 "consectetur adipisicing elit. Aut blanditiis dolore eum ex explicabo",
                 "dolore eum ex explicabo fuga harum", 1
         );
         // add to Question 1 Tag
-        question.setTags(asList(tagService.findById(4L)));
+        question.getTags().add(tagService.findById(4L));
 
         // Question have 1 accepted Answer
         final Answer answer = new Answer(
                 userService.findById(50L), "consectetur adipisicing elit Content Aut blanditiis dolore eum ex explicabo",
                 question, 10, true
         );
-        question.setAnswers(asList(answer));
+        question.getAnswers().add(answer);
 
         // set this Question to User
-        user.setQuestions(asList(question));
+//        user.getQuestions().add(question);
 
         // try to create new User
         assertNull(user.getId());
         userService.create(user);
         assertNotNull(user.getId());
 
-        // also save Question
-//        assertNull(question.getId());
-//        questionService.create(question);
-        assertNotNull(question.getId());
+        questionService.create(question);
 
         // reload
-        user = userService.findById(user.getId());
+        User expectUser = userService.findById(user.getId());
         assertNotNull(user);
 
         // check on the expected data
-        assertEquals(name, user.getName());
-        assertEquals(age, user.getAge());
-        assertEquals(aboutMe, user.getAboutMe());
-        assertEquals(location, user.getLocation());
-        assertEquals(site, user.getSite());
-        assertEquals(email, user.getEmail());
-        assertEquals(password, user.getPassword());
-        assertEquals(reputation, user.getReputation());
+        assertEquals(name, expectUser.getName());
+        assertEquals(age, expectUser.getAge());
+        assertEquals(aboutMe, expectUser.getAboutMe());
+        assertEquals(location, expectUser.getLocation());
+        assertEquals(site, expectUser.getSite());
+        assertEquals(email, expectUser.getEmail());
+        assertEquals(password, expectUser.getPassword());
+        assertEquals(reputation, expectUser.getReputation());
 
-        Set<Question> userQuestions = questionService.findQuestionsByUserId(user.getId());
+        Set<Badge> userBadges = badgeService.findBadgesByUserId(expectUser.getId());
+        assertEquals(1, userBadges.size());
+        assertTrue(userBadges.contains(badge));
+
+        Set<Question> userQuestions = questionService.findQuestionsByUserId(expectUser.getId());
         assertEquals(1, userQuestions.size());
         assertTrue(userQuestions.contains(question));
+
+        Set<Answer> questionAnswers = answerService.findAnswersByQuestionId(question.getId());
+        assertEquals(1, questionAnswers.size());
+        assertTrue(questionAnswers.contains(answer));
     }
 
     @Test public void testUpdateUser() {
@@ -130,7 +167,7 @@ public class UserServiceTest extends TestContext {
     @Test public void testDelete() {
 
         // choose random User Id
-        final Long id = 3L;
+        final Long id = 5L;
         User user = userService.findById(id);
 
         assertNotNull(user);

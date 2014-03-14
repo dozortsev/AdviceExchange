@@ -5,25 +5,24 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "question")
 @PrimaryKeyJoinColumn(name = "qs_id")
 public class Question extends UserActivity {
 
-    @NotBlank @Size(min = 10, max = 40)
+    @NotBlank /*@Size(min = 5, max = 40)*/
     @Column(name = "qs_name")
     private String name;
 
     @NotNull @Column(name = "qs_votes")
     private Integer votes = 0;
 
-    @Valid @Size(min = 1, max = 5)
+//    @Valid @Size(min = 1, max = 5)
     @ManyToMany
     @JoinTable(name = "question_tag",
             joinColumns = @JoinColumn(name = "qt_question_id"),
