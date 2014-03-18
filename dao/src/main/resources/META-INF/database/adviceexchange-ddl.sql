@@ -108,10 +108,10 @@ DROP TABLE IF EXISTS tag;
 CREATE TABLE IF NOT EXISTS tag (
 
   tag_id   INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  tag_name VARCHAR(20) NOT NULL,
+  tag_name VARCHAR(20) NOT NULL UNIQUE,
   tag_desc TEXT        NOT NULL
 )
-  ENGINE =InnoDB;
+  ENGINE = InnoDB;
 
 
 /* Table reference with Question and Tags (many to many) */
