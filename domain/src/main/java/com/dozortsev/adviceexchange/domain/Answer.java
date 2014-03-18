@@ -56,24 +56,4 @@ public class Answer extends UserActivity {
     public void setIsAccepted(Boolean isAccepted) {
         this.isAccepted = isAccepted;
     }
-
-    @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Answer answer = (Answer) o;
-
-        if (!isAccepted.equals(answer.isAccepted)) return false;
-        if (!votes.equals(answer.votes)) return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + votes.hashCode();
-        result = 31 * result + isAccepted.hashCode();
-        return result;
-    }
 }

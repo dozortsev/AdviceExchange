@@ -8,5 +8,5 @@ public interface QuestionService extends GenericService<Long, Question> {
 
     Set<Question> findQuestionsByUserId(Long userId);
 
-    Set<Question> findQuestionsByTagsId(Long... tagsId);
+    Set<Question> findQuestionsByTags(String... tags);
 }

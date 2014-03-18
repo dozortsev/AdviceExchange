@@ -36,7 +36,5 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
                 .addEntity(UserActivity.class)
                 .setLong("userId", id)
                 .list();
-
-
     }
 }

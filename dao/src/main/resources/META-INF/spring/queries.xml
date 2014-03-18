@@ -44,21 +44,24 @@
     </bean>
 
 
-    <!-- Find all Question by array of Tag id -->
-    <bean id="findQuestionsByTagsId" class="java.lang.String">
+    <!-- Find all Question by array of Tag names -->
+
+    <bean id="findQuestionsByTags" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT question.*, user_activity.* user FROM question
+            SELECT question.*, user_activity.* FROM question
+
+                JOIN user_activity ON ua_id = qs_id
 
                 JOIN question_tag ON qt_question_id = qs_id
 
                 JOIN tag ON qt_tag_id = tag_id
 
-            WHERE tag_id IN (:tags)
+            WHERE tag_name IN (:tagId)
 
             GROUP BY qs_id
 
-            HAVING count(tag_id) >= :countTag
+            HAVING count(tag_id) >= :tagCount
         "/>
     </bean>
 

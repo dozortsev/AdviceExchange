@@ -16,7 +16,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
 
     @Autowired private String findQuestionsByUserId;
 
-    @Autowired private String findQuestionsByTagsId;
+    @Autowired private String findQuestionsByTags;
 
     public QuestionDaoImpl() {
         setEntityClass(Question.class);
@@ -25,16 +25,17 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
     @Override public List<Question> findQuestionsByUserId(Long userId) {
 
         return getCurrentSession().createSQLQuery(findQuestionsByUserId)
-                .addEntity(getEntityClass()).setLong("userId", userId)
+                .addEntity(getEntityClass())
+                .setLong("userId", userId)
                 .list();
     }
 
-    @Override public List<Question> findQuestionsByTagId(Long... tagId) {
+    @Override public List<Question> findQuestionsByTags(String... tags) {
 
-        return getCurrentSession().createSQLQuery(findQuestionsByTagsId)
+        return getCurrentSession().createSQLQuery(findQuestionsByTags)
                 .addEntity(getEntityClass())
-                .setParameterList("tags", tagId)
-                .setParameter("countTag", tagId.length)
+                .setParameterList("tagId", tags)
+                .setParameter("tagCount", tags.length)
                 .list();
     }
 }

@@ -30,9 +30,9 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     @Override public Set<Question> findQuestionsByUserId(Long userId) {
         Set<Question> questions = new HashSet<>();
         try {
-            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
+            log.info(format("Find %s by User Id: %d", getEntityClass(), userId));
             questions.addAll(getDao().findQuestionsByUserId(userId));
-            log.info(format("Set of %s have size: %s", getEntityClass(), questions.size()));
+            log.info(format("Set of %s have size: %d", getEntityClass(), questions.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -40,12 +40,12 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return questions;
     }
 
-    @Override public Set<Question> findQuestionsByTagsId(Long... tagsId) {
+    @Override public Set<Question> findQuestionsByTags(String... tags) {
         Set<Question> questions = new HashSet<>();
         try {
-            log.info(format("Find %s by Tags Id: %s", getEntityClass(), Arrays.toString(tagsId)));
-            questions.addAll(getDao().findQuestionsByTagId(tagsId));
-            log.info(format("Set of %s have size: %s", getEntityClass(), questions.size()));
+            log.info(format("Find %s by Tags: %s", getEntityClass(), Arrays.toString(tags)));
+            questions.addAll(getDao().findQuestionsByTags(tags));
+            log.info(format("Set of %s have size: %d", getEntityClass(), questions.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);

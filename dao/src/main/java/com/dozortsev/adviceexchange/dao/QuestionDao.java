@@ -8,5 +8,5 @@ public interface QuestionDao extends GenericDao<Long, Question> {
 
     List<Question> findQuestionsByUserId(Long userId);
 
-    List<Question> findQuestionsByTagId(Long... tagId);
+    List<Question> findQuestionsByTags(String... tags);
 }

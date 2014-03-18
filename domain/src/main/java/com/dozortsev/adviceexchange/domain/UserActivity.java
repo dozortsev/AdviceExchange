@@ -87,12 +87,14 @@ public abstract class UserActivity extends AbstractEntity<Long> {
 
         if (!content.equals(that.content)) return false;
         if (!created.equals(that.created)) return false;
+        if (type != that.type) return false;
 
         return true;
     }
 
     @Override public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + type.hashCode();
         result = 31 * result + content.hashCode();
         result = 31 * result + created.hashCode();
         return result;
