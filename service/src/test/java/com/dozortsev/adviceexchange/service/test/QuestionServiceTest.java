@@ -1,6 +1,7 @@
 package com.dozortsev.adviceexchange.service.test;
 
 import com.dozortsev.adviceexchange.domain.Question;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Set;
@@ -11,10 +12,11 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testUserQuestions() {
 
-        // choose random Question Id
+        // choose exist Question Id
         final Long userId = 1L;
 
         final Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
+        assertNotNull(userQuestions);
         assertFalse(userQuestions.isEmpty());
 
         for (Question question : userQuestions) {
@@ -27,7 +29,7 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testFindQuestionById() {
 
-        // choose random Question Id
+        // choose exist Question Id
         final Long id = 2L;
 
         Question question = questionService.findById(id);
@@ -35,11 +37,10 @@ public class QuestionServiceTest extends TestContext {
         assertNotNull(question);
     }
 
+    @Ignore("Work only on MySQL")
     @Test public void testFindQuestionsByTagsId() {
 
-        final Long[] arrTagId = {10L, 12L};
-
-        final Set<Question> questions = questionService.findQuestionsByTagsId(arrTagId);
+        final Set<Question> questions = questionService.findQuestionsByTags("Medicine", "Etymology");
 
         assertNotNull(questions);
         assertFalse(questions.isEmpty());

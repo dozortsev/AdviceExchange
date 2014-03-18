@@ -1,6 +1,6 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Comment;
+import com.dozortsev.adviceexchange.domain.Badge;
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.domain.UserActivity;
 import org.junit.Test;
@@ -46,36 +46,43 @@ public class UserServiceTest extends TestContext {
         assertEquals(userService.findById(expectId), user);
     }
 
-    @Test public void testCreateUserQuestion() {
+    @Test public void testCreateUser() {
 
-        log.info("Create user with question");
+        // prepare data
+        final String expectName = "Carlos Castaneda";
+        final Integer expectAge = 50;
+        final String expectAboutMe = "Programmer";
+        final String expectLocation = "Mexico";
+        final String expectSite = "github.com/Castaneda";
+        final String expectEmail = "castaneda@gmail.com";
+        final String expectPassword = "helloCastaneda";
+        final Integer expectReputation = 1000;
+        final Badge expectBadge = badgeService.findById(1L);    // Admin
 
         User user = new User(
-                "Carlos Castaneda", 50, "Programmer", "Mexico", "github.com/Castaneda",
-                "castaneda@gmail.com", "helloCastaneda", 1000
+                expectName, expectAge, expectAboutMe, expectLocation,
+                expectSite, expectEmail, expectPassword, expectReputation
         );
+        user.getBadges().add(expectBadge);
 
+        // create
+        assertNull(user.getId());
         userService.create(user);
         assertNotNull(user.getId());
 
-        Comment comment = new Comment(user, "jflj kjaslfkjs", questionService.findById(5L));
+        // reload
+        final User expectUser = userService.findById(user.getId());
 
-        /*Question question = new Question(
-                user, "consectetur adipisicing elit. Aut blanditiis dolore eum ex explicabo",
-                "dolore eum ex explicabo fuga harum", 100
-        );*/
-
-        // create Question
-        /*commentService.create(comment);
-        assertNotNull(comment.getId());*/
-
-        user.getComments().add(comment);
-        userService.update(user);
-
-        Set<Comment> questionComments = commentService.findCommentsByQuestionId(5L);
-
-        log.info("Create user with question - finish");
-        assertTrue(questionComments.contains(comment));
+        assertEquals(expectName, expectUser.getName());
+        assertEquals(expectAge, expectUser.getAge());
+        assertEquals(expectAboutMe, expectUser.getAboutMe());
+        assertEquals(expectLocation, expectUser.getLocation());
+        assertEquals(expectSite, expectUser.getSite());
+        assertEquals(expectEmail, expectUser.getEmail());
+        assertEquals(expectPassword, expectUser.getPassword());
+        assertEquals(expectReputation, expectUser.getReputation());
+        assertEquals(1, expectUser.getBadges().size());
+        assertTrue(expectUser.getBadges().contains(expectBadge));
     }
 
     @Test public void testUpdateUser() {

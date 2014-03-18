@@ -9,7 +9,7 @@ public class TagServiceTest extends TestContext {
 
     @Test public void testFindTagById() {
 
-        // choose random Tag Id
+        // choose exist Tag Id
         final Long id = 1L;
 
         Tag tag = tagService.findById(id);
@@ -20,15 +20,19 @@ public class TagServiceTest extends TestContext {
 
     @Test public void testCreateTag() {
 
-        final String desc = "All things related to the doctor";
-        final String name = "Doctor";
+        final String expectDesc = "A disease is an abnormal condition that affects the body of an organism.";
+        final String expectName = "Disease";
 
-        final Tag tag = new Tag(name, desc);
+        Tag tag = new Tag(expectName, expectDesc);
 
         assertNull(tag.getId());
         tagService.create(tag);
         assertNotNull(tag.getId());
 
-        assertEquals(tagService.findById(tag.getId()), tag);
+        // reload Tag
+        final Tag expectTag = tagService.findById(tag.getId());
+
+        assertEquals(expectName, expectTag.getName());
+        assertEquals(expectDesc, expectTag.getDesc());
     }
 }

@@ -31,7 +31,5 @@ public class CommentServiceTest extends TestContext {
 
         // check on the expected data
         assertEquals(expectedComment.getContent(), content);
-        assertEquals(expectedComment.getUser(), user);
-        assertEquals(expectedComment.getQuestion(), question);
     }
 }
