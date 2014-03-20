@@ -1,10 +1,6 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,25 +11,21 @@ import static javax.persistence.FetchType.LAZY;
 @PrimaryKeyJoinColumn(name = "qs_id")
 public class Question extends UserActivity {
 
-    @NotBlank /*@Size(min = 5, max = 40)*/
     @Column(name = "qs_name")
     private String name;
 
-    @NotNull @Column(name = "qs_votes")
+    @Column(name = "qs_votes")
     private Integer votes = 0;
 
-//    @Valid @Size(min = 1, max = 5)
     @ManyToMany
     @JoinTable(name = "question_tag",
             joinColumns = @JoinColumn(name = "qt_question_id"),
             inverseJoinColumns = @JoinColumn(name = "qt_tag_id"))
     private List<Tag> tags = new ArrayList<>();
 
-    @Valid
     @OneToMany(fetch = LAZY, cascade = ALL, mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
-    @Valid
     @OneToMany(fetch = LAZY, cascade = ALL, mappedBy = "question")
     private List<Comment> comments = new ArrayList<>();
 

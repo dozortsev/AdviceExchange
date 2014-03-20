@@ -1,12 +1,6 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,15 +13,12 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 public class User extends AbstractEntity<Long> {
 
-    @NotBlank @Size(min = 2, max = 50)
     @Column(name = "user_name")
     private String name;
 
-    @Range(min = 21, max = 100)
     @Column(name = "user_age")
     private Integer age;
 
-    @Size(min = 5, max = 10000)
     @Column(name = "user_about_me")
     private String aboutMe;
 
@@ -35,41 +26,33 @@ public class User extends AbstractEntity<Long> {
     @Column(name = "user_joined", updatable = false)
     private Date joined;
 
-    @Size(min = 3, max = 150)
     @Column(name = "user_location")
     private String location;
 
-    @Size(min = 10, max = 120)
     @Column(name = "user_site")
     private String site;
 
-    @NotBlank @Size(min = 10, max = 120)
-    @Email @Column(name = "user_email", unique = true)
+    @Column(name = "user_email", unique = true)
     private String email;
 
-    @NotBlank @Size(min = 5, max = 15)
     @Column(name = "user_password", unique = true)
     private String password;
 
-    @NotNull @Column(name = "user_reputation")
+    @Column(name = "user_reputation")
     private Integer reputation = 0;
 
-//    @Valid
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "qs_id")
     private List<Question> questions = new ArrayList<>();
 
-//    @Valid
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "asw_id")
     private List<Answer> answers = new ArrayList<>();
 
-//    @Valid
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "cm_id")
     private List<Comment> comments = new ArrayList<>();
 
-//    @Valid
     @ManyToMany(fetch = EAGER)
     @JoinTable(name = "user_badge",
             joinColumns = @JoinColumn(name = "ub_user_id"),

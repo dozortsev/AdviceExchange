@@ -1,8 +1,6 @@
 package com.dozortsev.adviceexchange.domain;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
@@ -13,7 +11,6 @@ import static javax.persistence.FetchType.LAZY;
 public class Comment extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
-    @Valid @NotNull
     @JoinColumn(name = "cm_question_id")
     private Question question;
 

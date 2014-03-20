@@ -1,8 +1,6 @@
 package com.dozortsev.adviceexchange.domain;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
@@ -13,14 +11,12 @@ import static javax.persistence.FetchType.LAZY;
 public class Answer extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
-    @Valid @NotNull
     @JoinColumn(name = "asw_question_id")
     private Question question;
 
-    @NotNull @Column(name = "asw_votes")
+    @Column(name = "asw_votes")
     private Integer votes = 0;
 
-    @NotNull
     @Column(name = "asw_accepted")
     private Boolean isAccepted;
 

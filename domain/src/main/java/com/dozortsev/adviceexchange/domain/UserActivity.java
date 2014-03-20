@@ -1,10 +1,6 @@
 package com.dozortsev.adviceexchange.domain;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 import static javax.persistence.CascadeType.MERGE;
@@ -21,17 +17,15 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 )
 public abstract class UserActivity extends AbstractEntity<Long> {
 
-    @Valid @NotNull
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
     @JoinColumn(name = "ua_user_id")
     private User user;
 
-    @NotNull @Enumerated(STRING)
+    @Enumerated(STRING)
     @Column(name = "ua_type", updatable = false)
     private Type type;
 
-    @Lob @NotBlank
-    @Column(name = "ua_content")
+    @Lob @Column(name = "ua_content")
     private String content;
 
     @Temporal(TIMESTAMP)
