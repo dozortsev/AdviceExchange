@@ -57,7 +57,7 @@
 
                 JOIN tag ON qt_tag_id = tag_id
 
-            WHERE tag_name IN (:tagId)
+            WHERE tag_name IN (:tags)
 
             GROUP BY qs_id
 

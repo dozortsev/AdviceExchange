@@ -34,7 +34,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
 
         return getCurrentSession().createSQLQuery(findQuestionsByTags)
                 .addEntity(getEntityClass())
-                .setParameterList("tagId", tags)
+                .setParameterList("tags", tags)
                 .setParameter("tagCount", tags.length)
                 .list();
     }
