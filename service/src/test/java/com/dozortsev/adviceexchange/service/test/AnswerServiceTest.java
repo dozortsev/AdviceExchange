@@ -14,8 +14,8 @@ public class AnswerServiceTest extends TestContext {
 
     @Test public void testFindAnswerById() {
 
-        // choose Answer Id
-        final Long id = 150L;
+        // choose exist Answer Id
+        final Long id = 21L;
 
         final Answer answer = answerService.findById(id);
 
@@ -81,7 +81,7 @@ public class AnswerServiceTest extends TestContext {
     @Test public void testUpdateAnswer() {
 
         // choose Answer Id
-        final Long id = 141L;
+        final Long id = 22L;
 
         final Answer answer = answerService.findById(id);
         assertNotNull(answer);

@@ -17,8 +17,8 @@ public class UserServiceTest extends TestContext {
         // choose random User Id
         final Long id = 1L;
 
-        final String expectPassword = "3938233";
-        final String expectLogin = "dolor.Quisque.tincidunt@tellusnon.edu";
+        final String expectPassword = "2465010";
+        final String expectLogin = "urna@Fuscealiquet.com";
 
         User user = userService.findById(id);
 
@@ -31,10 +31,10 @@ public class UserServiceTest extends TestContext {
     @Test public void testFindUserByLogin() {
 
         // choose User email(login)
-        final String login = "dolor.Quisque.tincidunt@tellusnon.edu";
+        final String login = "urna@Fuscealiquet.com";
 
         final Long expectId = 1L;
-        final String expectPassword = "3938233";
+        final String expectPassword = "2465010";
 
         final User user = userService.findUserByLogin(login);
         assertNotNull(user);
@@ -114,7 +114,7 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testUserActivity() {
 
-        final Long id = 1L;
+        final Long id = 2L;
 
         Set<UserActivity> userActivities = userService.userActivities(id);
 

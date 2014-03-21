@@ -12,8 +12,8 @@ public class QuestionServiceTest extends TestContext {
 
     @Test public void testUserQuestions() {
 
-        // choose exist Question Id
-        final Long userId = 1L;
+        // choose exist user Id
+        final Long userId = 10L;
 
         final Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
         assertNotNull(userQuestions);
