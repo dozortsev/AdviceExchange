@@ -1,5 +1,5 @@
 
-  /* Table of User */
+-- Table of User
 
   DROP TABLE IF EXISTS user;
   CREATE TABLE user (
@@ -19,7 +19,7 @@
   );
 
 
-  /* Table of Badge */
+-- Table of Badge
 
   DROP TABLE IF EXISTS badge;
   CREATE TABLE badge (
@@ -32,7 +32,7 @@
   );
 
 
-  /* Table reference for User and Badges (many to many) */
+-- Table reference for User and Badges (many to many)
 
   DROP TABLE IF EXISTS user_badge;
   CREATE TABLE user_badge (
@@ -42,7 +42,7 @@
   );
 
 
-  /* Table of UserActivity */
+-- Table of UserActivity
 
   DROP TABLE IF EXISTS user_activity;
   CREATE TABLE user_activity (
@@ -55,7 +55,7 @@
   );
 
 
-  /* Table of Comment */
+-- Table of Comment
 
   DROP TABLE IF EXISTS comment;
   CREATE TABLE comment (
@@ -65,7 +65,7 @@
   );
 
 
-  /* Table to Answer */
+-- Table to Answer
 
   DROP TABLE IF EXISTS answer;
   CREATE TABLE answer (
@@ -77,7 +77,7 @@
   );
 
 
-/* Table of Question */
+-- Table of Question
 
   DROP TABLE IF EXISTS question;
   CREATE TABLE question (
@@ -88,7 +88,7 @@
   );
 
 
-/* Table of Tag */
+-- Table of Tag
 
   DROP TABLE IF EXISTS tag;
   CREATE TABLE tag (
@@ -100,7 +100,7 @@
   );
 
 
-/* Table reference with Question and Tags (many to many) */
+-- Table reference with Question and Tags (many to many)
 
   DROP TABLE IF EXISTS question_tag;
   CREATE TABLE question_tag (
@@ -110,7 +110,7 @@
   );
 
 
-/* Define references */
+-- Define references
 
   ALTER TABLE user_activity
   ADD CONSTRAINT fk_ua_user_id FOREIGN KEY (ua_user_id) REFERENCES user (user_id)

@@ -1,4 +1,5 @@
-/* Create Database */
+
+# Create Database
 
 DROP DATABASE IF EXISTS adviceexchange;
 
@@ -9,7 +10,7 @@ CREATE DATABASE adviceexchange
 USE adviceexchange;
 
 
-/* Table of User */
+# Table of User
 
 DROP TABLE IF EXISTS user;
 CREATE TABLE IF NOT EXISTS user (
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS user (
   ENGINE =InnoDB;
 
 
-/* Table of Badge */
+# Table of Badge
 
 DROP TABLE IF EXISTS badge;
 CREATE TABLE IF NOT EXISTS badge (
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS badge (
   ENGINE =InnoDB;
 
 
-/* Table reference for User and Badges (many to many) */
+# Table reference for User and Badges (many to many)
 
 DROP TABLE IF EXISTS user_badge;
 CREATE TABLE IF NOT EXISTS user_badge (
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS user_badge (
   ENGINE =InnoDB;
 
 
-/* Table of UserActivity */
+# Table of UserActivity
 
 DROP TABLE IF EXISTS user_activity;
 CREATE TABLE IF NOT EXISTS user_activity (
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS user_activity (
   ENGINE = InnoDB;
 
 
-/* Table of Comment */
+# Table of Comment
 
 DROP TABLE IF EXISTS comment;
 CREATE TABLE IF NOT EXISTS comment (
@@ -77,7 +78,7 @@ CREATE TABLE IF NOT EXISTS comment (
   ENGINE =InnoDB;
 
 
-/* Table of Answer */
+# Table of Answer
 
 DROP TABLE IF EXISTS answer;
 CREATE TABLE IF NOT EXISTS answer (
@@ -90,7 +91,7 @@ CREATE TABLE IF NOT EXISTS answer (
   ENGINE =InnoDB;
 
 
-/* Table of Question */
+# Table of Question
 
 DROP TABLE IF EXISTS question;
 CREATE TABLE IF NOT EXISTS question (
@@ -102,7 +103,7 @@ CREATE TABLE IF NOT EXISTS question (
   ENGINE =InnoDB;
 
 
-/* Table of Tag */
+# Table of Tag
 
 DROP TABLE IF EXISTS tag;
 CREATE TABLE IF NOT EXISTS tag (
@@ -114,7 +115,7 @@ CREATE TABLE IF NOT EXISTS tag (
   ENGINE = InnoDB;
 
 
-/* Table reference with Question and Tags (many to many) */
+# Table reference with Question and Tags (many to many)
 
 DROP TABLE IF EXISTS question_tag;
 CREATE TABLE IF NOT EXISTS question_tag (
@@ -125,7 +126,7 @@ CREATE TABLE IF NOT EXISTS question_tag (
   ENGINE =InnoDB;
 
 
-/* Define references */
+# Define references
 
 ALTER TABLE user_activity
 ADD CONSTRAINT fk_ua_user_id FOREIGN KEY (ua_user_id) REFERENCES user (user_id)
