@@ -145,7 +145,15 @@ ADD CONSTRAINT fk_cm_question_id FOREIGN KEY (cm_question_id) REFERENCES questio
 ALTER TABLE answer
 ADD CONSTRAINT fk_asw_id FOREIGN KEY (asw_id) REFERENCES user_activity (ua_id)
   ON UPDATE CASCADE
+  ON DELETE CASCADE,
+ADD CONSTRAINT fk_asw_qs_id FOREIGN KEY (asw_question_id) REFERENCES question (qs_id)
+  ON UPDATE CASCADE
   ON DELETE CASCADE;
+
+
+ALTER TABLE question_tag
+ADD CONSTRAINT fk_qt_tag_id FOREIGN KEY (qt_tag_id) REFERENCES tag (tag_id),
+ADD CONSTRAINT fk_qt_question_id FOREIGN KEY (qt_question_id) REFERENCES question (qs_id);
 
 
 ALTER TABLE question
@@ -157,8 +165,3 @@ ADD CONSTRAINT fk_qs_id FOREIGN KEY (qs_id) REFERENCES user_activity (ua_id)
 ALTER TABLE user_badge
 ADD CONSTRAINT fk_ub_user_id FOREIGN KEY (ub_user_id) REFERENCES user (user_id),
 ADD CONSTRAINT fk_ub_badge_id FOREIGN KEY (ub_badge_id) REFERENCES badge (bdg_id);
-
-
-ALTER TABLE question_tag
-ADD CONSTRAINT fk_qt_tag_id FOREIGN KEY (qt_tag_id) REFERENCES tag (tag_id),
-ADD CONSTRAINT fk_qt_question_id FOREIGN KEY (qt_question_id) REFERENCES question (qs_id);
