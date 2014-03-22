@@ -1,5 +1,5 @@
 
-# Badge data
+-- Badge data
 
 INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
 
@@ -7,7 +7,7 @@ INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
   (2, 'ROLE_USER', 'Lorem ipsum dolor sit amet.');
 
 
-# User data
+-- User data
 
 INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user_email, user_password, user_reputation) VALUES
 
@@ -113,18 +113,24 @@ INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user
 (100, 'Forrest Ortiz', 68, '2015-03-11 17:32:28', 'Chantemelle', 'eleifend@augueid.edu', 2269552, 9503);
 
 
-# User & Badge data
+-- User & Badge data
 
 INSERT INTO user_badge (ub_badge_id, ub_user_id) VALUES
 
-  (1, 90), (1, 5), (1, 79), (2, 80), (1, 38), (1, 51), (1, 84), (1, 8), (2, 56), (1, 59), (1, 28), (1, 100), (1, 70), (1, 19), (1, 66), (2, 16), (1, 63), (1, 65), (1, 12), (1, 75),
-  (1, 21), (2, 3), (1, 8), (1, 3), (1, 88), (1, 63), (1, 21), (2, 79), (1, 28), (2, 44), (1, 79), (2, 6), (2, 100), (1, 99), (2, 48), (1, 57), (1, 2), (1, 31), (2, 97), (2, 60), (2, 85),
-  (1, 81), (2, 74), (2, 1), (2, 68), (2, 30), (2, 41), (2, 80), (2, 42), (1, 39), (2, 61), (1, 97), (2, 57), (2, 2), (1, 67), (2, 18), (1, 23), (1, 36), (1, 33), (2, 81), (1, 55), (1, 18),
-  (1, 23), (2, 41), (2, 14), (2, 44), (2, 69), (2, 83), (2, 18), (1, 37), (1, 43), (2, 38), (2, 27), (2, 21), (2, 46), (1, 95), (1, 23), (1, 80), (2, 47), (2, 56), (2, 48), (2, 31), (1, 37),
-  (2, 39), (1, 80), (2, 29), (2, 45), (1, 42), (1, 7), (1, 2), (2, 67), (1, 61), (1, 61), (1, 73), (1, 82), (2, 44), (1, 23), (2, 86), (2, 17), (2, 48);
+  (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 99), (2, 100),
+  (2, 11), (2, 12), (2, 13), (2, 14), (2, 15), (2, 16), (2, 17), (2, 18), (2, 19), (2, 20), (2, 21),
+  (2, 22), (2, 23), (2, 24), (2, 25), (2, 26), (2, 27), (2, 28), (2, 29), (2, 30), (2, 31), (2, 32),
+  (2, 33), (2, 34), (2, 35), (2, 36), (2, 37), (2, 38), (2, 39), (2, 40), (2, 41), (2, 42), (2, 43),
+  (2, 44), (2, 45), (2, 46), (2, 47), (2, 48), (2, 49), (2, 50), (2, 51), (2, 52), (2, 53), (2, 54),
+  (2, 55), (2, 56), (2, 57), (2, 58), (2, 59), (2, 60), (2, 61), (2, 62), (2, 63), (2, 64), (2, 65),
+  (2, 66), (2, 67), (2, 68), (2, 69), (2, 70), (2, 71), (2, 72), (2, 73), (2, 74), (2, 75), (2, 76),
+  (2, 77), (2, 78), (2, 79), (2, 80), (2, 81), (2, 82), (2, 83), (2, 84), (2, 85), (2, 86), (2, 87),
+  (2, 88), (2, 89), (2, 90), (2, 91), (2, 92), (2, 93), (2, 94), (2, 95), (2, 96), (2, 97), (2, 98),
+
+  (1, 1), (1, 10), (1, 2), (1, 5), (1, 100), (1, 50), (1, 20);
 
 
-# UserActivity Data
+-- UserActivity Data
 
 INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) VALUES
 
@@ -140,34 +146,46 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
   (8, 'ANSWER', 4, 'No. Shaving, dousing with kerosene, hot baths, and other so-called remedies just won''t work. Scabies are mites that belong to the same family as spiders. Pubic lice are tiny insects that look a lot like crabs. Both are transmitted through sexual and intimate contact. They can also be picked up from infested bedding and clothing. Scabies get under the skin. Pubic lice attach their eggs to pubic hair.', '2014-12-31 23:54:02'),
   (9, 'ANSWER', 5, 'Symptoms usually include intense itching. Scabies also appears as small bumps or rashes that look like dirty, small curling lines, especially on the penis, between the fingers, on buttocks, breasts, wrists, thighs, and around the navel.', '2014-12-31 05:54:02'),
 
-  (10, 'QUESTION', 5, 'I saw an advertisement on the bus for Plan B. What is that?', '2013-11-07 12:28:25');
+  (10, 'QUESTION', 5, 'I saw an advertisement on the bus for Plan B. What is that?', '2013-11-07 12:28:25'),
 
+  (11, 'QUESTION', 10, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?  I’ve heard some anti-choice people make the claim, but it doesn’t sound reasonable.', '2013-10-27 12:46:57'),
+  (12, 'ANSWER', 12, 'No, there is no evidence that emergency contraception (EC) increases the risk of ectopic pregnancy — pregnancy outside of the uterus.  One study of only 201 women in the U.K. suggested this possibility, but subsequent studies of thousands of women worldwide demonstrate no increased risk. ', '2013-10-27 14:40:57'),
+  (13, 'ANSWER', 5, 'Ectopic pregnancy is more likely for women who have had a previous ectopic pregnancy, for women who have had surgery involving the fallopian tubes, and for women who have had sexually transmitted infections.  Left untreated with medication or surgery, ectopic pregnancy is a very dangerous, life threatening condition.', '2013-10-27 14:40:57'),
+  (14, 'ANSWER', 7, 'EC works by stopping ovulation or fertilization.  In theory, it could interfere with the implantation of a fertilized egg, but there is no scientific proof that this happens.  EC, however, does not affect an established pregnancy.', '2013-10-28 18:41:57'),
 
-# Question data
+  (15, 'QUESTION', 7, 'Is it true that emergency contraception causes abortion? What about other hormonal methods of birth control?', '2014-11-30 17:03:12'),
+  (16, 'ANSWER', 5, 'No. Abortion ends a pregnancy. Emergency contraception (EC) cannot end a pregnancy. EC works before a pregnancy begins. Pregnancy begins with the implantation of the developing fertilized egg in a woman''s uterus.', '2014-12-02 21:03:12'),
+  (17, 'COMMENT', 10, 'The same is true for the pill, the shot, the patch, and the ring.', '2014-11-30 17:03:12'),
+  (18, 'COMMENT', 11, 'They also prevent ovulation and fertilization, but not implantation.', '2015-01-09 12:03:12');
+
+-- Question data
 
 INSERT INTO question (qs_id, qs_name, qs_votes) VALUES
 
-  (1, 'lorem eu metus. In lorem. Donec', 80),
-  (3, 'Sed nunc est, mollis non, cursus non, egestas', 18),
-  (7, 'risus. Morbi metus. Vivamus euismod', 71),
-  (10, 'sem molestie sodales. Mauris blandit enim consequat', 29);
+  (1, 'Is there any truth to that?', 5),
+  (3, 'What is that?', 18),
+  (7, 'Like scabies and pubic lice?', 71),
+  (10, 'I saw an advertisement on the bus for Plan B. What is that?', 29),
+  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 1),
+  (15, 'What about other hormonal methods of birth control?', 12);
 
 
-# Comment data
+-- Comment data
 
 INSERT INTO comment (cm_id, cm_question_id) VALUES
 
-  (5, 3), (6, 3);
+  (5, 3), (6, 3), (17, 15), (18, 15);
 
 
-# Answer data
+-- Answer data
 
 INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
 
-  (2, 1, 10, true), (4, 3, 12, false), (8, 7, 0, false), (9, 7, 1, true);
+  (2, 1, 10, true), (4, 3, 12, false), (8, 7, 0, false), (9, 7, 1, true), (12, 11, 4, false), (13, 11, 10, true), (14, 11, 4, false),
+  (16, 15, 12, true);
 
 
-# Tag data
+-- Tag data
 
 INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
 
@@ -193,11 +211,13 @@ INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
   (20, 'Egypt', 'Egypt, is a transcontinental country spanning the northeast corner of Africa and southwest corner of Asia, via a land bridge formed by the Sinai Peninsula. ');
 
 
-# Question & Tag data
+-- Question & Tag data
 
 INSERT INTO question_tag (qt_question_id, qt_tag_id) VALUES
 
   (1, 1), (1, 10), (1, 12),
   (3, 1), (1, 20), (1, 12),
   (7, 3), (7, 20), (7, 5), (7, 14),
-  (10, 3), (10, 4), (10, 5), (10, 13), (10, 20);
+  (10, 3), (10, 4), (10, 5), (10, 13), (10, 20),
+  (11, 11), (11, 12), (11, 20),
+  (15, 1), (15, 12), (15, 20), (15, 14);
