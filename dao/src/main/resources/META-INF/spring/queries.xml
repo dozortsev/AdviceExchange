@@ -62,6 +62,8 @@
             GROUP BY qs_id
 
             HAVING count(tag_id) >= :tagCount
+
+            ORDER BY ua_created DESC
         "/>
     </bean>
 
@@ -135,6 +137,8 @@
                 LEFT OUTER JOIN comment ON cm_id = ua_id
 
             WHERE ua_user_id = :userId
+
+            ORDER BY ua_created DESC
         "/>
     </bean>
 </beans>

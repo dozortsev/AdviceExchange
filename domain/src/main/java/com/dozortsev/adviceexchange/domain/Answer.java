@@ -25,10 +25,9 @@ public class Answer extends UserActivity {
         setType(Type.ANSWER);
     }
 
-    public Answer(User user, String content, Question question, Integer votes, Boolean isAccepted) {
+    public Answer(User user, String content, Question question, Boolean isAccepted) {
         super(user, Type.ANSWER, content);
         this.question = question;
-        this.votes += votes;
         this.isAccepted = isAccepted;
     }
 

@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
@@ -41,7 +39,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Override public Set<Question> findQuestionsByTags(String... tags) {
-        Set<Question> questions = new HashSet<>();
+        Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find %s by Tags: %s", getEntityClass(), Arrays.toString(tags)));
             questions.addAll(getDao().findQuestionsByTags(tags));

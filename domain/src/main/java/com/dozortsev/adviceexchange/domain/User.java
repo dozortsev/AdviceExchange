@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import static javax.persistence.CascadeType.*;
-import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
@@ -53,7 +53,7 @@ public class User extends AbstractEntity<Long> {
     @JoinColumn(name = "cm_id")
     private List<Comment> comments = new ArrayList<>();
 
-    @ManyToMany(fetch = EAGER)
+    @ManyToMany(fetch = LAZY)
     @JoinTable(name = "user_badge",
             joinColumns = @JoinColumn(name = "ub_user_id"),
             inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "question")
@@ -17,7 +18,7 @@ public class Question extends UserActivity {
     @Column(name = "qs_votes")
     private Integer votes = 0;
 
-    @ManyToMany
+    @ManyToMany(fetch = EAGER)
     @JoinTable(name = "question_tag",
             joinColumns = @JoinColumn(name = "qt_question_id"),
             inverseJoinColumns = @JoinColumn(name = "qt_tag_id"))
@@ -34,15 +35,14 @@ public class Question extends UserActivity {
         setType(Type.QUESTION);
     }
 
-    public Question(User user, String content, String name, Integer votes) {
+    public Question(User user, String content, String name, List<Tag> tags) {
         super(user, Type.QUESTION, content);
         this.name = name;
-        this.votes = votes;
+        this.tags = tags;
     }
 
-    public Question(User user, String content, String name, Integer votes, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
-        this(user, content, name, votes);
-        this.tags = tags;
+    public Question(User user, String content, String name, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+        this(user, content, name, tags);
         this.answers = answers;
         this.comments = comments;
     }
