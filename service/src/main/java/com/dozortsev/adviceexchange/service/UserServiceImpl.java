@@ -43,12 +43,25 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         return null;
     }
 
+    @Override public Set<User> findUsersByName(String name) {
+        Set<User> users = new LinkedHashSet<>();
+        try {
+            log.info(format("Find User by name: %s", name));
+            users.addAll(getDao().findUsersByName(name));
+            log.info(format("Set have size: %d", users.size()));
+
+        } catch (Exception e) {
+            log.error("ErrorL ", e);
+        }
+        return users;
+    }
+
     @Override public Set<UserActivity> userActivities(Long id) {
         Set<UserActivity> userActivities = new LinkedHashSet<>();
         try {
-            log.info(format("User activity by Id: %s", id));
+            log.info(format("User activity by Id: %d", id));
             userActivities.addAll(getDao().userActivities(id));
-            log.info(format("Set have size: %s", userActivities.size()));
+            log.info(format("Set have size: %d", userActivities.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);

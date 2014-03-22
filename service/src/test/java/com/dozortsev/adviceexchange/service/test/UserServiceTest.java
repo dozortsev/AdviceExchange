@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 
@@ -115,6 +116,15 @@ public class UserServiceTest extends TestContext {
         userService.deleteById(id);
 
         assertNull(userService.findById(id));
+    }
+
+    @Test public void testFindUserByName() {
+
+        final String regexUserName = "all";
+
+        for (User user : userService.findUsersByName(regexUserName)) {
+            assertTrue(Pattern.compile(regexUserName).matcher(user.getName()).find());
+        }
     }
 
     @Test public void testUserActivity() {

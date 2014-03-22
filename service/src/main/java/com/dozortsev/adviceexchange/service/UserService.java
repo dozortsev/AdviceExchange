@@ -9,5 +9,7 @@ public interface UserService extends GenericService<Long, User> {
 
     User findUserByLogin(String login);
 
+    Set<User> findUsersByName(String name);
+
     Set<UserActivity> userActivities(Long id);
 }

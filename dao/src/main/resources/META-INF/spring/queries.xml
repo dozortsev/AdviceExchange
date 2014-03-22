@@ -12,6 +12,15 @@
     </bean>
 
 
+    <!-- Find User by name -->
+    <bean id="findUserByName" class="java.lang.String">
+        <constructor-arg value="
+
+            SELECT * FROM user WHERE user_name LIKE :userName
+        "/>
+    </bean>
+
+
     <!-- Find all the Badges that were assigned User -->
 
     <bean id="findBadgesByUserId" class="java.lang.String">
