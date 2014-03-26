@@ -77,6 +77,25 @@
                     </filteringDeploymentDescriptors>
                 </configuration>
             </plugin>
+
+            <!-- JBoss AS plugin -->
+
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.5.Final</version>
+                <configuration>
+                    <filename>${project.parent.artifactId}.war</filename>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
