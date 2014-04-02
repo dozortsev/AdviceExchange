@@ -19,6 +19,11 @@ out/
 rebel.xml
 
 
+# LiveReload #
+
+Guardfile
+
+
 # Maven #
 
 target/
