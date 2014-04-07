@@ -152,7 +152,7 @@ public class User extends AbstractEntity<Long> {
     public Boolean isEnabled() {
         return enabled;
     }
-    public void canEnabled(Boolean enabled) {
+    public void wasEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 

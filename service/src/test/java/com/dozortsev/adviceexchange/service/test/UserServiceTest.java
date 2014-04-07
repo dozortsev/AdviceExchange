@@ -44,6 +44,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(id, user.getId());
         assertEquals(login, user.getEmail());
         assertEquals(password, user.getPassword());
+        assertTrue(user.isEnabled());
 
         assertEquals(userService.findById(id), user);
     }
@@ -84,6 +85,22 @@ public class UserServiceTest extends TestContext {
 
         assertEquals(1, badges.size());
         assertTrue(badges.contains(badge));
+    }
+
+    @Test public void testDisabledUser() {
+
+        // choose exist User Id
+        final String login = "non@nonjusto.edu";
+
+        final User user = userService.findUserByLogin(login);
+        assertNotNull(user);
+        assertEquals(login, user.getEmail());
+
+        // disable
+        user.wasEnabled(Boolean.FALSE);
+        userService.update(user);
+
+        assertNull(userService.findUserByLogin(login));
     }
 
     @Test public void testUpdateUser() {
@@ -127,6 +144,6 @@ public class UserServiceTest extends TestContext {
         Set<UserActivity> userActivities = userService.userActivities(id);
 
         assertEquals(1, userActivities.size());
-//        assertTrue(userActivities.contains(answer));
+        assertTrue(userActivities.contains(answer));
     }
 }

@@ -7,7 +7,7 @@
     <bean id="findUserByLogin" class="java.lang.String">
         <constructor-arg index="0" value="
 
-            SELECT user.* FROM user WHERE user_email = :login
+            SELECT user.* FROM user WHERE user_email = :login AND user_enabled = true
         "/>
     </bean>
 

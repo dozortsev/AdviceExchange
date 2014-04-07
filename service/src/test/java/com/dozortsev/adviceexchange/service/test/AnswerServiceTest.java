@@ -28,7 +28,7 @@ public class AnswerServiceTest extends TestContext {
 
         assertNotNull(answer);
         assertEquals(Type.ANSWER, answer.getType());
-//        assertTrue(userService.userActivities(userId).contains(answer));
+        assertTrue(userService.userActivities(userId).contains(answer));
         assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
         assertTrue(answerService.findAnswersByQuestionId(questionId).contains(answer));
     }

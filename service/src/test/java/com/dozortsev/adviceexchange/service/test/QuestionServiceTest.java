@@ -32,7 +32,7 @@ public class QuestionServiceTest extends TestContext {
 
         assertNotNull(question);
         assertEquals(Type.QUESTION, question.getType());
-//        assertTrue(userService.userActivities(userId).contains(question));
+        assertTrue(userService.userActivities(userId).contains(question));
         assertTrue(questionService.findQuestionsByUserId(userId).contains(question));
     }
 
@@ -62,8 +62,8 @@ public class QuestionServiceTest extends TestContext {
         assertEquals(name, expectQuestion.getName());
         assertEquals(content, expectQuestion.getContent());
         assertEquals(tags, expectQuestion.getTags());
-//        assertEquals(1, userService.userActivities(user.getId()).size());
-//        assertTrue(userService.userActivities(user.getId()).contains(expectQuestion));
+        assertEquals(1, userService.userActivities(user.getId()).size());
+        assertTrue(userService.userActivities(user.getId()).contains(expectQuestion));
     }
 
     @Test public void testUpdateQuestion() {
