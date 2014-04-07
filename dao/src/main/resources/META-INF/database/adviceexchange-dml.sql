@@ -54,7 +54,7 @@ INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user
 (41, 'Otto Good', 43, '2015-03-08 23:12:04', 'Jalgaon', 'tellus@Donecsollicitudin.com', md5(583525), 8376),
 (42, 'Oleg Church', 42, '2015-02-19 03:01:23', 'Sinaai-Waas', 'lorem.vitae.odio@Etiamvestibulummassa.org', md5(7921586), 5937),
 (43, 'Jeremy Moses', 62, '2013-08-28 17:28:57', 'Dehradun', 'ipsum@posuere.co.uk', md5(2908932), 7551),
-(44, 'Herrod Tyson', 40, '2013-10-31 12:21:18', 'Trois-Rivi?res', 'Pellentesque.habitant@tellusAenean.net', md5(5879082), 435),
+(44, 'Herrod Tyson', 40, '2013-10-31 12:21:18', 'Trois-Rivires', 'Pellentesque.habitant@tellusAenean.net', md5(5879082), 435),
 (45, 'Jacob Mckee', 47, '2013-11-17 06:58:35', 'Flawinne', 'ornare.lectus.justo@lobortistellus.edu', md5(2951123), 7677),
 (46, 'Malcolm Beard', 85, '2014-10-05 15:52:05', 'Vandoeuvre-lÃ¨s-Nancy', 'tellus.Nunc@nequeSedeget.ca', md5(5908746), 9852),
 (47, 'Jerome Foreman', 48, '2013-03-31 00:08:41', 'Charny', 'nulla.Integer.vulputate@quamPellentesque.net', md5(9762576), 4434),

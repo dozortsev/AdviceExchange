@@ -1,9 +1,9 @@
 package com.dozortsev.adviceexchange.service.test;
 
+import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Badge;
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.domain.UserActivity;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Set;
@@ -78,7 +78,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(site, expectUser.getSite());
         assertEquals(email, expectUser.getEmail());
         assertEquals(password, expectUser.getPassword());
-        assertEquals(reputation, expectUser.getReputation());
+        assertTrue(expectUser.getReputation().equals(reputation + 1));
 
         final Set<Badge> badges = badgeService.findBadgesByUserId(user.getId());
 
@@ -107,17 +107,6 @@ public class UserServiceTest extends TestContext {
         assertTrue(expectedUser.getReputation().equals(oldReputation + 15));
     }
 
-    @Ignore
-    @Test public void testDeleteUser() {
-
-        // choose exist Comment id
-        final Long id = 8L;
-
-        userService.deleteById(id);
-
-        assertNull(userService.findById(id));
-    }
-
     @Test public void testFindUserByName() {
 
         final String regexUserName = "all";
@@ -127,12 +116,17 @@ public class UserServiceTest extends TestContext {
         }
     }
 
+//    @Ignore
     @Test public void testUserActivity() {
 
         final Long id = 2L;
 
+        // expected Answer
+        final Answer answer = answerService.findById(44L);
+
         Set<UserActivity> userActivities = userService.userActivities(id);
 
-        assertNotEquals(0, userActivities.size());
+        assertEquals(1, userActivities.size());
+//        assertTrue(userActivities.contains(answer));
     }
 }

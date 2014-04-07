@@ -15,11 +15,9 @@
 
 <c:if test="${not empty error}">
     <div>
-        Your login attempt was not successful, try again.<br/>
-
         Caused: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
     </div>
-    <br/><br/>
+    <br/>
 </c:if>
 
 <form action="<c:url value="/j_spring_security_check" />" method="POST">
