@@ -2,6 +2,7 @@ package com.dozortsev.adviceexchange.web;
 
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.service.BadgeService;
 import com.dozortsev.adviceexchange.service.QuestionService;
 import com.dozortsev.adviceexchange.service.UserService;
 import org.apache.log4j.Logger;
@@ -26,11 +27,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @SessionAttributes({ "user", "activities" })
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    @Autowired private UserService userService;
 
-    @Autowired
-    private QuestionService questionService;
+    @Autowired private BadgeService badgeService;
+
+    @Autowired private QuestionService questionService;
 
     private static final Logger log = getLogger(UserController.class);
 
@@ -39,8 +40,7 @@ public class UserController {
 
         User user = userService.findUserByLogin(principal.getName());
 
-        return new ModelAndView("index")
-                .addObject("user", user)
+        return new ModelAndView("index").addObject("user", user)
                 .addObject("activities", userService.userActivities(user.getId()));
     }
 
@@ -53,18 +53,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createAccount", method = POST)
-    public ModelAndView createAccount(@ModelAttribute("newUser") User user) {
+    public String createAccount(@ModelAttribute("newUser") User user) {
 
         user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), null));
+        user.getBadges().add(badgeService.findById(2L)); // User badge
 
-        return new ModelAndView("index", "user", userService.findById(userService.create(user)));
-    }
+        userService.create(user);
 
-    @RequestMapping(value="/login", method = GET)
-    public String login(Model model) {
-
-        return "login";
-
+        return "redirect:/login";
     }
 
     @RequestMapping(value="/loginfailed", method = GET)
@@ -72,13 +68,5 @@ public class UserController {
 
         model.addAttribute("error", "true");
         return "login";
-
-    }
-
-    @RequestMapping(value="/logout", method = GET)
-    public String logout(Model model) {
-
-        return "login";
-
     }
 }

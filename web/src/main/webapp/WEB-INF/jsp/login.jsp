@@ -26,7 +26,7 @@
     <table>
         <tr>
             <td>
-                Email
+                <fmt:message key="login.lbl.login"/>
             </td>
             <td>
                 <input type="text" name="j_username"/>
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td>
-                Password
+                <fmt:message key="login.lbl.pwd"/>
             </td>
             <td>
                 <input type="password" name="j_password"/>
@@ -47,8 +47,8 @@
         </tr>
         <tr>
             <td colspan="2">
-                <a href="${pageContext.request.contextPath}/LogUp">
-                    Create account
+                <a href="${pageContext.request.contextPath}/logup">
+                    <fmt:message key="login.btn.nac"/>
                 </a>
             </td>
         </tr>

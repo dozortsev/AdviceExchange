@@ -40,4 +40,15 @@
 
     <mvc:resources mapping="/**" location="/WEB-INF/resources/" />
 
+
+    <!-- Define view by url -->
+
+    <mvc:view-controller path="/" view-name="login"/>
+
+    <mvc:view-controller path="/login" view-name="login"/>
+
+    <mvc:view-controller path="/logout" view-name="login"/>
+
+    <mvc:view-controller path="/logup" view-name="logup"/>
+
 </beans>
