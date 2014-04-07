@@ -38,8 +38,11 @@ public class User extends AbstractEntity<Long> {
     @Column(name = "user_password", unique = true)
     private String password;
 
+    @Column(name = "user_enabled")
+    private Boolean enabled = true;
+
     @Column(name = "user_reputation")
-    private Integer reputation = 0;
+    private Integer reputation = 1;
 
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "qs_id")
@@ -144,6 +147,13 @@ public class User extends AbstractEntity<Long> {
     }
     public void setReputation(Integer reputation) {
         this.reputation += reputation;
+    }
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
+    public void canEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Question> getQuestions() {

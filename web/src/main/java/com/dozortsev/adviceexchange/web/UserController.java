@@ -6,6 +6,7 @@ import com.dozortsev.adviceexchange.service.QuestionService;
 import com.dozortsev.adviceexchange.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,6 +54,8 @@ public class UserController {
 
     @RequestMapping(value = "/createAccount", method = POST)
     public ModelAndView createAccount(@ModelAttribute("newUser") User user) {
+
+        user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), null));
 
         return new ModelAndView("index", "user", userService.findById(userService.create(user)));
     }

@@ -11,7 +11,6 @@
 
     <input type="hidden" name="id"/>
     <input type="text" name="name" placeholder="Name"/><br/>
-    <input type="text" name="surname" placeholder="Surname"/><br/>
     <input type="text" name="age" placeholder="Age"/><br/>
     <input type="text" name="aboutMe" placeholder="AboutMe"/><br/>
     <input type="text" name="location" placeholder="Location"/><br/>

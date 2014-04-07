@@ -15,13 +15,17 @@
         <logout logout-success-url="/logout"/>
     </http>
 
+    <beans:bean id="encoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
 
     <authentication-manager>
         <authentication-provider>
+
+            <password-encoder ref="encoder"/>
+
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="
                                     SELECT
-                                        user_email, user_password, true
+                                        user_email, user_password, user_enabled
                                     FROM
                                         user
                                     WHERE

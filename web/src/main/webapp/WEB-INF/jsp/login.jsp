@@ -3,9 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<title>
-    <fmt:message key="login.title"/>
-</title>
+<head>
+    <title>
+        <fmt:message key="login.title"/>
+    </title>
+
+    <link rel="shortcut icon" href="img/logo.png">
+</head>
 
 <link rel="stylesheet" href="css/semantic.css" type="text/css"/>
 
