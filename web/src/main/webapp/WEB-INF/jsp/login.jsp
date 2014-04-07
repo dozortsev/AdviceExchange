@@ -9,9 +9,10 @@
     </title>
 
     <link rel="shortcut icon" href="img/logo.png">
-</head>
 
-<link rel="stylesheet" href="css/semantic.css" type="text/css"/>
+    <link rel="stylesheet" href="css/semantic.css" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+</head>
 
 <c:if test="${not empty error}">
     <div>
@@ -52,3 +53,7 @@
         </tr>
     </table>
 </form>
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/semantic.js"></script>
+<script src="js/main.js"></script>
