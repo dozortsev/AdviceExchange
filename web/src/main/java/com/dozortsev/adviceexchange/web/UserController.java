@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,10 +62,8 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value="/loginfailed", method = GET)
-    public String loginerror(Model model) {
-
-        model.addAttribute("error", "true");
-        return "login";
+    @RequestMapping(value="/login/failed", method = GET)
+    public ModelAndView loginFail() {
+        return new ModelAndView("login", "error", true);
     }
 }

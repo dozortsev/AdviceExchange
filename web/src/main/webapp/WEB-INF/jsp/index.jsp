@@ -28,7 +28,9 @@ User activities:
         <td>${act.id}</td>
         <td>${act.type}</td>
         <td>${user.id} ${user.name}</td>
-        <td><b>${act.created}</b></td>
+        <td>
+            <b>${act.created}</b>
+        </td>
     </tr>
 </c:forEach>
 </table>
