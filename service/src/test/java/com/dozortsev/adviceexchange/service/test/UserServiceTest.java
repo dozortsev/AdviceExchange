@@ -97,7 +97,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(login, user.getEmail());
 
         // disable
-        user.wasEnabled(Boolean.FALSE);
+        user.canEnabled(Boolean.FALSE);
         userService.update(user);
 
         assertNull(userService.findUserByLogin(login));

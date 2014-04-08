@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <head>
     <title>
@@ -14,46 +15,112 @@
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
 </head>
 
+<body class="login-body">
+
 <c:if test="${not empty error}">
-    <div>
+
+    <div class="ui black small message">
+        <i class="close icon"></i>
+
+        <div class="header">
+            You must register before you can do that!
+        </div>
         Caused: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
     </div>
-    <br/>
 </c:if>
 
-<form action="<c:url value="/j_spring_security_check" />" method="POST">
-    <table>
-        <tr>
-            <td>
-                <fmt:message key="login.lbl.login"/>
-            </td>
-            <td>
-                <input type="text" name="j_username"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <fmt:message key="login.lbl.pwd"/>
-            </td>
-            <td>
-                <input type="password" name="j_password"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input name="submit" type="submit" value="submit"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a href="${pageContext.request.contextPath}/logup">
-                    <fmt:message key="login.btn.nac"/>
-                </a>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="ui piled segment">
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- Tabs -->
+
+    <div class="ui pointing secondary demo menu">
+        <a class="active red item" data-tab="first">
+            Log in
+        </a>
+        <a class="blue item" data-tab="second">
+            Sign in
+        </a>
+    </div>
+
+
+    <!-- Login panel -->
+
+    <form action="<c:url value="/j_spring_security_check" />" method="POST">
+
+        <div class="ui active tab segment" data-tab="first">
+            <div class="ui form segment">
+                <div class="field">
+                    <label><fmt:message key="login.lbl.login"/></label>
+
+                    <div class="ui small left labeled icon input">
+                        <input type="text" name="j_username">
+                        <i class="mail icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label><fmt:message key="login.lbl.pwd"/></label>
+
+                    <div class="ui small left labeled icon input">
+                        <input type="password" name="j_password">
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <input class="ui red submit small button" type="submit" value="Login"/>
+            </div>
+        </div>
+    </form>
+
+
+    <!-- Signin panel -->
+
+    <form:form action="${pageContext.request.contextPath}/createAccount"
+               method="POST"
+               modelAttribute="newUser">
+
+        <div class="ui tab segment" data-tab="second">
+            <div class="ui form segment">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Name</label><input name="name" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Age</label><input name="age" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="field">
+                        <label>About me</label><input name="aboutMe" type="text">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Location</label><input name="location" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Site</label><input name="site" type="text">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Email</label><input name="email" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Password</label><input name="password" type="password">
+                    </div>
+                </div>
+
+                <input class="ui small blue submit button" type="submit" value="Create"/>
+
+                <%--<a href="${pageContext.request.contextPath}/logup"--%>
+                   <%--class="ui small blue submit button">--%>
+                    <%--<fmt:message key="login.btn.nac"/>--%>
+                <%--</a>--%>
+            </div>
+        </div>
+    </form:form>
+</div>
+</body>
+
+<script src="js/jquery-1.11.0.js"></script>
 <script src="js/semantic.js"></script>
 <script src="js/main.js"></script>
