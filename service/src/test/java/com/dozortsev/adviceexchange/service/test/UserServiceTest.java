@@ -1,9 +1,6 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Badge;
-import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.domain.UserActivity;
+import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Test;
 
 import java.util.Set;
@@ -136,14 +133,17 @@ public class UserServiceTest extends TestContext {
 //    @Ignore
     @Test public void testUserActivity() {
 
-        final Long id = 2L;
+        // choose exist User id
+        final Long id = 90L;
 
-        // expected Answer
-        final Answer answer = answerService.findById(44L);
+        // expected data
+        final Answer answer = answerService.findById(30L);
+        final Question question = questionService.findById(14L);
 
         Set<UserActivity> userActivities = userService.userActivities(id);
 
-        assertEquals(1, userActivities.size());
+        assertEquals(2, userActivities.size());
         assertTrue(userActivities.contains(answer));
+        assertTrue(userActivities.contains(question));
     }
 }
