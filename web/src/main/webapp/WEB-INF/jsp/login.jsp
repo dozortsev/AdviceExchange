@@ -9,15 +9,15 @@
         <fmt:message key="login.title"/>
     </title>
 
-    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.png">
 
-    <link rel="stylesheet" href="css/semantic.css" type="text/css"/>
-    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/semantic.css" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"/>
 </head>
 
 <body class="login-body">
 
-<c:if test="${not empty error}">
+<c:if test="${ not empty error }">
 
     <div class="ui black small message">
         <i class="close icon"></i>
@@ -110,17 +110,12 @@
                 </div>
 
                 <input class="ui small blue submit button" type="submit" value="Create"/>
-
-                <%--<a href="${pageContext.request.contextPath}/logup"--%>
-                   <%--class="ui small blue submit button">--%>
-                    <%--<fmt:message key="login.btn.nac"/>--%>
-                <%--</a>--%>
             </div>
         </div>
     </form:form>
 </div>
 </body>
 
-<script src="js/jquery-1.11.0.js"></script>
-<script src="js/semantic.js"></script>
-<script src="js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<script src="${pageContext.request.contextPath}/js/semantic.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
