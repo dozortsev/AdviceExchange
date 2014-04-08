@@ -2,7 +2,6 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.domain.UserActivity;
-import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,13 +45,8 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     @Override public List<UserActivity> userActivities(Long id) {
 
-        Criteria criteria = getCurrentSession().createCriteria(UserActivity.class);
-
-        return criteria.add(Restrictions.eq("user.id", id)).list();
-
-//        return getCurrentSession().createSQLQuery(findUserActivity)
-//                .addEntity(UserActivity.class)
-//                .setLong("userId", id)
-//                .list();
+        return getCurrentSession().createCriteria(UserActivity.class)
+                .add(Restrictions.eq("user.id", id))
+                .list();
     }
 }
