@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
 
 public class AnswerServiceTest extends TestContext {
 
-//    @Ignore
     @Test public void testFindAnswerById() {
 
         // choose exist Answer Id

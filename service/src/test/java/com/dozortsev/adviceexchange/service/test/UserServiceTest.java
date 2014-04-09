@@ -130,7 +130,6 @@ public class UserServiceTest extends TestContext {
         }
     }
 
-//    @Ignore
     @Test public void testUserActivity() {
 
         // choose exist User id

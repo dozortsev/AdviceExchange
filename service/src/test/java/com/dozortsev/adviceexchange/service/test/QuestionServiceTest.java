@@ -1,9 +1,6 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.domain.Tag;
-import com.dozortsev.adviceexchange.domain.Type;
-import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -15,7 +12,6 @@ import static org.junit.Assert.*;
 
 public class QuestionServiceTest extends TestContext {
 
-//    @Ignore
     @Test public void testFindQuestionById() {
 
         // choose exist Question Id
@@ -36,7 +32,6 @@ public class QuestionServiceTest extends TestContext {
         assertTrue(questionService.findQuestionsByUserId(userId).contains(question));
     }
 
-//    @Ignore
     @Test public void testCreateQuestion() {
 
         // choose exist User
@@ -64,6 +59,29 @@ public class QuestionServiceTest extends TestContext {
         assertEquals(tags, expectQuestion.getTags());
         assertEquals(1, userService.userActivities(user.getId()).size());
         assertTrue(userService.userActivities(user.getId()).contains(expectQuestion));
+    }
+
+    @Test public void testDeleteQuestion() {
+
+        // choose exist Question id
+        final Long id = 4L;
+
+        final Question question = questionService.findById(id);
+        assertNotNull(question);
+        assertEquals(4, question.getTags().size());
+
+        questionService.delete(question);
+
+        assertNull(questionService.findById(id));
+
+        // referenced Answers should be deleted
+        assertNull(answerService.findById(21L));
+
+        // referenced Tags should not deleted
+        assertNotNull(tagService.findById(4L));
+        assertNotNull(tagService.findById(1L));
+        assertNotNull(tagService.findById(15L));
+        assertNotNull(tagService.findById(11L));
     }
 
     @Test public void testUpdateQuestion() {
@@ -97,7 +115,7 @@ public class QuestionServiceTest extends TestContext {
 
         final Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
         assertNotNull(userQuestions);
-        assertFalse(userQuestions.isEmpty());
+        assertEquals(1, userQuestions.size());  // expected size should be 1
 
         for (Question question : userQuestions)
             assertEquals(Type.QUESTION, question.getType());
