@@ -18,8 +18,19 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
 
     @Autowired private String findQuestionsByTags;
 
+    @Autowired private String loadQuestionsSet;
+
     public QuestionDaoImpl() {
         setEntityClass(Question.class);
+    }
+
+    @Override public List<Question> loadAll(Integer offset, Integer rowCount) {
+
+        return getCurrentSession().createSQLQuery(loadQuestionsSet)
+                .addEntity(getEntityClass())
+                .setInteger("offset", offset)
+                .setInteger("rowCount", rowCount)
+                .list();
     }
 
     @Override public List<Question> findQuestionsByUserId(Long userId) {

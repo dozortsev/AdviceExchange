@@ -77,6 +77,23 @@
     </bean>
 
 
+    <!-- Load Questions -->
+    <bean id="loadQuestionsSet" class="java.lang.String">
+        <constructor-arg value="
+
+            SELECT user_activity.*, question.* FROM question
+
+                JOIN user_activity ON ua_id = qs_id
+
+            WHERE ua_type = 'QUESTION' AND ua_active = TRUE
+
+            ORDER BY ua_created DESC
+
+            LIMIT :offset, :rowCount
+        "/>
+    </bean>
+
+
     <!-- Find all Answers by User id -->
 
     <bean id="findAnswersByUserId" class="java.lang.String">

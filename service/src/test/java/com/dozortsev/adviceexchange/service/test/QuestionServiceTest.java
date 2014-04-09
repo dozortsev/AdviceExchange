@@ -84,6 +84,12 @@ public class QuestionServiceTest extends TestContext {
         assertNotNull(tagService.findById(11L));
     }
 
+    @Test public void testLoadQuestions() {
+
+        assertEquals(5, questionService.loadAll(0, 5).size());
+        assertEquals(10, questionService.loadAll(5, 10).size());
+    }
+
     @Test public void testDeactivateQuestion() {
 
         // choose exist User id

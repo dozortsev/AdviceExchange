@@ -25,6 +25,19 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         setEntityClass(Question.class);
     }
 
+    @Override public Set<Question> loadAll(Integer offset, Integer rowCount) {
+        Set<Question> questions = new LinkedHashSet<>();
+        try {
+            log.info(format("Load %ss", getEntityClass()));
+            questions.addAll(getDao().loadAll(offset, rowCount));
+            log.info(format("Load from %d to %d. Set size: %d", offset, rowCount, questions.size()));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return questions;
+    }
+
     @Override public Set<Question> findQuestionsByUserId(Long userId) {
         Set<Question> questions = new HashSet<>();
         try {
