@@ -94,6 +94,25 @@
     </bean>
 
 
+    <!-- Answer count -->
+    <bean id="answerCount" class="java.lang.String">
+        <constructor-arg value="
+
+            SELECT count(asw_id) AS asw_count FROM question
+
+              LEFT JOIN user_activity ON ua_id = qs_id
+
+              LEFT JOIN answer ON asw_question_id = ua_id
+
+            GROUP BY qs_id
+
+            ORDER BY ua_created DESC
+
+            LIMIT :offset, :rowCount
+        "/>
+    </bean>
+
+
     <!-- Find all Answers by User id -->
 
     <bean id="findAnswersByUserId" class="java.lang.String">
@@ -142,7 +161,7 @@
     </bean>
 
 
-    <!-- User activity -->
+    <!-- User activity
 
     <bean id="findUserActivity" class="java.lang.String">
         <constructor-arg index="0" value="
@@ -166,5 +185,5 @@
 
             ORDER BY ua_created DESC
         "/>
-    </bean>
+    </bean>-->
 </beans>

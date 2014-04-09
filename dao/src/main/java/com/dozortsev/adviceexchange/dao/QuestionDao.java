@@ -8,6 +8,8 @@ public interface QuestionDao extends GenericDao<Long, Question> {
 
     List<Question> loadAll(Integer offset, Integer rowCount);
 
+    List<Integer> answersCount(Integer offset, Integer rowCount);
+
     List<Question> findQuestionsByUserId(Long userId);
 
     List<Question> findQuestionsByTags(String... tags);

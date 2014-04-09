@@ -40,8 +40,7 @@ public class UserController {
 
         User user = userService.findUserByLogin(principal.getName());
 
-        return new ModelAndView("index").addObject("user", user)
-                .addObject("activities", userService.userActivities(user.getId()));
+        return new ModelAndView("index", "user", user).addObject("map", questionService.loadAll(0, 10));
     }
 
     @RequestMapping(value = "/questions", method = GET)

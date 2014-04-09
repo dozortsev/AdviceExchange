@@ -21,7 +21,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     @Autowired private String findUserByName;
 
-    @Autowired private String findUserActivity;
+//    @Autowired private String findUserActivity;
 
     public UserDaoImpl() {
         setEntityClass(User.class);
