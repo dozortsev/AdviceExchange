@@ -24,4 +24,21 @@ public class TagServiceTest extends TestContext {
         assertEquals(expectName, expectTag.getName());
         assertEquals(expectDesc, expectTag.getDesc());
     }
+
+    @Test public void testFindTagByName() {
+
+        // choose exist Tag name
+        final String name = "Toothache";
+
+        // expected data
+        final Long id = 4L;
+        final String desc = "Toothache is pain in or around a tooth.";
+
+        final Tag tag = tagService.findTagByName(name);
+
+        assertNotNull(tag);
+        assertEquals(id, tag.getId());
+        assertEquals(name, tag.getName());
+        assertEquals(desc, tag.getDesc());
+    }
 }
