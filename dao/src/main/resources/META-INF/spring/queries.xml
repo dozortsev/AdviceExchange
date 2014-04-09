@@ -48,7 +48,7 @@
 
                 JOIN user_activity ON ua_id = qs_id
 
-            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId
+            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId AND ua_active = true
         "/>
     </bean>
 
@@ -66,7 +66,7 @@
 
                 JOIN tag ON qt_tag_id = tag_id
 
-            WHERE tag_name IN (:tags)
+            WHERE tag_name IN (:tags) AND ua_active = true
 
             GROUP BY qs_id
 
@@ -86,7 +86,7 @@
 
                 JOIN user_activity ON ua_id = asw_id
 
-            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId
+            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId AND ua_active = true
         "/>
     </bean>
 
@@ -102,7 +102,7 @@
 
                 JOIN question ON qs_id = asw_question_id
 
-            WHERE ua_type = 'ANSWER' AND qs_id = :questionId
+            WHERE ua_type = 'ANSWER' AND qs_id = :questionId AND ua_active = true
         "/>
     </bean>
 
@@ -145,7 +145,7 @@
                 LEFT OUTER JOIN answer ON asw_id = ua_id
                 LEFT OUTER JOIN comment ON cm_id = ua_id
 
-            WHERE ua_user_id = :userId
+            WHERE ua_user_id = :userId AND ua_active = true
 
             ORDER BY ua_created DESC
         "/>

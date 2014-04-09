@@ -39,7 +39,7 @@ public class User extends AbstractEntity<Long> {
     private String password;
 
     @Column(name = "user_enabled")
-    private Boolean enabled = true;
+    private Boolean enabled;
 
     @Column(name = "user_reputation")
     private Integer reputation = 1;
@@ -63,6 +63,7 @@ public class User extends AbstractEntity<Long> {
     private List<Badge> badges = new ArrayList<>();
 
     public User() {
+        this.enabled = Boolean.TRUE;
         this.joined = new Date();
     }
 

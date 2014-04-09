@@ -28,12 +28,16 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     @Lob @Column(name = "ua_content")
     private String content;
 
+    @Column(name = "ua_active", nullable = false)
+    private Boolean active;
+
     @Temporal(TIMESTAMP)
     @Column(name = "ua_created", updatable = false)
     private Date created;
 
     public UserActivity() {
-        created = new Date();
+        this.active = Boolean.TRUE;
+        this.created = new Date();
     }
 
     public UserActivity(User user, Type type, String content) {
@@ -64,6 +68,13 @@ public abstract class UserActivity extends AbstractEntity<Long> {
         this.content = content;
     }
 
+    public Boolean isActive() {
+        return active;
+    }
+    public void canActive(Boolean active) {
+        this.active = active;
+    }
+
     public Date getCreated() {
         return created;
     }
@@ -77,11 +88,12 @@ public abstract class UserActivity extends AbstractEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        UserActivity that = (UserActivity) o;
+        UserActivity activity = (UserActivity) o;
 
-        if (!content.equals(that.content)) return false;
-        if (!created.equals(that.created)) return false;
-        if (type != that.type) return false;
+        if (!active.equals(activity.active)) return false;
+        if (!content.equals(activity.content)) return false;
+        if (!created.equals(activity.created)) return false;
+        if (type != activity.type) return false;
 
         return true;
     }
@@ -90,6 +102,7 @@ public abstract class UserActivity extends AbstractEntity<Long> {
         int result = super.hashCode();
         result = 31 * result + type.hashCode();
         result = 31 * result + content.hashCode();
+        result = 31 * result + active.hashCode();
         result = 31 * result + created.hashCode();
         return result;
     }

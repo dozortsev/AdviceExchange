@@ -84,6 +84,23 @@ public class QuestionServiceTest extends TestContext {
         assertNotNull(tagService.findById(11L));
     }
 
+    @Test public void testDeactivateQuestion() {
+
+        // choose exist User id
+        final Long userId = 90L;
+
+        // expected referenced Question
+        final Question question = questionService.findById(14L);
+
+        assertTrue(questionService.findQuestionsByUserId(userId).contains(question));
+
+        // deactivate
+        question.canActive(Boolean.FALSE);
+        questionService.update(question);
+
+        assertFalse(questionService.findQuestionsByUserId(userId).contains(question));
+    }
+
     @Test public void testUpdateQuestion() {
 
         // choose exist Question

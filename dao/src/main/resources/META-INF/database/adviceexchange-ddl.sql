@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS user_activity (
   ua_type    VARCHAR(30) NOT NULL,
   ua_user_id INT         NOT NULL,
   ua_content TEXT        NOT NULL,
+  ua_active  BOOLEAN DEFAULT TRUE,
   ua_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 )

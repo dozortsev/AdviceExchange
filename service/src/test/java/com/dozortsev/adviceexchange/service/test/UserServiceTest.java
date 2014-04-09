@@ -69,6 +69,7 @@ public class UserServiceTest extends TestContext {
         // reload
         final User expectUser = userService.findById(user.getId());
 
+        assertTrue(expectUser.isEnabled());
         assertEquals(name, expectUser.getName());
         assertEquals(age, expectUser.getAge());
         assertEquals(aboutMe, expectUser.getAboutMe());
