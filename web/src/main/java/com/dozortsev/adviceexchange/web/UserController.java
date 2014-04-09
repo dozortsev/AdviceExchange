@@ -24,7 +24,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@SessionAttributes({ "user", "activities" })
+@SessionAttributes({ "user", "map" })
 public class UserController {
 
     @Autowired private UserService userService;
@@ -40,7 +40,7 @@ public class UserController {
 
         User user = userService.findUserByLogin(principal.getName());
 
-        return new ModelAndView("index", "user", user).addObject("map", questionService.loadAll(0, 10));
+        return new ModelAndView("index", "user", user).addObject("map", questionService.loadAll(0, 15));
     }
 
     @RequestMapping(value = "/questions", method = GET)
