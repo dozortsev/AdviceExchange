@@ -16,9 +16,9 @@
         <i class="close icon"></i>
 
         <div class="header">
-            You must register before you can do that!
+            <fmt:message key="login.err.msg"/>
         </div>
-        Caused: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+        <fmt:message key="login.err.cas"/>&ensp;${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
     </div>
 </c:if>
 
@@ -28,10 +28,10 @@
 
     <div class="ui pointing secondary demo menu">
         <a class="active red item" data-tab="first">
-            Log in
+            <fmt:message key="login.title"/>
         </a>
         <a class="blue item" data-tab="second">
-            Sign in
+            <fmt:message key="login.lbl.signup"/>
         </a>
     </div>
 
@@ -43,7 +43,7 @@
         <div class="ui active tab segment" data-tab="first">
             <div class="ui form segment">
                 <div class="field">
-                    <label><fmt:message key="login.lbl.login"/></label>
+                    <label><fmt:message key="login.lbl.email"/></label>
 
                     <div class="ui small left labeled icon input">
                         <input type="text" name="j_username">
@@ -72,43 +72,50 @@
             <div class="ui form segment">
                 <div class="three fields">
                     <div class="field">
-                        <label>Name</label><input name="name" type="text">
+                        <label><fmt:message key="login.lbl.name"/></label>
+                        <input name="name" type="text">
                     </div>
                     <div class="field">
-                        <label>Email</label><input name="email" type="text">
+                        <label><fmt:message key="login.lbl.email"/> </label>
+                        <input name="email" type="text">
                     </div>
                     <div class="field">
-                        <label>Password</label><input name="password" type="password">
+                        <label><fmt:message key="login.lbl.pwd"/></label>
+                        <input name="password" type="password">
                     </div>
                 </div>
 
                 <div class="ui fluid accordion field">
                     <div class="title">
                         <i class="icon dropdown"></i>
-                        Optional info
+                        <fmt:message key="login.lbl.opi"/>
                     </div>
                     <div class="content field">
                         <div class="three fields">
                             <div class="field">
-                                <label>Location</label><input name="location" type="text">
+                                <label><fmt:message key="login.lbl.loc"/></label>
+                                <input name="location" type="text">
                             </div>
                             <div class="field">
-                                <label>Site</label><input name="site" type="text">
+                                <label><fmt:message key="login.lbl.site"/>
+                                </label><input name="site" type="text">
                             </div>
                             <div class="field">
-                                <label>Age</label><input name="age" type="text">
+                                <label><fmt:message key="login.lbl.age"/></label>
+                                <input name="age" type="text">
                             </div>
                         </div>
                         <div class="ui form">
                             <div class="field">
-                                <label>About Me</label>
+                                <label><fmt:message key="login.lbl.aboutMe"/></label>
                                 <textarea name="aboutMe"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <input class="ui small blue submit button" type="submit" value="Create"/>
+                <input class="ui small blue submit button" type="submit"
+                       value="<fmt:message key="login.btn.nac"/>"/>
             </div>
         </div>
     </form:form>
