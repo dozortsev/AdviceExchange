@@ -26,20 +26,18 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         setEntityClass(Question.class);
     }
 
-    @Override public List<Question> loadAll(Integer offset, Integer rowCount) {
+    @Override public List<Question> loadAll(Integer offset) {
 
         return getCurrentSession().createSQLQuery(loadQuestionsSet)
                 .addEntity(getEntityClass())
                 .setInteger("offset", offset)
-                .setInteger("rowCount", rowCount)
                 .list();
     }
 
-    @Override public List<Integer> answersCount(Integer offset, Integer rowCount) {
+    @Override public List<Integer> answersCount(Integer offset) {
 
         return getCurrentSession().createSQLQuery(answerCount)
                 .setInteger("offset", offset)
-                .setInteger("rowCount", rowCount)
                 .list();
     }
 

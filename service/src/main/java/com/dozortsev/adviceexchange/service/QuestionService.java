@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface QuestionService extends GenericService<Long, Question> {
 
-    LinkedHashMap<Question, Integer> loadAll(Integer offset, Integer rowCount);
+    LinkedHashMap<Question, Integer> loadAll(Integer offset);
 
     Set<Question> findQuestionsByUserId(Long userId);
 

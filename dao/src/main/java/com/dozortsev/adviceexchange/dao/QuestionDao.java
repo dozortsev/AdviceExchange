@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface QuestionDao extends GenericDao<Long, Question> {
 
-    List<Question> loadAll(Integer offset, Integer rowCount);
+    List<Question> loadAll(Integer offset);
 
-    List<Integer> answersCount(Integer offset, Integer rowCount);
+    List<Integer> answersCount(Integer offset);
 
     List<Question> findQuestionsByUserId(Long userId);
 

@@ -89,7 +89,7 @@
 
             ORDER BY ua_created DESC
 
-            LIMIT :offset, :rowCount
+            LIMIT :offset, 2
         "/>
     </bean>
 
@@ -108,7 +108,7 @@
 
             ORDER BY ua_created DESC
 
-            LIMIT :offset, :rowCount
+            LIMIT :offset, 2
         "/>
     </bean>
 
@@ -159,31 +159,4 @@
             WHERE ua_type = 'COMMENT' AND qs_id = :questionId
         "/>
     </bean>
-
-
-    <!-- User activity
-
-    <bean id="findUserActivity" class="java.lang.String">
-        <constructor-arg index="0" value="
-
-            SELECT user_activity.*, question.*, answer.*, comment.*,
-
-                CASE
-                    WHEN qs_id IS NOT NULL THEN 1
-                    WHEN cm_id IS NOT NULL THEN 2
-                    WHEN asw_id IS NOT NULL THEN 3
-                    WHEN ua_id IS NOT NULL THEN 0
-                END AS clazz_
-
-            FROM user_activity
-
-                LEFT OUTER JOIN question ON qs_id = ua_id
-                LEFT OUTER JOIN answer ON asw_id = ua_id
-                LEFT OUTER JOIN comment ON cm_id = ua_id
-
-            WHERE ua_user_id = :userId AND ua_active = true
-
-            ORDER BY ua_created DESC
-        "/>
-    </bean>-->
 </beans>

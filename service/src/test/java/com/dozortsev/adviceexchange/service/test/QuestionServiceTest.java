@@ -85,11 +85,11 @@ public class QuestionServiceTest extends TestContext {
     @Ignore
     @Test public void testLoadQuestions() {
 
-        LinkedHashMap<Question, Integer> map = questionService.loadAll(0, 5);
-        assertEquals(5, map.size());
+        LinkedHashMap<Question, Integer> map = questionService.loadAll(0);
+        assertEquals(2, map.size());
 
-        map = questionService.loadAll(5, 10);
-        assertEquals(10, map.size());
+        map = questionService.loadAll(5);
+        assertEquals(2, map.size());
     }
 
     @Test public void testDeactivateQuestion() {
