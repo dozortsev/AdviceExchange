@@ -35,15 +35,22 @@ public class UserController {
 
     private static final Logger log = getLogger(UserController.class);
 
-    @RequestMapping(value="/welcome", method = GET)
-    public ModelAndView printWelcome(Principal principal) {
+    @RequestMapping(value="/questions", method = GET)
+    public ModelAndView printWelcome(Principal principal,
+                                     @RequestParam(required = false) Integer page) {
 
-        User user = userService.findUserByLogin(principal.getName());
+        ModelAndView mav = new ModelAndView("index");
 
-        return new ModelAndView("index", "user", user).addObject("map", questionService.loadAll(0, 15));
+        if (principal != null && page == null)
+            mav.addObject("user", userService.findUserByLogin(principal.getName()));
+
+        if (page != null)
+            return mav.addObject("map", questionService.loadAll(page, 2));
+
+        return mav.addObject("map", questionService.loadAll(0, 2));
     }
 
-    @RequestMapping(value = "/questions", method = GET)
+    @RequestMapping(value = "/search", method = GET)
     public ModelAndView findQuestions(@RequestParam String tags) {
 
         Set<Question> questions = questionService.findQuestionsByTags(tags.split(" "));
@@ -52,12 +59,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createAccount", method = POST)
-    public String createAccount(@ModelAttribute("newUser") User user) {
+    public String createAccount(@ModelAttribute("member") User member) {
 
-        user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), null));
-        user.getBadges().add(badgeService.findById(2L)); // User badge
+        member.setPassword(new Md5PasswordEncoder().encodePassword(member.getPassword(), null));
+        member.getBadges().add(badgeService.findById(2L)); // USER badge
 
-        userService.create(user);
+        userService.create(member);
 
         return "redirect:/login";
     }

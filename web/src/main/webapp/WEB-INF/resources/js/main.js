@@ -2,6 +2,10 @@ $('.ui.checkbox')
     .checkbox()
 ;
 
+$('.ui.accordion')
+    .accordion()
+;
+
 
 /* error message on login */
 $('.message .close').on('click', function() {

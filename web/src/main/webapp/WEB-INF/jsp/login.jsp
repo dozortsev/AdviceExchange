@@ -1,18 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="resources.jsp"%>
 
 <head>
     <title>
         <fmt:message key="login.title"/>
     </title>
-
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.png">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/semantic.css" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"/>
 </head>
 
 <body class="login-body">
@@ -45,7 +38,7 @@
 
     <!-- Login panel -->
 
-    <form action="<c:url value="/j_spring_security_check" />" method="POST">
+    <form action="<c:url value="/j_spring_security_check"/>" method="POST">
 
         <div class="ui active tab segment" data-tab="first">
             <div class="ui form segment">
@@ -73,39 +66,45 @@
 
     <!-- Signin panel -->
 
-    <form:form action="${pageContext.request.contextPath}/createAccount"
-               method="POST"
-               modelAttribute="newUser">
+    <form:form action="${path}/createAccount" method="POST" modelAttribute="member">
 
         <div class="ui tab segment" data-tab="second">
             <div class="ui form segment">
-                <div class="two fields">
+                <div class="three fields">
                     <div class="field">
                         <label>Name</label><input name="name" type="text">
                     </div>
-                    <div class="field">
-                        <label>Age</label><input name="age" type="text">
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="field">
-                        <label>About me</label><input name="aboutMe" type="text">
-                    </div>
-                </div>
-                <div class="two fields">
-                    <div class="field">
-                        <label>Location</label><input name="location" type="text">
-                    </div>
-                    <div class="field">
-                        <label>Site</label><input name="site" type="text">
-                    </div>
-                </div>
-                <div class="two fields">
                     <div class="field">
                         <label>Email</label><input name="email" type="text">
                     </div>
                     <div class="field">
                         <label>Password</label><input name="password" type="password">
+                    </div>
+                </div>
+
+                <div class="ui fluid accordion field">
+                    <div class="title">
+                        <i class="icon dropdown"></i>
+                        Optional info
+                    </div>
+                    <div class="content field">
+                        <div class="three fields">
+                            <div class="field">
+                                <label>Location</label><input name="location" type="text">
+                            </div>
+                            <div class="field">
+                                <label>Site</label><input name="site" type="text">
+                            </div>
+                            <div class="field">
+                                <label>Age</label><input name="age" type="text">
+                            </div>
+                        </div>
+                        <div class="ui form">
+                            <div class="field">
+                                <label>About Me</label>
+                                <textarea name="aboutMe"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

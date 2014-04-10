@@ -11,7 +11,7 @@ INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
 
 INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user_email, user_password, user_reputation) VALUES
 
-(1, 'Valentine Lynch', 56, '2014-11-23 13:02:53', 'Paupisi', 'urna@Fuscealiquet.com', md5(2465010), 1463),
+(1, 'Valentine Lynch', 56, '2014-11-23 13:02:53', 'Paupisi', 'urna@Fuscealiquet.com', md5(1), 1463),
 (2, 'Clayton Fleming', 27, '2013-12-03 05:10:58', 'Opheylissem', 'nisl@mollis.co.uk', md5(8819406), 5727),
 (3, 'Paki Mitchell', 61, '2015-01-21 20:24:26', 'B.S.D.', 'tempor@seddictum.net', md5(6782860), 9916),
 (4, 'Bert Graham', 76, '2014-12-24 10:43:45', 'Belsele', 'a@torquentperconubia.net', md5(5529121), 4252),
