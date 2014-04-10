@@ -31,7 +31,8 @@
         </h3>
 
         <h3 class="ui right floated header">
-            6<br/><small>questions</small>
+            6<br/>
+            <small>questions</small>
         </h3>
     </h2>
 
@@ -49,7 +50,9 @@
             <tr>
                 <td rowspan="2">Votes<br/>${entry.key.votes}</td>
                 <td rowspan="2" colspan="2">
-                    <b>${entry.key.name}</b>
+                    <b><a href="${path}/question/${entry.key.id}">
+                            ${entry.key.name}
+                    </a></b>
                     <br/>
                     <small>${entry.key.content}</small>
                 </td>
@@ -77,8 +80,8 @@
     </c:forEach>
     <br/><br/><br/><br/>
 
-    <c:forEach var="i" begin="0" end="6" step="2">
-        <a href="${path}/questions?page=${i}">${i + 1}</a>&emsp;
+    <c:forEach var="i" begin="1" end="3" step="1">
+        <a href="${path}/questions?page=${i}">${i}</a>&emsp;
     </c:forEach>
 
 </div>

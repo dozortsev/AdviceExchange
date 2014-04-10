@@ -13,8 +13,7 @@
 
     <http auto-config="true" use-expressions="true">
 
-        <intercept-url pattern="/questions*" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/questions*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/questions*" access="isAuthenticated()"/>
 
         <form-login login-page="/login"
                     default-target-url="/questions"

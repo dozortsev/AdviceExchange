@@ -2,18 +2,13 @@ package com.dozortsev.adviceexchange.web;
 
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.service.BadgeService;
-import com.dozortsev.adviceexchange.service.QuestionService;
-import com.dozortsev.adviceexchange.service.UserService;
+import com.dozortsev.adviceexchange.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -31,13 +26,17 @@ public class UserController {
 
     @Autowired private BadgeService badgeService;
 
+    @Autowired private AnswerService answerService;
+
+    @Autowired private CommentService commentService;
+
     @Autowired private QuestionService questionService;
 
     private static final Logger log = getLogger(UserController.class);
 
     @RequestMapping(value="/questions", method = GET)
-    public ModelAndView printWelcome(Principal principal,
-                                     @RequestParam(required = false) Integer page) {
+    public ModelAndView index(Principal principal,
+                              @RequestParam(required = false) Integer page) {
 
         ModelAndView mav = new ModelAndView("index");
 
@@ -45,9 +44,17 @@ public class UserController {
             mav.addObject("user", userService.findUserByLogin(principal.getName()));
 
         if (page != null)
-            return mav.addObject("map", questionService.loadAll(page, 2));
+            return mav.addObject("map", questionService.loadAll((page - 1) * 2));
 
-        return mav.addObject("map", questionService.loadAll(0, 2));
+        return mav.addObject("map", questionService.loadAll(0));
+    }
+
+    @RequestMapping(value = "/question/{id}")
+    public ModelAndView question(@PathVariable Long id) {
+
+        return new ModelAndView("question", "question", questionService.findById(id))
+                .addObject("answers", answerService.findAnswersByQuestionId(id))
+                .addObject("comments", commentService.findCommentsByQuestionId(id));
     }
 
     @RequestMapping(value = "/search", method = GET)
