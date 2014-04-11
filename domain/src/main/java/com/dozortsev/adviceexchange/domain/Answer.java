@@ -21,8 +21,7 @@ public class Answer extends UserActivity {
     private Boolean isAccepted;
 
     public Answer() {
-        super();
-        setType(Type.ANSWER);
+        super(Type.ANSWER);
     }
 
     public Answer(User user, String content, Question question, Boolean isAccepted) {

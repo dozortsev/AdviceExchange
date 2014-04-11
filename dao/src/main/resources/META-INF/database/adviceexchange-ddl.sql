@@ -19,12 +19,12 @@ CREATE TABLE IF NOT EXISTS user (
   user_name       VARCHAR(50) NOT NULL,
   user_age        INT,
   user_about_me   TEXT,
-  user_joined     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_joined     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
   user_location   VARCHAR(120),
   user_site       VARCHAR(70),
   user_email      VARCHAR(50) NOT NULL UNIQUE,
   user_password   VARCHAR(32) NOT NULL UNIQUE,
-  user_enabled    BOOLEAN NOT NULL DEFAULT TRUE,
+  user_enabled    BOOLEAN     NOT NULL DEFAULT TRUE,
   user_reputation INT         NOT NULL DEFAULT 1
 )
   ENGINE =InnoDB;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS badge (
   bdg_name VARCHAR(30) NOT NULL UNIQUE,
   bdg_desc TEXT(100)   NOT NULL
 )
-  ENGINE =InnoDB;
+  ENGINE = InnoDB;
 
 
 -- Table reference for User and Badges (many to many)
@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS user_activity (
   ua_type    VARCHAR(30) NOT NULL,
   ua_user_id INT         NOT NULL,
   ua_content TEXT        NOT NULL,
-  ua_active  BOOLEAN DEFAULT TRUE,
-  ua_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  ua_active  BOOLEAN     NOT NULL DEFAULT TRUE,
+  ua_created TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 
 )
   ENGINE = InnoDB;
@@ -85,10 +85,10 @@ CREATE TABLE IF NOT EXISTS comment (
 DROP TABLE IF EXISTS answer;
 CREATE TABLE IF NOT EXISTS answer (
 
-  asw_id          INT           NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  asw_question_id INT           NOT NULL,
-  asw_votes       INT DEFAULT 0 NOT NULL,
-  asw_accepted    BOOLEAN       NOT NULL DEFAULT FALSE
+  asw_id          INT     NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  asw_question_id INT     NOT NULL,
+  asw_votes       INT     NOT NULL DEFAULT 0,
+  asw_accepted    BOOLEAN NOT NULL DEFAULT FALSE
 )
   ENGINE =InnoDB;
 
@@ -98,11 +98,12 @@ CREATE TABLE IF NOT EXISTS answer (
 DROP TABLE IF EXISTS question;
 CREATE TABLE IF NOT EXISTS question (
 
-  qs_id    INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  qs_name  VARCHAR(200) NOT NULL,
-  qs_votes INT          NOT NULL
+  qs_id        INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  qs_name      VARCHAR(200) NOT NULL,
+  qs_votes     INT          NOT NULL,
+  qs_asw_count INT          NOT NULL DEFAULT 0
 )
-  ENGINE =InnoDB;
+  ENGINE = InnoDB;
 
 
 -- Table of Tag

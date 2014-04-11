@@ -67,7 +67,7 @@
                     </c:forEach>
                 </td>
                 <td>
-                    Dozortsev Anton<br/>
+                    <b>${entry.key.user.name}</b><br/>
                     <small>
                         <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm"
                                         value="${entry.key.created}"/>

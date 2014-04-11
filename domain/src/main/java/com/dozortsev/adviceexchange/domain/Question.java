@@ -16,7 +16,10 @@ public class Question extends UserActivity {
     private String name;
 
     @Column(name = "qs_votes")
-    private Integer votes = 0;
+    private Integer votes;
+
+    @Column(name = "qs_asw_count", nullable = false)
+    private Integer answerCount;
 
     @ManyToMany(fetch = EAGER)
     @JoinTable(name = "question_tag",
@@ -31,12 +34,15 @@ public class Question extends UserActivity {
     private List<Comment> comments = new ArrayList<>();
 
     public Question() {
-        super();
-        setType(Type.QUESTION);
+        super(Type.QUESTION);
+        this.votes = 0;
+        this.answerCount = 0;
     }
 
     public Question(User user, String content, String name, List<Tag> tags) {
         super(user, Type.QUESTION, content);
+        this.votes = 0;
+        this.answerCount = 0;
         this.name = name;
         this.tags = tags;
     }
@@ -66,6 +72,13 @@ public class Question extends UserActivity {
     }
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public Integer getAnswerCount() {
+        return answerCount;
+    }
+    public void setAnswerCount(Integer answerCount) {
+        this.answerCount += answerCount;
     }
 
     public List<Answer> getAnswers() {

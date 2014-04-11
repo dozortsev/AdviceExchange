@@ -6,7 +6,7 @@ import java.util.Date;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.EnumType.STRING;
-import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.InheritanceType.JOINED;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -17,7 +17,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 )
 public abstract class UserActivity extends AbstractEntity<Long> {
 
-    @ManyToOne(cascade = { MERGE, PERSIST }, fetch = LAZY)
+    @ManyToOne(cascade = { MERGE, PERSIST }, fetch = EAGER)
     @JoinColumn(name = "ua_user_id")
     private User user;
 
@@ -35,15 +35,15 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     @Column(name = "ua_created", updatable = false)
     private Date created;
 
-    public UserActivity() {
+    public UserActivity(Type type) {
+        this.type = type;
         this.active = Boolean.TRUE;
         this.created = new Date();
     }
 
     public UserActivity(User user, Type type, String content) {
-        this();
+        this(type);
         this.user = user;
-        this.type = type;
         this.content = content;
     }
 

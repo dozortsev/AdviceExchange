@@ -15,8 +15,7 @@ public class Comment extends UserActivity {
     private Question question;
 
     public Comment() {
-        super();
-        setType(Type.COMMENT);
+        super(Type.COMMENT);
     }
 
     public Comment(User user, String content, Question question) {

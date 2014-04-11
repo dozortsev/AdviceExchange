@@ -3,7 +3,7 @@
 <%@ include file="resources.jsp" %>
 
 <head>
-    <title>${question.name}</title>
+    <title>Question</title>
 </head>
 
 <body class="login-body">
