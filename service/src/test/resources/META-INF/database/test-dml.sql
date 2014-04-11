@@ -220,28 +220,28 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
 
 -- Question data
 
-INSERT INTO question (qs_id, qs_name, qs_votes) VALUES
+INSERT INTO question (qs_id, qs_name, qs_votes, qs_asw_count) VALUES
 
-  (1, 'lorem eu metus. In lorem. Donec', 0),
-  (2, 'fringilla purus mauris a nunc. In at pede. Cras vulputate', 53),
-  (3, 'Sed nunc est, mollis non, cursus non, egestas', 18),
-  (4, 'risus quis diam luctus lobortis. Class aptent taciti sociosqu', 57),
-  (5, 'fermentum convallis ligula. Donec luctus', 88),
-  (6, 'Donec porttitor tellus non magna.', 46),
-  (7, 'risus. Morbi metus. Vivamus euismod', 71),
-  (8, 'Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu', 65),
-  (9, 'a, malesuada id, erat. Etiam vestibulum massa', 36),
-  (10, 'sem molestie sodales. Mauris blandit enim consequat', 29),
-  (11, 'ac tellus. Suspendisse sed dolor. Fusce', 84),
-  (12, 'interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus', 80),
-  (13, 'non nisi. Aenean eget metus. In nec orci.', 12),
-  (14, 'sapien. Aenean massa. Integer vitae nibh. Donec est', 43),
-  (15, 'mollis lectus pede et', 69),
-  (16, 'Maecenas ornare egestas ligula. Nullam', 98),
-  (17, 'Duis gravida. Praesent eu nulla at', 2),
-  (18, 'lobortis tellus justo sit amet nulla.', 9),
-  (19, 'Fusce mollis. Duis sit amet diam', 96),
-  (20, 'ullamcorper magna. Sed eu', 41);
+  (1, 'lorem eu metus. In lorem. Donec', 0, 2),
+  (2, 'fringilla purus mauris a nunc. In at pede. Cras vulputate', 53, 0),
+  (3, 'Sed nunc est, mollis non, cursus non, egestas', 18, 2),
+  (4, 'risus quis diam luctus lobortis. Class aptent taciti sociosqu', 57, 0),
+  (5, 'fermentum convallis ligula. Donec luctus', 88, 1),
+  (6, 'Donec porttitor tellus non magna.', 46, 2),
+  (7, 'risus. Morbi metus. Vivamus euismod', 71, 0),
+  (8, 'Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu', 65, 1),
+  (9, 'a, malesuada id, erat. Etiam vestibulum massa', 36, 1),
+  (10, 'sem molestie sodales. Mauris blandit enim consequat', 29, 1),
+  (11, 'ac tellus. Suspendisse sed dolor. Fusce', 84, 4),
+  (12, 'interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus', 80, 4),
+  (13, 'non nisi. Aenean eget metus. In nec orci.', 12, 2),
+  (14, 'sapien. Aenean massa. Integer vitae nibh. Donec est', 43, 2),
+  (15, 'mollis lectus pede et', 69, 1),
+  (16, 'Maecenas ornare egestas ligula. Nullam', 98, 2),
+  (17, 'Duis gravida. Praesent eu nulla at', 2, 1),
+  (18, 'lobortis tellus justo sit amet nulla.', 9, 3),
+  (19, 'Fusce mollis. Duis sit amet diam', 96, 1),
+  (20, 'ullamcorper magna. Sed eu', 41, 20);
 
 
 -- Comment data
@@ -257,9 +257,10 @@ INSERT INTO comment (cm_id, cm_question_id) VALUES
 
 INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
 
-  (21, 4, 46, 1), (22, 5, 44, 0), (23, 8, 34, 1), (24, 10, 36, 1), (25, 1, 28, 1), (26, 10, 15, 1), (27, 3, 38, 1), (28, 7, 38, 0), (29, 9, 46, 1), (30, 4, 11, 0),
-  (31, 5, 24, 0), (32, 10, 1, 0), (33, 4, 5, 0), (34, 9, 43, 1), (35, 9, 6, 1), (36, 1, 36, 0), (37, 4, 5, 1), (38, 10, 46, 1), (39, 1, 16, 0), (40, 8, 30, 0),
-  (41, 4, 29, 0), (42, 4, 37, 0), (43, 4, 11, 0), (44, 5, 8, 1), (45, 9, 50, 0), (46, 3, 3, 0), (47, 1, 14, 1), (48, 6, 9, 1), (49, 5, 18, 0), (50, 4, 21, 0);
+  (21, 18, 20, 0), (22, 3, 10, 1), (23, 5, 4, 1), (24, 15, 27, 1), (25, 20, 34, 0), (26, 18, 14, 0), (27, 6, 47, 1), (28, 18, 48, 1), (29, 11, 27, 0), (30, 11, 15, 0),
+  (31, 16, 26, 0), (32, 20, 48, 1), (33, 11, 44, 0), (34, 14, 21, 1), (35, 8, 6, 1), (36, 17, 49, 0), (37, 12, 15, 1), (38, 3, 12, 0), (39, 1, 31, 0), (40, 10, 32, 1), (41, 13, 18, 0),
+  (42, 6, 28, 1), (43, 12, 6, 1), (44, 1, 42, 0), (45, 12, 31, 0), (46, 16, 45, 1), (47, 19, 28, 1), (48, 9, 15, 0), (49, 13, 44, 1), (50, 11, 9, 0);
+
 
 
 -- Tag data

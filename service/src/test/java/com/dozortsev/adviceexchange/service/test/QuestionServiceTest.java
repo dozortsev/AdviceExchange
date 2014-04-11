@@ -62,34 +62,24 @@ public class QuestionServiceTest extends TestContext {
     @Test public void testDeleteQuestion() {
 
         // choose exist Question id
-        final Long id = 4L;
+        final Long id = 8L;
 
         final Question question = questionService.findById(id);
         assertNotNull(question);
-        assertEquals(4, question.getTags().size());
+        assertEquals(5, question.getTags().size());
 
         questionService.delete(question);
 
         assertNull(questionService.findById(id));
 
         // referenced Answers should be deleted
-        assertNull(answerService.findById(21L));
+        assertNull(answerService.findById(35L));
 
         // referenced Tags should not deleted
         assertNotNull(tagService.findById(4L));
         assertNotNull(tagService.findById(1L));
         assertNotNull(tagService.findById(15L));
         assertNotNull(tagService.findById(11L));
-    }
-
-    @Ignore
-    @Test public void testLoadQuestions() {
-
-        LinkedHashMap<Question, Integer> map = questionService.loadAll(0);
-        assertEquals(2, map.size());
-
-        map = questionService.loadAll(5);
-        assertEquals(2, map.size());
     }
 
     @Test public void testDeactivateQuestion() {

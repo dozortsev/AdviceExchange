@@ -7,6 +7,7 @@ import com.dozortsev.adviceexchange.domain.User;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +22,7 @@ public class AnswerServiceTest extends TestContext {
         final Long userId = 19L;
 
         // expected Question id
-        final Long questionId = 4L;
+        final Long questionId = 18L;
 
         final Answer answer = answerService.findById(id);
 
@@ -65,8 +66,8 @@ public class AnswerServiceTest extends TestContext {
         // choose Answer id
         final Long id = 36L;
 
-        // expected Question id
-        final Long questionId = 1L;
+        // expected ref Question
+        final Question question = questionService.findById(17L);
 
         // expected User id
         final Long userId = 78L;
@@ -74,13 +75,23 @@ public class AnswerServiceTest extends TestContext {
         final Answer answer = answerService.findById(id);
         assertNotNull(answer);
         assertEquals(Type.ANSWER, answer.getType());
-        assertTrue(answerService.findAnswersByQuestionId(questionId).contains(answer));
+
+        final Set<Answer> answers = answerService.findAnswersByQuestionId(question.getId());
+
+        assertEquals(answers.size(), question.getAnswerCount().intValue());
+        assertTrue(answers.contains(answer));
         assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
 
+        question.setAnswerCount(-1);
         answerService.delete(answer);
+        questionService.update(question);
+
+        final Set<Answer> expectAnswers = answerService.findAnswersByQuestionId(question.getId());
+        final Question expectQuestion = questionService.findById(17L);
+        assertEquals(expectAnswers.size(), expectQuestion.getAnswerCount().intValue());
 
         assertNull(answerService.findById(id));
-        assertFalse(answerService.findAnswersByQuestionId(questionId).contains(answer));
+        assertFalse(answerService.findAnswersByQuestionId(question.getId()).contains(answer));
         assertFalse(answerService.findAnswersByUserId(userId).contains(answer));
     }
 

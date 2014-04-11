@@ -161,14 +161,14 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
 
 -- Question data
 
-INSERT INTO question (qs_id, qs_name, qs_votes) VALUES
+INSERT INTO question (qs_id, qs_name, qs_votes, qs_asw_count) VALUES
 
-  (1, 'Is there any truth to that?', 5),
-  (3, 'What is that?', 18),
-  (7, 'Like scabies and pubic lice?', 71),
-  (10, 'I saw an advertisement on the bus for Plan B. What is that?', 29),
-  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 1),
-  (15, 'What about other hormonal methods of birth control?', 12);
+  (1, 'Is there any truth to that?', 5, 1),
+  (3, 'What is that?', 18, 1),
+  (7, 'Like scabies and pubic lice?', 71, 2),
+  (10, 'I saw an advertisement on the bus for Plan B. What is that?', 29, 0),
+  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 1, 3),
+  (15, 'What about other hormonal methods of birth control?', 12, 1);
 
 
 -- Comment data
