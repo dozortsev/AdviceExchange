@@ -1,5 +1,6 @@
 package com.dozortsev.adviceexchange.dao;
 
+import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,24 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
 
     public QuestionDaoImpl() {
         setEntityClass(Question.class);
+    }
+
+    @Override public Integer addAnswer(Question question, Answer answer) {
+
+        question.setAnswerCount(question.getAnswerCount() + 1);
+        getCurrentSession().save(answer);
+        getCurrentSession().update(question);
+
+        return question.getAnswerCount();
+    }
+
+    @Override public Integer delAnswer(Question question, Answer answer) {
+
+        question.setAnswerCount(question.getAnswerCount() - 1);
+        getCurrentSession().delete(answer);
+        getCurrentSession().update(question);
+
+        return question.getAnswerCount();
     }
 
     @Override public List<Question> loadAll(Integer offset) {

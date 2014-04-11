@@ -42,10 +42,10 @@ public class AnswerServiceTest extends TestContext {
         // prepare data for test of create
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, obcaecati.";
 
-        final Answer answer = new Answer(user, content, question, true);
+        final Answer answer = new Answer(user, content, question, Boolean.TRUE);
 
         assertNull(answer.getId());
-        answerService.create(answer);
+        questionService.addAnswer(question, answer);
         assertNotNull(answer.getId());
 
         // reload
@@ -55,7 +55,7 @@ public class AnswerServiceTest extends TestContext {
         // check on the expected data
         assertEquals(Type.ANSWER, expectAnswer.getType());
         assertEquals(content, expectAnswer.getContent());
-        assertTrue(expectAnswer.getVotes().equals(0));
+        assertEquals(0, expectAnswer.getVotes().intValue());
         assertTrue(expectAnswer.isAccept());
         assertTrue(answerService.findAnswersByUserId(user.getId()).contains(expectAnswer));
         assertTrue(answerService.findAnswersByQuestionId(question.getId()).contains(expectAnswer));
@@ -82,9 +82,7 @@ public class AnswerServiceTest extends TestContext {
         assertTrue(answers.contains(answer));
         assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
 
-        question.answerCountDec();
-        answerService.delete(answer);
-        questionService.update(question);
+        questionService.delAnswer(question, answer);
 
         final Set<Answer> expectAnswers = answerService.findAnswersByQuestionId(question.getId());
         final Question expectQuestion = questionService.findById(17L);

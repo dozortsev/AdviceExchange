@@ -98,12 +98,4 @@ public class Question extends UserActivity {
     public Integer changeVotes(Integer votes) {
         return this.votes += votes;
     }
-
-    public Integer answerCountDec() {
-        return --answerCount;
-    }
-
-    public Integer answerCountInc() {
-        return ++answerCount;
-    }
 }

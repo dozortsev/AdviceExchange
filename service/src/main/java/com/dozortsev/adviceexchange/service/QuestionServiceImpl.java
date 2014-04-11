@@ -1,6 +1,7 @@
 package com.dozortsev.adviceexchange.service;
 
 import com.dozortsev.adviceexchange.dao.QuestionDao;
+import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.*;
 import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
-@Transactional(propagation = REQUIRES_NEW, readOnly = true)
+@Transactional(propagation = REQUIRES_NEW)
 @Service
 public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> implements QuestionService {
 
@@ -25,6 +26,31 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         setEntityClass(Question.class);
     }
 
+    @Override public Integer addAnswer(Question question, Answer answer) {
+        try {
+            log.info(format("Add answer to question; ID: %d", question.getId()));
+            getDao().addAnswer(question, answer);
+            log.info(format("Success create; ID: %d", answer.getId()));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return question.getAnswerCount();
+    }
+
+    @Override public Integer delAnswer(Question question, Answer answer) {
+        try {
+            log.info(format("Delete answer; ID: %d form question; ID: %d", answer.getId(), question.getId()));
+            getDao().delAnswer(question, answer);
+            log.info("Success delete");
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return question.getAnswerCount();
+    }
+
+    @Transactional(readOnly = true)
     @Override public LinkedHashSet<Question> loadAll(Integer offset) {
         LinkedHashSet<Question> questions = new LinkedHashSet<>();
         try {
@@ -39,6 +65,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return questions;
     }
 
+    @Transactional(readOnly = true)
     @Override public Set<Question> findQuestionsByUserId(Long userId) {
         Set<Question> questions = new HashSet<>();
         try {
@@ -52,6 +79,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return questions;
     }
 
+    @Transactional(readOnly = true)
     @Override public Set<Question> findQuestionsByTags(String... tags) {
         Set<Question> questions = new LinkedHashSet<>();
         try {
