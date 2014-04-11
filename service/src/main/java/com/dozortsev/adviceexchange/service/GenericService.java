@@ -15,4 +15,6 @@ public interface GenericService<ID extends Serializable, T extends AbstractEntit
     T findById(ID id);
 
     T update(T entity);
+
+    Integer totalCount();
 }

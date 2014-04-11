@@ -11,7 +11,7 @@ public interface QuestionDao extends GenericDao<Long, Question> {
 
     Integer delAnswer(Question question, Answer answer);
 
-    List<Question> loadAll(Integer offset);
+    List<Question> loadFrom(Integer offset);
 
     List<Question> findQuestionsByUserId(Long userId);
 

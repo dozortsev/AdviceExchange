@@ -15,4 +15,6 @@ public interface GenericDao<ID extends Serializable, T extends AbstractEntity<ID
     T findById(ID id);
 
     T update(T entity);
+
+    Integer totalCount();
 }

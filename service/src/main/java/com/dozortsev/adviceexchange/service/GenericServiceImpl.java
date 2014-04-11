@@ -46,7 +46,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Override public void deleteById(ID id) {
         try {
-            log.info(format("Delete %s by Id: %s", getEntityClass(), id));
+            log.info(format("Delete %s by ID: %s", getEntityClass(), id));
             getDao().deleteById(id);
             log.info(format("%s with this ID not exist", getEntityClass()));
 
@@ -58,7 +58,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
     @Transactional(readOnly = true)
     @Override public T findById(ID id) {
         try {
-            log.info(format("Find %s by Id: %s", getEntityClass(), id));
+            log.info(format("Find %s by ID: %s", getEntityClass(), id));
             T entity = getDao().findById(id);
 
             if (entity != null) {
@@ -82,6 +82,19 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
             log.error("Error: ", e);
         }
         return entity;
+    }
+
+    @Override public Integer totalCount() {
+        int totalCount = 0;
+        try {
+            totalCount = getDao().totalCount();
+            log.info(format("Total count of %ss is: %d", getEntityClass(), totalCount));
+            return totalCount;
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return totalCount;
     }
 
     public Class<T> getEntityClass() {

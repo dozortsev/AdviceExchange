@@ -80,9 +80,13 @@
     </c:forEach>
     <br/><br/><br/><br/>
 
-    <c:forEach var="i" begin="1" end="3" step="1">
-        <a href="${path}/questions?page=${i}">${i}</a>&emsp;
-    </c:forEach>
+    <div class="ui borderless pagination menu">
+
+        <c:forEach var="i" begin="1" end="${qsCount / 2}" step="1">
+            <a class="item" href="${path}/questions?page=${i}">${i}</a>&emsp;
+        </c:forEach>
+
+    </div>
 
 </div>
 </body>

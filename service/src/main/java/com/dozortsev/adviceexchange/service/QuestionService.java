@@ -11,7 +11,7 @@ public interface QuestionService extends GenericService<Long, Question> {
 
     Integer delAnswer(Question question, Answer answer);
 
-    Set<Question> loadAll(Integer offset);
+    Set<Question> loadFrom(Integer offset);
 
     Set<Question> findQuestionsByUserId(Long userId);
 

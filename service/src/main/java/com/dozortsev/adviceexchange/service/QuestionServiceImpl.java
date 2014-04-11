@@ -51,12 +51,12 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Transactional(readOnly = true)
-    @Override public LinkedHashSet<Question> loadAll(Integer offset) {
+    @Override public LinkedHashSet<Question> loadFrom(Integer offset) {
         LinkedHashSet<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Load %ss", getEntityClass()));
 
-            questions.addAll(getDao().loadAll(offset));
+            questions.addAll(getDao().loadFrom(offset));
 
             log.info(format("Load from %d size 2. Set size: %d", offset, questions.size()));
         } catch (Exception e) {

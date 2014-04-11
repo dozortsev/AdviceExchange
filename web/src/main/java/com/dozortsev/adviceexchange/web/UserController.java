@@ -44,9 +44,10 @@ public class UserController {
             mav.addObject("user", userService.findUserByLogin(principal.getName()));
 
         if (page != null)
-            return mav.addObject("questions", questionService.loadAll((page - 1) * 2));
+            return mav.addObject("questions", questionService.loadFrom((page - 1) * 2));
 
-        return mav.addObject("questions", questionService.loadAll(0));
+        return mav.addObject("questions", questionService.loadFrom(0))
+                  .addObject("qsCount", questionService.totalCount());
     }
 
     @RequestMapping(value = "/question/{id}")

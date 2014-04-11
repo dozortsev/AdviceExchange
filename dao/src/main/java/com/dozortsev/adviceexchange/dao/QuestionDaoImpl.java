@@ -43,7 +43,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         return question.getAnswerCount();
     }
 
-    @Override public List<Question> loadAll(Integer offset) {
+    @Override public List<Question> loadFrom(Integer offset) {
 
         return getCurrentSession().createSQLQuery(loadQuestionsSet)
                 .addEntity(getEntityClass())

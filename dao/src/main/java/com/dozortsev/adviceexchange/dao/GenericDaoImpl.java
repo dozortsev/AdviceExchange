@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.dao;
 import com.dozortsev.adviceexchange.domain.AbstractEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,7 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
         getCurrentSession().delete(entity);
     }
 
+    @Transactional(readOnly = true)
     @Override public T findById(ID id) {
         return (T) getCurrentSession().get(getEntityClass(), id);
     }
@@ -44,6 +46,13 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
         getCurrentSession().update(entity);
 
         return entity;
+    }
+
+    @Transactional(readOnly = true)
+    @Override public Integer totalCount() {
+        return getCurrentSession().createCriteria(getEntityClass())
+                .setProjection(Projections.rowCount())
+                .uniqueResult().hashCode();
     }
 
     Session getCurrentSession() {
