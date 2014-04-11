@@ -56,7 +56,7 @@ public class AnswerServiceTest extends TestContext {
         assertEquals(Type.ANSWER, expectAnswer.getType());
         assertEquals(content, expectAnswer.getContent());
         assertTrue(expectAnswer.getVotes().equals(0));
-        assertTrue(expectAnswer.getIsAccepted());
+        assertTrue(expectAnswer.isAccept());
         assertTrue(answerService.findAnswersByUserId(user.getId()).contains(expectAnswer));
         assertTrue(answerService.findAnswersByQuestionId(question.getId()).contains(expectAnswer));
     }
@@ -82,7 +82,7 @@ public class AnswerServiceTest extends TestContext {
         assertTrue(answers.contains(answer));
         assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
 
-        question.setAnswerCount(-1);
+        question.answerCountDec();
         answerService.delete(answer);
         questionService.update(question);
 

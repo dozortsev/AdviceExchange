@@ -63,6 +63,7 @@ public class User extends AbstractEntity<Long> {
     private List<Badge> badges = new ArrayList<>();
 
     public User() {
+        this.reputation = 1;
         this.enabled = Boolean.TRUE;
         this.joined = new Date();
     }
@@ -147,7 +148,7 @@ public class User extends AbstractEntity<Long> {
         return reputation;
     }
     public void setReputation(Integer reputation) {
-        this.reputation += reputation;
+        this.reputation = reputation;
     }
 
     public Boolean isEnabled() {
@@ -183,6 +184,10 @@ public class User extends AbstractEntity<Long> {
     }
     public void setBadges(List<Badge> badges) {
         this.badges = badges;
+    }
+
+    public Integer changeReputation(Integer reputation) {
+        return this.reputation += reputation;
     }
 
     @Override public boolean equals(Object o) {

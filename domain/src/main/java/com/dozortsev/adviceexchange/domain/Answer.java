@@ -15,19 +15,21 @@ public class Answer extends UserActivity {
     private Question question;
 
     @Column(name = "asw_votes")
-    private Integer votes = 0;
+    private Integer votes;
 
     @Column(name = "asw_accepted")
-    private Boolean isAccepted;
+    private Boolean accept;
 
     public Answer() {
         super(Type.ANSWER);
+        this.votes = 0;
     }
 
-    public Answer(User user, String content, Question question, Boolean isAccepted) {
+    public Answer(User user, String content, Question question, Boolean accept) {
         super(user, Type.ANSWER, content);
+        this.votes = 0;
         this.question = question;
-        this.isAccepted = isAccepted;
+        this.accept = accept;
     }
 
     public Question getQuestion() {
@@ -44,10 +46,10 @@ public class Answer extends UserActivity {
         this.votes += votes;
     }
 
-    public Boolean getIsAccepted() {
-        return isAccepted;
+    public Boolean isAccept() {
+        return accept;
     }
-    public void setIsAccepted(Boolean isAccepted) {
-        this.isAccepted = isAccepted;
+    public void canAccept(Boolean accept) {
+        this.accept = accept;
     }
 }

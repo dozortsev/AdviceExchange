@@ -78,7 +78,7 @@ public class Question extends UserActivity {
         return answerCount;
     }
     public void setAnswerCount(Integer answerCount) {
-        this.answerCount += answerCount;
+        this.answerCount = answerCount;
     }
 
     public List<Answer> getAnswers() {
@@ -93,5 +93,17 @@ public class Question extends UserActivity {
     }
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Integer changeVotes(Integer votes) {
+        return this.votes += votes;
+    }
+
+    public Integer answerCountDec() {
+        return --answerCount;
+    }
+
+    public Integer answerCountInc() {
+        return ++answerCount;
     }
 }

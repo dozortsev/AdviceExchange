@@ -77,7 +77,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(site, expectUser.getSite());
         assertEquals(email, expectUser.getEmail());
         assertEquals(password, expectUser.getPassword());
-        assertTrue(expectUser.getReputation().equals(reputation + 1));
+        assertEquals(reputation + 1, expectUser.getReputation().intValue());
 
         final Set<Badge> badges = badgeService.findBadgesByUserId(user.getId());
 
@@ -110,7 +110,7 @@ public class UserServiceTest extends TestContext {
         final Integer oldReputation = user.getReputation();
 
         user.setEmail("new_email@gmail.com");
-        user.setReputation(15);
+        user.changeReputation(15);              // up on 15
 
         userService.update(user);
 

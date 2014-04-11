@@ -36,7 +36,7 @@
         </h3>
     </h2>
 
-    <c:forEach items="${map}" var="entry">
+    <c:forEach items="${questions}" var="qs">
 
         <table class="ui basic table">
             <thead>
@@ -48,29 +48,29 @@
             </thead>
             <tbody>
             <tr>
-                <td rowspan="2">Votes<br/>${entry.key.votes}</td>
+                <td rowspan="2">Votes<br/>${qs.votes}</td>
                 <td rowspan="2" colspan="2">
-                    <b><a href="${path}/question/${entry.key.id}">
-                            ${entry.key.name}
+                    <b><a href="${path}/question/${qs.id}">
+                            ${qs.name}
                     </a></b>
                     <br/>
-                    <small>${entry.key.content}</small>
+                    <small>${qs.content}</small>
                 </td>
             </tr>
             <tr>
             </tr>
             <tr>
-                <td>Answers<br/>${entry.value}</td>
+                <td>Answers<br/>${qs.answerCount}</td>
                 <td>
-                    <c:forEach items="${entry.key.tags}" var="tag">
+                    <c:forEach items="${qs.tags}" var="tag">
                         <a class="ui teal label">${tag.name}</a>&thinsp;
                     </c:forEach>
                 </td>
                 <td>
-                    <b>${entry.key.user.name}</b><br/>
+                    <b>${qs.user.name}</b><br/>
                     <small>
                         <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm"
-                                        value="${entry.key.created}"/>
+                                        value="${qs.created}"/>
                     </small>
                 </td>
             </tr>
