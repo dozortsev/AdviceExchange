@@ -2,24 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Find member by login(email) -->
-
-    <bean id="findUserByLogin" class="java.lang.String">
-        <constructor-arg index="0" value="
-
-            SELECT user.* FROM user WHERE user_email = :login AND user_enabled = true
-        "/>
-    </bean>
-
-
-    <!-- Find User by name -->
-    <bean id="findUserByName" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT * FROM user WHERE user_name LIKE :userName
-        "/>
-    </bean>
-
 
     <!-- Find all the Badges that were assigned User -->
 
@@ -70,14 +52,15 @@
 
             GROUP BY qs_id
 
-            HAVING count(tag_id) >= :tagCount
+            HAVING COUNT(tag_id) >= :tagCount
 
             ORDER BY ua_created DESC
         "/>
     </bean>
 
 
-    <!-- Load Questions -->
+    <!-- Load limit set of Questions -->
+
     <bean id="loadQuestionsSet" class="java.lang.String">
         <constructor-arg value="
 

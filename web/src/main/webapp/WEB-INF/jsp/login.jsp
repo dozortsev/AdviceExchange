@@ -58,7 +58,8 @@
                         <i class="lock icon"></i>
                     </div>
                 </div>
-                <input class="ui red submit small button" type="submit" value="Login"/>
+                <input class="ui red submit small button" type="submit"
+                       value="<fmt:message key="login.title"/>"/>
             </div>
         </div>
     </form>

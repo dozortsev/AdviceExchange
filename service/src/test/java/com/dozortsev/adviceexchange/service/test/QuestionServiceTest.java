@@ -1,10 +1,15 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.*;
+import com.dozortsev.adviceexchange.domain.Question;
+import com.dozortsev.adviceexchange.domain.Tag;
+import com.dozortsev.adviceexchange.domain.Type;
+import com.dozortsev.adviceexchange.domain.User;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 

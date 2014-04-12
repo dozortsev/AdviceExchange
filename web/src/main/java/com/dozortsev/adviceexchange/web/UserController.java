@@ -32,11 +32,12 @@ public class UserController {
 
     @Autowired private QuestionService questionService;
 
+    private static final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+
     private static final Logger log = getLogger(UserController.class);
 
     @RequestMapping(value="/questions", method = GET)
-    public ModelAndView index(Principal principal,
-                              @RequestParam(required = false) Integer page) {
+    public ModelAndView index(Principal principal, @RequestParam(required = false) Integer page) {
 
         ModelAndView mav = new ModelAndView("index");
 
@@ -69,7 +70,7 @@ public class UserController {
     @RequestMapping(value = "/createAccount", method = POST)
     public String createAccount(@ModelAttribute("member") User member) {
 
-        member.setPassword(new Md5PasswordEncoder().encodePassword(member.getPassword(), null));
+        member.setPassword(encoder.encodePassword(member.getPassword(), null));
         member.getBadges().add(badgeService.findById(2L)); // USER badge
 
         userService.create(member);

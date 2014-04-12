@@ -2,14 +2,14 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.domain.UserActivity;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.hibernate.criterion.CriteriaSpecification.DISTINCT_ROOT_ENTITY;
+import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.like;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY, readOnly = true)
@@ -17,36 +17,31 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
-    @Autowired private String findUserByLogin;
-
-    @Autowired private String findUserByName;
-
-//    @Autowired private String findUserActivity;
-
     public UserDaoImpl() {
         setEntityClass(User.class);
     }
 
     @Override public User findUserByLogin(String login) {
 
-        return (User) getCurrentSession().createSQLQuery(findUserByLogin)
-                .addEntity(getEntityClass()).setString("login", login)
+        return (User) getCurrentSession().createCriteria(getEntityClass())
+                .add(eq("email", login))
+                .add(eq("enabled", Boolean.TRUE))
                 .uniqueResult();
     }
 
     @Override public List<User> findUsersByName(String name) {
 
-        return getCurrentSession().createSQLQuery(findUserByName)
-                .addEntity(getEntityClass())
+        return getCurrentSession().createCriteria(getEntityClass())
+                .add(like("name", "%" + name + "%"))
                 .setResultTransformer(DISTINCT_ROOT_ENTITY)
-                .setString("userName", "%" + name + "%")
                 .list();
     }
 
     @Override public List<UserActivity> userActivities(Long id) {
 
         return getCurrentSession().createCriteria(UserActivity.class)
-                .add(Restrictions.eq("user.id", id))
+                .add(eq("user.id", id))
+                .setResultTransformer(DISTINCT_ROOT_ENTITY)
                 .list();
     }
 }

@@ -4,7 +4,6 @@ import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Test;
 
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 
@@ -124,11 +123,10 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testFindUserByName() {
 
-        final String regexUserName = "all";
+        final String pattern = "all";
 
-        for (User user : userService.findUsersByName(regexUserName)) {
-            assertTrue(Pattern.compile(regexUserName).matcher(user.getName()).find());
-        }
+        final Set<User> users = userService.findUsersByName(pattern);
+        assertEquals(3, users.size());
     }
 
     @Test public void testUserActivity() {
