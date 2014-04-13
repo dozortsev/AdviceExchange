@@ -14,8 +14,12 @@ $('.message .close').on('click', function() {
 
 
 /* tabs */
-$(document).ready(function(){
-    $('.demo.menu .item').tab({history:false});
+$(document).ready(function () {
+    $('.demo.menu .item').tab(
+        {
+            history: false
+        }
+    );
 });
 
 

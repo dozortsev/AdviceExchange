@@ -35,6 +35,9 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     @Column(name = "ua_created", updatable = false)
     private Date created;
 
+    public UserActivity() {
+    }
+
     public UserActivity(Type type) {
         this.type = type;
         this.active = Boolean.TRUE;
