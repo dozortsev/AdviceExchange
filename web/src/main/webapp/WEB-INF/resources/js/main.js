@@ -23,6 +23,23 @@ $(document).ready(function () {
 });
 
 
+// Ask Question
+
+$(function () {
+
+    var converter = new Showdown.converter();
+
+    $('#user-input').keyup(function () {
+
+        var div = $('#wiki-style').html(converter.makeHtml(this.value));
+
+        $('#preview-container, #user-input').css({
+            height: div.outerHeight() + 40
+        })
+    });
+});
+
+
 /* Form validation */
 $('.ui.form')
     .form({

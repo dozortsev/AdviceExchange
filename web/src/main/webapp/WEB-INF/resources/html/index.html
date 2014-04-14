@@ -1,181 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+
     <meta charset="UTF-8">
+
     <title>
         Advice Exchange
     </title>
 
     <link rel="shortcut icon" href="../img/logo.png">
 
+    <link rel="stylesheet" href="../css/md-style.css"/>
     <link rel="stylesheet" href="../css/semantic.css"/>
     <link rel="stylesheet" href="../css/style.css"/>
 
 </head>
 <body class="login-body">
 
-<!--<div class="ui black small message">-->
-    <!--<i class="close icon"></i>-->
-    <!--<div class="header">-->
-        <!--You must register before you can do that!-->
-    <!--</div>-->
-    <!--Visit our registration page, then try again-->
-<!--</div>-->
-
-<!--<div class="ui inverted segment">-->
-    <!--<h3 class="ui left tiny floated header">-->
-        <!--Go Back-->
-    <!--</h3>-->
-    <!--<h3 class="ui right tiny floated header">-->
-        <!--<a class="ui small blue submit button" href="#">Logout</a>-->
-    <!--</h3>-->
-<!--</div>-->
-
 <div class="ui piled segment">
 
-    <h2 class="ui header">
-        All questions
-    </h2>
+    <div class="ui form">
+        <div class="field">
+            <label>Title</label><input type="text" name="name">
+        </div>
+    </div>
 
-    <table class="ui basic table">
-        <thead>
-        <tr>
-            <th class="one wide"></th>
-            <th class="ten wide"></th>
-            <th class="one wide"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td rowspan="2">
-                <div class="grouped inline fields">
-                    <div class="ui tiny toggle button">
-                        <i class="up arrow icon"></i>
-                    </div>
-                    <!--<div class="field">-->
-                        <!--<div class="ui radio checkbox">-->
-                            <!--<input type="radio" name="fruit" value="vote-up">-->
-                            <!--<label>Up</label>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    12
-                    <!--<div class="field">-->
-                        <!--<div class="ui radio checkbox">-->
-                            <!--<input type="radio" name="fruit" value="vote-none" checked="ckecked">-->
-                            <!--<label>1</label>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <div class="ui tiny toggle button">
-                        <i class="down arrow icon"></i>
-                    </div>
-                    <!--<div class="field">-->
-                        <!--<div class="ui radio checkbox">-->
-                            <!--<input type="radio" name="fruit" value="vote-down">-->
-                            <!--<label>Down</label>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                </div>
-            </td>
-            <td rowspan="2" colspan="2">
-                <b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, ut.</b>
-                <br/>
-                <small>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem iste optio saepe sequi sit. Atque blanditiis facilis fuga minima veniam.
-                </small>
-            </td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-            <td></td>
-            <td><a class="ui teal label">Unread</a> <a class="ui teal label">Comics</a></td>
-            <td>
-                Dozortsev Anton <br/><br/>
-                <small>2013-12-12 / 19:08</small>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="ui form">
+        <div id="entry-container" class="field">
 
-    <hr/>
+            <textarea id="user-input" name="content"></textarea>
+        </div>
+    </div>
 
-    <table class="ui basic table">
-        <thead>
-        <tr>
-            <th class="one wide"></th>
-            <th class="ten wide"></th>
-            <th class="one wide"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td rowspan="2">Votes <br/> 10</td>
-            <td rowspan="2" colspan="2">
-                <b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, ut.</b>
-                <br/>
-                <small>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid aperiam asperiores at aut culpa delectus deserunt dolores dolorum eos, eum fugit illo incidunt ipsa iure laboriosam maiores maxime nesciunt nihil nulla officiis perspiciatis possimus quae quo, quos repellendus sapiente, sit temporibus unde vel. Accusamus ad, dolore doloremque dolorum error excepturi officiis quasi unde. Id magni maxime minima quam quis rem reprehenderit saepe! Deserunt libero quae quod sit ullam. Soluta?
-                </small>
-            </td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-            <td>Answers <br/>2</td>
-            <td>tag1 | tag2 | tag3 | tag4</td>
-            <td>
-                Dozortsev Anton <br/><br/>
-                <small>2013-12-12 / 19:08</small>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="preview-container">
+        <em>Live preview</em>
 
-    <hr/>
+        <div id="wiki-style" class="markdown-body"></div>
+    </div>
 
-    <table class="ui basic table">
-        <thead>
-        <tr>
-            <th class="one wide"></th>
-            <th class="ten wide"></th>
-            <th class="one wide"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td rowspan="2">Votes <br/> 10</td>
-            <td rowspan="2" colspan="2">
-                <b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, ut.</b>
-                <br/>
-                <small>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur ea earum eos est illo mollitia neque nulla quis repellat. Aliquam amet aspernatur, assumenda aut consequuntur deleniti dolore ex excepturi iste iusto laboriosam nam nihil optio perspiciatis praesentium quod ratione ullam?
-                </small>
-            </td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-            <td>Answers <br/>2</td>
-            <td>tag1 | tag2 | tag3 | tag4</td>
-            <td>
-                Dozortsev Anton <br/><br/>
-                <small>2013-12-12 / 19:08</small>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <hr/>
-
-</div>
-
-<div class="ui borderless pagination menu">
-    <a class="item">1</a>
-    <a class="item">2</a>
-    <a class="item">3</a>
-    <a class="item">4</a>
-    <a class="item">5</a>
-    <a class="item">6</a>
 </div>
 
 <br/><br/><br/><br/>
@@ -183,6 +45,7 @@
     <!-- JS -->
 
     <script src="../js/jquery-1.11.0.js"></script>
+    <script src="../js/showdown.js"></script>
     <script src="../js/semantic.js"></script>
     <script src="../js/main.js"></script>
 

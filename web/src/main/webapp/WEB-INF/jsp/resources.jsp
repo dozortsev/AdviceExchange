@@ -30,4 +30,5 @@
 <%-- CSS --%>
 
 <link rel="stylesheet" href="${path}/css/semantic.css"/>
+<link rel="stylesheet" href="${path}/css/md-style.css"/>
 <link rel="stylesheet" href="${path}/css/style.css"/>

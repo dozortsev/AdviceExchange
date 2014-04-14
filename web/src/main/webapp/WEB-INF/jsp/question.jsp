@@ -10,7 +10,7 @@
 
 <div class="ui piled segment">
 
-    ${question.votes}<h1>${question.name}</h1>${question.created}<br/><br/>
+    ${question.votes}<h1>${question.name}</h1>${question.created}<br/>${question.user.name}<br/>
     <i>${question.content}</i><br/><br/><br/>
     <c:forEach items="${question.tags}" var="tag">
         <a class="ui teal label">${tag.name}</a>&thinsp;
@@ -21,8 +21,14 @@
 
     <h1>Answers</h1>
     <c:forEach items="${answers}" var="asw">
-        ${asw.votes}&emsp;<i>${asw.content}</i>${asw.created}
-        <br/><br/>
+        ${asw.votes}&emsp;
+
+        <div class="markdown-body">${asw.content}</div>
+
+        ${asw.created}
+        <br/>
+        ${asw.user.name}
+        <br/>
     </c:forEach>
     <br/>
     <hr/>
@@ -32,6 +38,7 @@
     <c:forEach items="${comments}" var="cm">
         <i>${cm.content}</i><br/><br/>
     </c:forEach>
+
     <br/><br/><br/>
 
 </div>

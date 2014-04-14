@@ -16,6 +16,12 @@
     </h3>
 
     <h3 class="ui right tiny floated header">
+        <a href="${path}/questions/ask" class="ui green label">
+            Ask Question
+        </a>
+    </h3>
+
+    <h3 class="ui right tiny floated header">
         <a class="ui small blue submit button"
            href="<c:url value="/j_spring_security_logout"/>">
             Logout
@@ -50,7 +56,7 @@
             <tr>
                 <td rowspan="2">Votes<br/>${qs.votes}</td>
                 <td rowspan="2" colspan="2">
-                    <b><a href="${path}/question/${qs.id}">
+                    <b><a href="${path}/questions/${qs.id}">
                             ${qs.name}
                     </a></b>
                     <br/>
