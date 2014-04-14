@@ -10,13 +10,13 @@
 
 <div class="ui inverted segment">
     <h3 class="ui left tiny floated header">
-        <a class="ui purple label">
+        <a class="ui purple label" href="${path}/user/${user.id}">
             ${user.name}
         </a>
     </h3>
 
     <h3 class="ui right tiny floated header">
-        <a href="${path}/questions/ask" class="ui green label">
+        <a href="${path}/questionsAsk" class="ui green label">
             Ask Question
         </a>
     </h3>
@@ -73,7 +73,7 @@
                     </c:forEach>
                 </td>
                 <td>
-                    <b>${qs.user.name}</b><br/>
+                    <b><a href="${path}/user/${qs.user.id}">${qs.user.name}</a></b><br/>
                     <small>
                         <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm"
                                         value="${qs.created}"/>
@@ -84,7 +84,6 @@
         </table>
         <hr/>
     </c:forEach>
-    <br/><br/><br/><br/>
 
     <div class="ui borderless pagination menu">
 

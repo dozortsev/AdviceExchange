@@ -6,6 +6,8 @@
     <title>
         Ask Question
     </title>
+
+    <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
 <body class="login-body">
@@ -28,8 +30,7 @@
         </div>
 
         <div id="preview-container">
-            <em>Live preview</em>
-
+            <hr/>
             <div>
                 <div id="wiki-style" class="markdown-body"></div>
             </div>
@@ -37,6 +38,8 @@
 
         <input class="ui small blue submit button" type="submit" value="Submit"/>
 
+        <input class="ui small red submit button" type="submit"
+               value="Cancel" onclick="history.back();"/>
     </form:form>
 
 </div>

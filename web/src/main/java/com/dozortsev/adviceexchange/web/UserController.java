@@ -51,6 +51,14 @@ public class UserController {
                   .addObject("qsCount", questionService.totalCount());
     }
 
+    @RequestMapping(value = "/user/{id}", method = GET)
+    public ModelAndView user(@PathVariable Long id) {
+
+        return new ModelAndView("user", "member", userService.findById(id))
+                .addObject("questions", questionService.findQuestionsByUserId(id))
+                .addObject("answers", answerService.findAnswersByUserId(id));
+    }
+
     @RequestMapping(value = "/questions/create")
     public String askQuestion(@ModelAttribute Question ask, @ModelAttribute User user) {
 
