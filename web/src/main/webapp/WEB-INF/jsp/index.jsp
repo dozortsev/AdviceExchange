@@ -60,7 +60,7 @@
                             ${qs.name}
                     </a></b>
                     <br/>
-                    <small>${qs.content}</small>
+                    <small>${fn:substring(qs.content, 0, 100)}</small>
                 </td>
             </tr>
             <tr>
@@ -87,7 +87,7 @@
 
     <div class="ui borderless pagination menu">
 
-        <c:forEach var="i" begin="1" end="${(qsCount / 2) + 1}" step="1">
+        <c:forEach var="i" begin="1" end="${(qsCount / 2) + 0.5}" step="1">
             <a class="item" href="${path}/questions?page=${i}">${i}</a>&emsp;
         </c:forEach>
 

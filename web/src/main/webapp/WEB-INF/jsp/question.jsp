@@ -56,6 +56,8 @@
 
     <br/><br/><br/>
 
+        <a href="${path}/questions">Questions</a>
+
 </div>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>

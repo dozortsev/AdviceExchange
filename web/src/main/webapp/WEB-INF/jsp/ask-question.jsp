@@ -37,10 +37,10 @@
         </div>
 
         <input class="ui small blue submit button" type="submit" value="Submit"/>
-
-        <input class="ui small red submit button" type="submit"
-               value="Cancel" onclick="history.back();"/>
     </form:form>
+
+    <input class="ui small red button" type="submit"
+           value="Cancel" onclick="history.back();"/>
 
 </div>
 

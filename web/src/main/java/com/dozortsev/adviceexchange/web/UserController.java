@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@SessionAttributes({ "user", "map" })
+@SessionAttributes({ "user", "map", "qsCount" })
 public class UserController {
 
     @Autowired private UserService userService;
@@ -36,13 +36,16 @@ public class UserController {
 
     private static final Logger log = getLogger(UserController.class);
 
+    @RequestMapping(value = "/users/login", method = GET)
+    public ModelAndView logIn(Principal principal) {
+
+        return new ModelAndView("redirect:/questions", "user", userService.findUserByLogin(principal.getName()));
+    }
+
     @RequestMapping(value="/questions", method = GET)
-    public ModelAndView index(Principal principal, @RequestParam(required = false) Integer page) {
+    public ModelAndView index(@RequestParam(required = false) Integer page) {
 
         ModelAndView mav = new ModelAndView("index");
-
-        if (principal != null && page == null)
-            mav.addObject("user", userService.findUserByLogin(principal.getName()));
 
         if (page != null)
             return mav.addObject("questions", questionService.loadFrom((page - 1) * 2));
@@ -59,16 +62,16 @@ public class UserController {
                 .addObject("answers", answerService.findAnswersByUserId(id));
     }
 
-    @RequestMapping(value = "/questions/create")
+    @RequestMapping(value = "/questions/create", method = POST)
     public String askQuestion(@ModelAttribute Question ask, @ModelAttribute User user) {
 
         ask.setUser(user);
         questionService.create(ask);
 
-        return "redirect:/questions/" + ask.getId();
+        return "redirect:/question/" + ask.getId();
     }
 
-    @RequestMapping(value = "/questions/{id}")
+    @RequestMapping(value = "/question/{id}")
     public ModelAndView question(@PathVariable Long id) {
 
         return new ModelAndView("question", "question", questionService.findById(id))

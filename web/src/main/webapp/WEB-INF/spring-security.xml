@@ -14,10 +14,10 @@
 
         <intercept-url pattern="/questions*" access="isAuthenticated()"/>
         <intercept-url pattern="/questions/*" access="isAuthenticated()"/>
-        <intercept-url pattern="/questionsAsk" access="isAuthenticated()"/>
+        <intercept-url pattern="/questions/ask" access="isAuthenticated()"/>
 
         <form-login login-page="/login"
-                    default-target-url="/questions"
+                    default-target-url="/users/login"
                     authentication-failure-url="/login/failed"
         />
 

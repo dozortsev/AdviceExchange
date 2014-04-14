@@ -134,7 +134,7 @@ INSERT INTO user_badge (ub_badge_id, ub_user_id) VALUES
 
 INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) VALUES
 
-  (1, 'QUESTION', 97, 'A friend forwarded me an e-mail about how tampons are dangerous and can cause cancer. Is there any truth to that?', '2015-01-19 03:17:28'),
+  (1, 'QUESTION', 97, 'A friend forwarded me an e-mail about how tampons are dangerous and can cause cancer. Is there any truth to that?', '2014-01-19 03:17:28'),
   (2, 'ANSWER', 20, 'No. Tampons do not cause cancer. There have been a number of e-mails going around in the past few years alleging that manufacturers add carcinogens like asbestos to tampons to promote bleeding or that tampons contain fiberglass. Neither is true. In fact, tampons have been found safe by the U.S. Food and Drug Administration. Also, manufacturers no longer use bleaching processes that were found to leave traces of the toxic chemical dioxin. So rest assured, tampons are completely safe to use.', '2015-03-11 19:32:53'),
 
   (3, 'QUESTION', 1, 'I hear people talking about something called an intersex. What is that?', '2013-09-01 05:03:15'),
@@ -153,7 +153,7 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
   (13, 'ANSWER', 5, 'Ectopic pregnancy is more likely for women who have had a previous ectopic pregnancy, for women who have had surgery involving the fallopian tubes, and for women who have had sexually transmitted infections.  Left untreated with medication or surgery, ectopic pregnancy is a very dangerous, life threatening condition.', '2013-10-27 14:40:57'),
   (14, 'ANSWER', 7, 'EC works by stopping ovulation or fertilization.  In theory, it could interfere with the implantation of a fertilized egg, but there is no scientific proof that this happens.  EC, however, does not affect an established pregnancy.', '2013-10-28 18:41:57'),
 
-  (15, 'QUESTION', 7, 'Is it true that emergency contraception causes abortion? What about other hormonal methods of birth control?', '2014-11-30 17:03:12'),
+  (15, 'QUESTION', 7, 'Is it true that emergency contraception causes abortion? What about other hormonal methods of birth control?', '2014-01-30 17:03:12'),
   (16, 'ANSWER', 5, 'No. Abortion ends a pregnancy. Emergency contraception (EC) cannot end a pregnancy. EC works before a pregnancy begins. Pregnancy begins with the implantation of the developing fertilized egg in a woman''s uterus.', '2014-12-02 21:03:12'),
   (17, 'COMMENT', 10, 'The same is true for the pill, the shot, the patch, and the ring.', '2014-11-30 17:03:12'),
   (18, 'COMMENT', 11, 'They also prevent ovulation and fertilization, but not implantation.', '2015-01-09 12:03:12');
