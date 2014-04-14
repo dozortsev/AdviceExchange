@@ -16,7 +16,7 @@
     </h3>
 
     <h3 class="ui right tiny floated header">
-        <a href="${path}/questionsAsk" class="ui green label">
+        <a href="${path}/questions/ask" class="ui green label">
             Ask Question
         </a>
     </h3>
@@ -37,7 +37,7 @@
         </h3>
 
         <h3 class="ui right floated header">
-            6<br/>
+            ${qsCount}<br/>
             <small>questions</small>
         </h3>
     </h2>
@@ -56,7 +56,7 @@
             <tr>
                 <td rowspan="2">Votes<br/>${qs.votes}</td>
                 <td rowspan="2" colspan="2">
-                    <b><a href="${path}/questions/${qs.id}">
+                    <b><a href="${path}/question/${qs.id}">
                             ${qs.name}
                     </a></b>
                     <br/>
@@ -87,7 +87,7 @@
 
     <div class="ui borderless pagination menu">
 
-        <c:forEach var="i" begin="1" end="${qsCount / 2}" step="1">
+        <c:forEach var="i" begin="1" end="${(qsCount / 2) + 1}" step="1">
             <a class="item" href="${path}/questions?page=${i}">${i}</a>&emsp;
         </c:forEach>
 
