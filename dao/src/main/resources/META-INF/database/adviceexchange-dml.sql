@@ -153,10 +153,47 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
   (13, 'ANSWER', 5, 'Ectopic pregnancy is more likely for women who have had a previous ectopic pregnancy, for women who have had surgery involving the fallopian tubes, and for women who have had sexually transmitted infections.  Left untreated with medication or surgery, ectopic pregnancy is a very dangerous, life threatening condition.', '2013-10-27 14:40:57'),
   (14, 'ANSWER', 7, 'EC works by stopping ovulation or fertilization.  In theory, it could interfere with the implantation of a fertilized egg, but there is no scientific proof that this happens.  EC, however, does not affect an established pregnancy.', '2013-10-28 18:41:57'),
 
-  (15, 'QUESTION', 7, 'Is it true that emergency contraception causes abortion? What about other hormonal methods of birth control?', '2014-01-30 17:03:12'),
+  (15, 'QUESTION', 7, 'Is it true that emergency contraception causes abortion? What about other hormonal methods of birth control?', '2014-12-30 17:03:12'),
   (16, 'ANSWER', 5, 'No. Abortion ends a pregnancy. Emergency contraception (EC) cannot end a pregnancy. EC works before a pregnancy begins. Pregnancy begins with the implantation of the developing fertilized egg in a woman''s uterus.', '2014-12-02 21:03:12'),
   (17, 'COMMENT', 10, 'The same is true for the pill, the shot, the patch, and the ring.', '2014-11-30 17:03:12'),
-  (18, 'COMMENT', 11, 'They also prevent ovulation and fertilization, but not implantation.', '2015-01-09 12:03:12');
+  (18, 'COMMENT', 11, 'They also prevent ovulation and fertilization, but not implantation.', '2014-01-09 12:03:12'),
+
+  (19, 'QUESTION', 12, 'No. Most women feel relief after an abortion. Serious emotional problems after abortion are much less likely than they are after giving birth. But anti choice extremists make false claims about this. They want people to believe that most women who choose abortion suffer severe and long lasting emotional trauma. This is not true.', '2013-01-09 12:03:12'),
+  (20, 'ANSWER', 10, 'For more than 20 years, most scientific studies have found that emotional reactions to having abortion are relatively positive with two exceptions. Women who have psychological problems before the pregnancy and subsequent abortion continue to have them afterward. Also, women who have to terminate an intended pregnancy are more likely to be emotionally disturbed afterward.', '2014-01-10 21:03:12'),
+  (21, 'ANSWER', 50, 'Anti-choice extremists refuse to accept the facts. They insist that "post abortion trauma" is real. They hope that such terms will frighten women away from choosing abortion. But neither the American Psychological Association nor the American Psychiatric Association recognizes the existence of such phenomena — because there''s no such thing.', '2014-01-10 21:03:12'),
+  (22, 'ANSWER', 70, 'If you are a woman having a mifepristone medication abortion at a Planned Parenthood health center, you should attend your scheduled follow-up appointment and contact us if you have any questions or concerns. When choosing mifepristone medication abortion at one of our health centers, you will receive extensive information and support so you can understand what to expect and whom to contact with any concern, at any time — 24 hours a day, seven days a week. Planned Parenthood medical professionals are available around the clock if you need to speak with someone.', '2014-01-10 21:03:12'),
+  (23, 'COMMENT', 70, 'If you are a woman having a mifepristone medication abortion at a Planned Parenthood health center.', '2014-01-10 21:03:12'),
+  (24, 'COMMENT', 45, 'If you are a woman having a mifepristone medication abortion at a Planned Parenthood health center.', '2014-01-30 22:42:45'),
+
+  (25, 'QUESTION', 90, 'The pregnancy hormone, HCG (human chorionic gonadatropin), can remain in the body for up to 60 days after an abortion. Similarly, HCG levels can be measurable for weeks after childbirth. This can lead to pregnancy tests with false positive results for women who take home pregnancy tests.', '2014-05-14 12:06:12'),
+  (26, 'ANSWER', 11, 'This can lead to pregnancy tests with false positive results for women who take home pregnancy tests.', '2014-05-15 12:40:12'),
+  (27, 'ANSWER', 11, 'The pregnancy hormone, HCG (human chorionic gonadatropin), can remain in the body for up to 60 days after an abortion. Similarly, HCG levels can be measurable for weeks after childbirth', '2014-05-15 12:13:09'),
+  (28, 'ANSWER', 21, 'It is very unwise to take mifepristone that has been obtained online. The only FDA-approved mifepristone is obtained from Danco Pharmaceuticals, under the brand name Mifeprex. Only Danco can distribute mifepristone to doctors, who sign a special agreement with the manufacturer.', '2014-05-15 12:03:09'),
+  (29, 'ANSWER', 68, 'Because you cannot be assured that you are getting real mifepristone from online sources, it is not safe to use what is available through the Internet. In addition, mifepristone is used with another medication, misoprostol, for medication abortion. Both medications are needed to assure maximum safety and effectiveness when an early pregnancy is terminated. Neither should be ordered through the Internet. And neither should be used without medical supervision.', '2014-05-15 12:12:09'),
+
+  (30, 'QUESTION', 78, 'If you know anyone who is thinking about ending a pregnancy with medications gotten from the Internet, please advise them against taking such risks and to seek professional medical advice immediately. Remember, safe and effective medication abortion is available throughout the U.S. from Planned Parenthood and other accredited women''s health facilities.', '2014-05-14 12:06:12'),
+
+  (31, 'QUESTION', 40, 'In fact, severe emotional disturbance after childbirth, sometimes referred to as postpartum psychosis, occurs somewhat more frequently than severe emotional disturbance after abortion. Interestingly, research has shown that rates of post-partum psychosis decrease in societies that legalize abortion.', '2014-06-12 18:18:03'),
+
+  (32, 'QUESTION', 69, 'Despite overwhelming scientific evidence to the contrary, anti-choice organizations continue to spread the false idea that it is common for abortion to have severe, emotionally negative effects. The fact is that anti-abortion groups have invented this so-called post-abortion syndrome to further their efforts to make abortion illegal and unsafe. The anti-choice studies that claim to prove its existence are very flawed. For example, the authors of the studies only interview women who claim to have emotional problems after abortion. They do not interview women who feel relief, which is the most common emotional response of women who have an abortion in the first-trimester — nearly 90 percent of all abortions happen during the first trimester of pregnancy.', '2014-07-26 17:21:56'),
+  (33, 'ANSWER', 71, 'In fact, severe emotional disturbance after childbirth, sometimes referred to as postpartum psychosis, occurs somewhat more frequently than severe emotional disturbance after abortion. Interestingly, research has shown that rates of post-partum psychosis decrease in societies that legalize abortion.', '2014-10-20 19:31:45'),
+  (34, 'ANSWER', 79, 'It is very unwise to take mifepristone that has been obtained online. The only FDA-approved mifepristone is obtained from Danco Pharmaceuticals, under the brand name Mifeprex. Only Danco can distribute mifepristone to doctors, who sign a special agreement with the manufacturer.', '2014-05-29 20:56:23'),
+  (35, 'COMMENT', 80, 'Most women feel relief after an abortion.', '2014-05-30 23:12:02'),
+
+  (36, 'QUESTION', 8, 'Yeast infections may be due to chronic skin conditions, the use of certain antibiotics, continuing bacterial imbalances in the vagina, excessive intake of milk or sugary products, blood sugar problems related to diabetes, a yeasty sex partner whose chemistry throws off your bacterial balance, or multiple and/or new sex partners. Then, of course, it might be something else!', '2014-10-11 11:20:21'),
+  (37, 'ANSWER', 80, 'First, make sure it''s yeast, since sometimes symptoms that may seem like yeast can be caused by another kind of infection. And if that''s what''s going on, yeast treatments won''t help! To find out, make an appointment with your clinician and get a professional diagnosis. Your clinician might suggest an anti-fungal treatment. Some, such as boric acid, are available over the counter. Others require a prescription. All can have side effects, such as irritation. That is why clinicians often alternate therapies for ongoing problems. Check with your clinician for the best treatment for you. Whatever you do, don''t douche. That may cause even further irritation.', '2014-10-11 12:09:09'),
+  (38, 'ANSWER', 81, 'For further reading, take a look at The V Book — A Doctor''s Guide to Complete Vulvovaginal Health, by Dr. Elizabeth G. Stewart (Bantam Books, 2002). For clinical advice and guidance, make an appointment with the Planned Parenthood health center nearest you by calling 1-800-230-PLAN.', '2014-10-11 12:10:09'),
+  (39, 'ANSWER', 97, 'All can have side effects, such as irritation. That is why clinicians often alternate therapies for ongoing problems. Check with your clinician for the best treatment for you. Whatever you do, don''t douche. That may cause even further irritation. Your clinician might suggest an anti-fungal treatment. Some, such as boric acid, are available over the counter. Others require a prescription.', '2014-10-11 12:10:09'),
+
+  (40, 'QUESTION', 46, 'The best way to find out whether or not a partner is faithful is to ask. While it is true that studies have shown that about 33 percent of sex partners are likely to lie about having other partners, ongoing communication between partners about their expectations for faithfulness is very important. Finding out that you are infected with a sexually transmitted infection may seem like a clear indication that your partner has had sex with someone else. But this is often not the case.', '2014-08-18 09:32:01'),
+  (41, 'QUESTION', 46, 'Genital warts are caused by certain highly contagious, and very common, types of HPV — human papilloma virus. Warts usually develop six weeks to six months after infection. But it may take longer. And very often, people with the types of HPV that cause genital warts have no symptoms. Sometimes, too, the warts are so small that people who are infected can''t see them. Also, tiny warts can be hidden, unseen, in the folds of the anus, scrotum, vagina, or vulva.', '2014-08-20 21:11:01'),
+  (42, 'QUESTION', 65, 'Genital warts are not only common, they also recur. This means that they may appear for a year, then disappear, then reappear two to six months later. Like other types of HPV, those that cause genital warts can be passed from one person to another at any time during an infection — whether or not there are ever symptoms.', '2014-11-24 15:13:01'),
+  (43, 'QUESTION', 42, 'It''s also possible for partner B to have been infected without knowing it before having contact with partner A. If partner B''s infection becomes stronger months later, the infection can be passed to A who may not develop symptoms for months more. So it may seem that partner B became infected during the relationship with partner A, when that is not the case.', '2014-12-24 15:13:01'),
+  (44, 'QUESTION', 100, 'In 2006, the U.S. Food and Drug Administration (FDA) approved a vaccine, Gardasil, that protects against four of the 40 types of HPV that are sexually transmitted. Two of the types, 6 and 11, are the ones that cause 90 percent of the outbreaks of genital warts. The two others, 16 and 18, cause 70 percent of cases of cancer of the cervix. They are also associated with cancers of the vulva, penis, anus, or throat.', '2014-09-21 17:45:01'),
+  (45, 'QUESTION', 68, 'Right now, there is no clear evidence that the vaccine will protect an already infected person. Because, however, a person may be infected with one of the HPV types covered by the vaccine but not with another, the vaccine will protect against the HPV type(s) that a person does not already have. The new vaccine does not offer protection against all the types of HPV that cause cervical cancer. So authorities urge sexually active women who become vaccinated to continue to have regular Pap tests. These tests can detect cervical cancer in its early, treatable stages.', '2014-09-21 17:45:01'),
+  (46, 'QUESTION', 100, 'Right now, there is no clear evidence that the vaccine will protect an already infected person. Because, however, a person may be infected with one of the HPV types covered by the vaccine but not with another, the vaccine will protect against the HPV type(s) that a person does not already have. The new vaccine does not offer protection against all the types of HPV that cause cervical cancer. So authorities urge sexually active women who become vaccinated to continue to have regular Pap tests. These tests can detect cervical cancer in its early, treatable stages.', '2014-09-22 17:48:12'),
+  (47, 'QUESTION', 11, 'It''s not true, but it can certainly seem that way. You may have heard people talking about trichomoniasis. Men rarely have symptoms, and they usually don''t know they are infected. But they can be infected during vaginal intercourse. And they can pass their infections to other partners. They can also re-infect women partners who have been treated. Sometimes women have no symptoms, either. Symptoms, when they happen, often take three to 28 days to develop after exposure. But it can take years before they do develop.', '2014-05-21 17:41:12');
+
 
 
 -- Question data
@@ -168,14 +205,28 @@ INSERT INTO question (qs_id, qs_name, qs_votes, qs_asw_count) VALUES
   (7, 'Like scabies and pubic lice?', 71, 2),
   (10, 'I saw an advertisement on the bus for Plan B. What is that?', 29, 0),
   (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 1, 3),
-  (15, 'What about other hormonal methods of birth control?', 12, 1);
+  (15, 'What about other hormonal methods of birth control?', 12, 1),
+  (19, 'I heard that there is a sexually transmitted infection that can be transmitted by a man to a woman, but not by a woman to a man. Is that true?', 5, 3),
+  (25, 'Sometimes it''s clear. Is it normal? If not, what''s he supposed to do?', 4, 4),
+  (30, 'I am a woman and want to know if I can contract HPV by performing oral sex on a woman who has it?', 4, 0),
+  (31, 'Can the chlamydia be passed on to other staff or customers?', 0, 0),
+  (32, 'A lot of the information available seems to pertain to mostly heterosexual activity.', 2, 2),
+  (36, 'Is it true that younger men are more at risk of testicular cancer than older men?', 61, 3),
+  (40, 'Is it true that younger men are more at risk of testicular cancer than older men?', 0, 0),
+  (41, 'Could my fiancé have picked up my cold sore on his lips and infected me with it sexually?', 1, 0),
+  (42, 'About three weeks ago I had a cold sore on my lip and had sex with my boyfriend ?', 0, 0),
+  (43, 'Today, my vulva is extremely itchy, red, and irritated. Could my fiancé have picked up my cold sore on his lips and infected me with it sexually ?', 0, 0),
+  (44, 'Is there one test I can get to find out if I have any sexually transmitted infections ?', 2, 0),
+  (45, 'How do I tell my parents I''m thinking of having sex without them freaking out?', 2, 0),
+  (46, 'Do all kids who are available for adoption get adopted?', 7, 0),
+  (47, 'What would be wrong with making teens ask their parents for permission to use birth control?', 0, 0);
 
 
 -- Comment data
 
 INSERT INTO comment (cm_id, cm_question_id) VALUES
 
-  (5, 3), (6, 3), (17, 15), (18, 15);
+  (5, 3), (6, 3), (17, 15), (18, 15), (23, 19), (24, 19), (35, 32);
 
 
 -- Answer data
@@ -183,7 +234,15 @@ INSERT INTO comment (cm_id, cm_question_id) VALUES
 INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
 
   (2, 1, 10, true), (4, 3, 12, false), (8, 7, 0, false), (9, 7, 1, true), (12, 11, 4, false), (13, 11, 10, true), (14, 11, 4, false),
-  (16, 15, 12, true);
+  (16, 15, 12, true),
+
+  (20, 19, 5, false), (21, 19, 20, true), (22, 19, 11, false),
+
+  (26, 25, 12, true), (27, 25, 9, false), (28, 25, 1, false), (29, 25, 0, false),
+
+  (33, 32, 6, false ), (34, 32, 1, false),
+
+  (37, 36, 6, false), (38, 36, 24, false), (39, 36, 20, false);
 
 
 -- Tag data
@@ -221,4 +280,19 @@ INSERT INTO question_tag (qt_question_id, qt_tag_id) VALUES
   (7, 3), (7, 20), (7, 5), (7, 14),
   (10, 3), (10, 4), (10, 5), (10, 13), (10, 20),
   (11, 11), (11, 12), (11, 20),
-  (15, 1), (15, 12), (15, 20), (15, 14);
+  (15, 1), (15, 12), (15, 20), (15, 14),
+  (19, 12), (19, 19), (19, 1),
+  (25, 12), (25, 20), (25, 2),
+  (30, 8), (30, 9), (30, 12),
+  (31, 8), (31, 5), (31, 12), (31, 4),
+  (32, 4), (32, 5), (32, 10), (32, 19),
+  (36, 1), (36, 7), (36, 6),
+  (40, 1), (40, 7),
+  (41, 1), (41, 8),
+  (42, 10), (42, 12),
+  (43, 15), (43, 8),
+  (44, 19), (44, 13),
+  (45, 17), (45, 18),
+  (46, 17), (46, 20),
+  (47, 11), (47, 17);
+

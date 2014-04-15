@@ -70,7 +70,7 @@
                 <td>Answers<br/>${qs.answerCount}</td>
                 <td>
                     <c:forEach items="${qs.tags}" var="tag">
-                        <a class="ui teal label">${tag.name}</a>&thinsp;
+                        <a class="ui teal label">${tag.name}</a>&ensp;
                     </c:forEach>
                 </td>
                 <td>
@@ -88,7 +88,7 @@
 
     <div class="ui borderless pagination menu">
 
-        <c:forEach var="i" begin="1" end="${(qsCount / 2) + 0.5}" step="1">
+        <c:forEach var="i" begin="1" end="${(qsCount / 10) + 0.5}" step="1">
             <a class="item" href="${path}/questions?page=${i}">${i}</a>&emsp;
         </c:forEach>
 

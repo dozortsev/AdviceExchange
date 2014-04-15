@@ -72,7 +72,7 @@
 
             ORDER BY ua_created DESC
 
-            LIMIT :offset, 2
+            LIMIT :offset, 10
         "/>
     </bean>
 
