@@ -28,9 +28,9 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
 
     @Override public Integer addAnswer(Question question, Answer answer) {
         try {
-            log.info(format("Add answer to question; ID: %d", question.getId()));
+            log.info(format("Add Answer to Question ID: %d", question.getId()));
             getDao().addAnswer(question, answer);
-            log.info(format("Success create; ID: %d", answer.getId()));
+            log.info(format("Success create; Answer ID: %d", answer.getId()));
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -40,7 +40,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
 
     @Override public Integer delAnswer(Question question, Answer answer) {
         try {
-            log.info(format("Delete answer; ID: %d form question; ID: %d", answer.getId(), question.getId()));
+            log.info(format("Delete Answer ID: %d form Question ID: %d", answer.getId(), question.getId()));
             getDao().delAnswer(question, answer);
             log.info("Success delete");
 
@@ -54,11 +54,10 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     @Override public LinkedHashSet<Question> loadFrom(Integer offset) {
         LinkedHashSet<Question> questions = new LinkedHashSet<>();
         try {
-            log.info(format("Load %ss", getEntityClass()));
-
+            log.info(format("Load Questions from: %d row count: 2", offset));
             questions.addAll(getDao().loadFrom(offset));
+            log.info(format("Set of Questions have size: %d", questions.size()));
 
-            log.info(format("Load from %d size 2. Set size: %d", offset, questions.size()));
         } catch (Exception e) {
             log.error("Error: ", e);
         }
@@ -69,9 +68,9 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     @Override public Set<Question> findQuestionsByUserId(Long userId) {
         Set<Question> questions = new HashSet<>();
         try {
-            log.info(format("Find %s by User Id: %d", getEntityClass(), userId));
+            log.info(format("Find Questions by User ID: %d", userId));
             questions.addAll(getDao().findQuestionsByUserId(userId));
-            log.info(format("Set of %s have size: %d", getEntityClass(), questions.size()));
+            log.info(format("Set of Questions have size: %d", questions.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -83,9 +82,9 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     @Override public Set<Question> findQuestionsByTags(String... tags) {
         Set<Question> questions = new LinkedHashSet<>();
         try {
-            log.info(format("Find %s by Tags: %s", getEntityClass(), Arrays.toString(tags)));
+            log.info(format("Find Questions by Tags: %s", Arrays.toString(tags)));
             questions.addAll(getDao().findQuestionsByTags(tags));
-            log.info(format("Set of %s have size: %d", getEntityClass(), questions.size()));
+            log.info(format("Set of Questions have size: %d", questions.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);

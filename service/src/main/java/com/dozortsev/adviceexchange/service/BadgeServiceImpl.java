@@ -30,9 +30,9 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
     @Override public Set<Badge> findBadgesByUserId(Long userId) {
         Set<Badge> badges = new HashSet<>();
         try {
-            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
+            log.info(format("Find Badges by User Id: %d", userId));
             badges.addAll(getDao().findBadgesByUserId(userId));
-            log.info(format("Set of %s have size: %s", getEntityClass(), badges.size()));
+            log.info(format("Set of Badges have size: %d", badges.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);

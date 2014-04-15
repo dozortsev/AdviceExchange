@@ -23,7 +23,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Override public ID create(T entity) {
         try {
-            log.info(format("Create new %s", getEntityClass()));
+            log.info(format("Create new %s", getEntityClass().getSimpleName()));
             getDao().create(entity);
             log.info(format("Success create; ID: %s", entity.getId()));
 
@@ -35,7 +35,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Override public void delete(T entity) {
         try {
-            log.info(format("Delete %s", getEntityClass()));
+            log.info(format("Delete %s", getEntityClass().getSimpleName()));
             getDao().delete(entity);
             log.info("Success delete");
 
@@ -46,9 +46,9 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Override public void deleteById(ID id) {
         try {
-            log.info(format("Delete %s by ID: %s", getEntityClass(), id));
+            log.info(format("Delete %s by ID: %s", getEntityClass().getSimpleName(), id));
             getDao().deleteById(id);
-            log.info(format("%s with this ID not exist", getEntityClass()));
+            log.info("Success delete");
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -58,14 +58,14 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
     @Transactional(readOnly = true)
     @Override public T findById(ID id) {
         try {
-            log.info(format("Find %s by ID: %s", getEntityClass(), id));
+            log.info(format("Find %s by ID: %s", getEntityClass().getSimpleName(), id));
             T entity = getDao().findById(id);
 
             if (entity != null) {
                 log.info("Success found");
                 return entity;
             }
-            log.info(format("%s with this ID not exist", getEntityClass()));
+            log.info(format("%s with this ID not exist", getEntityClass().getSimpleName()));
         } catch (Exception e) {
             log.error("Error: ", e);
         }
@@ -74,7 +74,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Override public T update(T entity) {
         try {
-            log.info(format("Update %s. ID: %s", getEntityClass(), entity.getId()));
+            log.info(format("Update %s. ID: %s", getEntityClass().getSimpleName(), entity.getId()));
             getDao().update(entity);
             log.info("Success updated");
 
@@ -88,7 +88,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         int totalCount = 0;
         try {
             totalCount = getDao().totalCount();
-            log.info(format("Total count of %ss is: %d", getEntityClass(), totalCount));
+            log.info(format("Total count of %ss is: %d", getEntityClass().getSimpleName(), totalCount));
             return totalCount;
 
         } catch (Exception e) {

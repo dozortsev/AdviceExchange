@@ -23,6 +23,7 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
         setEntityClass(Tag.class);
     }
 
+    @Transactional(readOnly = true)
     @Override public Tag findTagByName(String name) {
         try {
             log.info(format("Find Tab by name: %s", name));

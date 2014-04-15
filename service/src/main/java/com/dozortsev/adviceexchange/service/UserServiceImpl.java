@@ -29,14 +29,14 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
 
     @Override public User findUserByLogin(String login) {
         try {
-            log.info(format("Find %s by Login: %s", getEntityClass(), login));
+            log.info(format("Find User by Login: %s", login));
             User user = getDao().findUserByLogin(login);
 
             if (user != null) {
-                log.info("Successful found");
+                log.info("Success found");
                 return user;
             }
-            log.info(format("%s not exist", getEntityClass()));
+            log.info("User not exist");
         } catch (Exception e) {
             log.error("Error: ", e);
         }
@@ -48,10 +48,10 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         try {
             log.info(format("Find User by name: %s", name));
             users.addAll(getDao().findUsersByName(name));
-            log.info(format("Set have size: %d", users.size()));
+            log.info(format("Set of Users have size: %d", users.size()));
 
         } catch (Exception e) {
-            log.error("ErrorL ", e);
+            log.error("Error: ", e);
         }
         return users;
     }
@@ -59,9 +59,9 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
     @Override public Set<UserActivity> userActivities(Long id) {
         Set<UserActivity> userActivities = new LinkedHashSet<>();
         try {
-            log.info(format("User activity by Id: %d", id));
+            log.info(format("User activity by ID: %d", id));
             userActivities.addAll(getDao().userActivities(id));
-            log.info(format("Set have size: %d", userActivities.size()));
+            log.info(format("Set of Activity have size: %d", userActivities.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);

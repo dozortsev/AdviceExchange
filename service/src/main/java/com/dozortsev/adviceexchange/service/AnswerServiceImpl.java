@@ -29,9 +29,9 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
     @Override public Set<Answer> findAnswersByUserId(Long userId) {
         Set<Answer> answers = new HashSet<>();
         try {
-            log.info(format("Find %s by User Id: %s", getEntityClass(), userId));
+            log.info(format("Find User by ID: %d", userId));
             answers.addAll(getDao().findAnswersByUserId(userId));
-            log.info(format("Set of %s have size: %s", getEntityClass(), answers.size()));
+            log.info(format("Set of Users have size: %d", answers.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -42,9 +42,9 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
     @Override public Set<Answer> findAnswersByQuestionId(Long questionId) {
         HashSet<Answer> answers = new HashSet<>();
         try {
-            log.info(format("Find %s by Question Id: %s", getEntityClass(), questionId));
+            log.info(format("Find Question by ID: %d", questionId));
             answers.addAll(getDao().findAnswersByQuestionId(questionId));
-            log.info(format("Set of %s have size: %s", getEntityClass(), answers.size()));
+            log.info(format("Set of Questions have size: %d", answers.size()));
 
         } catch (Exception e) {
             log.error("Error: ", e);
