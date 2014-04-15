@@ -10,21 +10,22 @@
 
 <div class="ui inverted segment">
     <h3 class="ui left tiny floated header">
-        <a class="ui purple label" href="${path}/user/${user.id}">
+        <a href="${path}/user/${user.id}"
+           class="ui small red submit button">
             ${user.name}
         </a>
     </h3>
-
-    <h3 class="ui right tiny floated header">
-        <a href="${path}/questions/ask" class="ui green label">
-            Ask Question
+    <h3 class="ui left tiny floated header">
+        <a class="ui small blue submit button"
+           href="<c:url value="/j_spring_security_logout"/>">
+            Logout
         </a>
     </h3>
 
     <h3 class="ui right tiny floated header">
-        <a class="ui small blue submit button"
-           href="<c:url value="/j_spring_security_logout"/>">
-            Logout
+        <a href="${path}/questions/ask"
+           class="ui small green submit button">
+            Ask Question
         </a>
     </h3>
 </div>
@@ -60,7 +61,7 @@
                             ${qs.name}
                     </a></b>
                     <br/>
-                    <small>${fn:substring(qs.content, 0, 100)}</small>
+                    <small>${fn:substring(qs.content, 0, 250)}&hellip;</small>
                 </td>
             </tr>
             <tr>

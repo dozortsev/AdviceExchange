@@ -40,6 +40,11 @@ $(function () {
 });
 
 
+$('.ui.popup')
+    .popup()
+;
+
+
 /* Form validation */
 $('.ui.form')
     .form({

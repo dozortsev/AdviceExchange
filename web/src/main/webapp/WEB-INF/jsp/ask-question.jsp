@@ -6,7 +6,6 @@
     <title>
         Ask Question
     </title>
-
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 

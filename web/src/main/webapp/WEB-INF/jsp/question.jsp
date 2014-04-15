@@ -13,50 +13,90 @@
 
 <div class="ui piled segment">
 
-    ${question.votes}<h1>${question.name}</h1>${question.created}<br/>${question.user.name}<br/>
 
-    <div id="question-content" class="markdown-body">${question.content}</div>
-    <br/><br/><br/>
+    <table class="ui basic table">
+        <thead>
+        <tr>
+            <th class="ui header" colspan="3">${question.name}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td rowspan="2"><h1>${question.votes}</h1></td>
+            <td colspan="2">${question.content}</td>
+        </tr>
+        <tr>
+            <td>
+                <c:forEach var="tag" items="${question.tags}">
+                    <a class="ui teal label">${tag.name}</a>&thinsp;
+                </c:forEach>
+            </td>
+            <td>Asked&ensp;<fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${question.created}"/>
+                <a href="#"><b>${question.user.name}</b></a>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2">
 
-    <c:forEach var="tag" items="${question.tags}">
-        <a class="ui teal label">${tag.name}</a>&thinsp;
-    </c:forEach>
+                <div class="ui comments">
+                    <div class="comment">
+                        <div class="content">
+                            <c:forEach var="cm" items="${comments}">
+                                <div class="text">
+                                    ${cm.content}
+                                        <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${cm.created}"/>
 
-    <br/>
-    <hr/>
-    <br/>
-
-    <h1>Answers</h1>
-
-    <c:forEach items="${answers}" var="asw">
-
-        ${asw.votes}&emsp;
-
-        <div id="preview-container">
-            <div>
-                <div id="answer-content" class="markdown-body">
-                        ${asw.content}
+                                        <a class="author"><b>${cm.user.name}</b></a>
+                                    <a href="#" class="remove icon"></a>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <form class="ui reply form">
+                        <div class="field">
+                            <textarea></textarea>
+                            <div class="ui button small red submit labeled">
+                                Add
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-        ${asw.created}
-        <br/>
-        ${asw.user.name}
-        <br/>
-    </c:forEach>
-    <br/>
-    <hr/>
-    <br/>
+    <div class="ui section divider"></div>
 
-    <h1>Comments</h1>
-    <c:forEach items="${comments}" var="cm">
-        <i>${cm.content}</i><br/><br/>
-    </c:forEach>
+    <table class="ui basic table">
+        <thead>
+        <tr>
+            <th class="ui header" colspan="3">${fn:length(answers)} Answer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="asw" items="${answers}">
+            <tr>
+                <td rowspan="2"><h1>${asw.votes}</h1></td>
+                <td colspan="2">
+                    ${asw.content}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Answered&ensp;<fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${asw.created}"/>
+                    <a href="#"><b>${asw.user.name}</b></a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
-    <br/><br/><br/>
-
-        <a href="${path}/questions">Questions</a>
+    <a href="${path}/questions"
+       class="ui small red submit button">
+        Questions
+    </a>
 
 </div>
 
