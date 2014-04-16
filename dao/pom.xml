@@ -15,6 +15,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <apache.dbcp.version>1.4</apache.dbcp.version>
+
+        <db.initial.source.ddl>
+            ${project.basedir}/src/main/resources/META-INF/database/adviceexchange-ddl.sql
+        </db.initial.source.ddl>
+
+        <db.initial.source.dml>
+            ${project.basedir}/src/main/resources/META-INF/database/adviceexchange-dml.sql
+        </db.initial.source.dml>
     </properties>
 
     <dependencies>
@@ -35,5 +43,56 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- SQL Maven Plugin -->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost:3306/adviceexchange</url>
+                    <username>root</username>
+                    <password>anton10</password>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>create-db</id>
+                        <phase>
+                            validate
+                        </phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <url>
+                                jdbc:mysql://localhost:3306/adviceexchange
+                            </url>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>${db.initial.source.ddl}</srcFile>
+                                <srcFile>${db.initial.source.dml}</srcFile>
+                            </srcFiles>
+                            <onError>abort</onError>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
