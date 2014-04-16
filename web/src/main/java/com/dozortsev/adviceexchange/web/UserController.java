@@ -46,15 +46,16 @@ public class UserController {
     public ModelAndView users(@RequestParam(required = false) Integer page,
                               @RequestParam(required = false) String name) {
 
-        return new ModelAndView("users", "users", userService.loadFrom(
-                name != null ? name : "", page != null ? (page - 1) * 2 : 0)
+        return new ModelAndView("users", "userCount", userService.totalCount())
+                .addObject("users", userService.loadFrom(
+                name != null ? name : "", page != null ? (page - 1) * 10 : 0)
         );
     }
 
     @RequestMapping(value="/questions", method = GET)
     public ModelAndView index(@RequestParam(required = false) Integer page) {
 
-        return new ModelAndView("index", "questions", questionService.loadFrom(page != null ? (page - 1) * 2 : 0))
+        return new ModelAndView("index", "questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0))
                 .addObject("qsCount", questionService.totalCount());
     }
 

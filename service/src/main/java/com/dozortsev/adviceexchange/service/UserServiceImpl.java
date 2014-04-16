@@ -30,7 +30,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
     @Override public Set<User> loadFrom(String name, Integer offset) {
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {
-            log.info(format("Load Users by name: %s from: %d row count: 2", name, offset));
+            log.info(format("Load Users by name: '%s' from: %d row count: 10", name, offset));
             users.addAll(getDao().loadFrom(name, offset));
             log.info(format("Set of Users have size: %d", users.size()));
 

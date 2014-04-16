@@ -6,7 +6,7 @@
     <title>User</title>
 </head>
 
-<body class="login-body">
+<body>
 
 <div class="ui inverted segment">
     <h3 class="ui left tiny floated header">
