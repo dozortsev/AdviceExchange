@@ -27,6 +27,19 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         setEntityClass(User.class);
     }
 
+    @Override public Set<User> loadFrom(Integer offset) {
+        LinkedHashSet<User> users = new LinkedHashSet<>();
+        try {
+            log.info(format("Load Users from: %d row count: 2", offset));
+            users.addAll(getDao().loadFrom(offset));
+            log.info(format("Set of Users have size: %d", users.size()));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return users;
+    }
+
     @Override public User findUserByLogin(String login) {
         try {
             log.info(format("Find User by Login: %s", login));

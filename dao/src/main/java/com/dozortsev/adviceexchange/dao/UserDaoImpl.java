@@ -2,6 +2,7 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.domain.UserActivity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,18 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
+    @Autowired private String loadUserSet;
+
     public UserDaoImpl() {
         setEntityClass(User.class);
+    }
+
+    @Override public List<User> loadFrom(Integer offset) {
+
+        return getCurrentSession().createSQLQuery(loadUserSet)
+                .addEntity(getEntityClass())
+                .setInteger("offset", offset)
+                .list();
     }
 
     @Override public User findUserByLogin(String login) {

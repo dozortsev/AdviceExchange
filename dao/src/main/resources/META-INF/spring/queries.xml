@@ -30,7 +30,7 @@
 
                 JOIN user_activity ON ua_id = qs_id
 
-            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId AND ua_active = true
+            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId AND ua_active = TRUE
         "/>
     </bean>
 
@@ -48,7 +48,7 @@
 
                 JOIN tag ON qt_tag_id = tag_id
 
-            WHERE tag_name IN (:tags) AND ua_active = true
+            WHERE tag_name IN (:tags) AND ua_active = TRUE
 
             GROUP BY qs_id
 
@@ -77,6 +77,22 @@
     </bean>
 
 
+    <!-- Load limit set of Questions -->
+
+    <bean id="loadUserSet" class="java.lang.String">
+        <constructor-arg value="
+
+            SELECT * FROM user
+
+            WHERE user_enabled = TRUE
+
+            ORDER BY user_joined DESC
+
+            LIMIT :offset, 10
+        "/>
+    </bean>
+
+
     <!-- Find all Answers by User id -->
 
     <bean id="findAnswersByUserId" class="java.lang.String">
@@ -86,7 +102,7 @@
 
                 JOIN user_activity ON ua_id = asw_id
 
-            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId AND ua_active = true
+            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId AND ua_active = TRUE
         "/>
     </bean>
 
@@ -102,7 +118,7 @@
 
                 JOIN question ON qs_id = asw_question_id
 
-            WHERE ua_type = 'ANSWER' AND qs_id = :questionId AND ua_active = true
+            WHERE ua_type = 'ANSWER' AND qs_id = :questionId AND ua_active = TRUE
         "/>
     </bean>
 
