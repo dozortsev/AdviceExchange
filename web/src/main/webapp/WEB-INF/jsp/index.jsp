@@ -17,6 +17,12 @@
     </h3>
     <h3 class="ui left tiny floated header">
         <a class="ui small blue submit button"
+           href="${path}/users">
+            Users
+        </a>
+    </h3>
+    <h3 class="ui left tiny floated header">
+        <a class="ui small blue submit button"
            href="<c:url value="/j_spring_security_logout"/>">
             Logout
         </a>

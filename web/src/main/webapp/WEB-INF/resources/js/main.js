@@ -22,12 +22,11 @@ $(document).ready(function () {
     );
 });
 
+var converter = new Showdown.converter();
 
 // Ask Question
 
 $(function () {
-
-    var converter = new Showdown.converter();
 
     $('#user-input').keyup(function () {
 
@@ -40,9 +39,25 @@ $(function () {
 });
 
 
-$('.ui.popup')
-    .popup()
-;
+var foo = function () {
+
+//    var converter = new Showdown.converter();
+
+//           var userInput = document.getElementById('user-input');
+//
+//           console.log(userInput.innerHTML);
+//
+//           document.getElementById('wiki-style').innerHTML = converter.makeHtml(userInput.innerHTML);
+
+    var bar = $('#quest1');
+
+    console.log(bar.text());
+
+    $('#question-content').html(converter.makeHtml(bar.text()));
+};
+
+
+$('.ui.popup').popup();
 
 
 /* Form validation */

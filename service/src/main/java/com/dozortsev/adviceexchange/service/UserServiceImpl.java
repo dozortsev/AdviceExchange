@@ -27,11 +27,11 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         setEntityClass(User.class);
     }
 
-    @Override public Set<User> loadFrom(Integer offset) {
+    @Override public Set<User> loadFrom(String name, Integer offset) {
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {
-            log.info(format("Load Users from: %d row count: 2", offset));
-            users.addAll(getDao().loadFrom(offset));
+            log.info(format("Load Users by name: %s from: %d row count: 2", name, offset));
+            users.addAll(getDao().loadFrom(name, offset));
             log.info(format("Set of Users have size: %d", users.size()));
 
         } catch (Exception e) {

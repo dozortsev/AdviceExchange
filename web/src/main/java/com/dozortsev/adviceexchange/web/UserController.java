@@ -32,7 +32,7 @@ public class UserController {
 
     @Autowired private QuestionService questionService;
 
-    private static final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+    @Autowired private Md5PasswordEncoder encoder;
 
     private static final Logger log = getLogger(UserController.class);
 
@@ -42,16 +42,20 @@ public class UserController {
         return new ModelAndView("redirect:/questions", "user", userService.findUserByLogin(principal.getName()));
     }
 
+    @RequestMapping(value = "/users", method = GET)
+    public ModelAndView users(@RequestParam(required = false) Integer page,
+                              @RequestParam(required = false) String name) {
+
+        return new ModelAndView("users", "users", userService.loadFrom(
+                name != null ? name : "", page != null ? (page - 1) * 2 : 0)
+        );
+    }
+
     @RequestMapping(value="/questions", method = GET)
     public ModelAndView index(@RequestParam(required = false) Integer page) {
 
-        ModelAndView mav = new ModelAndView("index");
-
-        if (page != null)
-            return mav.addObject("questions", questionService.loadFrom((page - 1) * 2));
-
-        return mav.addObject("questions", questionService.loadFrom(0))
-                  .addObject("qsCount", questionService.totalCount());
+        return new ModelAndView("index", "questions", questionService.loadFrom(page != null ? (page - 1) * 2 : 0))
+                .addObject("qsCount", questionService.totalCount());
     }
 
     @RequestMapping(value = "/user/{id}", method = GET)

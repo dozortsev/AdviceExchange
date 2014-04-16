@@ -24,10 +24,11 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
         setEntityClass(User.class);
     }
 
-    @Override public List<User> loadFrom(Integer offset) {
+    @Override public List<User> loadFrom(String name, Integer offset) {
 
         return getCurrentSession().createSQLQuery(loadUserSet)
                 .addEntity(getEntityClass())
+                .setString("username", "%" + name + "%")
                 .setInteger("offset", offset)
                 .list();
     }

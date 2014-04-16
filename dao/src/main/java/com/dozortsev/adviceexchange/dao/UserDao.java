@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDao extends GenericDao<Long, User> {
 
-    List<User> loadFrom(Integer offset);
+    List<User> loadFrom(String name, Integer offset);
 
     User findUserByLogin(String login);
 
