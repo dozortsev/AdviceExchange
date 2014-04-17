@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<body class="login-body">
+<body class="login-body" onload="bar('#answer-content', '#answer-preview');">
 
 <div class="ui piled segment">
 
@@ -22,18 +22,12 @@
         </div>
 
         <div class="ui form">
-            <div id="entry-container" class="field">
-
-                <textarea id="user-input" name="content"></textarea>
+            <div class="field">
+                <textarea id="answer-content" name="content"></textarea>
             </div>
         </div>
 
-        <div id="preview-container">
-            <hr/>
-            <div>
-                <div id="wiki-style" class="markdown-body"></div>
-            </div>
-        </div>
+        <div id="answer-preview" class="markdown-body"></div>
 
         <input class="ui small blue submit button" type="submit" value="Submit"/>
     </form:form>

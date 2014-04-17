@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static java.lang.String.format;
@@ -40,7 +41,7 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
     }
 
     @Override public Set<Answer> findAnswersByQuestionId(Long questionId) {
-        HashSet<Answer> answers = new HashSet<>();
+        HashSet<Answer> answers = new LinkedHashSet<>();
         try {
             log.info(format("Find Question by ID: %d", questionId));
             answers.addAll(getDao().findAnswersByQuestionId(questionId));

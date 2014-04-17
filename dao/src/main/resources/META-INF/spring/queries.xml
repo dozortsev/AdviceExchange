@@ -119,6 +119,8 @@
                 JOIN question ON qs_id = asw_question_id
 
             WHERE ua_type = 'ANSWER' AND qs_id = :questionId AND ua_active = TRUE
+
+            ORDER BY asw_votes DESC
         "/>
     </bean>
 
@@ -137,6 +139,8 @@
                 JOIN question ON qs_id = cm_question_id
 
             WHERE ua_type = 'COMMENT' AND qs_id = :questionId
+
+            ORDER BY ua_created
         "/>
     </bean>
 </beans>

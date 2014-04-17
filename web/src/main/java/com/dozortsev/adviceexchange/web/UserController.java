@@ -76,14 +76,6 @@ public class UserController {
         return "redirect:/question/" + ask.getId();
     }
 
-    @RequestMapping(value = "/question/{id}")
-    public ModelAndView question(@PathVariable Long id) {
-
-        return new ModelAndView("question", "question", questionService.findById(id))
-                .addObject("answers", answerService.findAnswersByQuestionId(id))
-                .addObject("comments", commentService.findCommentsByQuestionId(id));
-    }
-
     @RequestMapping(value = "/search", method = GET)
     public ModelAndView findQuestions(@RequestParam String tags) {
 

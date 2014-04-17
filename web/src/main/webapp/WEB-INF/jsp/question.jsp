@@ -8,10 +8,21 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<body class="login-body" onload="foo()">
+<div class="ui red inverted menu">
+    <a class="active item" href="${path}/questions">
+        <i class="home icon"></i>Home
+    </a>
+    <a class="item">
+        <i class="mail icon"></i>Messages
+    </a>
+    <a class="item">
+        <i class="user icon"></i>Friends
+    </a>
+</div>
+
+<body class="login-body" onload="foo('#question-content', '#question-preview'); bar('#answer-raw-content', '#answer-md-content');">
 
 <div class="ui piled segment">
-
 
     <table class="ui basic table">
         <thead>
@@ -94,17 +105,36 @@
             <tr>
                 <td></td>
                 <td>Answered&ensp;<fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${asw.created}"/>
-                    <a href="#"><b>${asw.user.name}</b></a>
+                    <a href="${path}/user/${asw.user.id}"><b>${asw.user.name}</b></a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 
-    <a href="${path}/questions"
-       class="ui small red submit button">
-        Questions
-    </a>
+    <%-- Post answer --%>
+
+    <form:form action="${path}/question/answer/create" method="POST" modelAttribute="answer">
+        <p>
+        <div class="ui form">
+            <p>Your answer</p>
+
+            <div class="field">
+                <textarea id="answer-raw-content" name="content"></textarea>
+            </div>
+        </div>
+        </p>
+        <div class="ui horizontal icon divider">
+            <i class="circular lightbulb icon"></i>
+        </div>
+        <p>
+        <div id="answer-md-content" class="ui segment"></div>
+        </p>
+
+        <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
+    </form:form>
+
+
 
 </div>
 

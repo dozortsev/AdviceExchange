@@ -26,19 +26,19 @@ $(document).ready(function () {
 
 var converter = new Showdown.converter();
 
-$(function () {
+var bar = function (rawContent, mdContent) {
 
-    $('#user-input').keyup(function () {
+    $(rawContent).keyup(function () {
 
-        var div = $('#wiki-style').html(converter.makeHtml(this.value));
+        var div = $(mdContent).html(converter.makeHtml(this.value));
 
-        $('#preview-container, #user-input').css({
-            height: div.outerHeight() + 40
-        })
+//        $('#preview-container, #user-input').css({
+//            height: div.outerHeight() + 40
+//        })
     });
-});
+};
 
-var foo = function () {
+var foo = function (rawContent, mdContent) {
 
 //           var userInput = document.getElementById('user-input');
 //
@@ -46,9 +46,9 @@ var foo = function () {
 //
 //           document.getElementById('wiki-style').innerHTML = converter.makeHtml(userInput.innerHTML);
 
-    var bar = $('#question-content');
+    var bar = $(rawContent);
 
-    $('#question-preview').html(converter.makeHtml(bar.text()));
+    $(mdContent).html(converter.makeHtml(bar.text()));
 };
 
 

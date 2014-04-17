@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static java.lang.String.format;
@@ -28,7 +28,7 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
 
     @Transactional(readOnly = true)
     @Override public Set<Comment> findCommentsByQuestionId(Long questionId) {
-        Set<Comment> comments = new HashSet<>();
+        Set<Comment> comments = new LinkedHashSet<>();
         try {
             log.info(format("Find Comments by User ID: %d", questionId));
             comments.addAll(getDao().findCommentsByQuestionId(questionId));

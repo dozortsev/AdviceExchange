@@ -4,26 +4,61 @@
 
 <title>${user.name}</title>
 
-<table>
-    <tr>
-        <td>Questions</td>
-    </tr>
-    <c:forEach items="${questions}" var="qs">
-        <tr>
-            <td>${qs.id} ${qs.name} ${qs.user.name}</td>
-        </tr>
-    </c:forEach>
-</table>
+<body class="login-body">
 
-<br/><br/><br/>
+<div class="ui piled segment">
 
-<table>
-    <tr>
-        <td>Answers</td>
-    </tr>
-    <c:forEach items="${answers}" var="asw">
-        <tr>
-            <td>${asw.id} ${asw.user.name}</td>
-        </tr>
-    </c:forEach>
-</table>
+    <p>
+    <h3>${user.name}</h3>
+    </p>
+    <div class="ui divider"></div>
+</div>
+
+<div class="ui grid">
+    <div class="eight wide column">
+        <div class="ui vertical fluid menu">
+            <div class="header center item">
+                Questions
+            </div>
+            <div class="item">
+
+                <table class="ui basic table">
+                    <tbody>
+                    <c:forEach items="${questions}" var="qs">
+                        <tr>
+                            <td>${qs.votes}</td>
+                            <td><a href="${path}/question/${qs.id}">${qs.name}</a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="eight wide column">
+        <div class="ui vertical fluid menu">
+            <div class="header center item">
+                Answers
+            </div>
+            <div class="item">
+                <table class="ui basic table">
+                    <tbody>
+                    <c:forEach items="${answers}" var="asw">
+                        <tr>
+                            <td>${asw.votes}</td>
+                            <td><a href="${path}/question/${asw.question.id}">${fn:substring(asw.content, 0, 60)}</a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="${path}/js/jquery-1.11.0.js"></script>
+<script src="${path}/js/semantic.js"></script>
+<script src="${path}/js/main.js"></script>

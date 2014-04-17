@@ -20,13 +20,13 @@
 
 <div class="ui red inverted menu">
     <a class="active item">
-        <i class="home icon"></i> Home
+        <i class="home icon"></i>Home
     </a>
     <a class="item">
-        <i class="mail icon"></i> Messages
+        <i class="mail icon"></i>Messages
     </a>
     <a class="item">
-        <i class="user icon"></i> Friends
+        <i class="user icon"></i>Friends
     </a>
 </div>
 
@@ -68,13 +68,65 @@
                     <a href="${path}/user/${user.id}">${user.name}</a>
                 </td>
                 <td>
-                    <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${user.joined}"/>
+                    <fmt:formatDate type="both" value="${user.joined}"
+                                    pattern="yyyy-MM-dd / HH:mm"/>
                 </td>
                 <td>${user.reputation}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+
+<%-- New
+
+    <c:set var="index" value="4" scope="page"/>
+
+    <c:forEach items="${users}" var="user">
+
+    <div class="ui four connected items">
+
+        <c:set var="index" value="4" scope="page"/>
+
+        <div class="row">
+            <div class="item">
+                <div class="content">
+                    <div class="name">
+                            ${user.name}
+                    </div>
+                    <p class="date">
+                        <fmt:formatDate type="both" value="${user.joined}"
+                                        pattern="yyyy-MM-dd / HH:mm"/>
+                    </p>
+
+                    <p class="description">
+                            ${user.email}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <c:set var="index" value="${index - 1}" scope="page"/>
+
+        <div class="item">
+            <div class="content">
+                <div class="name">
+                        ${user.name}
+                </div>
+                <p class="date">
+                    <fmt:formatDate type="both" value="${user.joined}"
+                                    pattern="yyyy-MM-dd / HH:mm"/>
+                </p>
+
+                <p class="description">
+                        ${user.email}
+                </p>
+            </div>
+        </div>
+        </c:forEach>
+
+
+--%>
 
     <div class="ui borderless pagination menu">
 
@@ -85,6 +137,7 @@
         </c:forEach>
 
     </div>
+
 
 </div>
 
