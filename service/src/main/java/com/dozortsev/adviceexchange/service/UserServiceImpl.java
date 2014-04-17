@@ -27,11 +27,11 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         setEntityClass(User.class);
     }
 
-    @Override public Set<User> loadFrom(String name, Integer offset) {
+    @Override public Set<User> findUsersByName(String name, Integer offset) {
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {
             log.info(format("Load Users by name: '%s' from: %d row count: 10", name, offset));
-            users.addAll(getDao().loadFrom(name, offset));
+            users.addAll(getDao().findUsersByName(name, offset));
             log.info(format("Set of Users have size: %d", users.size()));
 
         } catch (Exception e) {
@@ -54,19 +54,6 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
             log.error("Error: ", e);
         }
         return null;
-    }
-
-    @Override public Set<User> findUsersByName(String name) {
-        Set<User> users = new LinkedHashSet<>();
-        try {
-            log.info(format("Find User by name: %s", name));
-            users.addAll(getDao().findUsersByName(name));
-            log.info(format("Set of Users have size: %d", users.size()));
-
-        } catch (Exception e) {
-            log.error("Error: ", e);
-        }
-        return users;
     }
 
     @Override public Set<UserActivity> userActivities(Long id) {

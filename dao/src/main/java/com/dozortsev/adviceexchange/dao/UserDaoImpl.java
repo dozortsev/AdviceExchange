@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.hibernate.criterion.CriteriaSpecification.DISTINCT_ROOT_ENTITY;
 import static org.hibernate.criterion.Restrictions.eq;
-import static org.hibernate.criterion.Restrictions.like;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY, readOnly = true)
@@ -24,7 +23,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
         setEntityClass(User.class);
     }
 
-    @Override public List<User> loadFrom(String name, Integer offset) {
+    @Override public List<User> findUsersByName(String name, Integer offset) {
 
         return getCurrentSession().createSQLQuery(loadUserSet)
                 .addEntity(getEntityClass())
@@ -39,14 +38,6 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
                 .add(eq("email", login))
                 .add(eq("enabled", Boolean.TRUE))
                 .uniqueResult();
-    }
-
-    @Override public List<User> findUsersByName(String name) {
-
-        return getCurrentSession().createCriteria(getEntityClass())
-                .add(like("name", "%" + name + "%"))
-                .setResultTransformer(DISTINCT_ROOT_ENTITY)
-                .list();
     }
 
     @Override public List<UserActivity> userActivities(Long id) {

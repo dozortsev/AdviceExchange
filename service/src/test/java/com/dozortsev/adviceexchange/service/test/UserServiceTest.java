@@ -123,9 +123,9 @@ public class UserServiceTest extends TestContext {
 
     @Test public void testFindUserByName() {
 
-        final String pattern = "all";
+        final String regex = "all";
 
-        final Set<User> users = userService.findUsersByName(pattern);
+        final Set<User> users = userService.findUsersByName(regex, 0);
         assertEquals(3, users.size());
     }
 

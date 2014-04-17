@@ -47,7 +47,7 @@ public class UserController {
                               @RequestParam(required = false) String name) {
 
         return new ModelAndView("users", "userCount", userService.totalCount())
-                .addObject("users", userService.loadFrom(
+                .addObject("users", userService.findUsersByName(
                 name != null ? name : "", page != null ? (page - 1) * 10 : 0)
         );
     }
