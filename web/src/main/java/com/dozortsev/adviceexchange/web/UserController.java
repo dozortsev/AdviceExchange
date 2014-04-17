@@ -56,7 +56,7 @@ public class UserController {
     public ModelAndView index(@RequestParam(required = false) Integer page) {
 
         return new ModelAndView("index", "questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0))
-                .addObject("qsCount", questionService.totalCount());
+                .addObject("questionCount", questionService.totalCount());
     }
 
     @RequestMapping(value = "/user/{id}", method = GET)

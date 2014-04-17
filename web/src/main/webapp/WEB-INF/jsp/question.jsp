@@ -6,10 +6,9 @@
     <title>Question</title>
 
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
-
 </head>
 
-<body class="login-body">
+<body class="login-body" onload="foo()">
 
 <div class="ui piled segment">
 
@@ -23,7 +22,16 @@
         <tbody>
         <tr>
             <td rowspan="2"><h1>${question.votes}</h1></td>
-            <td colspan="2">${question.content}</td>
+            <td colspan="2">
+
+                <%-- raw --%>
+
+                <div id="question-content">${question.content}</div>
+
+                <%-- preveiw --%>
+
+                <div id="question-preview" class="content-body markdown-body"></div>
+            </td>
         </tr>
         <tr>
             <td>
@@ -38,14 +46,14 @@
         <tr>
             <td></td>
             <td colspan="2">
-
                 <div class="ui comments">
                     <div class="comment">
                         <div class="content">
                             <c:forEach var="cm" items="${comments}">
                                 <div class="text">
                                     ${cm.content}
-                                        <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${cm.created}"/>
+                                        <fmt:formatDate type="both" value="${cm.created}"
+                                                        pattern="yyyy-MM-dd / HH:mm"/>
 
                                         <a class="author"><b>${cm.user.name}</b></a>
                                     <a href="#" class="remove icon"></a>
@@ -72,7 +80,7 @@
     <table class="ui basic table">
         <thead>
         <tr>
-            <th class="ui header" colspan="3">${fn:length(answers)} Answer</th>
+            <th class="ui header" colspan="3">${fn:length(answers)}&ensp;Answer</th>
         </tr>
         </thead>
         <tbody>

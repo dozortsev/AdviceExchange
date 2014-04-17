@@ -22,9 +22,9 @@ $(document).ready(function () {
     );
 });
 
-var converter = new Showdown.converter();
-
 // Ask Question
+
+var converter = new Showdown.converter();
 
 $(function () {
 
@@ -38,10 +38,7 @@ $(function () {
     });
 });
 
-
 var foo = function () {
-
-//    var converter = new Showdown.converter();
 
 //           var userInput = document.getElementById('user-input');
 //
@@ -49,11 +46,9 @@ var foo = function () {
 //
 //           document.getElementById('wiki-style').innerHTML = converter.makeHtml(userInput.innerHTML);
 
-    var bar = $('#quest1');
+    var bar = $('#question-content');
 
-    console.log(bar.text());
-
-    $('#question-content').html(converter.makeHtml(bar.text()));
+    $('#question-preview').html(converter.makeHtml(bar.text()));
 };
 
 

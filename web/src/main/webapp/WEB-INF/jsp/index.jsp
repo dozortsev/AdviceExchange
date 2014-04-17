@@ -44,8 +44,7 @@
         </h3>
 
         <h3 class="ui right floated header">
-            ${qsCount}<br/>
-            <small>questions</small>
+            ${questionCount}<br/><small>questions</small>
         </h3>
     </h2>
 
@@ -94,10 +93,9 @@
 
     <div class="ui borderless pagination menu">
 
-        <c:forEach var="i" begin="1" end="${(qsCount / 10) + 0.5}" step="1">
+        <c:forEach var="i" begin="1" end="${(questionCount / 10) + 0.5}" step="1">
             <a class="item" href="${path}/questions?page=${i}">${i}</a>&emsp;
         </c:forEach>
-
     </div>
 
 </div>
