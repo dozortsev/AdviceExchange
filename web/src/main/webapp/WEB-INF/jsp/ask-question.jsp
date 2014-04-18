@@ -9,7 +9,25 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<body class="login-body" onload="mdLivePreview('#content-answer', '#preview-content');">
+<body class="login-body" onload="mdLivePreview('#raw-content', '#preview-content');">
+
+<div class="ui secondary menu">
+    <a class="item" href="${path}/user/${user.id}">
+        <i class="home icon"></i>${user.name}
+    </a>
+    <a class="item" href="${path}/questions">
+        <i class="home icon"></i>Questions
+    </a>
+    <a class="item" href="${path}/users">
+        <i class="users basic icon"></i>Users
+    </a>
+    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
+        <i class="mail icon"></i>Log Out
+    </a>
+    <a class="item active right" href="${path}/questions/ask">
+        <i class="mail icon"></i>Ask Questions
+    </a>
+</div>
 
 <div class="ui piled segment">
 
@@ -23,18 +41,20 @@
 
         <div class="ui form">
             <div class="field">
-                <textarea id="content-answer" name="content"></textarea>
+                <textarea id="raw-content" name="content"></textarea>
             </div>
         </div>
 
-        <div id="preview-content" class="markdown-body"></div>
+        <div class="ui horizontal icon divider">
+            <i class="circular magic icon"></i>
+        </div>
+
+        <div id="preview-container">
+            <div id="preview-content" class="ui segment markdown-body"></div>
+        </div>
 
         <input class="ui small blue submit button" type="submit" value="Submit"/>
     </form:form>
-
-    <input class="ui small red button" type="submit"
-           value="Cancel" onclick="history.back();"/>
-
 </div>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>

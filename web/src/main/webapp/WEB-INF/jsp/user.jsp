@@ -2,14 +2,14 @@
 
 <%@ include file="resources.jsp"%>
 
-<title>${user.name}</title>
+<title>${member.name}</title>
 
 <body class="login-body">
 
 <div class="ui piled segment">
 
     <p>
-    <h3>${user.name}</h3>
+    <h3>${member.name}</h3>
     </p>
     <div class="ui divider"></div>
 </div>
@@ -47,7 +47,9 @@
                     <c:forEach items="${answers}" var="asw">
                         <tr>
                             <td>${asw.votes}</td>
-                            <td><a href="${path}/question/${asw.question.id}">${fn:substring(asw.content, 0, 60)}</a></td>
+                            <td>
+                                <a href="${path}/question/${asw.question.id}">${asw.question.name}</a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

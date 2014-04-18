@@ -6,9 +6,9 @@
     <title>User</title>
 </head>
 
-<body>
+<body class="login-body">
 
-<div class="ui red inverted menu">
+<div class="ui secondary menu">
     <a class="active item" href="${path}/user/${user.id}">
         <i class="home icon"></i>${user.name}
     </a>
@@ -16,13 +16,13 @@
         <i class="home icon"></i>Questions
     </a>
     <a class="item" href="${path}/users">
-        <i class="user icon"></i>Users
-    </a>
-    <a class="item green right" href="${path}/questions/ask">
-        <i class="mail icon"></i>Ask Questions
+        <i class="users basic icon"></i>Users
     </a>
     <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
         <i class="mail icon"></i>Log Out
+    </a>
+    <a class="item green right" href="${path}/questions/ask">
+        <i class="mail icon"></i>Ask Questions
     </a>
 </div>
 
@@ -50,7 +50,9 @@
             </thead>
             <tbody>
             <tr>
-                <td rowspan="2">Votes<br/>${qs.votes}</td>
+                <td rowspan="2">
+                        <h1>${qs.votes}</h1><br/><small>Votes</small>
+                </td>
                 <td rowspan="2" colspan="2">
                     <b><a href="${path}/question/${qs.id}">
                             ${qs.name}
@@ -62,7 +64,9 @@
             <tr>
             </tr>
             <tr>
-                <td>Answers<br/>${qs.answerCount}</td>
+                <td>
+                    <h1>${qs.answerCount}</h1><small>Answers</small>
+                </td>
                 <td>
                     <c:forEach items="${qs.tags}" var="tag">
                         <a class="ui teal label">${tag.name}</a>&ensp;
@@ -83,8 +87,11 @@
 
     <div class="ui borderless pagination menu">
 
-        <c:forEach var="i" begin="1" end="${(questionCount / 10) + 0.5}" step="1">
-            <a class="item" href="${path}/questions?page=${i}">${i}</a>&emsp;
+        <fmt:formatNumber var="pages" value="${(questionCount / 10) + 0.5}"
+                          scope="page" type="number" pattern="#"/>
+
+        <c:forEach var="i" begin="1" end="${pages}" step="1">
+            <a class="item" href="${path}/questions?page=${i}">${i}</a>
         </c:forEach>
     </div>
 

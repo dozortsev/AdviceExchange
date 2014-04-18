@@ -32,9 +32,9 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/question/answer/create", method = POST)
-    public String answer(@ModelAttribute Answer answer,
-                         @ModelAttribute User user,
-                         @ModelAttribute Question question) {
+    public String answerCreate(@ModelAttribute Answer answer,
+                               @ModelAttribute User user,
+                               @ModelAttribute Question question) {
 
         answer.setUser(user);
         answer.setQuestion(question);

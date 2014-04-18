@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="css/style.css"/>
 
 </head>
-<body>
+<body class="login-body">
 
-<div class="ui red inverted menu">
+<div class="ui secondary menu">
     <a class="item" href="${path}/questions">
         <i class="home icon"></i>Questions
     </a>
@@ -130,14 +130,13 @@
 
     <div class="ui borderless pagination menu">
 
-        <c:set var="setSize" value="${fn:length(users)}"/>
+        <fmt:formatNumber var="pages" value="${(fn:length(users) != 10 ? 0 : userCount / 10) + 0.5}"
+                          scope="page" type="number" pattern="#"/>
 
-        <c:forEach var="i" begin="1" end="${(setSize != 10 ? 0 : userCount / 10) + 0.5}" step="1">
+        <c:forEach var="i" begin="1" end="${pages}" step="1">
             <a class="item" href="${path}/users?page=${i}">${i}</a>&emsp;
         </c:forEach>
-
     </div>
-
 
 </div>
 

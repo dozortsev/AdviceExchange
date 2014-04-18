@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<div class="ui red inverted menu">
+<div class="ui secondary menu">
     <a class="active item" href="${path}/questions">
         <i class="home icon"></i>Questions
     </a>
@@ -21,9 +21,11 @@
 </div>
 
 <body class="login-body"
-      onload="mdRawConvector('#question-content', '#question-preview'); mdLivePreview('#answer-raw-content', '#answer-md-content');">
+      onload="mdRawConvector('#question-raw-content', '#question-preview'); mdLivePreview('#raw-content', '#preview-content');">
 
 <div class="ui piled segment">
+
+    <%-- Question --%>
 
     <table class="ui basic table">
         <thead>
@@ -33,12 +35,14 @@
         </thead>
         <tbody>
         <tr>
-            <td rowspan="2"><h1>${question.votes}</h1></td>
+            <td rowspan="2">
+                <h1>${question.votes}</h1>
+            </td>
             <td colspan="2">
 
                 <%-- raw --%>
 
-                <div id="question-content">${question.content}</div>
+                <div id="question-raw-content">${question.content}</div>
 
                 <%-- preveiw --%>
 
@@ -60,6 +64,9 @@
                 </a>
             </td>
         </tr>
+
+        <%-- Comments --%>
+
         <tr>
             <td></td>
             <td colspan="2">
@@ -97,16 +104,29 @@
 
     <div class="ui section divider"></div>
 
+    <%-- Answers --%>
+
     <table class="ui basic table">
         <thead>
         <tr>
-            <th class="ui header" colspan="3">${fn:length(answers)}&ensp;Answer</th>
+            <th class="ui header" colspan="3">
+                <c:choose>
+                    <c:when test="${question.answerCount > 0}">
+                        ${question.answerCount}&ensp;Answers
+                    </c:when>
+                    <c:otherwise>
+                        Not answered yet
+                    </c:otherwise>
+                </c:choose>
+            </th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="asw" items="${answers}">
             <tr>
-                <td rowspan="2"><h1>${asw.votes}</h1></td>
+                <td rowspan="2">
+                    <h1>${asw.votes}</h1>
+                </td>
                 <td colspan="2">
                     ${asw.content}
                 </td>
@@ -121,7 +141,7 @@
         </tbody>
     </table>
 
-    <%-- Post answer --%>
+    <%-- Post new answer --%>
 
     <form:form action="${path}/question/answer/create" method="POST" modelAttribute="answer">
         <p>
@@ -129,22 +149,31 @@
             <p>Your answer</p>
 
             <div class="field">
-                <textarea id="answer-raw-content" name="content"></textarea>
+                <textarea id="raw-content" name="content"></textarea>
             </div>
         </div>
         </p>
         <div class="ui horizontal icon divider">
-            <i class="circular lightbulb icon"></i>
+            <i class="circular magic icon"></i>
         </div>
         <p>
-        <div id="answer-md-content" class="ui segment"></div>
-        </p>
+        <div id="preview-container">
+            <div id="preview-content" class="ui segment"></div>
+        </div>
 
         <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
+        </p>
     </form:form>
 
-
-
+        <div class="ui segment">
+            <p>
+                Not the answer you're looking for? Browse other questions tagged
+                <c:forEach var="tag" items="${question.tags}">
+                    <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
+                </c:forEach>
+                or <a href="${path}/questions/ask">ask your own questions</a>.
+            </p>
+        </div>
 </div>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
