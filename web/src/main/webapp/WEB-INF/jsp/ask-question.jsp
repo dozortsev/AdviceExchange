@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<body class="login-body" onload="bar('#answer-content', '#answer-preview');">
+<body class="login-body" onload="mdLivePreview('#content-answer', '#preview-content');">
 
 <div class="ui piled segment">
 
@@ -23,11 +23,11 @@
 
         <div class="ui form">
             <div class="field">
-                <textarea id="answer-content" name="content"></textarea>
+                <textarea id="content-answer" name="content"></textarea>
             </div>
         </div>
 
-        <div id="answer-preview" class="markdown-body"></div>
+        <div id="preview-content" class="markdown-body"></div>
 
         <input class="ui small blue submit button" type="submit" value="Submit"/>
     </form:form>

@@ -38,7 +38,7 @@
 
     <!-- Login panel -->
 
-    <form action="<c:url value="/j_spring_security_check"/>" method="POST">
+    <form action="<c:url value="/j_spring_security_check"/>" name="form-login" method="POST">
 
         <div class="ui active tab segment" data-tab="first">
             <div class="ui form segment">
@@ -58,6 +58,9 @@
                         <i class="lock icon"></i>
                     </div>
                 </div>
+
+                <%--<div class="ui red submit small button">Login</div>--%>
+
                 <input class="ui red submit small button" type="submit"
                        value="<fmt:message key="login.title"/>"/>
             </div>
@@ -125,4 +128,5 @@
 
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 <script src="${pageContext.request.contextPath}/js/semantic.js"></script>
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/showdown.js"></script>
+<script src="${pageContext.request.contextPath}/js/environment.js"></script>

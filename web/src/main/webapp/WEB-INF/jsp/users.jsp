@@ -19,14 +19,14 @@
 <body>
 
 <div class="ui red inverted menu">
-    <a class="active item">
-        <i class="home icon"></i>Home
+    <a class="item" href="${path}/questions">
+        <i class="home icon"></i>Questions
     </a>
-    <a class="item">
-        <i class="mail icon"></i>Messages
+    <a class="active item" href="${path}/users">
+        <i class="user icon"></i>Users
     </a>
-    <a class="item">
-        <i class="user icon"></i>Friends
+    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
+        <i class="mail icon"></i>Log Out
     </a>
 </div>
 

@@ -10,17 +10,18 @@
 
 <div class="ui red inverted menu">
     <a class="active item" href="${path}/questions">
-        <i class="home icon"></i>Home
+        <i class="home icon"></i>Questions
     </a>
-    <a class="item">
-        <i class="mail icon"></i>Messages
+    <a class="item" href="${path}/users">
+        <i class="user icon"></i>Users
     </a>
-    <a class="item">
-        <i class="user icon"></i>Friends
+    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
+        <i class="mail icon"></i>Log Out
     </a>
 </div>
 
-<body class="login-body" onload="foo('#question-content', '#question-preview'); bar('#answer-raw-content', '#answer-md-content');">
+<body class="login-body"
+      onload="mdRawConvector('#question-content', '#question-preview'); mdLivePreview('#answer-raw-content', '#answer-md-content');">
 
 <div class="ui piled segment">
 
@@ -50,8 +51,13 @@
                     <a class="ui teal label">${tag.name}</a>&thinsp;
                 </c:forEach>
             </td>
-            <td>Asked&ensp;<fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${question.created}"/>
-                <a href="#"><b>${question.user.name}</b></a>
+            <td>
+                Asked&ensp;<fmt:formatDate type="both" value="${question.created}"
+                                           pattern="yyyy-MM-dd / HH:mm"/>
+
+                <a href="${path}/user/${question.user.id}">
+                    <b>${question.user.name}</b>
+                </a>
             </td>
         </tr>
         <tr>
@@ -62,24 +68,27 @@
                         <div class="content">
                             <c:forEach var="cm" items="${comments}">
                                 <div class="text">
-                                    ${cm.content}
-                                        <fmt:formatDate type="both" value="${cm.created}"
-                                                        pattern="yyyy-MM-dd / HH:mm"/>
+                                        ${cm.content}
+                                    <fmt:formatDate type="both" value="${cm.created}"
+                                                    pattern="yyyy-MM-dd / HH:mm"/>
 
-                                        <a class="author"><b>${cm.user.name}</b></a>
-                                    <a href="#" class="remove icon"></a>
+                                    <a class="author"
+                                       href="${path}/user/${cm.user.id}">
+                                        <b>${cm.user.name}</b>
+                                    </a>
+                                    <a href="#"><i class="remove icon"></i></a>
                                 </div>
                             </c:forEach>
                         </div>
-                    </div>
-                    <form class="ui reply form">
-                        <div class="field">
-                            <textarea></textarea>
-                            <div class="ui button small red submit labeled">
-                                Add
+                        <div class="content">
+                            <div class="text">
+                                <div class="ui action input">
+                                    <input type="text" placeholder="Your comments...">
+                                    <a href="#"><i class="add icon"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -141,6 +150,5 @@
 <script src="${path}/js/jquery-1.11.0.js"></script>
 <script src="${path}/js/showdown.js"></script>
 <script src="${path}/js/semantic.js"></script>
-<script src="${path}/js/main.js"></script>
 
 </body>

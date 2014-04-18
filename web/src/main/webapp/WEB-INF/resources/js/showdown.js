@@ -1,73 +1,7 @@
-//
-// showdown.js -- A javascript port of Markdown.
-//
-// Copyright (c) 2007 John Fraser.
-//
-// Original Markdown Copyright (c) 2004-2005 John Gruber
-//   <http://daringfireball.net/projects/markdown/>
-//
-// Redistributable under a BSD-style open source license.
-// See license.txt for more information.
-//
-// The full source distribution is at:
-//
-//        A A L
-//        T C A
-//        T K B
-//
-//   <http://www.attacklab.net/>
-//
-
-//
-// Wherever possible, Showdown is a straight, line-by-line port
-// of the Perl version of Markdown.
-//
-// This is not a normal parser design; it's basically just a
-// series of string substitutions.  It's hard to read and
-// maintain this way,  but keeping Showdown close to the original
-// design makes it easier to port new features.
-//
-// More importantly, Showdown behaves like markdown.pl in most
-// edge cases.  So web applications can do client-side preview
-// in Javascript, and then build identical HTML on the server.
-//
-// This port needs the new RegExp functionality of ECMA 262,
-// 3rd Edition (i.e. Javascript 1.5).  Most modern web browsers
-// should do fine.  Even with the new regular expression features,
-// We do a lot of work to emulate Perl's regex functionality.
-// The tricky changes in this file mostly have the "attacklab:"
-// label.  Major or self-explanatory changes don't.
-//
-// Smart diff tools like Araxis Merge will be able to match up
-// this file with markdown.pl in a useful way.  A little tweaking
-// helps: in a copy of markdown.pl, replace "#" with "//" and
-// replace "$text" with "text".  Be sure to ignore whitespace
-// and line endings.
-//
-
-
-//
-// Showdown usage:
-//
-//   var text = "Markdown *rocks*.";
-//
-//   var converter = new Showdown.converter();
-//   var html = converter.makeHtml(text);
-//
-//   alert(html);
-//
-// Note: move the sample code to the bottom of this
-// file before uncommenting it.
-// Showdown namespace
-//
 var Showdown = {};
 
-//
-// converter
-//
-// Wraps all "globals" so that the only thing
-// exposed is makeHtml().
-//
+// Use for preview when create new answer or question
+
 Showdown.converter = function () {
 
 //
@@ -144,7 +78,7 @@ Showdown.converter = function () {
         text = text.replace(/~T/g, "~");
 
         return text;
-    }
+    };
 
 
     var _StripLinkDefinitions = function (text) {
@@ -194,7 +128,7 @@ Showdown.converter = function () {
         );
 
         return text;
-    }
+    };
 
 
     var _HashHTMLBlocks = function (text) {
@@ -305,7 +239,7 @@ Showdown.converter = function () {
         // attacklab: Undo double lines (see comment at top of this function)
         text = text.replace(/\n\n/g, "\n");
         return text;
-    }
+    };
 
     var hashElement = function (wholeMatch, m1) {
         var blockText = m1;
@@ -348,7 +282,7 @@ Showdown.converter = function () {
         text = _FormParagraphs(text);
 
         return text;
-    }
+    };
 
 
     var _RunSpanGamut = function (text) {
@@ -377,7 +311,7 @@ Showdown.converter = function () {
         text = text.replace(/  +\n/g, " <br />\n");
 
         return text;
-    }
+    };
 
     var _EscapeSpecialCharsWithinTagAttributes = function (text) {
 //
@@ -396,7 +330,7 @@ Showdown.converter = function () {
         });
 
         return text;
-    }
+    };
 
     var _DoAnchors = function (text) {
 //
@@ -481,7 +415,7 @@ Showdown.converter = function () {
         text = text.replace(/(\[([^\[\]]+)\])()()()()()/g, writeAnchorTag);
 
         return text;
-    }
+    };
 
     var writeAnchorTag = function (wholeMatch, m1, m2, m3, m4, m5, m6, m7) {
         if (m7 == undefined) m7 = "";
@@ -526,7 +460,7 @@ Showdown.converter = function () {
         result += ">" + link_text + "</a>";
 
         return result;
-    }
+    };
 
 
     var _DoImages = function (text) {
@@ -585,7 +519,7 @@ Showdown.converter = function () {
         text = text.replace(/(!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g, writeImageTag);
 
         return text;
-    }
+    };
 
     var writeImageTag = function (wholeMatch, m1, m2, m3, m4, m5, m6, m7) {
         var whole_match = m1;
@@ -630,7 +564,7 @@ Showdown.converter = function () {
         result += " />";
 
         return result;
-    }
+    };
 
 
     var _DoHeaders = function (text) {
@@ -678,7 +612,7 @@ Showdown.converter = function () {
             });
 
         return text;
-    }
+    };
 
 // This declaration keeps Dojo compressor from outputting garbage:
     var _ProcessListItems;
@@ -757,7 +691,7 @@ Showdown.converter = function () {
         text = text.replace(/~0/, "");
 
         return text;
-    }
+    };
 
     _ProcessListItems = function (list_str) {
 //
@@ -828,7 +762,7 @@ Showdown.converter = function () {
 
         g_list_level--;
         return list_str;
-    }
+    };
 
 
     var _DoCodeBlocks = function (text) {
@@ -872,12 +806,12 @@ Showdown.converter = function () {
         text = text.replace(/~0/, "");
 
         return text;
-    }
+    };
 
     var hashBlock = function (text) {
         text = text.replace(/(^\n+|\n+$)/g, "");
         return "\n\n~K" + (g_html_blocks.push(text) - 1) + "K\n\n";
-    }
+    };
 
 
     var _DoCodeSpans = function (text) {
@@ -929,7 +863,7 @@ Showdown.converter = function () {
             });
 
         return text;
-    }
+    };
 
 
     var _EncodeCode = function (text) {
@@ -960,7 +894,7 @@ Showdown.converter = function () {
 //---
 
         return text;
-    }
+    };
 
 
     var _DoItalicsAndBold = function (text) {
@@ -973,7 +907,7 @@ Showdown.converter = function () {
             "<em>$2</em>");
 
         return text;
-    }
+    };
 
 
     var _DoBlockQuotes = function (text) {
@@ -1021,7 +955,7 @@ Showdown.converter = function () {
                 return hashBlock("<blockquote>\n" + bq + "\n</blockquote>");
             });
         return text;
-    }
+    };
 
 
     var _FormParagraphs = function (text) {
@@ -1071,7 +1005,7 @@ Showdown.converter = function () {
         }
 
         return grafsOut.join("\n\n");
-    }
+    };
 
 
     var _EncodeAmpsAndAngles = function (text) {
@@ -1085,7 +1019,7 @@ Showdown.converter = function () {
         text = text.replace(/<(?![a-z\/?\$!])/gi, "&lt;");
 
         return text;
-    }
+    };
 
 
     var _EncodeBackslashEscapes = function (text) {
@@ -1107,7 +1041,7 @@ Showdown.converter = function () {
         text = text.replace(/\\(\\)/g, escapeCharacters_callback);
         text = text.replace(/\\([`*_{}\[\]()>#+-.!])/g, escapeCharacters_callback);
         return text;
-    }
+    };
 
 
     var _DoAutoLinks = function (text) {
@@ -1135,7 +1069,7 @@ Showdown.converter = function () {
         );
 
         return text;
-    }
+    };
 
 
     var _EncodeEmailAddress = function (addr) {
@@ -1196,7 +1130,7 @@ Showdown.converter = function () {
         addr = addr.replace(/">.+:/g, "\">"); // strip the mailto: from the visible part
 
         return addr;
-    }
+    };
 
 
     var _UnescapeSpecialChars = function (text) {
@@ -1210,7 +1144,7 @@ Showdown.converter = function () {
             }
         );
         return text;
-    }
+    };
 
 
     var _Outdent = function (text) {
@@ -1227,7 +1161,7 @@ Showdown.converter = function () {
         text = text.replace(/~0/g, "")
 
         return text;
-    }
+    };
 
     var _Detab = function (text) {
 // attacklab: Detab's completely rewritten for speed.
@@ -1258,7 +1192,7 @@ Showdown.converter = function () {
         text = text.replace(/~B/g, "");
 
         return text;
-    }
+    };
 
 
 //
@@ -1279,7 +1213,7 @@ Showdown.converter = function () {
         text = text.replace(regex, escapeCharacters_callback);
 
         return text;
-    }
+    };
 
 
     var escapeCharacters_callback = function (wholeMatch, m1) {
@@ -1287,4 +1221,23 @@ Showdown.converter = function () {
         return "~E" + charCodeToEscape + "E";
     }
 
-} // end of Showdown.converter
+}; // end of Showdown.converter
+
+var md = new Showdown.converter();
+
+
+var mdLivePreview = function (writeContent, previewContent) {
+
+    var div = $(previewContent);
+
+    $(writeContent).keyup(function () {
+
+        div.html(md.makeHtml(this.value));
+    });
+};
+
+var mdRawConvector = function (rawContent, mdContent) {
+
+    $(mdContent).html(md.makeHtml($(rawContent).text()));
+};
+

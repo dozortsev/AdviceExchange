@@ -8,32 +8,22 @@
 
 <body>
 
-<div class="ui inverted segment">
-    <h3 class="ui left tiny floated header">
-        <a href="${path}/user/${user.id}"
-           class="ui small red submit button">
-            ${user.name}
-        </a>
-    </h3>
-    <h3 class="ui left tiny floated header">
-        <a class="ui small blue submit button"
-           href="${path}/users">
-            Users
-        </a>
-    </h3>
-    <h3 class="ui left tiny floated header">
-        <a class="ui small blue submit button"
-           href="<c:url value="/j_spring_security_logout"/>">
-            Logout
-        </a>
-    </h3>
-
-    <h3 class="ui right tiny floated header">
-        <a href="${path}/questions/ask"
-           class="ui small green submit button">
-            Ask Question
-        </a>
-    </h3>
+<div class="ui red inverted menu">
+    <a class="active item" href="${path}/user/${user.id}">
+        <i class="home icon"></i>${user.name}
+    </a>
+    <a class="item" href="${path}/questions">
+        <i class="home icon"></i>Questions
+    </a>
+    <a class="item" href="${path}/users">
+        <i class="user icon"></i>Users
+    </a>
+    <a class="item green right" href="${path}/questions/ask">
+        <i class="mail icon"></i>Ask Questions
+    </a>
+    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
+        <i class="mail icon"></i>Log Out
+    </a>
 </div>
 
 <div class="ui piled segment">
