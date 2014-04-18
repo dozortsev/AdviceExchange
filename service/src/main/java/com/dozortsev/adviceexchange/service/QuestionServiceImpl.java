@@ -66,7 +66,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
 
     @Transactional(readOnly = true)
     @Override public Set<Question> findQuestionsByUserId(Long userId) {
-        Set<Question> questions = new HashSet<>();
+        Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by User ID: %d", userId));
             questions.addAll(getDao().findQuestionsByUserId(userId));

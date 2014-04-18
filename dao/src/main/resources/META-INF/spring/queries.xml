@@ -6,7 +6,7 @@
     <!-- Find all the Badges that were assigned User -->
 
     <bean id="findBadgesByUserId" class="java.lang.String">
-        <constructor-arg index="0" value="
+        <constructor-arg value="
 
             SELECT badge.* FROM badge
 
@@ -22,7 +22,7 @@
     <!-- Find all Question by User id -->
 
     <bean id="findQuestionsByUserId" class="java.lang.String">
-        <constructor-arg index="0" value="
+        <constructor-arg value="
 
             SELECT question.*, user_activity.*
 
@@ -31,6 +31,8 @@
                 JOIN user_activity ON ua_id = qs_id
 
             WHERE ua_type = 'QUESTION' AND ua_user_id = :userId AND ua_active = TRUE
+
+            ORDER BY ua_created DESC
         "/>
     </bean>
 
@@ -38,7 +40,7 @@
     <!-- Find all Question by array of Tag names -->
 
     <bean id="findQuestionsByTags" class="java.lang.String">
-        <constructor-arg index="0" value="
+        <constructor-arg value="
 
             SELECT question.*, user_activity.* FROM question
 
@@ -79,7 +81,7 @@
 
     <!-- Load limit set of Questions -->
 
-    <bean id="loadUserSet" class="java.lang.String">
+    <bean id="findUsersByName" class="java.lang.String">
         <constructor-arg value="
 
             SELECT * FROM user
@@ -96,13 +98,15 @@
     <!-- Find all Answers by User id -->
 
     <bean id="findAnswersByUserId" class="java.lang.String">
-        <constructor-arg index="0" value="
+        <constructor-arg value="
 
             SELECT answer.*, user_activity.* FROM answer
 
                 JOIN user_activity ON ua_id = asw_id
 
             WHERE ua_type = 'ANSWER' AND ua_user_id = :userId AND ua_active = TRUE
+
+            ORDER BY ua_created DESC
         "/>
     </bean>
 
@@ -110,7 +114,7 @@
     <!-- Find all Answers by Question id -->
 
     <bean id="findAnswersByQuestionId" class="java.lang.String">
-        <constructor-arg index="0" value="
+        <constructor-arg value="
 
             SELECT answer.*, user_activity.* FROM answer
 
@@ -128,7 +132,7 @@
     <!-- Find all Comments by Question id -->
 
     <bean id="findCommentsByQuestionId" class="java.lang.String">
-        <constructor-arg index="0" value="
+        <constructor-arg value="
 
             SELECT comment.*, user_activity.*
 

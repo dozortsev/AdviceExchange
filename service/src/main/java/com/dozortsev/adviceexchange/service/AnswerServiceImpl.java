@@ -28,7 +28,7 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
     }
 
     @Override public Set<Answer> findAnswersByUserId(Long userId) {
-        Set<Answer> answers = new HashSet<>();
+        Set<Answer> answers = new LinkedHashSet<>();
         try {
             log.info(format("Find User by ID: %d", userId));
             answers.addAll(getDao().findAnswersByUserId(userId));

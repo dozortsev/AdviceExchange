@@ -17,7 +17,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
-    @Autowired private String loadUserSet;
+    @Autowired private String findUsersByName;
 
     public UserDaoImpl() {
         setEntityClass(User.class);
@@ -25,7 +25,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     @Override public List<User> findUsersByName(String name, Integer offset) {
 
-        return getCurrentSession().createSQLQuery(loadUserSet)
+        return getCurrentSession().createSQLQuery(findUsersByName)
                 .addEntity(getEntityClass())
                 .setString("username", "%" + name + "%")
                 .setInteger("offset", offset)
