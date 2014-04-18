@@ -22,7 +22,6 @@ $('.ui.popup').popup();
 
 $('.ui.accordion').accordion();
 
-
 $('.ui.form').form({
     login: {
         identifier: 'j_username',
@@ -43,5 +42,3 @@ $('.ui.form').form({
         ]
     }
 });
-
-console.log('Work');

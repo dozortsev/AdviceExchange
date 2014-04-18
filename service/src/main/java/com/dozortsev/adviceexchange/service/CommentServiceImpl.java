@@ -30,7 +30,7 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
     @Override public Set<Comment> findCommentsByQuestionId(Long questionId) {
         Set<Comment> comments = new LinkedHashSet<>();
         try {
-            log.info(format("Find Comments by User ID: %d", questionId));
+            log.info(format("Find Comments by Question ID: %d", questionId));
             comments.addAll(getDao().findCommentsByQuestionId(questionId));
             log.info(format("Set of Comments have size: %d", comments.size()));
 

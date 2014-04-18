@@ -43,7 +43,7 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
     @Override public Set<Answer> findAnswersByQuestionId(Long questionId) {
         HashSet<Answer> answers = new LinkedHashSet<>();
         try {
-            log.info(format("Find Question by ID: %d", questionId));
+            log.info(format("Find Answers by Question ID: %d", questionId));
             answers.addAll(getDao().findAnswersByQuestionId(questionId));
             log.info(format("Set of Questions have size: %d", answers.size()));
 

@@ -1223,21 +1223,26 @@ Showdown.converter = function () {
 
 }; // end of Showdown.converter
 
+
 var md = new Showdown.converter();
 
+var mdLivePreview = function (from, to) {
 
-var mdLivePreview = function (writeContent, previewContent) {
+    var preview = $(to);
 
-    var div = $(previewContent);
+    $(from).keyup(function () {
 
-    $(writeContent).keyup(function () {
+        preview.html(md.makeHtml(this.value));
+    });
 
-        div.html(md.makeHtml(this.value));
+    $('#preview-container').css({
+
+        height: preview.outerHeight() + 40
     });
 };
 
-var mdRawConvector = function (rawContent, mdContent) {
+var mdRawConvector = function (from, to) {
 
-    $(mdContent).html(md.makeHtml($(rawContent).text()));
+    $(to).html(md.makeHtml($(from).text()));
 };
 

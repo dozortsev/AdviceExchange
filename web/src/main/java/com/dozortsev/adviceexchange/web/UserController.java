@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@SessionAttributes({ "user", "map", "qsCount" })
+@SessionAttributes({ "user", "map", "questionCount", "userCount" })
 public class UserController {
 
     @Autowired private UserService userService;

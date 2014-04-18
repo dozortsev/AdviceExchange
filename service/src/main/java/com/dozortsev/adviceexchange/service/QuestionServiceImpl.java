@@ -54,7 +54,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     @Override public LinkedHashSet<Question> loadFrom(Integer offset) {
         LinkedHashSet<Question> questions = new LinkedHashSet<>();
         try {
-            log.info(format("Load Questions from: %d row count: 2", offset));
+            log.info(format("Load Questions from: %d; row count: 10", offset));
             questions.addAll(getDao().loadFrom(offset));
             log.info(format("Set of Questions have size: %d", questions.size()));
 
