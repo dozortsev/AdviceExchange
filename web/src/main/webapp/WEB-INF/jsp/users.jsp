@@ -19,14 +19,20 @@
 <body class="login-body">
 
 <div class="ui secondary menu">
+    <a class="active item" href="${path}/user/${user.id}">
+        <i class="home icon"></i>${user.name}
+    </a>
     <a class="item" href="${path}/questions">
         <i class="home icon"></i>Questions
     </a>
-    <a class="active item" href="${path}/users">
-        <i class="user icon"></i>Users
+    <a class="item" href="${path}/users">
+        <i class="users basic icon"></i>Users
     </a>
     <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
         <i class="mail icon"></i>Log Out
+    </a>
+    <a class="item right" href="${path}/questions/ask">
+        <i class="mail icon"></i>Ask Questions
     </a>
 </div>
 
@@ -51,86 +57,33 @@
 
     <%-- Users --%>
 
-    <table class="ui basic table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Joined</th>
-            <th>Reputation</th>
-        </tr>
-        </thead>
-        <tbody>
+    <main class="ui four column grid items">
         <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>
-                    <a href="${path}/user/${user.id}">${user.name}</a>
-                </td>
-                <td>
-                    <fmt:formatDate type="both" value="${user.joined}"
-                                    pattern="yyyy-MM-dd / HH:mm"/>
-                </td>
-                <td>${user.reputation}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-
-
-<%-- New
-
-    <c:set var="index" value="4" scope="page"/>
-
-    <c:forEach items="${users}" var="user">
-
-    <div class="ui four connected items">
-
-        <c:set var="index" value="4" scope="page"/>
-
-        <div class="row">
-            <div class="item">
-                <div class="content">
-                    <div class="name">
+            <section class="column">
+                <div class="item">
+                    <div class="content">
+                        <a href="${path}/user/${user.id}">
                             ${user.name}
+                        </a>
+                        ${user.reputation}
+                        <small>
+                            <fmt:formatDate type="both" value="${user.joined}"
+                                            pattern="yyyy-MM-dd / HH:mm"/>
+                        </small>
+                        <small>
+                            <c:if test="${ not empty user.site }">
+                                ${user.site}
+                            </c:if>
+                        </small>
                     </div>
-                    <p class="date">
-                        <fmt:formatDate type="both" value="${user.joined}"
-                                        pattern="yyyy-MM-dd / HH:mm"/>
-                    </p>
-
-                    <p class="description">
-                            ${user.email}
-                    </p>
                 </div>
-            </div>
-        </div>
-
-        <c:set var="index" value="${index - 1}" scope="page"/>
-
-        <div class="item">
-            <div class="content">
-                <div class="name">
-                        ${user.name}
-                </div>
-                <p class="date">
-                    <fmt:formatDate type="both" value="${user.joined}"
-                                    pattern="yyyy-MM-dd / HH:mm"/>
-                </p>
-
-                <p class="description">
-                        ${user.email}
-                </p>
-            </div>
-        </div>
+            </section>
         </c:forEach>
-
-
---%>
+    </main>
 
     <div class="ui borderless pagination menu">
 
-        <fmt:formatNumber var="pages" value="${(fn:length(users) != 10 ? 0 : userCount / 10) + 0.5}"
+        <fmt:formatNumber var="pages" value="${(fn:length(users) != 36 ? 0 : userCount / 36) + 0.5}"
                           scope="page" type="number" pattern="#"/>
 
         <c:forEach var="i" begin="1" end="${pages}" step="1">

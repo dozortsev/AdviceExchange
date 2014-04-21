@@ -16,11 +16,6 @@ button {
     box-sizing: content-box;
 }
 
-html, body {
-    height: 100%;
-    min-width: 960px;
-}
-
 blockquote, q {
     quotes: none;
 }
@@ -30,36 +25,13 @@ blockquote:before, blockquote:after, q:before, q:after {
     content: none;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-size: 100%;
-    font: inherit;
-}
-
 /*html {*/
     /*overflow-y: scroll;*/
 /*}*/
 
-article, aside, header, footer, nav, section, figure, figcaption, hgroup, progress, canvas {
-    display: block;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-}
-
-strong, b {
-    font-weight: bold;
-}
-
-em, i {
-    font-style: italic;
-}
-
-:-moz-ui-invalid {
-    box-shadow: none;
-}
+/*h1, h2, h3, h4, h5, h6 {*/
+    /*font-weight: bold;*/
+/*}*/
 
 .css-truncate.css-truncate-target, .css-truncate .css-truncate-target {
     max-width: 125px;
@@ -5845,10 +5817,10 @@ p.bigmessage {
     color: #333;
 }
 
-.blob-editor textarea {
-    font-family: Monaco, "Liberation Mono", Courier, monospace;
-    font-size: 11px;
-}
+/*.blob-editor textarea {*/
+    /*font-family: Monaco, "Liberation Mono", Courier, monospace;*/
+    /*font-size: 11px;*/
+/*}*/
 
 .placeholder-field {
     position: relative;
@@ -6118,12 +6090,12 @@ ul.fieldpills li .dingus {
     margin-top: 0;
 }
 
-.add-pill-form textarea.key_value {
-    font-size: 11px;
-    font-family: Monaco, "Liberation Mono", Courier, monospace;
-    width: 95%;
-    height: 120px;
-}
+/*.add-pill-form textarea.key_value {*/
+    /*font-size: 11px;*/
+    /*font-family: Monaco, "Liberation Mono", Courier, monospace;*/
+    /*width: 95%;*/
+    /*height: 120px;*/
+/*}*/
 
 .add-pill-form .form-actions {
     margin-top: 10px;
@@ -7948,12 +7920,12 @@ button.classy.oauth, a.button.classy.oauth, .login_form form .submit_btn input {
     box-sizing: border-box;
 }
 
-.comment .form-content textarea {
-    margin: 0;
-    padding: 5px;
-    width: 100%;
-    height: 100px;
-}
+/*.comment .form-content textarea {*/
+    /*margin: 0;*/
+    /*padding: 5px;*/
+    /*width: 100%;*/
+    /*height: 100px;*/
+/*}*/
 
 .comment .form-content input[type=text] {
     margin-bottom: 5px;
@@ -8161,9 +8133,9 @@ tr:hover .line-comments {
     background-color: #eaeaea;
 }
 
-.line-comments .comment-form textarea {
-    font-size: 12px;
-}
+/*.line-comments .comment-form textarea {*/
+    /*font-size: 12px;*/
+/*}*/
 
 .line-comments .show-inline-comment-form {
     padding-top: 5px;
@@ -8208,12 +8180,12 @@ tr:hover .line-comments {
     border-radius: 5px;
 }
 
-.comment-form textarea {
-    margin: 0;
-    padding: 5px;
-    width: 100%;
-    height: 100px;
-}
+/*.comment-form textarea {*/
+    /*margin: 0;*/
+    /*padding: 5px;*/
+    /*width: 100%;*/
+    /*height: 100px;*/
+/*}*/
 
 .comment-form p.help {
     margin: 3px 0 0 0;

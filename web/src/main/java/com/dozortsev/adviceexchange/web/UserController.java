@@ -48,7 +48,7 @@ public class UserController {
 
         return new ModelAndView("users", "userCount", userService.totalCount())
                 .addObject("users", userService.findUsersByName(
-                name != null ? name : "", page != null ? (page - 1) * 10 : 0)
+                name != null ? name : "", page != null ? (page - 1) * 36 : 0)
         );
     }
 

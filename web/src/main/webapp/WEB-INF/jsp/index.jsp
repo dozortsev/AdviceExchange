@@ -21,22 +21,19 @@
     <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
         <i class="mail icon"></i>Log Out
     </a>
-    <a class="item green right" href="${path}/questions/ask">
+    <a class="item right" href="${path}/questions/ask">
         <i class="mail icon"></i>Ask Questions
     </a>
 </div>
 
 <div class="ui piled segment">
 
-    <h2 class="ui header">
-        <h3 class="ui left floated header">
-            All Questions
-        </h3>
-
-        <h3 class="ui right floated header">
-            ${questionCount}<br/><small>questions</small>
-        </h3>
-    </h2>
+    <p>
+    <h3>ALL QUESTIONS ${questionCount}</h3>
+    </p>
+    <div class="ui horizontal icon divider">
+        <i class="circular question icon"></i>
+    </div>
 
     <c:forEach items="${questions}" var="qs">
 

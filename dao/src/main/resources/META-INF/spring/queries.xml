@@ -90,7 +90,7 @@
 
             ORDER BY user_joined DESC
 
-            LIMIT :offset, 10
+            LIMIT :offset, 36
         "/>
     </bean>
 
