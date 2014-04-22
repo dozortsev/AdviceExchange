@@ -35,13 +35,13 @@
 
         <div class="ui form">
             <div class="field">
-                <label>Title</label><input type="text" name="title">
+                <label>Title</label><input type="text" name="title" required="true">
             </div>
         </div>
 
         <div class="ui form">
             <div class="field">
-                <textarea id="raw-content" name="content"></textarea>
+                <textarea id="raw-content" name="content" required></textarea>
             </div>
         </div>
 

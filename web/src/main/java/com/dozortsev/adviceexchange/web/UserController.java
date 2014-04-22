@@ -5,9 +5,7 @@ import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,15 +22,9 @@ public class UserController {
 
     @Autowired private UserService userService;
 
-    @Autowired private BadgeService badgeService;
-
     @Autowired private AnswerService answerService;
 
-    @Autowired private CommentService commentService;
-
     @Autowired private QuestionService questionService;
-
-    @Autowired private Md5PasswordEncoder encoder;
 
     private static final Logger log = getLogger(UserController.class);
 
@@ -82,24 +74,5 @@ public class UserController {
         Set<Question> questions = questionService.findQuestionsByTags(tags.split(" "));
 
         return new ModelAndView("index", "questions", questions);
-    }
-
-    @RequestMapping(value = "/createAccount", method = POST)
-    public String createAccount(@ModelAttribute("member") User member) {
-
-        member.setPassword(encoder.encodePassword(member.getPassword(), null));
-        member.getBadges().add(badgeService.findById(2L)); // USER badge
-
-        userService.create(member);
-
-        return "redirect:/login";
-    }
-
-    @RequestMapping(value = "/login/failed", method = GET)
-    public String loginFail(Model m) {
-
-        m.addAttribute("error", true);
-
-        return "login";
     }
 }

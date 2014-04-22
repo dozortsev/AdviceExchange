@@ -10,19 +10,19 @@
 
 <body class="login-body">
 
-<c:if test="${ not empty error }">
+<c:if test="${not empty message}">
 
     <div class="ui black small message">
         <i class="close icon"></i>
 
         <div class="header">
-            <fmt:message key="login.err.msg"/>
+                ${message}
         </div>
-        <fmt:message key="login.err.cas"/>&ensp;${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
     </div>
 </c:if>
 
 <div class="ui piled segment">
+
 
     <!-- Tabs -->
 
@@ -46,7 +46,7 @@
                     <label><fmt:message key="login.lbl.email"/></label>
 
                     <div class="ui small left labeled icon input">
-                        <input type="text" name="j_username">
+                        <input type="text" name="j_username" required="true">
                         <i class="mail icon"></i>
                     </div>
                 </div>
@@ -54,12 +54,10 @@
                     <label><fmt:message key="login.lbl.pwd"/></label>
 
                     <div class="ui small left labeled icon input">
-                        <input type="password" name="j_password">
+                        <input type="password" name="j_password" required="true">
                         <i class="lock icon"></i>
                     </div>
                 </div>
-
-                <%--<div class="ui red submit small button">Login</div>--%>
 
                 <input class="ui red submit small button" type="submit"
                        value="<fmt:message key="login.title"/>"/>
@@ -77,15 +75,15 @@
                 <div class="three fields">
                     <div class="field">
                         <label><fmt:message key="login.lbl.name"/></label>
-                        <input name="name" type="text">
+                        <input name="name" type="text" required="true">
                     </div>
                     <div class="field">
-                        <label><fmt:message key="login.lbl.email"/> </label>
-                        <input name="email" type="text">
+                        <label><fmt:message key="login.lbl.email"/></label>
+                        <input name="email" type="text" required="true">
                     </div>
                     <div class="field">
                         <label><fmt:message key="login.lbl.pwd"/></label>
-                        <input name="password" type="password">
+                        <input name="password" type="password" required="true">
                     </div>
                 </div>
 

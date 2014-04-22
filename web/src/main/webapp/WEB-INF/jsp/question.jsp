@@ -20,6 +20,11 @@
     </a>
 </div>
 
+<c:set var="isAdmin" value="false"/>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+    <c:set var="isAdmin" value="true"/>
+</sec:authorize>
+
 <body class="login-body"
       onload="mdRawConvector('#question-raw-content', '#question-preview'); mdLivePreview('#raw-content', '#preview-content');">
 
@@ -54,6 +59,9 @@
                 <c:forEach var="tag" items="${question.tags}">
                     <a class="ui teal label">${tag.name}</a>&thinsp;
                 </c:forEach>
+                <c:if test="${isAdmin || question.user.id eq user.id }">
+                    <a href="${path}/question/delete/${question.id}">delete</a>
+                </c:if>
             </td>
             <td>
                 Asked&ensp;<fmt:formatDate type="both" value="${question.created}"
@@ -76,14 +84,17 @@
                             <c:forEach var="cm" items="${comments}">
                                 <div class="text">
                                         ${cm.content}
+
                                     <fmt:formatDate type="both" value="${cm.created}"
                                                     pattern="yyyy-MM-dd / HH:mm"/>
 
-                                    <a class="author"
-                                       href="${path}/user/${cm.user.id}">
+                                    <a class="author" href="${path}/user/${cm.user.id}">
                                         <b>${cm.user.name}</b>
                                     </a>
-                                    <a href="#"><i class="remove icon"></i></a>
+
+                                    <c:if test="${isAdmin eq true || cm.user.id eq user.id}">
+                                        <a href="#"><i class="remove icon"></i></a>
+                                    </c:if>
                                 </div>
                             </c:forEach>
                         </div>
@@ -103,6 +114,7 @@
     </table>
 
     <div class="ui section divider"></div>
+
 
     <%-- Answers --%>
 
@@ -129,6 +141,10 @@
                 </td>
                 <td colspan="2">
                     ${asw.content}
+                        <br/>
+                    <c:if test="${isAdmin || asw.user.id eq user.id}">
+                        <a href="${path}/answer/delete/${asw.id}">delete</a>
+                    </c:if>
                 </td>
             </tr>
             <tr>
@@ -143,7 +159,7 @@
 
     <%-- Post new answer --%>
 
-    <form:form action="${path}/question/answer/create" method="POST" modelAttribute="answer">
+    <form:form action="${path}/question/create/answer" method="POST" modelAttribute="answer">
         <p>
         <div class="ui form">
             <p>Your answer</p>
@@ -167,7 +183,7 @@
 
         <div class="ui segment">
             <p>
-                Not the answer you're looking for? Browse other questions tagged
+                Not the answer you're looking for? Browse other questions tagged:&thinsp;
                 <c:forEach var="tag" items="${question.tags}">
                     <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
                 </c:forEach>

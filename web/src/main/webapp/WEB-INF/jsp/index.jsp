@@ -27,7 +27,6 @@
 </div>
 
 <div class="ui piled segment">
-
     <p>
     <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
     </p>

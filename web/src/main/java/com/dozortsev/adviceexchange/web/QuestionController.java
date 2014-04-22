@@ -1,17 +1,16 @@
 package com.dozortsev.adviceexchange.web;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.CommentService;
 import com.dozortsev.adviceexchange.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
 @SessionAttributes({ "question", "user" })
@@ -31,15 +30,11 @@ public class QuestionController {
                 .addObject("comments", commentService.findCommentsByQuestionId(id));
     }
 
-    @RequestMapping(value = "/question/answer/create", method = POST)
-    public String answerCreate(@ModelAttribute Answer answer,
-                               @ModelAttribute User user,
-                               @ModelAttribute Question question) {
+    @RequestMapping(value = "/question/delete/{id}", method = GET)
+    public String questionDelete(@PathVariable Long id) {
 
-        answer.setUser(user);
-        answer.setQuestion(question);
-        answerService.create(answer);
+        questionService.deleteById(id);
 
-        return "redirect:/question/" + question.getId();
+        return "redirect:/questions";
     }
 }

@@ -32,8 +32,35 @@ $('.ui.form').form({
             }
         ]
     },
-    password: {
+    j_password: {
         identifier: 'j_password',
+        rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter your password'
+            }
+        ]
+    },
+    name: {
+        identifier: 'name',
+        rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter your password'
+            }
+        ]
+    },
+    email: {
+        identifier: 'email',
+        rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter your password'
+            }
+        ]
+    },
+    password: {
+        identifier: 'password',
         rules: [
             {
                 type: 'empty',
