@@ -35,7 +35,7 @@ public class User extends AbstractEntity<Long> {
     @Column(name = "user_email", unique = true)
     private String email;
 
-    @Column(name = "user_password", unique = true)
+    @Column(name = "user_password")
     private String password;
 
     @Column(name = "user_enabled")

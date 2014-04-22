@@ -14,7 +14,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@SessionAttributes({ "user", "question", "questionCount" })
+@SessionAttributes({ "user", "questionCount" })
 public class QuestionController {
 
     @Autowired private QuestionService questionService;

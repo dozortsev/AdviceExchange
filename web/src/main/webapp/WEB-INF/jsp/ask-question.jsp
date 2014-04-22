@@ -50,11 +50,13 @@
             <i class="circular magic icon"></i>
         </div>
 
-        <div id="preview-container">
-            <div id="preview-content" class="ui segment markdown-body"></div>
+        <div id="preview-container" class="ui segment">
+            <div id="preview-content" class="markdown-body"></div>
         </div>
 
-        <input class="ui small blue submit button" type="submit" value="Submit"/>
+        <div class="ui form">
+            <input class="ui small blue submit button" type="submit" value="Submit"/>
+        </div>
     </form:form>
 </div>
 

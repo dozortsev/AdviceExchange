@@ -16,7 +16,7 @@
     user_enabled    BOOLEAN DEFAULT TRUE NOT NULL,
     user_reputation INT DEFAULT 1 NOT NULL,
 
-    UNIQUE (user_email, user_password)
+    UNIQUE (user_email)
   );
 
 

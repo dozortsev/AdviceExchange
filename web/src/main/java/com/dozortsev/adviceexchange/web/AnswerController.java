@@ -7,10 +7,7 @@ import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -34,12 +31,10 @@ public class AnswerController {
     }
 
     @RequestMapping(value = "/answer/create", method = POST)
-    public String answerCreate(@ModelAttribute Answer answer,
-                               @ModelAttribute User user,
-                               @ModelAttribute Question question) {
-
-        answer.setUser(user);
-        questionService.addAnswer(question, answer);
+    public String answerCreate(@ModelAttribute User user, @ModelAttribute Question question,
+                               @RequestParam("asw-content") String content)
+    {
+        questionService.addAnswer(question, new Answer(user, content, question, Boolean.FALSE));
 
         return "redirect:/question/" + question.getId();
     }

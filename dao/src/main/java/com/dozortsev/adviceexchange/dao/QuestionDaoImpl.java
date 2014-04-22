@@ -27,7 +27,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
 
     @Override public Integer addAnswer(Question question, Answer answer) {
 
-        answer.setQuestion(question);
         question.setAnswerCount(question.getAnswerCount() + 1);
         getCurrentSession().save(answer);
         getCurrentSession().update(question);

@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS user (
   user_location   VARCHAR(120),
   user_site       VARCHAR(70),
   user_email      VARCHAR(50) NOT NULL UNIQUE,
-  user_password   VARCHAR(32) NOT NULL UNIQUE,
+  user_password   VARCHAR(32) NOT NULL,
   user_enabled    BOOLEAN     NOT NULL DEFAULT TRUE,
   user_reputation INT         NOT NULL DEFAULT 1
 )

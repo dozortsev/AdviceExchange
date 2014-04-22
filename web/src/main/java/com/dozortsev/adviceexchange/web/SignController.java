@@ -28,7 +28,7 @@ public class SignController {
     @Autowired private BadgeService badgeService;
 
     @RequestMapping(value = "/createAccount", method = POST)
-    public ModelAndView createAccount(@ModelAttribute("member") User member,
+    public ModelAndView createAccount(@ModelAttribute User member,
                                       @RequestParam String email,
                                       @RequestParam String password)
     {
@@ -39,7 +39,7 @@ public class SignController {
         member.getBadges().add(badgeService.findById(2L)); // USER badge
         userService.create(member);
 
-        return new ModelAndView("redirect:/login", "message", "Welcome!");
+        return new ModelAndView("redirect:/login", "message", "Successful registered! Now please LogIn");
     }
 
     @RequestMapping(value = "/login/failed", method = GET)

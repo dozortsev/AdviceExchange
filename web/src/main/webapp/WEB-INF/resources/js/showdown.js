@@ -1235,10 +1235,12 @@ var mdLivePreview = function (from, to) {
         preview.html(md.makeHtml(this.value));
     });
 
-    $('#preview-container').css({
+//    $('#preview-container').css({
+//
+//        height: preview.outerHeight() + 40
+//    });
 
-        height: preview.outerHeight() + 40
-    });
+
 };
 
 var mdRawConvector = function (from, to) {

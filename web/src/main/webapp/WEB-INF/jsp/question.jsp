@@ -160,25 +160,26 @@
     <%-- Post new answer --%>
 
     <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
-        <p>
+
         <div class="ui form">
             <p>Your answer</p>
-
             <div class="field">
-                <textarea id="raw-content" name="content" required></textarea>
+                <textarea id="raw-content" name="asw-content" required></textarea>
             </div>
         </div>
-        </p>
+
         <div class="ui horizontal icon divider">
             <i class="circular magic icon"></i>
         </div>
-        <p>
-        <div id="preview-container">
-            <div id="preview-content" class="ui segment"></div>
+
+        <div id="preview-container" class="ui segment">
+            <div id="preview-content" class="markdown-body"></div>
         </div>
 
-        <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
-        </p>
+        <div class="ui form">
+            <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
+        </div>
+
     </form:form>
 
         <div class="ui segment">
