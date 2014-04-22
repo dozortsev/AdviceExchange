@@ -38,7 +38,8 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return question.getAnswerCount();
     }
 
-    @Override public Integer delAnswer(Question question, Answer answer) {
+    @Override public Integer delAnswer(Answer answer) {
+        Question question = answer.getQuestion();
         try {
             log.info(format("Delete Answer ID: %d form Question ID: %d", answer.getId(), question.getId()));
             getDao().delAnswer(question, answer);

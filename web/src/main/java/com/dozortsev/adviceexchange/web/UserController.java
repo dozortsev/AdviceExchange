@@ -1,12 +1,16 @@
 package com.dozortsev.adviceexchange.web;
 
 import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.service.*;
+import com.dozortsev.adviceexchange.service.AnswerService;
+import com.dozortsev.adviceexchange.service.QuestionService;
+import com.dozortsev.adviceexchange.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -14,10 +18,9 @@ import java.util.Set;
 
 import static org.apache.log4j.Logger.getLogger;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@SessionAttributes({ "user", "map", "questionCount", "userCount" })
+@SessionAttributes({ "user", "userCount" })
 public class UserController {
 
     @Autowired private UserService userService;
@@ -44,28 +47,12 @@ public class UserController {
         );
     }
 
-    @RequestMapping(value="/questions", method = GET)
-    public ModelAndView index(@RequestParam(required = false) Integer page) {
-
-        return new ModelAndView("index", "questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0))
-                .addObject("questionCount", questionService.totalCount());
-    }
-
     @RequestMapping(value = "/user/{id}", method = GET)
     public ModelAndView user(@PathVariable Long id) {
 
         return new ModelAndView("user", "member", userService.findById(id))
                 .addObject("questions", questionService.findQuestionsByUserId(id))
                 .addObject("answers", answerService.findAnswersByUserId(id));
-    }
-
-    @RequestMapping(value = "/questions/create", method = POST)
-    public String askQuestion(@ModelAttribute Question ask, @ModelAttribute User user) {
-
-        ask.setUser(user);
-        questionService.create(ask);
-
-        return "redirect:/question/" + ask.getId();
     }
 
     @RequestMapping(value = "/search", method = GET)

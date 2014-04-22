@@ -9,7 +9,7 @@ public interface QuestionService extends GenericService<Long, Question> {
 
     Integer addAnswer(Question question, Answer answer);
 
-    Integer delAnswer(Question question, Answer answer);
+    Integer delAnswer(Answer answer);
 
     Set<Question> loadFrom(Integer offset);
 

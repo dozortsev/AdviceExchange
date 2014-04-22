@@ -159,13 +159,13 @@
 
     <%-- Post new answer --%>
 
-    <form:form action="${path}/question/create/answer" method="POST" modelAttribute="answer">
+    <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
         <p>
         <div class="ui form">
             <p>Your answer</p>
 
             <div class="field">
-                <textarea id="raw-content" name="content"></textarea>
+                <textarea id="raw-content" name="content" required></textarea>
             </div>
         </div>
         </p>
@@ -195,5 +195,6 @@
 <script src="${path}/js/jquery-1.11.0.js"></script>
 <script src="${path}/js/showdown.js"></script>
 <script src="${path}/js/semantic.js"></script>
+<script src="${path}/js/main.js"></script>
 
 </body>

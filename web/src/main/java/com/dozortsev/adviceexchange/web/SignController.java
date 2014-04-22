@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -26,19 +28,18 @@ public class SignController {
     @Autowired private BadgeService badgeService;
 
     @RequestMapping(value = "/createAccount", method = POST)
-    public String createAccount(@ModelAttribute("member") User member, Model m,
-                                @RequestParam String email, @RequestParam String password) {
-
+    public ModelAndView createAccount(@ModelAttribute("member") User member,
+                                      @RequestParam String email,
+                                      @RequestParam String password)
+    {
         if (userService.findUserByLogin(email) != null) {
-            return "redirect:/signup/failed";
+            return new ModelAndView("redirect:/signup/failed");
         }
         member.setPassword(encoder.encodePassword(password, null));
         member.getBadges().add(badgeService.findById(2L)); // USER badge
         userService.create(member);
 
-        m.addAttribute("message", "Welcome!");
-
-        return "redirect:/login";
+        return new ModelAndView("redirect:/login", "message", "Welcome!");
     }
 
     @RequestMapping(value = "/login/failed", method = GET)
@@ -53,6 +54,14 @@ public class SignController {
     public String signupFail(Model m) {
 
         m.addAttribute("message", "User with this data already exist. Please try SingUp again");
+
+        return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(SessionStatus status) {
+
+        status.setComplete();
 
         return "redirect:/login";
     }

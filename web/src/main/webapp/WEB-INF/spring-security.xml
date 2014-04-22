@@ -15,6 +15,14 @@
         <intercept-url pattern="/questions*" access="isAuthenticated()"/>
         <intercept-url pattern="/questions/*" access="isAuthenticated()"/>
         <intercept-url pattern="/questions/ask" access="isAuthenticated()"/>
+        <intercept-url pattern="/question/*" access="isAuthenticated()"/>
+        <intercept-url pattern="/question/delete/*" access="isAuthenticated()"/>
+
+        <intercept-url pattern="/answer/create" access="isAuthenticated()"/>
+        <intercept-url pattern="/answer/delete/*" access="isAuthenticated()"/>
+
+        <intercept-url pattern="/user/*" access="isAuthenticated()"/>
+        <intercept-url pattern="/users" access="isAuthenticated()"/>
 
         <form-login login-page="/login"
                     default-target-url="/users/login"

@@ -67,5 +67,23 @@ $('.ui.form').form({
                 prompt: 'Please enter your password'
             }
         ]
-    }
+    },
+    questionTitle: {
+        identifier: 'title',
+        rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter your password'
+            }
+        ]
+    },
+    content: {
+        identifier: 'content',
+        rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter your password'
+            }
+        ]
+    },
 });

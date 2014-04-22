@@ -82,7 +82,7 @@ public class AnswerServiceTest extends TestContext {
         assertTrue(answers.contains(answer));
         assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
 
-        questionService.delAnswer(question, answer);
+        questionService.delAnswer(answer);
 
         final Set<Answer> expectAnswers = answerService.findAnswersByQuestionId(question.getId());
         final Question expectQuestion = questionService.findById(17L);

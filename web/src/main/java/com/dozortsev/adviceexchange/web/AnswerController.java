@@ -28,18 +28,17 @@ public class AnswerController {
 
         Answer answer = answerService.findById(id);
 
-        questionService.delAnswer(answer.getQuestion(), answer);
+        questionService.delAnswer(answer);
 
         return "redirect:/question/" + answer.getQuestion().getId();
     }
 
-    @RequestMapping(value = "/question/create/answer", method = POST)
+    @RequestMapping(value = "/answer/create", method = POST)
     public String answerCreate(@ModelAttribute Answer answer,
                                @ModelAttribute User user,
                                @ModelAttribute Question question) {
 
         answer.setUser(user);
-        answer.setQuestion(question);
         questionService.addAnswer(question, answer);
 
         return "redirect:/question/" + question.getId();
