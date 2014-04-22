@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS question;
 CREATE TABLE IF NOT EXISTS question (
 
   qs_id        INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  qs_name      VARCHAR(200) NOT NULL,
+  qs_title     VARCHAR(200) NOT NULL,
   qs_votes     INT          NOT NULL,
   qs_asw_count INT          NOT NULL DEFAULT 0
 )

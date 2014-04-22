@@ -39,7 +39,7 @@
 <div class="ui piled segment">
 
     <p>
-        <h3>USERS</h3>
+        <h3>USERS&ensp;${userCount}</h3>
     </p>
     <div class="ui divider"></div>
     <p>

@@ -57,7 +57,7 @@ public class QuestionServiceTest extends TestContext {
         final Question expectQuestion = questionService.findById(question.getId());
 
         assertEquals(Type.QUESTION, expectQuestion.getType());
-        assertEquals(name, expectQuestion.getName());
+        assertEquals(name, expectQuestion.getTitle());
         assertEquals(content, expectQuestion.getContent());
         assertEquals(tags, expectQuestion.getTags());
         assertEquals(1, userService.userActivities(user.getId()).size());
@@ -111,10 +111,10 @@ public class QuestionServiceTest extends TestContext {
 
         final Tag removedTag = question.getTags().get(1);
         assertTrue(question.getTags().remove(removedTag));  // remove one tag
-        final String oldName = question.getName();
+        final String oldName = question.getTitle();
 
         // update name and add another Tag
-        question.setName("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, animi!");
+        question.setTitle("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, animi!");
         final Tag newTag = tagService.findById(13L);
         question.getTags().add(newTag);
 
@@ -123,7 +123,7 @@ public class QuestionServiceTest extends TestContext {
         // reload
         final Question expectQuestion = questionService.findById(question.getId());
 
-        assertNotEquals(oldName, expectQuestion.getName());
+        assertNotEquals(oldName, expectQuestion.getTitle());
         assertTrue(expectQuestion.getTags().contains(newTag));
         assertFalse(expectQuestion.getTags().contains(removedTag));
     }

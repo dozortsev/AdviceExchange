@@ -35,7 +35,7 @@
 
         <div class="ui form">
             <div class="field">
-                <label>Title</label><input type="text" name="name">
+                <label>Title</label><input type="text" name="title">
             </div>
         </div>
 

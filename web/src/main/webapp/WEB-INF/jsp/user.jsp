@@ -27,7 +27,7 @@
                     <c:forEach items="${questions}" var="qs">
                         <tr>
                             <td>${qs.votes}</td>
-                            <td><a href="${path}/question/${qs.id}">${qs.name}</a></td>
+                            <td><a href="${path}/question/${qs.id}">${qs.title}</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -48,7 +48,7 @@
                         <tr>
                             <td>${asw.votes}</td>
                             <td>
-                                <a href="${path}/question/${asw.question.id}">${asw.question.name}</a>
+                                <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
                             </td>
                         </tr>
                     </c:forEach>

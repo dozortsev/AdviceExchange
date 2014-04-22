@@ -30,7 +30,7 @@
     <table class="ui basic table">
         <thead>
         <tr>
-            <th class="ui header" colspan="3">${question.name}</th>
+            <th class="ui header" colspan="3">${question.title}</th>
         </tr>
         </thead>
         <tbody>

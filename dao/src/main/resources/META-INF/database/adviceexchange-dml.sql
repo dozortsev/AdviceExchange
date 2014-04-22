@@ -198,7 +198,7 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
 
 -- Question data
 
-INSERT INTO question (qs_id, qs_name, qs_votes, qs_asw_count) VALUES
+INSERT INTO question (qs_id, qs_title, qs_votes, qs_asw_count) VALUES
 
   (1, 'Is there any truth to that?', 5, 1),
   (3, 'What is that?', 18, 1),

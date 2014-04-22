@@ -29,7 +29,7 @@
 <div class="ui piled segment">
 
     <p>
-    <h3>ALL QUESTIONS ${questionCount}</h3>
+    <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
     </p>
     <div class="ui horizontal icon divider">
         <i class="circular question icon"></i>
@@ -52,7 +52,7 @@
                 </td>
                 <td rowspan="2" colspan="2">
                     <b><a href="${path}/question/${qs.id}">
-                            ${qs.name}
+                            ${qs.title}
                     </a></b>
                     <br/>
                     <small>${fn:substring(qs.content, 0, 250)}&hellip;</small>

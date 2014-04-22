@@ -12,8 +12,8 @@ import static javax.persistence.FetchType.LAZY;
 @PrimaryKeyJoinColumn(name = "qs_id")
 public class Question extends UserActivity {
 
-    @Column(name = "qs_name")
-    private String name;
+    @Column(name = "qs_title")
+    private String title;
 
     @Column(name = "qs_votes")
     private Integer votes;
@@ -39,25 +39,25 @@ public class Question extends UserActivity {
         this.answerCount = 0;
     }
 
-    public Question(User user, String content, String name, List<Tag> tags) {
+    public Question(User user, String content, String title, List<Tag> tags) {
         super(user, Type.QUESTION, content);
         this.votes = 0;
         this.answerCount = 0;
-        this.name = name;
+        this.title = title;
         this.tags = tags;
     }
 
-    public Question(User user, String content, String name, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
-        this(user, content, name, tags);
+    public Question(User user, String content, String title, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+        this(user, content, title, tags);
         this.answers = answers;
         this.comments = comments;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getVotes() {
