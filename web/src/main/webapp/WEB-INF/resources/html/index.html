@@ -16,86 +16,99 @@
 
 </head>
 
-<body class="login-body" onload="mdLivePreview('#raw-content', '#preview-content')">
+<body class="login-body"
+
+      onload="
+      mdLivePreview('#raw-content', '#preview-content');
+      mdRawConvector('#question-raw-content', '#question-preview')">
 
 <div class="ui piled segment">
 
-    <main class="ui one column grid items">
-        <section class="column">
-            <div class="item">
-                <div class="content">
-                    Dozortsev Anton
-                    <br/>
-                    <small>12-09-2009 / 19:34</small>
-                    dozortsev@gmail.com
-                    <small>http://dozortsev.com</small>
-                </div>
-            </div>
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam at blanditiis consectetur dolor facilis
-            iusto labore porro unde vero? Assumenda id molestias, odio quo reiciendis repudiandae tempora veritatis
-            voluptates! Vitae.
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam at blanditiis consectetur dolor facilis
-            iusto labore porro unde vero? Assumenda id molestias, odio quo reiciendis repudiandae tempora veritatis
-            voluptates! Vitae.
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam at blanditiis consectetur dolor facilis
-            iusto labore porro unde vero? Assumenda id molestias, odio quo reiciendis repudiandae tempora veritatis
-            voluptates! Vitae.
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-        <section class="column">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem consectetur, consequatur deserunt
-            eaque inventore ipsa iste iure iusto magni nemo nobis odio omnis quam quis reiciendis repellat, saepe sunt?
-        </section>
-    </main>
+    <table class="ui basic table">
+        <thead>
+        <tr>
+            <th class="ui header" colspan="3">
+                Lorem ipsum dolor sit amet, consectetur adipisicing ?
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td rowspan="2">
+                <h1>10</h1>
+            </td>
+            <td colspan="2">
+
+                <!-- raw -->
+
+                <div id="question-raw-content" class="hide">##Header</div>
+
+                <!-- preview -->
+
+                <div id="question-preview" class="content-body markdown-body"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="ui teal label">Tag 1</a>&thinsp;<a class="ui teal label">Tag 2</a>
+            </td>
+            <td>
+                Asked&ensp;20-19-12 / 17:56 User Name
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td colspan="2">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="ui section divider"></div>
+
+
+    <table class="ui basic table">
+        <thead>
+        <tr>
+            <th class="ui header" colspan="3">
+                2
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">
+                    <h1>20</h1>
+                </td>
+                <td colspan="2">
+                    <div id="answer-raw-content-12" class="hide">**Lorem ipsum** dolor sit amet, `consectetur`. Answer 1.</div>
+
+                    <div id="answer-12-preview" class="content-body markdown-body"></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Answered&ensp;20-19-12 / 17:56 User Name</td>
+            </tr>
+
+
+            <tr onload="console.log('Hello');">
+                <td rowspan="2">
+                    <h1>9</h1>
+                </td>
+                <td colspan="2">
+                    <div id="answer-raw-content-1" class="hide">**Lorem ipsum** dolor sit amet, `consectetur` Lorem ipsum dolor sit amet, consectetur adipisicing elit. Answer 2.</div>
+
+                    <div id="answer-1-preview" class="content-body markdown-body"></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Answered&ensp;20-19-12 / 17:56 User Name</td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>
 

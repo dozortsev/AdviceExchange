@@ -13,6 +13,6 @@ body {
     padding-right: 170px;
 }
 
-#question-raw-content {
+.hide {
     display: none;
 }

@@ -47,11 +47,11 @@
 
                 <%-- raw --%>
 
-                <div id="question-raw-content">${question.content}</div>
+                <div id="question-raw-content" class="hide">${question.content}</div>
 
-                <%-- preveiw --%>
+                <%-- preview --%>
 
-                <div id="question-preview" class="content-body markdown-body"></div>
+                <div id="question-preview" class="markdown-body"></div>
             </td>
         </tr>
         <tr>
@@ -83,7 +83,14 @@
                         <div class="content">
                             <c:forEach var="cm" items="${comments}">
                                 <div class="text">
-                                        ${cm.content}
+
+                                    <%-- raw --%>
+                                        <div onkeyup="mdRawConvector('#answer-raw-content', '#answer-preview')"
+                                             id="answer-raw-content">${cm.content}</div>
+
+                                    <%-- preview --%>
+                                        <div id="answer-preview" class="markdown-body"></div>
+
 
                                     <fmt:formatDate type="both" value="${cm.created}"
                                                     pattern="yyyy-MM-dd / HH:mm"/>

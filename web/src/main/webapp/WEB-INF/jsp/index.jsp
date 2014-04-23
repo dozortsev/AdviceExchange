@@ -13,30 +13,18 @@
         <i class="home icon"></i>${user.name}
     </a>
     <a class="item" href="${path}/questions">
-        <i class="home icon"></i>Questions
+        <i class="stackexchange icon"></i>Questions
     </a>
     <a class="item" href="${path}/users">
         <i class="users basic icon"></i>Users
     </a>
     <a class="item" href="<c:url value="/j_spring_security_logout"/>">
-        <i class="mail icon"></i>Log Out
+        <i class="sign out icon"></i>Log Out
     </a>
 
-    <div class="right menu">
-        <div class="item">
-            <div class="ui icon input">
-                <form action="${path}/questions/tagged" method="GET">
-                    <input type="text" placeholder="Search..." name="query">
-                    <i class="search link icon"></i>
-                </form>
-            </div>
-        </div>
-        <div class="item">
-            <a class="item" href="${path}/questions/ask">
-                <i class="mail icon"></i>Ask Questions
-            </a>
-        </div>
-    </div>
+    <a class="item" href="${path}/questions/ask">
+        <i class="question icon"></i>Ask Questions
+    </a>
 </div>
 
 <div class="ui piled segment">
@@ -44,7 +32,7 @@
     <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
     </p>
     <div class="ui horizontal icon divider">
-        <i class="circular question icon"></i>
+        <i class="circular stackexchange icon"></i>
     </div>
 
     <c:forEach items="${questions}" var="qs">
