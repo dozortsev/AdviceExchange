@@ -23,11 +23,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @SessionAttributes({ "user", "userCount" })
 public class UserController {
 
-    @Autowired private UserService userService;
+    private @Autowired UserService userService;
 
-    @Autowired private AnswerService answerService;
+    private @Autowired AnswerService answerService;
 
-    @Autowired private QuestionService questionService;
+    private @Autowired QuestionService questionService;
 
     private static final Logger log = getLogger(UserController.class);
 

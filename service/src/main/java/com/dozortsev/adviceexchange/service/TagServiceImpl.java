@@ -13,7 +13,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 @Service
 public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements TagService {
 
-    @Autowired private TagDao tagDao;
+    private @Autowired TagDao tagDao;
 
     @Override public TagDao getDao() {
         return tagDao;

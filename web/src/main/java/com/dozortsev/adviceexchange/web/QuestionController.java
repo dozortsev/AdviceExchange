@@ -20,11 +20,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @SessionAttributes(value = { "user", "question", "questionCount" })
 public class QuestionController {
 
-    @Autowired private QuestionService questionService;
+    private @Autowired QuestionService questionService;
 
-    @Autowired private AnswerService answerService;
+    private @Autowired AnswerService answerService;
 
-    @Autowired private CommentService commentService;
+    private @Autowired CommentService commentService;
 
     @RequestMapping(value="/questions", method = GET)
     public ModelAndView index(@RequestParam(required = false) Integer page) {

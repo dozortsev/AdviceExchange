@@ -15,11 +15,11 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements QuestionDao {
 
-    @Autowired private String findQuestionsByUserId;
+    private @Autowired String findQuestionsByUserId;
 
-    @Autowired private String findQuestionsByTags;
+    private @Autowired String findQuestionsByTags;
 
-    @Autowired private String loadQuestionsSet;
+    private @Autowired String loadQuestionsSet;
 
     public QuestionDaoImpl() {
         setEntityClass(Question.class);

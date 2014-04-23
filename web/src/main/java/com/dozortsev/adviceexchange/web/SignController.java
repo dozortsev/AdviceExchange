@@ -22,11 +22,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @SessionAttributes({ "message" })
 public class SignController {
 
-    @Autowired private Md5PasswordEncoder encoder;
+    private @Autowired Md5PasswordEncoder encoder;
 
-    @Autowired private UserService userService;
+    private @Autowired UserService userService;
 
-    @Autowired private BadgeService badgeService;
+    private @Autowired BadgeService badgeService;
 
     private static final Logger log = Logger.getLogger(SignController.class);
 

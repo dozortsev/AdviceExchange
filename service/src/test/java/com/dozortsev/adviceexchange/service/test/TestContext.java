@@ -15,21 +15,15 @@ public abstract class TestContext {
 
     protected static Logger log = Logger.getLogger(TestContext.class);
 
-    @Autowired
-    protected TagService tagService;
+    protected @Autowired TagService tagService;
 
-    @Autowired
-    protected UserService userService;
+    protected @Autowired UserService userService;
 
-    @Autowired
-    protected BadgeService badgeService;
+    protected @Autowired BadgeService badgeService;
 
-    @Autowired
-    protected AnswerService answerService;
+    protected @Autowired AnswerService answerService;
 
-    @Autowired
-    protected CommentService commentService;
+    protected @Autowired CommentService commentService;
 
-    @Autowired
-    protected QuestionService questionService;
+    protected @Autowired QuestionService questionService;
 }

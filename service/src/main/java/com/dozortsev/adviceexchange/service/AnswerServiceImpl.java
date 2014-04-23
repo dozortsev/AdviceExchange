@@ -17,7 +17,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 @Service
 public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implements AnswerService {
 
-    @Autowired private AnswerDao answerDao;
+    private @Autowired AnswerDao answerDao;
 
     @Override public AnswerDao getDao() {
         return answerDao;

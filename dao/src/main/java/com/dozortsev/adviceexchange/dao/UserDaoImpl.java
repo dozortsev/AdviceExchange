@@ -17,7 +17,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
-    @Autowired private String findUsersByName;
+    private @Autowired String findUsersByName;
 
     public UserDaoImpl() {
         setEntityClass(User.class);

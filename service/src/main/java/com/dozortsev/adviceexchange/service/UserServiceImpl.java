@@ -17,7 +17,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 @Service
 public class UserServiceImpl extends GenericServiceImpl<Long, User> implements UserService {
 
-    @Autowired private UserDao userDao;
+    private @Autowired UserDao userDao;
 
     @Override public UserDao getDao() {
         return userDao;

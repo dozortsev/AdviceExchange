@@ -19,7 +19,7 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
 
     private Class<T> entityClass;
 
-    @Autowired private SessionFactory factory;
+    private @Autowired SessionFactory factory;
 
     @Override public ID create(T entity) {
         getCurrentSession().save(entity);

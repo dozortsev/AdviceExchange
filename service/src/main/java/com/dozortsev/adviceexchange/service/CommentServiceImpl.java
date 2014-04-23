@@ -16,7 +16,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 @Service
 public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implements CommentService {
 
-    @Autowired private CommentDao commentDao;
+    private @Autowired CommentDao commentDao;
 
     @Override public CommentDao getDao() {
         return commentDao;
