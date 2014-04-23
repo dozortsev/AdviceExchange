@@ -4,8 +4,6 @@
 
 <head lang="en">
 
-    <meta charset="UTF-8">
-
     <title>
         User / ${user.name}
     </title>

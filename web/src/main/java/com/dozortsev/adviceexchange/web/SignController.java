@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.web;
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.service.BadgeService;
 import com.dozortsev.adviceexchange.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
+import static java.lang.String.format;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -27,6 +31,8 @@ public class SignController {
 
     @Autowired private BadgeService badgeService;
 
+    private static final Logger log = Logger.getLogger(SignController.class);
+
     @RequestMapping(value = "/createAccount", method = POST)
     public ModelAndView createAccount(@ModelAttribute User member,
                                       @RequestParam String email,
@@ -39,19 +45,21 @@ public class SignController {
         member.getBadges().add(badgeService.findById(2L)); // USER badge
         userService.create(member);
 
-        return new ModelAndView("redirect:/login", "message", "Successful registered! Now please LogIn");
+        return new ModelAndView("redirect:/login", "message", format(
+                "User %s was successful registered! Now you have access", email)
+        );
     }
 
     @RequestMapping(value = "/login/failed", method = GET)
     public String loginFail(Model m) {
 
-        m.addAttribute("message", "Bad login or password");
+        m.addAttribute("message", "We could not find an account for that email/password address.");
 
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/signup/failed", method = GET)
-    public String signupFail(Model m) {
+    public String signupFail(Model m, Principal principal) {
 
         m.addAttribute("message", "User with this data already exist. Please try SingUp again");
 
@@ -60,8 +68,6 @@ public class SignController {
 
     @RequestMapping(value = "/logout")
     public String logout(SessionStatus status) {
-
-        status.setComplete();
 
         return "redirect:/login";
     }

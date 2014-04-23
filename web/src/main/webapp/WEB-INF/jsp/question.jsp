@@ -164,7 +164,7 @@
         <div class="ui form">
             <p>Your answer</p>
             <div class="field">
-                <textarea id="raw-content" name="asw-content" required></textarea>
+                <textarea id="raw-content" name="aswContent" required></textarea>
             </div>
         </div>
 
@@ -182,15 +182,18 @@
 
     </form:form>
 
-        <div class="ui segment">
-            <p>
-                Not the answer you're looking for? Browse other questions tagged:&thinsp;
-                <c:forEach var="tag" items="${question.tags}">
-                    <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
-                </c:forEach>
-                or <a href="${path}/questions/ask">ask your own questions</a>.
-            </p>
-        </div>
+        <c:if test="${!(user.id eq question.user.id)}">
+
+            <div class="ui segment">
+                <p>
+                    Not the answer you're looking for? Browse other questions tagged:&thinsp;
+                    <c:forEach var="tag" items="${question.tags}">
+                        <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
+                    </c:forEach>
+                    or <a href="${path}/questions/ask">ask your own questions</a>.
+                </p>
+            </div>
+        </c:if>
 </div>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
