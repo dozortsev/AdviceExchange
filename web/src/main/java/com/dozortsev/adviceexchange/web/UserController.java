@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = GET)
-    public ModelAndView users(@RequestParam(required = false) Integer page,
-                              @RequestParam(required = false) String name) {
+    public ModelAndView users(@RequestParam(required = false) String name,
+                              @RequestParam(required = false) Integer page) {
 
         return new ModelAndView("users", "userCount", userService.totalCount())
                 .addObject("users", userService.findUsersByName(

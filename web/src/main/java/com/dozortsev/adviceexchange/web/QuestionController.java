@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Set;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -29,8 +31,17 @@ public class QuestionController {
 
         return new ModelAndView("index", "questionCount", questionService.totalCount())
                 .addObject("questions", questionService.loadFrom(
-                                page != null ? (page - 1) * 10 : 0)
+                                page != null ? (page - 1) * 10 : 0)  // offset
         );
+    }
+
+    @RequestMapping(value = "/questions/tagged", method = GET)
+    public ModelAndView searchQuestion(@RequestParam String query) {
+
+        Set<Question> questions = questionService.findQuestionsByTags(query.split(" "));
+
+        return new ModelAndView("index", "questionCount", questionService.totalCount())
+                .addObject("questions", questions);
     }
 
     @RequestMapping(value = "/question/{id}")
@@ -51,10 +62,21 @@ public class QuestionController {
         return "redirect:/question/" + answer.getQuestion().getId();
     }
 
+    @RequestMapping(value = "/questions/create", method = POST)
+    public String questionCreate(@ModelAttribute User user,
+                                 @RequestParam   String title,
+                                 @RequestParam   String content)
+    {
+        Question question = new Question(user, content, title, null);
+        questionService.create(question);
+
+        return "redirect:/question/" + question.getId();
+    }
+
     @RequestMapping(value = "/answer/create", method = POST)
     public String answerCreate(@ModelAttribute User user,
                                @ModelAttribute Question question,
-                               @RequestParam String aswContent)
+                               @RequestParam   String aswContent)
     {
         questionService.addAnswer(question, new Answer(user, aswContent, question, Boolean.FALSE));
 
@@ -67,14 +89,5 @@ public class QuestionController {
         questionService.deleteById(id);
 
         return "redirect:/questions";
-    }
-
-    @RequestMapping(value = "/questions/create", method = POST)
-    public String questionCreate(@ModelAttribute Question ask, @ModelAttribute User user) {
-
-        ask.setUser(user);
-        questionService.create(ask);
-
-        return "redirect:/question/" + ask.getId();
     }
 }

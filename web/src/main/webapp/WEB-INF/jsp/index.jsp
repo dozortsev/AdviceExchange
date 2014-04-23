@@ -18,12 +18,25 @@
     <a class="item" href="${path}/users">
         <i class="users basic icon"></i>Users
     </a>
-    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
+    <a class="item" href="<c:url value="/j_spring_security_logout"/>">
         <i class="mail icon"></i>Log Out
     </a>
-    <a class="item right" href="${path}/questions/ask">
-        <i class="mail icon"></i>Ask Questions
-    </a>
+
+    <div class="right menu">
+        <div class="item">
+            <div class="ui icon input">
+                <form action="${path}/questions/tagged" method="GET">
+                    <input type="text" placeholder="Search..." name="query">
+                    <i class="search link icon"></i>
+                </form>
+            </div>
+        </div>
+        <div class="item">
+            <a class="item" href="${path}/questions/ask">
+                <i class="mail icon"></i>Ask Questions
+            </a>
+        </div>
+    </div>
 </div>
 
 <div class="ui piled segment">
@@ -83,8 +96,8 @@
 
     <div class="ui borderless pagination menu">
 
-        <fmt:formatNumber var="pages" value="${(questionCount / 10) + 0.5}"
-                          scope="page" type="number" pattern="#"/>
+        <fmt:formatNumber var="pages" type="number" pattern="#"
+                          value="${(questionCount / 10) + 0.5}"/>
 
         <c:forEach var="i" begin="1" end="${pages}" step="1">
             <a class="item" href="${path}/questions?page=${i}">${i}</a>

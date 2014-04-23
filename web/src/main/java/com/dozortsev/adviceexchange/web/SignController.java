@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
 
 import static java.lang.String.format;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -35,8 +32,8 @@ public class SignController {
 
     @RequestMapping(value = "/createAccount", method = POST)
     public ModelAndView createAccount(@ModelAttribute User member,
-                                      @RequestParam String email,
-                                      @RequestParam String password)
+                                      @RequestParam   String email,
+                                      @RequestParam   String password)
     {
         if (userService.findUserByLogin(email) != null) {
             return new ModelAndView("redirect:/signup/failed");
@@ -59,15 +56,9 @@ public class SignController {
     }
 
     @RequestMapping(value = "/signup/failed", method = GET)
-    public String signupFail(Model m, Principal principal) {
+    public String signupFail(Model m) {
 
         m.addAttribute("message", "User with this data already exist. Please try SingUp again");
-
-        return "redirect:/login";
-    }
-
-    @RequestMapping(value = "/logout")
-    public String logout(SessionStatus status) {
 
         return "redirect:/login";
     }

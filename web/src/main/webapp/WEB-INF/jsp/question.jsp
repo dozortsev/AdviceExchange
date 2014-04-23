@@ -159,30 +159,31 @@
 
     <%-- Post new answer --%>
 
-    <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
-
-        <div class="ui form">
-            <p>Your answer</p>
-            <div class="field">
-                <textarea id="raw-content" name="aswContent" required></textarea>
-            </div>
-        </div>
-
-        <div class="ui horizontal icon divider">
-            <i class="circular magic icon"></i>
-        </div>
-
-        <div id="preview-container" class="ui segment">
-            <div id="preview-content" class="markdown-body"></div>
-        </div>
-
-        <div class="ui form">
-            <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
-        </div>
-
-    </form:form>
-
         <c:if test="${!(user.id eq question.user.id)}">
+
+            <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
+
+                <div class="ui form">
+                    <p>Your answer</p>
+
+                    <div class="field">
+                        <textarea id="raw-content" name="aswContent" required></textarea>
+                    </div>
+                </div>
+
+                <div class="ui horizontal icon divider">
+                    <i class="circular magic icon"></i>
+                </div>
+
+                <div id="preview-container" class="ui segment">
+                    <div id="preview-content" class="markdown-body"></div>
+                </div>
+
+                <div class="ui form">
+                    <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
+                </div>
+
+            </form:form>
 
             <div class="ui segment">
                 <p>

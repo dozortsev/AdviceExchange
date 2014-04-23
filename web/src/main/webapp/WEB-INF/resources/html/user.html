@@ -16,16 +16,36 @@
 </head>
 <body class="login-body">
 
-<div class="ui red inverted menu">
-    <a class="active item">
-        <i class="home icon"></i>Home
+
+
+<div class="ui secondary menu">
+    <a class="active item" href="${path}/user/${user.id}">
+        <i class="home icon"></i>User Name
+    </a>
+    <a class="item" href="${path}/questions">
+        <i class="home icon"></i>Questions
+    </a>
+    <a class="item" href="${path}/users">
+        <i class="users basic icon"></i>Users
     </a>
     <a class="item">
-        <i class="mail icon"></i>Messages
+        <i class="mail icon"></i>Log Out
     </a>
-    <a class="item">
-        <i class="user icon"></i>Friends
-    </a>
+
+    <div class="right menu">
+        <div class="item">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+        <div class="item">
+            <a class="item" href="${path}/questions/ask">
+                <i class="mail icon"></i>Ask Questions
+            </a>
+        </div>
+    </div>
+
 </div>
 
 <div class="ui piled segment">
