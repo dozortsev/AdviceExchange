@@ -194,7 +194,7 @@
 
             <div class="ui segment">
                 <p>
-                    Not the answer you're looking for?<br/>Browse other questions tagged:&thinsp;
+                    Not the answer you're looking for? Browse other questions tagged:&thinsp;
                     <c:forEach var="tag" items="${question.tags}">
                         <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
                     </c:forEach>
