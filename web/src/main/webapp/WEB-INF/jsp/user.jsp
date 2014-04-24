@@ -6,8 +6,9 @@
 
 <body class="login-body">
 
-<div class="ui piled segment">
+<jsp:include page="header.jsp"/>
 
+<div class="ui piled segment">
     <p>
     <h3>${member.name}</h3>
     </p>

@@ -8,18 +8,6 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<div class="ui secondary menu">
-    <a class="active item" href="${path}/questions">
-        <i class="home icon"></i>Questions
-    </a>
-    <a class="item" href="${path}/users">
-        <i class="user icon"></i>Users
-    </a>
-    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
-        <i class="mail icon"></i>Log Out
-    </a>
-</div>
-
 <c:set var="isAdmin" value="false"/>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
     <c:set var="isAdmin" value="true"/>
@@ -28,20 +16,19 @@
 <body class="login-body"
       onload="mdRawConvector('#question-raw-content', '#question-preview'); mdLivePreview('#raw-content', '#preview-content');">
 
+<jsp:include page="header.jsp"/>
+
 <div class="ui piled segment">
-
-    <%-- Question --%>
-
-    <table class="ui basic table">
-        <thead>
-        <tr>
-            <th class="ui header" colspan="3">${question.title}</th>
-        </tr>
-        </thead>
+    <p>
+    <h3>${question.title}</h3>
+    <p>
+    <table class="ui basic small table">
         <tbody>
         <tr>
-            <td rowspan="2">
-                <h1>${question.votes}</h1>
+            <td class="wide one" align="center" style="vertical-align: text-top;">
+                <h2>${question.votes}</h2>
+                <br/>
+                <small>votes</small>
             </td>
             <td colspan="2">
 
@@ -55,158 +42,171 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td></td>
+            <td class="wide eight" colspan="3">
                 <c:forEach var="tag" items="${question.tags}">
-                    <a class="ui teal label">${tag.name}</a>&thinsp;
+                    <a href="#" class="ui label icon tag teal">${tag.name}</a>&thinsp;
                 </c:forEach>
-                <c:if test="${isAdmin || question.user.id eq user.id }">
-                    <a href="${path}/question/delete/${question.id}">delete</a>
-                </c:if>
-            </td>
-            <td>
-                Asked&ensp;<fmt:formatDate type="both" value="${question.created}"
-                                           pattern="yyyy-MM-dd / HH:mm"/>
-
-                <a href="${path}/user/${question.user.id}">
-                    <b>${question.user.name}</b>
-                </a>
             </td>
         </tr>
-
-        <%-- Comments --%>
-
         <tr>
             <td></td>
-            <td colspan="2">
-                <div class="ui comments">
-                    <div class="comment">
-                        <div class="content">
-                            <c:forEach var="cm" items="${comments}">
-                                <div class="text">
-
-                                    <%-- raw --%>
-                                        <div onkeyup="mdRawConvector('#answer-raw-content', '#answer-preview')"
-                                             id="answer-raw-content">${cm.content}</div>
-
-                                    <%-- preview --%>
-                                        <div id="answer-preview" class="markdown-body"></div>
-
-
-                                    <fmt:formatDate type="both" value="${cm.created}"
-                                                    pattern="yyyy-MM-dd / HH:mm"/>
-
-                                    <a class="author" href="${path}/user/${cm.user.id}">
-                                        <b>${cm.user.name}</b>
-                                    </a>
-
-                                    <c:if test="${isAdmin eq true || cm.user.id eq user.id}">
-                                        <a href="#"><i class="remove icon"></i></a>
-                                    </c:if>
-                                </div>
-                            </c:forEach>
-                        </div>
-                        <div class="content">
-                            <div class="text">
-                                <div class="ui action input">
-                                    <input type="text" placeholder="Your comments...">
-                                    <a href="#"><i class="add icon"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <td class="wide seven">
+                <c:if test="${isAdmin || question.user.id eq user.id }">
+                    <a href="${path}/question/delete/${question.id}">delete</a>
+                    &ensp;|&ensp;
+                    <a href="#">edit</a>
+                </c:if>
+            </td>
+            <td class="wide eight" align="left">
+                <small>
+                    asked&ensp;
+                    <a href="${path}/user/${question.user.id}">
+                        <b>${question.user.name}</b>
+                    </a>
+                    <fmt:formatDate type="both" value="${question.created}"
+                                    pattern="yyyy-MM-dd / HH:mm"/>
+                </small>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <div class="ui section divider"></div>
 
+<%-- Commets --%>
+
+<div class="ui horizontal icon divider">
+    <i class="circular chat icon"></i>
+</div>
+
+<table class="ui basic small table">
+    <tbody>
+    <c:forEach var="cm" items="${comments}">
+        <tr>
+            <td class="wide one">
+            </td>
+            <td colspan="2" class="wide fifteen">
+                <small>
+                        ${cm.content} - <a href="${path}/user/${cm.user.id}">${cm.user.name}</a>
+                    <fmt:formatDate type="both" value="${cm.created}"
+                                    pattern="yyyy-MM-dd / HH:mm"/>
+
+                    <c:if test="${(isAdmin eq true) or (cm.user.id eq user.id)}">
+                        <a href="#">delete</a>
+                    </c:if>
+                </small>
+            </td>
+        </tr>
+    </c:forEach>
+    <tr>
+        <td class="wide one"></td>
+        <td colspan="2" class="wide fifteen"><input type="text" placeholder="Add comments..."></td>
+    </tr>
+    </tbody>
+</table>
 
     <%-- Answers --%>
 
-    <table class="ui basic table">
-        <thead>
+<div class="ui section divider"></div>
+
+<p>
+    <c:choose>
+    <c:when test="${question.answerCount > 0}">
+<h4>${question.answerCount}&ensp;Answers</h4>
+</c:when>
+<c:otherwise>
+<h4>Not answered yet</h4>
+        </c:otherwise>
+        </c:choose>
+<p>
+
+<div class="ui horizontal icon divider">
+    <i class="circular flag icon"></i>
+</div>
+
+<table class="ui basic small table">
+    <tbody>
+    <c:forEach var="asw" items="${answers}">
         <tr>
-            <th class="ui header" colspan="3">
-                <c:choose>
-                    <c:when test="${question.answerCount > 0}">
-                        ${question.answerCount}&ensp;Answers
-                    </c:when>
-                    <c:otherwise>
-                        Not answered yet
-                    </c:otherwise>
-                </c:choose>
-            </th>
+            <td class="wide one" align="center" style="vertical-align: text-top;">
+                <h2>${asw.votes}</h2><br/>
+                <small>votes</small>
+            </td>
+            <td colspan="2">
+                <small>${asw.content}</small>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="asw" items="${answers}">
-            <tr>
-                <td rowspan="2">
-                    <h1>${asw.votes}</h1>
-                </td>
-                <td colspan="2">
-                    ${asw.content}
-                        <br/>
-                    <c:if test="${isAdmin || asw.user.id eq user.id}">
-                        <a href="${path}/answer/delete/${asw.id}">delete</a>
-                    </c:if>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Answered&ensp;<fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm" value="${asw.created}"/>
-                    <a href="${path}/user/${asw.user.id}"><b>${asw.user.name}</b></a>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+        <tr>
+            <td></td>
+            <td class="wide seven">
+                <c:if test="${isAdmin || asw.user.id eq user.id}">
+                    <a href="${path}/answer/delete/${asw.id}">delete</a>
+                    &ensp;|&ensp;
+                    <a href="#">edit</a>
+                </c:if>
+            </td>
+            <td class="wide eight" align="left">
+                <small>
+                    answered <a href="#">${asw.user.name}</a>
 
-    <%-- Post new answer --%>
+                    <fmt:formatDate type="both" value="${asw.created}"
+                                    pattern="yyyy-MM-dd / HH:mm"/>
+                </small>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
 
-        <c:if test="${!(user.id eq question.user.id)}">
+<!-- Pos new Answer -->
 
-            <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
+<c:if test="${!(user.id eq question.user.id)}">
 
-                <div class="ui form">
-                    <p>Your answer</p>
+    <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
+        <p>
+        <h4>Your answer</h4>
 
-                    <div class="field">
-                        <textarea id="raw-content" name="aswContent" required></textarea>
-                    </div>
-                </div>
+        <p>
 
-                <div class="ui horizontal icon divider">
-                    <i class="circular magic icon"></i>
-                </div>
-
-                <div id="preview-container" class="ui segment">
-                    <div id="preview-content" class="markdown-body"></div>
-                </div>
-
-                <div class="ui form">
-                    <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
-                </div>
-
-            </form:form>
-
-            <div class="ui segment">
-                <p>
-                    Not the answer you're looking for? Browse other questions tagged:&thinsp;
-                    <c:forEach var="tag" items="${question.tags}">
-                        <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
-                    </c:forEach>
-                    or <a href="${path}/questions/ask">ask your own questions</a>.
-                </p>
+        <div class="ui form">
+            <div class="field">
+                <textarea id="raw-content" name="aswContent" required></textarea>
             </div>
-        </c:if>
+        </div>
+
+        <div class="ui horizontal icon divider">
+            <i class="circular magic icon"></i>
+        </div>
+
+        <div id="preview-container" class="ui segment">
+            <div id="preview-content" class="markdown-body"></div>
+        </div>
+
+        <div class="ui form">
+            <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
+        </div>
+    </form:form>
+
+    <div class="ui segment">
+        <p>
+            Not the answer you're looking for? Browse other questions tagged:&thinsp;
+            <c:forEach var="tag" items="${question.tags}">
+                <a href="#" class="ui teal small label">${tag.name}</a>&thinsp;
+            </c:forEach>
+            or <a href="${path}/questions/ask">ask your own questions</a>.
+        </p>
+    </div>
+
+</c:if>
+
 </div>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
 <script src="${path}/js/showdown.js"></script>
 <script src="${path}/js/semantic.js"></script>
 <script src="${path}/js/main.js"></script>
+
+<br/><br/><br/>
+<br/><br/><br/>
 
 </body>

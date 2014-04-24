@@ -8,28 +8,11 @@
 
 <body class="login-body">
 
-<div class="ui secondary menu">
-    <a class="active item" href="${path}/user/${user.id}">
-        <i class="home icon"></i>${user.name}
-    </a>
-    <a class="item" href="${path}/questions">
-        <i class="stackexchange icon"></i>Questions
-    </a>
-    <a class="item" href="${path}/users">
-        <i class="users basic icon"></i>Users
-    </a>
-    <a class="item" href="<c:url value="/j_spring_security_logout"/>">
-        <i class="sign out icon"></i>Log Out
-    </a>
-
-    <a class="item" href="${path}/questions/ask">
-        <i class="question icon"></i>Ask Questions
-    </a>
-</div>
+<jsp:include page="header.jsp"/>
 
 <div class="ui piled segment">
     <p>
-    <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
+        <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
     </p>
     <div class="ui horizontal icon divider">
         <i class="circular stackexchange icon"></i>
@@ -49,14 +32,19 @@
                     <small>votes</small>
                 </td>
                 <td colspan="2" class="wide sixteen">
-                    <h3><a href="#">${qs.title}</a></h3>
+                    <h3><a href="${path}/question/${qs.id}">${qs.title}</a></h3>
                 </td>
             </tr>
             <tr>
                 <td class="wide eight">
-                    <c:forEach items="${qs.tags}" var="tag">
-                        <a href="${path}/questions/tagged/${tag.name}" title="${fn:substring(tag.desc, 0, 50)}&hellip;" class="ui teal label">${tag.name}</a>&ensp;
-                    </c:forEach>
+                    <div class="ui teal circular labels">
+                        <c:forEach items="${qs.tags}" var="tag">
+                            <a href="${path}/questions/tagged/${tag.name}"
+                               title="${fn:substring(tag.desc, 0, 50)}&hellip;" class="ui label">
+                                <i class="tag icon"></i>&emsp;<small>&nbsp;${tag.name}&nbsp;</small>
+                            </a>&ensp;
+                        </c:forEach>
+                    </div>
                 </td>
                 <td>
                     <small>

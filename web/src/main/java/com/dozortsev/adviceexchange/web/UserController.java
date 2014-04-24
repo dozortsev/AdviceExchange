@@ -45,10 +45,10 @@ public class UserController {
 
         return new ModelAndView("users", "name", name)
                 .addObject(
-                        "userSetTotalCount", isNameValid ? userService.totalCount(name) : userService.totalCount()
+                        "userCount", isNameValid ? userService.totalCount(name) : userService.totalCount()
                 )
                 .addObject(
-                        "userLimitedSet", userService.findUsersByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
+                        "userSet", userService.findUsersByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
                 )
         );
     }

@@ -13,6 +13,11 @@
            Breadcrumb
 *******************************/
 
+a {
+    text-decoration: none;
+    color: #2980b9;
+}
+
 .ui.breadcrumb {
   margin: 1em 0em;
   display: inline-block;
