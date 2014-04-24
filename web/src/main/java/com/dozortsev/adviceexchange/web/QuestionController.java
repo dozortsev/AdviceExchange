@@ -35,10 +35,10 @@ public class QuestionController {
         );
     }
 
-    @RequestMapping(value = "/questions/tagged", method = GET)
-    public ModelAndView searchQuestion(@RequestParam String query) {
+    @RequestMapping(value = "/questions/tagged/{tags}", method = GET)
+    public ModelAndView searchQuestion(@PathVariable String tags) {
 
-        Set<Question> questions = questionService.findQuestionsByTags(query.split(" "));
+        Set<Question> questions = questionService.findQuestionsByTags(tags.split(" "));
 
         return new ModelAndView("index", "questionCount", questionService.totalCount())
                 .addObject("questions", questions);

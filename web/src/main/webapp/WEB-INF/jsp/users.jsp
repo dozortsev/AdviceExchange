@@ -8,11 +8,6 @@
         User / ${user.name}
     </title>
 
-    <link rel="shortcut icon" href="img/logo.png">
-
-    <link rel="stylesheet" href="css/semantic.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-
 </head>
 <body class="login-body">
 
@@ -56,7 +51,7 @@
     <%-- Users --%>
 
     <main class="ui four column grid items">
-        <c:forEach items="${usersLimitedSet}" var="user">
+        <c:forEach items="${userLimitedSet}" var="user">
             <section class="column">
                 <div class="item">
                     <div class="content">
@@ -101,12 +96,6 @@
     </c:if>
 
 </div>
-
-<!-- JS -->
-
-<script src="js/jquery-1.11.0.js"></script>
-<script src="js/semantic.js"></script>
-<script src="js/main.js"></script>
 
 </body>
 

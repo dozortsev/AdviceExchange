@@ -35,43 +35,32 @@
         <i class="circular stackexchange icon"></i>
     </div>
 
-    <c:forEach items="${questions}" var="qs">
+    <c:forEach items="${questions}" var="qs" varStatus="loop">
 
-        <table class="ui basic table">
-            <thead>
-            <tr>
-                <th class="one wide"></th>
-                <th class="ten wide"></th>
-                <th class="one wide"></th>
-            </tr>
-            </thead>
+        <table class="ui basic small table">
             <tbody>
             <tr>
-                <td rowspan="2">
-                        <h1>${qs.votes}</h1><br/><small>Votes</small>
+                <td rowspan="2" class="wide one" align="center">
+                    <h2>${qs.answerCount}</h2><br/>
+                    <small>answers</small>
                 </td>
-                <td rowspan="2" colspan="2">
-                    <b>
-                        <a href="${path}/question/${qs.id}">${qs.title}</a>
-                    </b>
-                    <br/>
-                    <small>${fn:substring(qs.content, 0, 250)}&hellip;</small>
+                <td rowspan="2" class="wide one" align="center">
+                    <h2>${qs.votes}</h2><br/>
+                    <small>votes</small>
+                </td>
+                <td colspan="2" class="wide sixteen">
+                    <h3><a href="#">${qs.title}</a></h3>
                 </td>
             </tr>
             <tr>
-            </tr>
-            <tr>
-                <td>
-                    <h1>${qs.answerCount}</h1><small>Answers</small>
-                </td>
-                <td>
+                <td class="wide eight">
                     <c:forEach items="${qs.tags}" var="tag">
-                        <a class="ui teal label">${tag.name}</a>&ensp;
+                        <a href="${path}/questions/tagged/${tag.name}" title="${fn:substring(tag.desc, 0, 50)}&hellip;" class="ui teal label">${tag.name}</a>&ensp;
                     </c:forEach>
                 </td>
                 <td>
-                    <b><a href="${path}/user/${qs.user.id}">${qs.user.name}</a></b><br/>
                     <small>
+                        asked <a href="${path}/user/${qs.user.id}">${qs.user.name}</a>
                         <fmt:formatDate type="both" pattern="yyyy-MM-dd / HH:mm"
                                         value="${qs.created}"/>
                     </small>
@@ -79,8 +68,16 @@
             </tr>
             </tbody>
         </table>
-        <hr/>
+
+        <c:if test="${not loop.last}">
+            <div class="ui section divider"></div>
+        </c:if>
+
     </c:forEach>
+
+    <div class="ui horizontal icon divider">
+        <i class="circular stackexchange icon"></i>
+    </div>
 
     <div class="ui borderless pagination menu">
 
@@ -93,4 +90,8 @@
     </div>
 
 </div>
+
+<br/><br/><br/>
+<br/><br/><br/>
+
 </body>

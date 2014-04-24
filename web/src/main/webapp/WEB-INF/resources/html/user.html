@@ -34,10 +34,12 @@
 
     <div class="right menu">
         <div class="item">
-            <div class="ui icon input">
-                <input type="text" placeholder="Search..." onclick="location.href=''">
-                <i class="search link icon"></i>
-            </div>
+            <form action="/login" method="POST">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </form>
         </div>
         <div class="item">
             <a class="item" href="${path}/questions/ask">
@@ -52,106 +54,64 @@
     <p>
 
     <h3>USERS</h3>
-    </p>
     <div class="ui divider"></div>
     <p>
 
-    <div class="ui action input">
-        <div class="ui icon input">
-            <input type="text" placeholder="Search..." name="name" autofocus="true">
-            <i class="search icon"></i>
-        </div>
-    </div>
-    </p>
+    <table class="ui basic small table">
+        <tbody>
+        <tr>
+            <td rowspan="2" class="wide one" align="center">
+                <h2>2</h2><br/>
+                <small>answers</small>
+            </td>
+            <td rowspan="2" class="wide one" align="center">
+                <h2>19</h2><br/>
+                <small>votes</small>
+            </td>
+            <td colspan="2" class="wide sixteen">
+                <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing ?</a></h3>
+            </td>
+        </tr>
+        <tr>
+            <td class="wide eight">
+                tag1 tag1 tag1 tag1 tag1
+            </td>
+            <td>
+                <small>asked <a href="#">Dozortsev Anton</a> 2014-12-01 / 16:45</small>
+            </td>
+        </tr>
 
-    <div class="ui four connected items">
-        <div class="row">
-            <div class="item">
-                <div class="content">
-                    <div class="name">Cute</div>2011-01-12 / 13:34
-                    <p class="description">
-                        <small>
-                            This dog has some things going for it. Its pretty cute and looks like it'd be
-                            fun to cuddle up with.
-                        </small>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <div class="name">Faithful</div>
-                    <p class="description">Sometimes its more important to have a dog you know you can trust. But not
-                        every dog is trustworthy, you can tell by looking at its smile.
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <div class="name">Silly</div>
-                    <p class="description">Silly dogs can be quite fun to have as companions. You never know what kind
-                        of ridiculous thing they will do.
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <div class="name">Cute</div>
-                    <p class="description">This dog has some things going for it. Its pretty cute and looks like it'd be
-                        fun to cuddle up with.
-                    </p>
-                </div>
-            </div>
-        </div>
+        </tbody>
+    </table>
 
+    <div class="ui section divider"></div>
 
-        <div class="row">
-            <div class="item">
-                <div class="content">
-                    <div class="name">Cute</div>2011-01-12 / 13:34
-                    <p class="description">
-                        This dog has some things going for it. Its pretty cute and looks like it'd be
-                        fun to cuddle up with.
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <div class="name">Faithful</div>
-                    <p class="description">Sometimes its more important to have a dog you know you can trust. But not
-                        every dog is trustworthy, you can tell by looking at its smile.
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <div class="name">Silly</div>
-                    <p class="description">Silly dogs can be quite fun to have as companions. You never know what kind
-                        of ridiculous thing they will do.
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <div class="name">Cute</div>
-                    <p class="description">This dog has some things going for it. Its pretty cute and looks like it'd be
-                        fun to cuddle up with.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="ui basic small table">
+        <tbody>
+        <tr>
+            <td rowspan="2" class="wide one" align="center">
+                <h2>19</h2><br/>
+                <small>votes</small>
+            </td>
+            <td rowspan="2" class="wide one" align="center">
+                <h2>19</h2><br/>
+                <small>votes</small>
+            </td>
+            <td colspan="2" class="wide sixteen">
+                <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing ?</a></h3>
+            </td>
+        </tr>
+        <tr>
+            <td class="wide eight">
+                tag1 tag1 tag1 tag1 tag1
+            </td>
+            <td>
+                <small>asked <a href="#">Dozortsev Anton</a> 2014-12-01 / 16:45</small>
+            </td>
+        </tr>
 
-    <!-- Users -->
-
-    <!--<div class="ui borderless pagination menu">-->
-
-        <!--<c:set var="setSize" value="${fn:length(users)}"/>-->
-
-        <!--<c:forEach var="i" begin="1" end="${(setSize != 10 ? 0 : userCount / 10) + 0.5}" step="1">-->
-            <!--<a class="item" href="${path}/users?page=${i}">${i}</a>&emsp;-->
-        <!--</c:forEach>-->
-
-    <!--</div>-->
+        </tbody>
+    </table>
 
 </div>
 

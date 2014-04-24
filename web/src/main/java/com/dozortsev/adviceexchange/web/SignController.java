@@ -42,8 +42,8 @@ public class SignController {
         member.getBadges().add(badgeService.findById(2L)); // USER badge
         userService.create(member);
 
-        return new ModelAndView("redirect:/login", "message", format(
-                "User %s was successful registered! Now you have access", email)
+        return new ModelAndView("redirect:/login", "message",
+                format("User %s was successful registered! Now you have access", email)
         );
     }
 

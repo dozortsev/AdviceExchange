@@ -249,26 +249,26 @@ INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
 
 INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
 
-  (1, 'Doctor', 'A physician is a professional who practices medicine, which is concerned with promoting, maintaining or restoring human health through the study, diagnosis, and treatment of disease, injury, and other physical and mental impairments.'),
-  (2, 'Headache', 'A headache is pain or discomfort in the head, scalp, or neck. Serious causes of headaches are very rare.'),
-  (3, 'Stomachache', 'Abdominal pain is pain that you feel anywhere between your chest and groin. This is often referred to as the stomach region or belly.'),
-  (4, 'Toothache', 'Toothache is pain in or around a tooth.'),
-  (5, 'Body', 'The human body is the entire structure of a human being and comprises a head, neck, trunk (which includes the thorax and abdomen), two arms and hands and two legs and feet.'),
-  (6, 'Blood', 'Blood is a bodily fluid in animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells.'),
-  (7, 'Eye', 'The human eye is an organ that reacts to light and has several purposes. As a conscious sense organ, the mammalian eye allows vision.'),
-  (8, 'Eyesight', 'Visual perception is the ability to interpret the surrounding environment by processing information that is contained in visible light.'),
-  (9, 'Leg', 'The human leg is the entire lower extremity or limb of the human body however, the precise definition in human anatomy refers only to the section of the lower limb extending from the knee to the ankle.'),
-  (10, 'Medicine', 'Medicine is the field of applied science related to the art of healing by diagnosis, treatment, and prevention of disease.'),
-  (11, 'Human', 'Modern humans are the only remaining species of the hominids, a branch of great apes characterized by erect posture and bipedal locomotion; manual dexterity and increased tool use.'),
-  (12, 'Etymology ', 'Etymology is the study of the history of words, their origins, and how their form and meaning have changed over time.'),
-  (13, 'Brain', 'The human brain has the same general structure as the brains of other mammals, but has a more developed cortex than any other.'),
-  (14, 'Biology', 'Biology is a natural science concerned with the study of life and living organisms, including their structure, function, growth, evolution, distribution, and taxonomy.'),
-  (15, 'Morphology', 'Morphology is a branch of biology dealing with the study of the form and structure of organisms and their specific structural features.'),
-  (16, 'Orrorin', 'Orrorin tugenensis is a postulated early species of Homininae, estimated at 6.1 to 5.7 million years (Ma) and discovered in 2000. '),
-  (17, 'Gorilla', 'Gorillas constitute the eponymous genus Gorilla, the largest extant genus of primates by physical size. They are ground-dwelling, predominantly herbivorous apes that inhabit the forests of central Africa.'),
-  (18, 'Bipedalism', 'Bipedalism is a form of terrestrial locomotion where an organism moves by means of its two rear limbs, or legs.'),
-  (19, 'Machine', 'A machine is a tool containing one or more parts that uses energy to perform an intended action.'),
-  (20, 'Egypt', 'Egypt, is a transcontinental country spanning the northeast corner of Africa and southwest corner of Asia, via a land bridge formed by the Sinai Peninsula. ');
+  (1, 'doctor', 'A physician is a professional who practices medicine, which is concerned with promoting, maintaining or restoring human health through the study, diagnosis, and treatment of disease, injury, and other physical and mental impairments.'),
+  (2, 'headache', 'A headache is pain or discomfort in the head, scalp, or neck. Serious causes of headaches are very rare.'),
+  (3, 'stomachache', 'Abdominal pain is pain that you feel anywhere between your chest and groin. This is often referred to as the stomach region or belly.'),
+  (4, 'toothache', 'Toothache is pain in or around a tooth.'),
+  (5, 'body', 'The human body is the entire structure of a human being and comprises a head, neck, trunk (which includes the thorax and abdomen), two arms and hands and two legs and feet.'),
+  (6, 'blood', 'Blood is a bodily fluid in animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells.'),
+  (7, 'eye', 'The human eye is an organ that reacts to light and has several purposes. As a conscious sense organ, the mammalian eye allows vision.'),
+  (8, 'eyesight', 'Visual perception is the ability to interpret the surrounding environment by processing information that is contained in visible light.'),
+  (9, 'leg', 'The human leg is the entire lower extremity or limb of the human body however, the precise definition in human anatomy refers only to the section of the lower limb extending from the knee to the ankle.'),
+  (10, 'medicine', 'Medicine is the field of applied science related to the art of healing by diagnosis, treatment, and prevention of disease.'),
+  (11, 'human', 'Modern humans are the only remaining species of the hominids, a branch of great apes characterized by erect posture and bipedal locomotion; manual dexterity and increased tool use.'),
+  (12, 'etymology ', 'Etymology is the study of the history of words, their origins, and how their form and meaning have changed over time.'),
+  (13, 'brain', 'The human brain has the same general structure as the brains of other mammals, but has a more developed cortex than any other.'),
+  (14, 'biology', 'Biology is a natural science concerned with the study of life and living organisms, including their structure, function, growth, evolution, distribution, and taxonomy.'),
+  (15, 'morphology', 'Morphology is a branch of biology dealing with the study of the form and structure of organisms and their specific structural features.'),
+  (16, 'orrorin', 'Orrorin tugenensis is a postulated early species of Homininae, estimated at 6.1 to 5.7 million years (Ma) and discovered in 2000. '),
+  (17, 'gorilla', 'Gorillas constitute the eponymous genus Gorilla, the largest extant genus of primates by physical size. They are ground-dwelling, predominantly herbivorous apes that inhabit the forests of central Africa.'),
+  (18, 'bipedalism', 'Bipedalism is a form of terrestrial locomotion where an organism moves by means of its two rear limbs, or legs.'),
+  (19, 'machine', 'A machine is a tool containing one or more parts that uses energy to perform an intended action.'),
+  (20, 'egypt', 'Egypt, is a transcontinental country spanning the northeast corner of Africa and southwest corner of Asia, via a land bridge formed by the Sinai Peninsula. ');
 
 
 -- Question & Tag data

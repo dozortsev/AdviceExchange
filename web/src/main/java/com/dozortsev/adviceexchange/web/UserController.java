@@ -48,7 +48,7 @@ public class UserController {
                         "userSetTotalCount", isNameValid ? userService.totalCount(name) : userService.totalCount()
                 )
                 .addObject(
-                        "usersLimitedSet", userService.findUsersByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
+                        "userLimitedSet", userService.findUsersByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
                 )
         );
     }
