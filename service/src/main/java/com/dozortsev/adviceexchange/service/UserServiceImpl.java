@@ -27,6 +27,18 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         setEntityClass(User.class);
     }
 
+    @Override public Integer totalCount(String name) {
+        int totalCount = 0;
+        try {
+            totalCount = getDao().totalCount(name);
+            log.info(format("Total count of Users: %d by Name: '%s'", totalCount, name));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return totalCount;
+    }
+
     @Override public Set<User> findUsersByName(String name, Integer offset) {
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {

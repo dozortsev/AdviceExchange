@@ -4873,9 +4873,6 @@ i.massive.basic.icon {
   height: 1.45em;
 }
 /* loading */
-.ui.huge.loading.button:after {
-  background-image: url(../images/loader-small.gif);
-}
 .ui.massive.buttons .loading.button:after,
 .ui.gigantic.buttons .loading.button:after,
 .ui.massive.loading.button:after,

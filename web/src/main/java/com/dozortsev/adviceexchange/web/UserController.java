@@ -41,9 +41,15 @@ public class UserController {
     public ModelAndView users(@RequestParam(required = false) String name,
                               @RequestParam(required = false) Integer page) {
 
-        return new ModelAndView("users", "userCount", userService.totalCount())
-                .addObject("users", userService.findUsersByName(
-                name != null ? name : "", page != null ? (page - 1) * 36 : 0)
+        boolean isNameValid = name != null && name.length() > 0;
+
+        return new ModelAndView("users", "name", name)
+                .addObject(
+                        "userSetTotalCount", isNameValid ? userService.totalCount(name) : userService.totalCount()
+                )
+                .addObject(
+                        "usersLimitedSet", userService.findUsersByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
+                )
         );
     }
 

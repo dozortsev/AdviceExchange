@@ -51,9 +51,9 @@
                         <h1>${qs.votes}</h1><br/><small>Votes</small>
                 </td>
                 <td rowspan="2" colspan="2">
-                    <b><a href="${path}/question/${qs.id}">
-                            ${qs.title}
-                    </a></b>
+                    <b>
+                        <a href="${path}/question/${qs.id}">${qs.title}</a>
+                    </b>
                     <br/>
                     <small>${fn:substring(qs.content, 0, 250)}&hellip;</small>
                 </td>

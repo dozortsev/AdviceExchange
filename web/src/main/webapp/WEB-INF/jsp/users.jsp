@@ -37,7 +37,7 @@
 <div class="ui piled segment">
 
     <p>
-        <h3>USERS&ensp;${userCount}</h3>
+        <h3>USERS&ensp;${userSetTotalCount}</h3>
     </p>
     <div class="ui divider"></div>
     <p>
@@ -56,7 +56,7 @@
     <%-- Users --%>
 
     <main class="ui four column grid items">
-        <c:forEach items="${users}" var="user">
+        <c:forEach items="${usersLimitedSet}" var="user">
             <section class="column">
                 <div class="item">
                     <div class="content">
@@ -79,15 +79,26 @@
         </c:forEach>
     </main>
 
-    <div class="ui borderless pagination menu">
+    <c:if test="${userSetTotalCount >= 36}">
+        <div class="ui borderless pagination menu">
 
-        <fmt:formatNumber var="pages" value="${(fn:length(users) != 36 ? 0 : userCount / 36) + 0.5}"
-                          scope="page" type="number" pattern="#"/>
+            <fmt:formatNumber var="pages" type="number" pattern="#"
+                              value="${(userSetTotalCount / 36) + 0.5}"
+            />
 
-        <c:forEach var="i" begin="1" end="${pages}" step="1">
-            <a class="item" href="${path}/users?page=${i}">${i}</a>&emsp;
-        </c:forEach>
-    </div>
+            <c:forEach var="i" begin="1" end="${pages}" step="1">
+                <c:url var="showUsers" value="/users">
+
+                    <c:param name="page" value="${i}"/>
+
+                    <c:if test="${fn:length(name) > 0}">
+                        <c:param name="name" value="${name}"/>
+                    </c:if>
+                </c:url>
+                <a class="item" href="${showUsers}">${i}</a>&emsp;
+            </c:forEach>
+        </div>
+    </c:if>
 
 </div>
 

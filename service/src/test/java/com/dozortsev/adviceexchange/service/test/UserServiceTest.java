@@ -144,4 +144,10 @@ public class UserServiceTest extends TestContext {
         assertTrue(userActivities.contains(answer));
         assertTrue(userActivities.contains(question));
     }
+
+    @Test public void testTotalCountByName() {
+        Integer count = userService.totalCount("t");
+
+        assertTrue(count.equals(48));
+    }
 }
