@@ -6,6 +6,8 @@
     <title>Question</title>
 
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
+
+    <script src="${path}/js/showdown.js"></script>
 </head>
 
 <c:set var="isAdmin" value="false"/>
@@ -14,7 +16,15 @@
 </sec:authorize>
 
 <body class="login-body"
-      onload="mdRawConvector('#question-raw-content', '#question-preview'); mdLivePreview('#raw-content', '#preview-content');">
+      onload="mdRawConvector('#question-raw-content', '#question-preview'); mdLivePreview('#raw-content', '#preview-content');
+
+      <c:forEach items="${answers}" var="asw">
+
+              mdRawConvector('#asw-raw-content-${asw.id}', '#asw-preview-${asw.id}');
+
+              console.log('${asw.id}');
+      </c:forEach>
+">
 
 <jsp:include page="header.jsp"/>
 
@@ -44,9 +54,14 @@
         <tr>
             <td></td>
             <td class="wide eight" colspan="3">
-                <c:forEach var="tag" items="${question.tags}">
-                    <a href="#" class="ui label icon tag teal">${tag.name}</a>&thinsp;
-                </c:forEach>
+                <div class="ui teal circular labels">
+                    <c:forEach items="${question.tags}" var="tag">
+                        <a href="${path}/questions/tagged/${tag.name}"
+                           title="${tag.desc}" class="ui label">
+                            <i class="tag icon"></i><small>&nbsp;${tag.name}&nbsp;</small>
+                        </a>&ensp;
+                    </c:forEach>
+                </div>
             </td>
         </tr>
         <tr>
@@ -75,6 +90,8 @@
 
 <%-- Commets --%>
 
+<h4>Comments</h4>
+
 <div class="ui horizontal icon divider">
     <i class="circular chat icon"></i>
 </div>
@@ -100,7 +117,14 @@
     </c:forEach>
     <tr>
         <td class="wide one"></td>
-        <td colspan="2" class="wide fifteen"><input type="text" placeholder="Add comments..."></td>
+        <td class="wide twelve">
+            <div class="ui fluid input">
+                <input type="text" placeholder="Add comments...">
+            </div>
+        </td>
+        <td class="wide three">
+            <a class="ui small red button">Add Comment</a>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -111,13 +135,14 @@
 
 <p>
     <c:choose>
-    <c:when test="${question.answerCount > 0}">
-<h4>${question.answerCount}&ensp;Answers</h4>
-</c:when>
-<c:otherwise>
-<h4>Not answered yet</h4>
+        <c:when test="${question.answerCount > 0}">
+            <h4>${question.answerCount}&ensp;Answers</h4>
+        </c:when>
+
+        <c:otherwise>
+            <h4>Not answered yet</h4>
         </c:otherwise>
-        </c:choose>
+    </c:choose>
 <p>
 
 <div class="ui horizontal icon divider">
@@ -133,7 +158,12 @@
                 <small>votes</small>
             </td>
             <td colspan="2">
-                <small>${asw.content}</small>
+
+                    <%-- raw --%>
+                <div id="asw-raw-content-${asw.id}" class="hide">${asw.content}</div>
+
+                    <%-- preview --%>
+                <div id="asw-preview-${asw.id}" class="markdown-body"></div>
             </td>
         </tr>
         <tr>
@@ -202,11 +232,9 @@
 </div>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
-<script src="${path}/js/showdown.js"></script>
 <script src="${path}/js/semantic.js"></script>
 <script src="${path}/js/main.js"></script>
 
-<br/><br/><br/>
-<br/><br/><br/>
-
 </body>
+
+<jsp:include page="footer.jsp"/>

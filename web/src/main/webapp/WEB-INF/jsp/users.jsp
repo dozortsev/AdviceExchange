@@ -85,8 +85,7 @@
 
 </div>
 
-<br/><br/><br/>
-<br/><br/><br/>
-
 </body>
+
+<jsp:include page="footer.jsp"/>
 

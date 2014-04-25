@@ -1231,20 +1231,11 @@ var mdLivePreview = function (from, to) {
     var preview = $(to);
 
     $(from).keyup(function () {
-
         preview.html(md.makeHtml(this.value));
     });
-
-//    $('#preview-container').css({
-//
-//        height: preview.outerHeight() + 40
-//    });
-
-
 };
 
 var mdRawConvector = function (from, to) {
-
     $(to).html(md.makeHtml($(from).text()));
 };
 

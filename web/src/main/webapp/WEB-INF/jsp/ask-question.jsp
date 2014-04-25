@@ -49,8 +49,6 @@
 <script src="${path}/js/semantic.js"></script>
 <script src="${path}/js/main.js"></script>
 
-<br/><br/><br/>
-<br/><br/><br/>
-
 </body>
 
+<jsp:include page="footer.jsp"/>

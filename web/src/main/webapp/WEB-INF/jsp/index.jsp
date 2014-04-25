@@ -40,8 +40,8 @@
                     <div class="ui teal circular labels">
                         <c:forEach items="${qs.tags}" var="tag">
                             <a href="${path}/questions/tagged/${tag.name}"
-                               title="${fn:substring(tag.desc, 0, 50)}&hellip;" class="ui label">
-                                <i class="tag icon"></i>&emsp;<small>&nbsp;${tag.name}&nbsp;</small>
+                               title="${tag.desc}" class="ui label">
+                                <i class="tag icon"></i><small>&nbsp;${tag.name}&nbsp;</small>
                             </a>&ensp;
                         </c:forEach>
                     </div>
@@ -79,7 +79,6 @@
 
 </div>
 
-<br/><br/><br/>
-<br/><br/><br/>
-
 </body>
+
+<jsp:include page="footer.jsp"/>

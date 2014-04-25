@@ -11,6 +11,10 @@
     /*font-family: inherit;*/
 /*}*/
 
+a {
+    text-transform: none;
+}
+
 button {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
