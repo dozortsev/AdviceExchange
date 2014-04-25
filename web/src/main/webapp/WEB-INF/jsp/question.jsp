@@ -16,13 +16,11 @@
 </sec:authorize>
 
 <body class="login-body"
-      onload="mdRawConvector('#question-raw-content', '#question-preview'); mdLivePreview('#raw-content', '#preview-content');
+      onload="mdRawConvector('#question-raw-content', '#question-preview');
+              mdLivePreview('#raw-content', '#preview-content');
 
       <c:forEach items="${answers}" var="asw">
-
               mdRawConvector('#asw-raw-content-${asw.id}', '#asw-preview-${asw.id}');
-
-              console.log('${asw.id}');
       </c:forEach>
 ">
 

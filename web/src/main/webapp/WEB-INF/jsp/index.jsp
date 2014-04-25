@@ -12,7 +12,17 @@
 
 <div class="ui piled segment">
     <p>
-        <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
+
+    <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
+
+    <form:form action="${path}/users" method="GET">
+        <div class="ui action input">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search..." name="keyWords" autofocus="true">
+                <i class="search icon"></i>
+            </div>
+        </div>
+    </form:form>
     </p>
     <div class="ui horizontal icon divider">
         <i class="circular stackexchange icon"></i>
@@ -60,7 +70,6 @@
         <c:if test="${not loop.last}">
             <div class="ui section divider"></div>
         </c:if>
-
     </c:forEach>
 
     <div class="ui horizontal icon divider">
@@ -76,9 +85,7 @@
             <a class="item" href="${path}/questions?page=${i}">${i}</a>
         </c:forEach>
     </div>
-
 </div>
-
 </body>
 
 <jsp:include page="footer.jsp"/>

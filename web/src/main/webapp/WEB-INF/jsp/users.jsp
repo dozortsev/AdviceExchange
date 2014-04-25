@@ -15,11 +15,7 @@
 
 <div class="ui piled segment">
     <p>
-        <h3>USERS&ensp;${userCount}</h3>
-    </p>
-    <div class="ui horizontal icon divider">
-        <i class="circular users basic icon"></i>
-    </div>
+    <h3>USERS&ensp;${userCount}</h3>
 
     <form:form action="${path}/users" method="GET">
 
@@ -31,6 +27,10 @@
         </div>
 
     </form:form>
+    </p>
+    <div class="ui horizontal icon divider">
+        <i class="circular users basic icon"></i>
+    </div>
 
     <%-- Users --%>
 
