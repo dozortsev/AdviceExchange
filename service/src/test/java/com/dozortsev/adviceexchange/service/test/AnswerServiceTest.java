@@ -42,7 +42,8 @@ public class AnswerServiceTest extends TestContext {
         // prepare data for test of create
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, obcaecati.";
 
-        final Answer answer = new Answer(user, content, question, Boolean.TRUE);
+        final Answer answer = new Answer(user, content, question);
+        answer.canAccept(Boolean.TRUE);
 
         assertNull(answer.getId());
         questionService.addAnswer(question, answer);
