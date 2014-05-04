@@ -26,7 +26,7 @@ public class QuestionController {
 
     private @Autowired CommentService commentService;
 
-    @RequestMapping(value="/questions", method = GET)
+    @RequestMapping(value= "/questions", method = GET)
     public ModelAndView index(@RequestParam(required = false) Integer page) {
 
         return new ModelAndView("index", "questionCount", questionService.totalCount())
