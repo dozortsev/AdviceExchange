@@ -4,61 +4,71 @@
 
 <title>${member.name}</title>
 
-<body class="login-body">
+<body>
+<table class="ui basic table">
+    <tbody>
+    <tr>
+        <td class="wide two"></td>
+        <td class="wide twelve">
 
-<jsp:include page="header.jsp"/>
+            <jsp:include page="header.jsp"/>
 
-<div class="ui piled segment">
-    <p>
-    <h3>${member.name}</h3>
-    </p>
-    <div class="ui divider"></div>
-</div>
-
-<div class="ui grid">
-    <div class="eight wide column">
-        <div class="ui vertical fluid menu">
-            <div class="header center item">
-                Questions
+            <div class="ui piled segment">
+                <p>
+                <h3>${member.name}</h3>
+                </p>
+                <div class="ui divider"></div>
             </div>
-            <div class="item">
 
-                <table class="ui basic table">
-                    <tbody>
-                    <c:forEach items="${questions}" var="qs">
-                        <tr>
-                            <td>${qs.votes}</td>
-                            <td><a href="${path}/question/${qs.id}">${qs.title}</a></td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <div class="ui vertical fluid menu">
+                        <div class="header center item">
+                            Questions
+                        </div>
+                        <div class="item">
 
-    <div class="eight wide column">
-        <div class="ui vertical fluid menu">
-            <div class="header center item">
-                Answers
+                            <table class="ui basic table">
+                                <tbody>
+                                <c:forEach items="${questions}" var="qs">
+                                    <tr>
+                                        <td>${qs.votes}</td>
+                                        <td><a href="${path}/question/${qs.id}">${qs.title}</a></td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eight wide column">
+                    <div class="ui vertical fluid menu">
+                        <div class="header center item">
+                            Answers
+                        </div>
+                        <div class="item">
+                            <table class="ui basic table">
+                                <tbody>
+                                <c:forEach items="${answers}" var="asw">
+                                    <tr>
+                                        <td>${asw.votes}</td>
+                                        <td>
+                                            <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="item">
-                <table class="ui basic table">
-                    <tbody>
-                    <c:forEach items="${answers}" var="asw">
-                        <tr>
-                            <td>${asw.votes}</td>
-                            <td>
-                                <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+        </td>
+        <td class="wide two"></td>
+    </tr>
+    </tbody>
+</table>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
 <script src="${path}/js/semantic.js"></script>

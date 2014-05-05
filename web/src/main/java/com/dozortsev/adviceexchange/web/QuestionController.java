@@ -99,7 +99,7 @@ public class QuestionController {
                                @ModelAttribute Question question,
                                @RequestParam   String aswContent)
     {
-        questionService.addAnswer(question, new Answer(user, aswContent, question, Boolean.FALSE));
+        questionService.addAnswer(question, new Answer(user, aswContent, question));
 
         return "redirect:/question/" + question.getId();
     }

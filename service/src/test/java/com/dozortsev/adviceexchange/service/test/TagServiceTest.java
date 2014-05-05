@@ -28,7 +28,7 @@ public class TagServiceTest extends TestContext {
     @Test public void testFindTagByName() {
 
         // choose exist Tag name
-        final String name = "Toothache";
+        final String name = "toothache";
 
         // expected data
         final Long id = 4L;

@@ -12,11 +12,12 @@
     <a class="item" href="${path}/users">
         <i class="users basic icon"></i>Users
     </a>
-    <a class="item right" href="<c:url value="/j_spring_security_logout"/>">
-        <i class="off icon"></i>Log Out
+    <a class="item" href="<c:url value="/j_spring_security_logout"/>">
+        <i class="url basic icon"></i>Log Out
     </a>
-    <a class="item right" href="${path}/questions/ask">
-        <i class="lightbulb icon"></i>Ask Questions
+    <a class="item right" style="background-color: #faea9f;"
+       href="${path}/questions/ask">
+        <b><i class="idea basic icon"></i>Ask Questions</b>
     </a>
 </div>
 

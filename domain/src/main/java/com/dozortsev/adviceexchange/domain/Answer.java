@@ -26,11 +26,10 @@ public class Answer extends UserActivity {
         this.accept = Boolean.FALSE;
     }
 
-    public Answer(User user, String content, Question question, Boolean accept) {
+    public Answer(User user, String content, Question question) {
         super(user, Type.ANSWER, content);
         this.votes = 0;
         this.question = question;
-        this.accept = accept;
     }
 
     public Question getQuestion() {
