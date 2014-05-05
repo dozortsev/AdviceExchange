@@ -35,25 +35,23 @@ public class QuestionController {
     public ModelAndView index(@RequestParam(required = false) Integer page,
                               @RequestParam(required = false) String keyWords) {
 
-        ModelAndView mav = new ModelAndView("index", "questionCount", questionService.totalCount());
+        ModelAndView mav = new ModelAndView("index");
 
         if (keyWords != null && keyWords.length() > 0) {
 
-            Matcher matcher = Pattern.compile("(\\p{Alnum}+)").matcher(keyWords);
+            Matcher matcher = Pattern.compile("\\[(\\p{Graph}+)\\]").matcher(keyWords);
 
             if (matcher.find()) {
-
                 String url = "redirect:/questions/tagged/";
-
-                for (int i = 0; i < matcher.groupCount(); i++)
-                    url += matcher.group(i);
-
-                return new ModelAndView(url);
+                for (String tag : keyWords.split("\\s+")) {
+                    url += tag.substring(1, tag.length() - 1) + " ";
+                }
+                return new ModelAndView(url.substring(0, url.length() - 1));
             }
             return mav.addObject("questions", questionService.findQuestionsByKeyWords(keyWords.split("\\s+")));
         }
-
-        return mav.addObject("questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0));
+        return mav.addObject("questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0))
+                  .addObject("questionCount", questionService.totalCount());
     }
 
     @RequestMapping(value = "/questions/tagged/{tag}", method = GET)
@@ -61,8 +59,7 @@ public class QuestionController {
 
         Set<Question> questions = questionService.findQuestionsByTags(tag.split("\\s+"));
 
-        return new ModelAndView("index", "questionCount", questionService.totalCount())
-                .addObject("questions", questions);
+        return new ModelAndView("index", "questions", questions);
     }
 
     @RequestMapping(value = "/question/{id}")

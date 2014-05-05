@@ -22,7 +22,7 @@
                 <p>
                 <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
 
-                <form:form action="${path}/users" method="GET">
+                <form:form action="${path}/questions" method="GET">
                     <div class="ui action input">
                         <div class="ui icon input">
                             <input type="text" placeholder="Search..." name="keyWords" autofocus="true">
@@ -84,19 +84,21 @@
                     </c:if>
                 </c:forEach>
 
-                <div class="ui horizontal icon divider">
-                    <i class="circular stackexchange icon"></i>
-                </div>
+                <c:if test="${fn:length(questions) >= 10}">
 
-                <div class="ui borderless pagination menu">
+                    <div class="ui horizontal icon divider">
+                        <i class="circular stackexchange icon"></i>
+                    </div>
 
-                    <fmt:formatNumber var="pages" type="number" pattern="#"
-                                      value="${(questionCount / 10) + 0.5}"/>
+                    <div class="ui borderless pagination menu">
+                        <fmt:formatNumber var="pages" type="number" pattern="#"
+                                          value="${(questionCount / 10) + 0.5}"/>
 
-                    <c:forEach var="i" begin="1" end="${pages}" step="1">
-                        <a class="item" href="${path}/questions?page=${i}">${i}</a>
-                    </c:forEach>
-                </div>
+                        <c:forEach var="i" begin="1" end="${pages}" step="1">
+                            <a class="item" href="${path}/questions?page=${i}">${i}</a>
+                        </c:forEach>
+                    </div>
+                </c:if>
             </div>
 
         </td>

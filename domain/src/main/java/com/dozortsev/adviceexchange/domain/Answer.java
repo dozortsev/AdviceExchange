@@ -30,6 +30,7 @@ public class Answer extends UserActivity {
         super(user, Type.ANSWER, content);
         this.votes = 0;
         this.question = question;
+        this.accept = Boolean.FALSE;
     }
 
     public Question getQuestion() {
