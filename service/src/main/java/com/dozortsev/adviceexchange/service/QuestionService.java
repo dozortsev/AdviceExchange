@@ -11,6 +11,8 @@ public interface QuestionService extends GenericService<Long, Question> {
 
     Integer delAnswer(Answer answer);
 
+    Set<Question> findQuestionsByKeyWords(String... keyWords);
+
     Set<Question> loadFrom(Integer offset);
 
     Set<Question> findQuestionsByUserId(Long userId);

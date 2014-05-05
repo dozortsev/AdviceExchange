@@ -15,7 +15,7 @@
 
     <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
 
-    <form:form action="${path}/users" method="GET">
+    <form:form action="${path}/questions" method="GET">
         <div class="ui action input">
             <div class="ui icon input">
                 <input type="text" placeholder="Search..." name="keyWords" autofocus="true">
@@ -46,13 +46,13 @@
                 </td>
             </tr>
             <tr>
-                <td class="wide eight">
+                <td class="wide nine">
                     <div class="ui teal circular labels">
                         <c:forEach items="${qs.tags}" var="tag">
                             <a href="${path}/questions/tagged/${tag.name}"
                                title="${tag.desc}" class="ui label">
-                                <i class="tag icon"></i><small>&nbsp;${tag.name}&nbsp;</small>
-                            </a>&ensp;
+                                <i class="tag icon"></i><small>${tag.name}</small>
+                            </a>
                         </c:forEach>
                     </div>
                 </td>
@@ -78,12 +78,16 @@
 
     <div class="ui borderless pagination menu">
 
-        <fmt:formatNumber var="pages" type="number" pattern="#"
-                          value="${(questionCount / 10) + 0.5}"/>
+        <c:if test="${fn:length(questions) >= 10}">
 
-        <c:forEach var="i" begin="1" end="${pages}" step="1">
-            <a class="item" href="${path}/questions?page=${i}">${i}</a>
-        </c:forEach>
+            <fmt:formatNumber var="pages" type="number" pattern="#"
+                              value="${(questionCount / 10) + 0.5}"/>
+
+            <c:forEach var="i" begin="1" end="${pages}" step="1">
+                <a class="item" href="${path}/questions?page=${i}">${i}</a>
+            </c:forEach>
+
+        </c:if>
     </div>
 </div>
 </body>

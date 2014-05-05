@@ -85,5 +85,5 @@ $('.ui.form').form({
                 prompt: 'Please enter your password'
             }
         ]
-    },
+    }
 });

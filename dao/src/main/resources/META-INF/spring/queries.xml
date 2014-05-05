@@ -59,6 +59,18 @@
             ORDER BY ua_created DESC
         "/>
     </bean>
+    <bean id="findQuestionsByKeyWords" class="java.lang.String">
+        <constructor-arg value="
+
+            SELECT question.*, user_activity.*
+
+            FROM question
+
+                JOIN user_activity ON ua_type = 'QUESTION'
+
+            WHERE qs_id = ua_id AND ua_active = TRUE
+        "/>
+    </bean>
 
 
     <!-- Load limit set of Questions -->

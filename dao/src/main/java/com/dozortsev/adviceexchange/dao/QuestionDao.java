@@ -13,6 +13,8 @@ public interface QuestionDao extends GenericDao<Long, Question> {
 
     List<Question> loadFrom(Integer offset);
 
+    List<Question> findByKeyWord(String... keyWork);
+
     List<Question> findQuestionsByUserId(Long userId);
 
     List<Question> findQuestionsByTags(String... tags);

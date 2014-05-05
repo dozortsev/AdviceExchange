@@ -6,12 +6,15 @@ import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.CommentService;
 import com.dozortsev.adviceexchange.service.QuestionService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -26,19 +29,37 @@ public class QuestionController {
 
     private @Autowired CommentService commentService;
 
-    @RequestMapping(value="/questions", method = GET)
-    public ModelAndView index(@RequestParam(required = false) Integer page) {
+    private static final Logger log = Logger.getLogger(QuestionController.class);
 
-        return new ModelAndView("index", "questionCount", questionService.totalCount())
-                .addObject("questions", questionService.loadFrom(
-                                page != null ? (page - 1) * 10 : 0)  // offset
-        );
+    @RequestMapping(value="/questions", method = GET)
+    public ModelAndView index(@RequestParam(required = false) Integer page,
+                              @RequestParam(required = false) String keyWords) {
+
+        ModelAndView mav = new ModelAndView("index", "questionCount", questionService.totalCount());
+
+        if (keyWords != null && keyWords.length() > 0) {
+
+            Matcher matcher = Pattern.compile("(\\p{Alnum}+)").matcher(keyWords);
+
+            if (matcher.find()) {
+
+                String url = "redirect:/questions/tagged/";
+
+                for (int i = 0; i < matcher.groupCount(); i++)
+                    url += matcher.group(i);
+
+                return new ModelAndView(url);
+            }
+            return mav.addObject("questions", questionService.findQuestionsByKeyWords(keyWords.split("\\s+")));
+        }
+
+        return mav.addObject("questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0));
     }
 
-    @RequestMapping(value = "/questions/tagged/{tags}", method = GET)
-    public ModelAndView searchQuestion(@PathVariable String tags) {
+    @RequestMapping(value = "/questions/tagged/{tag}", method = GET)
+    public ModelAndView searchQuestion(@PathVariable String tag) {
 
-        Set<Question> questions = questionService.findQuestionsByTags(tags.split(" "));
+        Set<Question> questions = questionService.findQuestionsByTags(tag.split("\\s+"));
 
         return new ModelAndView("index", "questionCount", questionService.totalCount())
                 .addObject("questions", questions);

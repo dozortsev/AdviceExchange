@@ -51,6 +51,19 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return question.getAnswerCount();
     }
 
+    @Override public Set<Question> findQuestionsByKeyWords(String... keyWords) {
+        Set<Question> questions = new LinkedHashSet<>();
+        try {
+            log.info(format("Find Questions by key words: %s", Arrays.toString(keyWords)));
+            questions.addAll(getDao().findByKeyWord(keyWords));
+            log.info(format("Set of Questions have size: %d", questions.size()));
+
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return questions;
+    }
+
     @Transactional(readOnly = true)
     @Override public LinkedHashSet<Question> loadFrom(Integer offset) {
         LinkedHashSet<Question> questions = new LinkedHashSet<>();

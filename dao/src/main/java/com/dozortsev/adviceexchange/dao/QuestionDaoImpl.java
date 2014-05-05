@@ -2,6 +2,7 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
+import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,8 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
     private @Autowired String findQuestionsByTags;
 
     private @Autowired String loadQuestionsSet;
+
+    private @Autowired String findQuestionsByKeyWords;
 
     public QuestionDaoImpl() {
         setEntityClass(Question.class);
@@ -49,6 +52,25 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
                 .addEntity(getEntityClass())
                 .setInteger("offset", offset)
                 .list();
+    }
+
+    @Override public List<Question> findByKeyWord(String... keyWords) {
+
+        StringBuilder queryStr = new StringBuilder(findQuestionsByKeyWords)
+                .append("HAVING CONCAT(qs_title, ' ', ua_content) REGEXP :word0").append("\n");
+
+        for (int i = 1; i < keyWords.length; i++)
+            queryStr.append("AND CONCAT(qs_title, ' ', ua_content) REGEXP :word")
+                    .append(i).append("\n");
+
+        queryStr.append("ORDER BY ua_created DESC");    // building of the query is finished
+
+        SQLQuery sqlQuery = getCurrentSession().createSQLQuery(queryStr.toString()).addEntity(getEntityClass());
+
+        for (int i = 0; i < keyWords.length; i++)
+            sqlQuery.setParameter("word" + i, keyWords[i]);
+
+        return sqlQuery.list();
     }
 
     @Override public List<Question> findQuestionsByUserId(Long userId) {
