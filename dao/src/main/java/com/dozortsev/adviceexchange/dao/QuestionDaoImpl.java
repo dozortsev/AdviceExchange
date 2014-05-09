@@ -57,7 +57,8 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
     @Override public List<Question> findByKeyWord(String... keyWords) {
 
         StringBuilder queryStr = new StringBuilder(findQuestionsByKeyWords)
-                .append("HAVING CONCAT(qs_title, ' ', ua_content) REGEXP :word0").append("\n");
+                .append("HAVING CONCAT(qs_title, ' ', ua_content) REGEXP :word0")
+                .append("\n");
 
         for (int i = 1; i < keyWords.length; i++)
             queryStr.append("AND CONCAT(qs_title, ' ', ua_content) REGEXP :word")

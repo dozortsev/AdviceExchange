@@ -35,7 +35,7 @@ public class QuestionController {
 
     @RequestMapping(value="/questions", method = GET)
     public ModelAndView index(@RequestParam(required = false) Integer page,
-                              @RequestParam(required = false) String keyWords) {
+                              @RequestParam(required = false) String  keyWords) {
 
         ModelAndView mav = new ModelAndView("index");
 
@@ -48,10 +48,8 @@ public class QuestionController {
 
                 matcher = Pattern.compile("(\\w+-\\w+|\\w+)").matcher(keyWords);
 
-                if (matcher.find()) {
-                    for (int i = 0; i < matcher.groupCount(); i++) {
-                        tags.add(matcher.group(i));
-                    }
+                if (matcher.find()) for (int i = 0; i < matcher.groupCount(); i++) {
+                    tags.add(matcher.group(i));
                 }
                 return new ModelAndView("redirect:/questions/tagged/" + String.join(" ", tags));
             }
