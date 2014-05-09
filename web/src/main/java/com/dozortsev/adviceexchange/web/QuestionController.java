@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,14 +41,19 @@ public class QuestionController {
 
         if (keyWords != null && keyWords.length() > 0) {
 
-            Matcher matcher = Pattern.compile("\\[(\\p{Graph}+)\\]").matcher(keyWords);
+            Matcher matcher = Pattern.compile("\\[|\\]]").matcher(keyWords);
 
             if (matcher.find()) {
-                String url = "redirect:/questions/tagged/";
-                for (String tag : keyWords.split("\\s+")) {
-                    url += tag.substring(1, tag.length() - 1) + " ";
+                List<String> tags = new ArrayList<>();
+
+                matcher = Pattern.compile("(\\w+-\\w+|\\w+)").matcher(keyWords);
+
+                if (matcher.find()) {
+                    for (int i = 0; i < matcher.groupCount(); i++) {
+                        tags.add(matcher.group(i));
+                    }
                 }
-                return new ModelAndView(url.substring(0, url.length() - 1));
+                return new ModelAndView("redirect:/questions/tagged/" + String.join(" ", tags));
             }
             return mav.addObject("questions", questionService.findQuestionsByKeyWords(keyWords.split("\\s+")));
         }

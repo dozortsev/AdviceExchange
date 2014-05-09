@@ -68,7 +68,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         SQLQuery sqlQuery = getCurrentSession().createSQLQuery(queryStr.toString()).addEntity(getEntityClass());
 
         for (int i = 0; i < keyWords.length; i++)
-            sqlQuery.setParameter("word" + i, keyWords[i]);
+            sqlQuery.setParameter("word" + i, " " + keyWords[i] + " ");
 
         return sqlQuery.list();
     }

@@ -112,7 +112,7 @@
                             <fmt:formatDate type="both" value="${cm.created}"
                                             pattern="yyyy-MM-dd / HH:mm"/>
 
-                            <c:if test="${(isAdmin) or (cm.user.id eq user.id)}">
+                            <c:if test="${isAdmin || (cm.user.id eq user.id)}">
                                 <a href="#">delete</a>
                             </c:if>
                         </small>
