@@ -17,6 +17,10 @@ $(document).ready(function () {
     );
 });
 
+$('.icon.link').popup({
+    on: 'hover'
+});
+
 
 $('.ui.popup').popup();
 

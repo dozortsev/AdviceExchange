@@ -57,8 +57,13 @@
     <!-- Comments -->
 
     <div class="ui horizontal icon divider">
-        <i class="circular chat icon"></i>
+        <i class="circular comment icon"
+           data-title="Using click events"
+           data-content="Hello, I am a pop-up."
+           data-variation="inverted"></i>
     </div>
+
+
 
     <table class="ui basic small table">
         <tbody>
@@ -186,11 +191,34 @@
 
     <p>
     <h4>Your answer</h4>
+
+    <div class="ui form">
+        <div class="field">
+            <input type="text" name="title" required="true"
+                   placeholder="What's your human health questions? Be specific.">
+        </div>
+    </div>
+
+    <i class="photo circular icon link"
+       data-title="Photo: ![](url)"
+       data-content="Where 'url' link to img:<br>https://www.google.com/logo11w.png</small>"></i>
+
+
+    <i class="circular quote left link icon"></i>
+    <i class="circular strikethrough link icon"></i>
+    <i class="circular text height link icon"></i>
+    <i class="circular globe link icon"></i>
+    <i class="circular bold link icon"></i>
+    <i class="circular italic link icon"></i>
+    <i class="circular underline link icon"></i>
+    <i class="circular comment link icon" data-content="Hello, I am a pop-up."></i>
+    <i class="circular code link icon"></i>
+    <i class="circular list link icon"></i>
     <p>
 
     <div class="ui form">
         <div class="field">
-            <textarea id="raw-content" name="aswContent" required></textarea>
+            <textarea id="raw-content" name="aswContent" data-title="Cheat sheet" data-content="You can use me to enter data" required></textarea>
         </div>
     </div>
 

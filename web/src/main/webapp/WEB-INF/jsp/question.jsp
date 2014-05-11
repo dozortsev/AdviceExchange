@@ -79,7 +79,7 @@
                 </td>
                 <td class="wide eight" align="left">
                     <small>
-                        asked&ensp;
+                        asked&thinsp;
                         <a href="${path}/user/${question.user.id}">
                             <b>${question.user.name}</b>
                         </a>
@@ -113,7 +113,7 @@
                                             pattern="yyyy-MM-dd / HH:mm"/>
 
                             <c:if test="${isAdmin || (cm.user.id eq user.id)}">
-                                <a href="#">delete</a>
+                                <a href="#"><i class="remove icon"></i></a>
                             </c:if>
                         </small>
                     </td>
@@ -123,11 +123,13 @@
                 <td class="wide one"></td>
                 <td class="wide twelve">
                     <div class="ui fluid input">
-                        <input type="text" placeholder="Add comments...">
+                        <input type="text" placeholder="Your comments...">
                     </div>
                 </td>
                 <td class="wide two">
-                    <a class="ui small red button">Add Comment</a>
+                    <div class="ui fluid input">
+                        <a class="ui tiny red button">Add Comment</a>
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -140,7 +142,7 @@
         <p>
             <c:choose>
             <c:when test="${question.answerCount > 0}">
-        <h4>${question.answerCount}&ensp;Answers</h4>
+        <h4>${question.answerCount}&thinsp;Answers</h4>
         </c:when>
 
         <c:otherwise>
@@ -181,8 +183,10 @@
                     </td>
                     <td class="wide eight" align="left">
                         <small>
-                            answered <a href="${path}/user/${asw.user.id}">${asw.user.name}</a>
-
+                            answered&thinsp;
+                            <a href="${path}/user/${asw.user.id}">
+                                <b>${asw.user.name}</b>
+                            </a>
                             <fmt:formatDate type="both" value="${asw.created}"
                                             pattern="yyyy-MM-dd / HH:mm"/>
                         </small>
@@ -192,7 +196,7 @@
             </tbody>
         </table>
 
-        <!-- Pos new Answer -->
+        <!-- Post new Answer -->
 
         <c:if test="${!(user.id eq question.user.id)}">
 

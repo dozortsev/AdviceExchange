@@ -4,7 +4,7 @@
 
 <head>
     <title>
-        Ask Question
+        Ask a Question
     </title>
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
@@ -21,14 +21,29 @@
 
             <div class="ui piled segment">
 
+                <h2>Title</h2>
+
                 <form:form action="${path}/questions/create" method="POST" modelAttribute="ask">
 
                     <div class="ui form">
                         <div class="field">
-                            <label>Title</label>
-                            <input type="text" name="title" required="true">
+                            <input type="text" name="title" required="true"
+                                   placeholder="What's your human health questions? Be specific.">
                         </div>
                     </div>
+
+                    <p>
+                        <i class="circular quote left link icon"></i>
+                        <i class="circular strikethrough link icon"></i>
+                        <i class="circular text height link icon"></i>
+                        <i class="circular globe link icon"></i>
+                        <i class="circular bold link icon"></i>
+                        <i class="circular italic link icon"></i>
+                        <i class="circular underline link icon"></i>
+                        <i class="circular comment link icon" data-position="top center" data-content="Hello, I am a pop-up."></i>
+                        <i class="circular code link icon"></i>
+                        <i class="circular list link icon"></i>
+                    </p>
 
                     <div class="ui form">
                         <div class="field">

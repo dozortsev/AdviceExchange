@@ -2,8 +2,6 @@
 
 <%@ include file="resources.jsp" %>
 
-<link rel="stylesheet" href="${path}/css/md-style.css"/>
-
 <head>
     <title>User</title>
 </head>
@@ -20,7 +18,7 @@
 
             <div class="ui piled segment">
                 <p>
-                <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
+                <h3>ALL QUESTIONS&ensp;${fn:length(questions)}</h3>
 
                 <form:form action="${path}/questions" method="GET">
                     <div class="ui action input">
@@ -70,7 +68,9 @@
                             <td class="wide eight"></td>
                             <td>
                                 <small>
-                                    asked <a href="${path}/user/${qs.user.id}">${qs.user.name}</a>
+                                    asked&thinsp;<a href="${path}/user/${qs.user.id}">
+                                        <b>${qs.user.name}</b>
+                                    </a>
                                     <fmt:formatDate type="both" value="${qs.created}"
                                                     pattern="yyyy-MM-dd / HH:mm"/>
                                 </small>
