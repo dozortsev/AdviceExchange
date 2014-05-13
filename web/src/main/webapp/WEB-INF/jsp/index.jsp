@@ -23,7 +23,7 @@
                 <form:form action="${path}/questions" method="GET">
                     <div class="ui action input">
                         <div class="ui icon input">
-                            <input type="text" placeholder="Search..." name="keyWords" autofocus="true">
+                            <input type="text" placeholder="Search..." name="words" autofocus="true">
                             <i class="search icon"></i>
                         </div>
                     </div>
