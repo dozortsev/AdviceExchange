@@ -17,6 +17,74 @@
 </head>
 <body class="login-body">
 
+<table class="ui basic table">
+    <tbody>
+    <tr>
+        <td class="wide two">
+            <div class="ui button red">Foo</div>
+        </td>
+        <td class="wide fourteen">
+            <div class="ui segment">
+                <!--<div class="ui teal small label">Foo</div><div class="ui teal small label">Bar</div>-->
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="ui small modal">
+    <i class="close icon"></i>
+
+    <div class="header">
+        Tags
+    </div>
+    <div class="content">
+        <p>
+
+        <div class="four column doubling ui grid">
+        <div class="column">
+            <div class="ui checkbox">
+                <input type="checkbox" name="fun" value="Brain">
+                <label>Brain</label>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="ui checkbox">
+                <input type="checkbox" name="fun" value="Hello">
+                <label>Hello</label>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui checkbox">
+                <input type="checkbox" name="fun" value="Foo">
+                <label>Foo</label>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui checkbox">
+                <input type="checkbox" name="fun" value="Bar">
+                <label>Bar</label>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui checkbox">
+                <input type="checkbox" name="fun" value="Baz">
+                <label>Baz</label>
+            </div>
+        </div>
+        </div>
+        </p>
+    </div>
+
+    <div class="actions">
+        <div class="ui negative button">
+            No
+        </div>
+        <input type="submit" value="Yes" onclick="getTagNames()" class="ui blue button"/>
+    </div>
+</div>
+
 <div class="ui piled segment">
     <p>
     <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing ?</a></h3>

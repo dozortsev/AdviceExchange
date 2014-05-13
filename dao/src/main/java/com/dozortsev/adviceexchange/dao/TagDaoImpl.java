@@ -5,9 +5,12 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY)
+@SuppressWarnings("unchecked")
 @Repository
 public class TagDaoImpl extends GenericDaoImpl<Long, Tag> implements TagDao {
 
@@ -15,10 +18,14 @@ public class TagDaoImpl extends GenericDaoImpl<Long, Tag> implements TagDao {
         setEntityClass(Tag.class);
     }
 
-    @Override public Tag findTagByName(String name) {
+    @Override public List<Tag> loadAll() {
+        return getCurrentSession().createCriteria(getEntityClass())
+                .list();
+    }
 
-        return (Tag) getCurrentSession().createCriteria(getEntityClass())
-                .add(Restrictions.eq("name", name))
-                .uniqueResult();
+    @Override public List<Tag> findTagByName(String... names) {
+
+        return getCurrentSession().createCriteria(getEntityClass())
+                .add(Restrictions.in("name", names)).list();
     }
 }

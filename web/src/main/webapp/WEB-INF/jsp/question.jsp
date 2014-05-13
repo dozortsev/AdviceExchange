@@ -34,7 +34,7 @@
 
         <div class="ui piled segment">
         <p>
-        <h3>${question.title}</h3>
+        <h2>${question.title}</h2>
         <p>
         <table class="ui basic small table">
             <tbody>

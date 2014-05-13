@@ -6,7 +6,7 @@ import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.CommentService;
 import com.dozortsev.adviceexchange.service.QuestionService;
-import org.apache.log4j.Logger;
+import com.dozortsev.adviceexchange.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +25,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @SessionAttributes(value = { "user", "question", "questionCount" })
 public class QuestionController {
 
+    private @Autowired TagService tagService;
+
     private @Autowired QuestionService questionService;
 
     private @Autowired AnswerService answerService;
 
     private @Autowired CommentService commentService;
-
-    private static final Logger log = Logger.getLogger(QuestionController.class);
 
     @RequestMapping(value="/questions", method = GET)
     public ModelAndView index(@RequestParam(required = false) Integer page,
@@ -46,7 +46,7 @@ public class QuestionController {
             if (matcher.find()) {
                 List<String> tags = new ArrayList<>();
 
-                matcher = Pattern.compile("(\\w+-\\w+|\\w+)").matcher(keyWords);
+                matcher = Pattern.compile("(\\w+-\\w+|\\w+)+").matcher(keyWords);
 
                 if (matcher.find()) for (int i = 0; i < matcher.groupCount(); i++) {
                     tags.add(matcher.group(i));
@@ -87,13 +87,21 @@ public class QuestionController {
 
     @RequestMapping(value = "/questions/create", method = POST)
     public String questionCreate(@ModelAttribute User user,
+                                 @RequestParam   String tags,
                                  @RequestParam   String title,
                                  @RequestParam   String content)
     {
-        Question question = new Question(user, content, title, null);
-        questionService.create(question);
+        return "redirect:/question/" + questionService.create(
+                new Question(
+                        user, content, title, tagService.findTagByName(tags.split(" "))
+                )
+        );
+    }
 
-        return "redirect:/question/" + question.getId();
+    @RequestMapping(value = "/questions/ask", method = GET)
+    public ModelAndView askQuestion() {
+
+        return new ModelAndView("ask-question", "tags", tagService.loadAll());
     }
 
     @RequestMapping(value = "/answer/create", method = POST)

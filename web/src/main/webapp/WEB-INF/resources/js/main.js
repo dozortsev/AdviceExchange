@@ -1,4 +1,19 @@
 
+var getTagNames = function () {
+    var tagsView = '<div class="ui teal labels">',
+        tagsLine = '';
+
+    $('input:checkbox[name=tag]:checked').each(function () {
+        tagsView += '<a class="ui label">' + this.value + '</a>';
+        tagsLine += this.value + ' ';
+    });
+
+    $('#tag-view').html(tagsView + '</div>');
+
+    $('input[name=tags]').val(tagsLine.substring(0, tagsLine.length - 1));
+};
+
+
 $('.ui.checkbox').checkbox();
 
 
@@ -16,6 +31,11 @@ $(document).ready(function () {
         }
     );
 });
+
+/* launch modal for add tags */
+
+$('.small.modal').modal('attach events', '#add-tag', 'show');
+
 
 $('.icon.link').popup({
     on: 'hover'

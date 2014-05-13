@@ -49,6 +49,4 @@
 
     <mvc:view-controller path="/logout" view-name="login"/>
 
-    <mvc:view-controller path="/questions/ask" view-name="ask-question"/>
-
 </beans>

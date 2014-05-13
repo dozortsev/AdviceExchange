@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.*;
+
 import static java.lang.String.format;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
@@ -24,19 +26,29 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
     }
 
     @Transactional(readOnly = true)
-    @Override public Tag findTagByName(String name) {
+    @Override public Set<Tag> loadAll() {
+        Set<Tag> tags = new LinkedHashSet<>();
         try {
-            log.info(format("Find Tab by name: %s", name));
-            Tag tag = getDao().findTagByName(name);
+            log.info("Load all Tags");
+            tags.addAll(getDao().loadAll());
+            log.info(format("Set of Tags have size: %d", tags.size()));
 
-            if (tag != null) {
-                log.info("Successful found");
-                return tag;
-            }
-            log.info(format("Tag not exist"));
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+        return tags;
+    }
+
+    @Transactional(readOnly = true)
+    @Override public List<Tag> findTagByName(String... names) {
+        List<Tag> tags = new ArrayList<>();
+        try {
+            log.info(format("Find Tabs by names: %s", Arrays.toString(names)));
+            tags.addAll(getDao().findTagByName(names));
+            log.info(format("Set of Tags have size: %d", tags.size()));
         } catch (Exception e) {
             log.error("Error: " + e);
         }
-        return null;
+        return tags;
     }
 }

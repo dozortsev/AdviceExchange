@@ -17,7 +17,7 @@
     </a>
     <a class="item right" style="background-color: #faea9f;"
        href="${path}/questions/ask">
-        <b><i class="idea basic icon"></i>Ask Questions</b>
+        <b><i class="idea basic icon"></i>Ask Question</b>
     </a>
 </div>
 

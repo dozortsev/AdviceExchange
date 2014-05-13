@@ -18,7 +18,7 @@
 
             <div class="ui piled segment">
                 <p>
-                <h3>ALL QUESTIONS&ensp;${fn:length(questions)}</h3>
+                <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
 
                 <form:form action="${path}/questions" method="GET">
                     <div class="ui action input">

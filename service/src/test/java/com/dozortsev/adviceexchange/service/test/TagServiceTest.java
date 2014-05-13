@@ -3,6 +3,8 @@ package com.dozortsev.adviceexchange.service.test;
 import com.dozortsev.adviceexchange.domain.Tag;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TagServiceTest extends TestContext {
@@ -28,17 +30,11 @@ public class TagServiceTest extends TestContext {
     @Test public void testFindTagByName() {
 
         // choose exist Tag name
-        final String name = "toothache";
+        final String[] names = { "toothache", "headache", "eye" };
 
-        // expected data
-        final Long id = 4L;
-        final String desc = "Toothache is pain in or around a tooth.";
+        final List<Tag> tags = tagService.findTagByName(names);
 
-        final Tag tag = tagService.findTagByName(name);
-
-        assertNotNull(tag);
-        assertEquals(id, tag.getId());
-        assertEquals(name, tag.getName());
-        assertEquals(desc, tag.getDesc());
+        assertNotNull(tags);
+        assertEquals(3, tags.size());
     }
 }

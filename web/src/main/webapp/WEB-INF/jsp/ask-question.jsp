@@ -40,7 +40,7 @@
                         <i class="circular bold link icon"></i>
                         <i class="circular italic link icon"></i>
                         <i class="circular underline link icon"></i>
-                        <i class="circular comment link icon" data-position="top center" data-content="Hello, I am a pop-up."></i>
+                        <i class="circular comment link icon" data-variation="inverted" data-position="top center" data-content="Hello, I am a pop-up."></i>
                         <i class="circular code link icon"></i>
                         <i class="circular list link icon"></i>
                     </p>
@@ -58,6 +58,55 @@
                     <div id="preview-container" class="ui segment">
                         <div id="preview-content" class="markdown-body"></div>
                     </div>
+
+                    <div class="ui horizontal icon divider">
+                        <i class="circular tags icon"></i>
+                    </div>
+
+                    <table class="ui basic table">
+                        <tbody>
+                        <tr>
+                            <td class="wide two">
+                                <input id="add-tag" type="button" value="Add tags"
+                                       class="ui small blue left submit button"/>
+                            </td>
+                            <td class="wide fourteen">
+                                <div class="ui segment left" id="tag-view">
+                                    at least one tag such as [stomachache], max 5 tags
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <input type="hidden" name="tags"/>
+
+                    <%-- Modal --%>
+
+                    <div class="ui small modal">
+                        <i class="close icon"></i>
+
+                        <div class="header">
+                            Tags
+                        </div>
+
+                        <div class="four column doubling ui grid">
+                            <c:forEach items="${tags}" var="tag">
+                                <div class="column">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" name="tag" value="${tag.name}">
+                                        <label>${tag.name}</label>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                            <div class="actions">
+                                <input type="button" value="Done" onclick="getTagNames()"
+                                       class="ui positive right button"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/><br/>
 
                     <div class="ui form">
                         <input class="ui small red submit button" type="submit"
