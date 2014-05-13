@@ -33,6 +33,12 @@
                     <i class="circular stackexchange icon"></i>
                 </div>
 
+                <c:if test="${fn:length(questions) eq 0}">
+                    <h4 class="ui inverted red block header center aligned">
+                        Your search returned no matches.
+                    </h4>
+                </c:if>
+
                 <c:forEach items="${questions}" var="qs" varStatus="loop">
 
                     <table class="ui basic small table">

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -38,10 +40,16 @@ public class QuestionController {
 
         if (words != null && words.length() > 0) {
 
-            if (Pattern.compile("\\[|\\]]").matcher(words).find()) return new ModelAndView(
-                    "redirect:/questions/tagged/" + String.join(
-                            " ", words.substring(1, words.length() - 1).split("\\]\\s*\\[")).toLowerCase()
-            );
+            if (Pattern.compile("\\[|\\]]").matcher(words).find()) {
+
+                HashSet<String> tags = new HashSet<>();
+
+                Matcher mtr = Pattern.compile("[\\w-]+").matcher(words);
+
+                while (mtr.find()) tags.add(mtr.group().toLowerCase());
+
+                return new ModelAndView("redirect:/questions/tagged/" + String.join(" ", tags));
+            }
             return mav.addObject("questions", questionService.findQuestionsByKeyWords(words.split("\\s+")));
         }
         return mav.addObject("questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0))
