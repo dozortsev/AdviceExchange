@@ -81,11 +81,11 @@
             <!-- JBoss AS plugin -->
 
             <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>7.5.Final</version>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
-                    <filename>${project.parent.artifactId}.war</filename>
+                    <finalName>${project.parent.artifactId}.war</finalName>
                 </configuration>
             </plugin>
         </plugins>
