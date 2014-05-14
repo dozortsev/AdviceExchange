@@ -27,7 +27,7 @@
 
                     <div class="ui form">
                         <div class="field">
-                            <input type="text" name="title" required="true"
+                            <input type="text" name="title" required="true" autofocus="true"
                                    placeholder="What's your human health questions? Be specific.">
                         </div>
                     </div>
@@ -85,23 +85,24 @@
 
                     <div class="ui small modal">
                         <i class="close icon"></i>
-
                         <div class="header">
                             Tags
                         </div>
-
-                        <div class="four column doubling ui grid">
-                            <c:forEach items="${tags}" var="tag">
-                                <div class="column">
-                                    <div class="ui checkbox">
-                                        <input type="checkbox" name="tag" value="${tag.name}">
-                                        <label>${tag.name}</label>
+                        <div class="content">
+                            <div class="four column doubling ui grid">
+                                <c:forEach items="${tags}" var="tag">
+                                    <div class="column">
+                                        <div class="ui checkbox">
+                                            <input type="checkbox" name="tag" value="${tag.name}">
+                                            <label>${tag.name}</label>
+                                        </div>
                                     </div>
-                                </div>
-                            </c:forEach>
-                            <div class="actions">
-                                <input type="button" value="Done" onclick="getTagNames()"
-                                       class="ui positive right button"/>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="ui positive icon button" onclick="getTagNames()">
+                                <i class="checkmark icon"></i>
                             </div>
                         </div>
                     </div>
@@ -110,7 +111,7 @@
 
                     <div class="ui form">
                         <input class="ui small red submit button" type="submit"
-                               value="Post You Question"/>
+                               value="Post Your Question"/>
                     </div>
                 </form:form>
             </div>

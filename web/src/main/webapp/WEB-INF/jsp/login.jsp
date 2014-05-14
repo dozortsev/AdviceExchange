@@ -46,7 +46,7 @@
                 <form action="<c:url value="/j_spring_security_check"/>" name="form-login" method="POST">
 
                     <div class="ui active tab segment" data-tab="first">
-                        <div class="ui form segment">
+                        <div class="ui form">
                             <div class="field">
                                 <label><fmt:message key="login.lbl.email"/></label>
 
@@ -76,7 +76,7 @@
                 <form:form action="${path}/createAccount" method="POST" modelAttribute="member">
 
                     <div class="ui tab segment" data-tab="second">
-                        <div class="ui form segment">
+                        <div class="ui form">
                             <div class="three fields">
                                 <div class="field">
                                     <label><fmt:message key="login.lbl.name"/></label>
