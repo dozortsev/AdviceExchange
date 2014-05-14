@@ -40,11 +40,11 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
     }
 
     @Transactional(readOnly = true)
-    @Override public List<Tag> findTagByName(String... names) {
+    @Override public List<Tag> findByName(String... names) {
         List<Tag> tags = new ArrayList<>();
         try {
             log.info(format("Find Tabs by names: %s", Arrays.toString(names)));
-            tags.addAll(getDao().findTagByName(names));
+            tags.addAll(getDao().findByName(names));
             log.info(format("Set of Tags have size: %d", tags.size()));
         } catch (Exception e) {
             log.error("Error: " + e);

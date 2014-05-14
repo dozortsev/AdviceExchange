@@ -29,8 +29,8 @@ public class AnswerServiceTest extends TestContext {
         assertNotNull(answer);
         assertEquals(Type.ANSWER, answer.getType());
         assertTrue(userService.userActivities(userId).contains(answer));
-        assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
-        assertTrue(answerService.findAnswersByQuestionId(questionId).contains(answer));
+        assertTrue(answerService.findByUserId(userId).contains(answer));
+        assertTrue(answerService.findByQuestionId(questionId).contains(answer));
     }
 
     @Test public void testCreateAnswer() {
@@ -58,8 +58,8 @@ public class AnswerServiceTest extends TestContext {
         assertEquals(content, expectAnswer.getContent());
         assertEquals(0, expectAnswer.getVotes().intValue());
         assertTrue(expectAnswer.isAccept());
-        assertTrue(answerService.findAnswersByUserId(user.getId()).contains(expectAnswer));
-        assertTrue(answerService.findAnswersByQuestionId(question.getId()).contains(expectAnswer));
+        assertTrue(answerService.findByUserId(user.getId()).contains(expectAnswer));
+        assertTrue(answerService.findByQuestionId(question.getId()).contains(expectAnswer));
     }
 
     @Test public void testDeleteAnswer() {
@@ -77,21 +77,21 @@ public class AnswerServiceTest extends TestContext {
         assertNotNull(answer);
         assertEquals(Type.ANSWER, answer.getType());
 
-        final Set<Answer> answers = answerService.findAnswersByQuestionId(question.getId());
+        final Set<Answer> answers = answerService.findByQuestionId(question.getId());
 
         assertEquals(answers.size(), question.getAnswerCount().intValue());
         assertTrue(answers.contains(answer));
-        assertTrue(answerService.findAnswersByUserId(userId).contains(answer));
+        assertTrue(answerService.findByUserId(userId).contains(answer));
 
         questionService.delAnswer(answer);
 
-        final Set<Answer> expectAnswers = answerService.findAnswersByQuestionId(question.getId());
+        final Set<Answer> expectAnswers = answerService.findByQuestionId(question.getId());
         final Question expectQuestion = questionService.findById(17L);
         assertEquals(expectAnswers.size(), expectQuestion.getAnswerCount().intValue());
 
         assertNull(answerService.findById(id));
-        assertFalse(answerService.findAnswersByQuestionId(question.getId()).contains(answer));
-        assertFalse(answerService.findAnswersByUserId(userId).contains(answer));
+        assertFalse(answerService.findByQuestionId(question.getId()).contains(answer));
+        assertFalse(answerService.findByUserId(userId).contains(answer));
     }
 
     @Test public void testUpdateAnswer() {

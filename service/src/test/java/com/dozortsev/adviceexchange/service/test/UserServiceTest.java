@@ -34,7 +34,7 @@ public class UserServiceTest extends TestContext {
         final Long id = 1L;
         final String password = "2465010";
 
-        final User user = userService.findUserByLogin(login);
+        final User user = userService.findByLogin(login);
         assertNotNull(user);
 
         assertEquals(id, user.getId());
@@ -78,7 +78,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(password, expectUser.getPassword());
         assertEquals(reputation + 1, expectUser.getReputation().intValue());
 
-        final Set<Badge> badges = badgeService.findBadgesByUserId(user.getId());
+        final Set<Badge> badges = badgeService.findByUserId(user.getId());
 
         assertEquals(1, badges.size());
         assertTrue(badges.contains(badge));
@@ -89,7 +89,7 @@ public class UserServiceTest extends TestContext {
         // choose exist User Id
         final String login = "non@nonjusto.edu";
 
-        final User user = userService.findUserByLogin(login);
+        final User user = userService.findByLogin(login);
         assertNotNull(user);
         assertEquals(login, user.getEmail());
 
@@ -97,7 +97,7 @@ public class UserServiceTest extends TestContext {
         user.canEnabled(Boolean.FALSE);
         userService.update(user);
 
-        assertNull(userService.findUserByLogin(login));
+        assertNull(userService.findByLogin(login));
     }
 
     @Test public void testUpdateUser() {
@@ -125,7 +125,7 @@ public class UserServiceTest extends TestContext {
 
         final String regex = "all";
 
-        final Set<User> users = userService.findUsersByName(regex, 0);
+        final Set<User> users = userService.findByName(regex, 0);
         assertEquals(3, users.size());
     }
 

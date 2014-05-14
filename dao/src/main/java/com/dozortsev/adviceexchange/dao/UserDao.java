@@ -9,9 +9,9 @@ public interface UserDao extends GenericDao<Long, User> {
 
     Integer totalCount(String name);
 
-    List<User> findUsersByName(String name, Integer offset);
+    List<User> findByName(String name, Integer offset);
 
-    User findUserByLogin(String login);
+    User findByLogin(String login);
 
     List<UserActivity> userActivities(Long id);
 }

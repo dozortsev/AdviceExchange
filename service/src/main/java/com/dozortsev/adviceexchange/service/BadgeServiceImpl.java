@@ -27,11 +27,11 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Badge> findBadgesByUserId(Long userId) {
+    @Override public Set<Badge> findByUserId(Long userId) {
         Set<Badge> badges = new HashSet<>();
         try {
             log.info(format("Find Badges by User Id: %d", userId));
-            badges.addAll(getDao().findBadgesByUserId(userId));
+            badges.addAll(getDao().findByUserId(userId));
             log.info(format("Set of Badges have size: %d", badges.size()));
 
         } catch (Exception e) {

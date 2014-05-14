@@ -15,7 +15,7 @@ public interface QuestionDao extends GenericDao<Long, Question> {
 
     List<Question> findByKeyWord(String... keyWork);
 
-    List<Question> findQuestionsByUserId(Long userId);
+    List<Question> findByUserId(Long userId);
 
-    List<Question> findQuestionsByTags(String... tags);
+    List<Question> findByTags(String... tags);
 }

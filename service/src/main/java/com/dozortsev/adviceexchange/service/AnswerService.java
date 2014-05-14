@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface AnswerService extends GenericService<Long, Answer> {
 
-    Set<Answer> findAnswersByUserId(Long userId);
+    Set<Answer> findByUserId(Long userId);
 
-    Set<Answer> findAnswersByQuestionId(Long questionId);
+    Set<Answer> findByQuestionId(Long questionId);
 }

@@ -51,7 +51,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return question.getAnswerCount();
     }
 
-    @Override public Set<Question> findQuestionsByKeyWords(String... keyWords) {
+    @Override public Set<Question> findByKeyWords(String... keyWords) {
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by key words: %s", Arrays.toString(keyWords)));
@@ -79,11 +79,11 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Question> findQuestionsByUserId(Long userId) {
+    @Override public Set<Question> findByUserId(Long userId) {
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by User ID: %d", userId));
-            questions.addAll(getDao().findQuestionsByUserId(userId));
+            questions.addAll(getDao().findByUserId(userId));
             log.info(format("Set of Questions have size: %d", questions.size()));
 
         } catch (Exception e) {
@@ -93,11 +93,11 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Question> findQuestionsByTags(String... tags) {
+    @Override public Set<Question> findByTags(String... tags) {
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by Tags: %s", Arrays.toString(tags)));
-            questions.addAll(getDao().findQuestionsByTags(tags));
+            questions.addAll(getDao().findByTags(tags));
             log.info(format("Set of Questions have size: %d", questions.size()));
 
         } catch (Exception e) {

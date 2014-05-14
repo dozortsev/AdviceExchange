@@ -42,15 +42,14 @@ public class QuestionController {
 
             if (Pattern.compile("\\[|\\]]").matcher(words).find()) {
 
-                HashSet<String> tags = new HashSet<>();
+                final Matcher mtr = Pattern.compile("[\\w-]+").matcher(words);
 
-                Matcher mtr = Pattern.compile("[\\w-]+").matcher(words);
-
-                while (mtr.find()) tags.add(mtr.group().toLowerCase());
-
+                HashSet<String> tags = new HashSet<String>() {{
+                    while (mtr.find()) add(mtr.group().toLowerCase());
+                }};
                 return new ModelAndView("redirect:/questions/tagged/" + String.join(" ", tags));
             }
-            return mav.addObject("questions", questionService.findQuestionsByKeyWords(words.split("\\s+")));
+            return mav.addObject("questions", questionService.findByKeyWords(words.split("\\s+")));
         }
         return mav.addObject("questions", questionService.loadFrom(page != null ? (page - 1) * 10 : 0))
                   .addObject("questionCount", questionService.totalCount());
@@ -59,7 +58,7 @@ public class QuestionController {
     @RequestMapping(value = "/questions/tagged/{tag}", method = GET)
     public ModelAndView searchQuestion(@PathVariable String tag) {
 
-        Set<Question> questions = questionService.findQuestionsByTags(tag.split("\\s+"));
+        Set<Question> questions = questionService.findByTags(tag.split("\\s+"));
 
         return new ModelAndView("index", "questions", questions);
     }
@@ -68,8 +67,8 @@ public class QuestionController {
     public ModelAndView question(@PathVariable Long id) {
 
         return new ModelAndView("question", "question", questionService.findById(id))
-                .addObject("answers", answerService.findAnswersByQuestionId(id))
-                .addObject("comments", commentService.findCommentsByQuestionId(id));
+                .addObject("answers", answerService.findByQuestionId(id))
+                .addObject("comments", commentService.findByQuestionId(id));
     }
 
     @RequestMapping(value = "/answer/delete/{id}", method = GET)
@@ -90,7 +89,7 @@ public class QuestionController {
     {
         return "redirect:/question/" + questionService.create(
                 new Question(
-                        user, content, title, tagService.findTagByName(tags.split(" "))
+                        user, content, title, tagService.findByName(tags.split(" "))
                 )
         );
     }

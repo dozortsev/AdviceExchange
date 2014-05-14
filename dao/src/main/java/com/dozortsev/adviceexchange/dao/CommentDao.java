@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CommentDao extends GenericDao<Long, Comment> {
 
-    List<Comment> findCommentsByQuestionId(Long questionId);
+    List<Comment> findByQuestionId(Long questionId);
 }

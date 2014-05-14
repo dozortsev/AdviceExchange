@@ -74,7 +74,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         return sqlQuery.list();
     }
 
-    @Override public List<Question> findQuestionsByUserId(Long userId) {
+    @Override public List<Question> findByUserId(Long userId) {
 
         return getCurrentSession().createSQLQuery(findQuestionsByUserId)
                 .addEntity(getEntityClass())
@@ -82,7 +82,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
                 .list();
     }
 
-    @Override public List<Question> findQuestionsByTags(String... tags) {
+    @Override public List<Question> findByTags(String... tags) {
 
         return getCurrentSession().createSQLQuery(findQuestionsByTags)
                 .addEntity(getEntityClass())

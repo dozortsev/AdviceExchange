@@ -35,7 +35,7 @@ public class SignController {
                                       @RequestParam   String email,
                                       @RequestParam   String password)
     {
-        if (userService.findUserByLogin(email) != null) {
+        if (userService.findByLogin(email) != null) {
             return new ModelAndView("redirect:/signup/failed");
         }
         member.setPassword(encoder.encodePassword(password, null));

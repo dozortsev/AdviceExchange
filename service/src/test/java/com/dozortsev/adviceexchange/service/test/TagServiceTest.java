@@ -32,7 +32,7 @@ public class TagServiceTest extends TestContext {
         // choose exist Tag name
         final String[] names = { "toothache", "headache", "eye" };
 
-        final List<Tag> tags = tagService.findTagByName(names);
+        final List<Tag> tags = tagService.findByName(names);
 
         assertNotNull(tags);
         assertEquals(3, tags.size());

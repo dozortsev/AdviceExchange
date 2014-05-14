@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TagDao extends GenericDao<Long, Tag> {
 
-    List<Tag> findTagByName(String... names);
+    List<Tag> findByName(String... names);
 
     List<Tag> loadAll();
 }

@@ -27,11 +27,11 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
         setEntityClass(Answer.class);
     }
 
-    @Override public Set<Answer> findAnswersByUserId(Long userId) {
+    @Override public Set<Answer> findByUserId(Long userId) {
         Set<Answer> answers = new LinkedHashSet<>();
         try {
             log.info(format("Find User by ID: %d", userId));
-            answers.addAll(getDao().findAnswersByUserId(userId));
+            answers.addAll(getDao().findByUserId(userId));
             log.info(format("Set of Users have size: %d", answers.size()));
 
         } catch (Exception e) {
@@ -40,11 +40,11 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
         return answers;
     }
 
-    @Override public Set<Answer> findAnswersByQuestionId(Long questionId) {
+    @Override public Set<Answer> findByQuestionId(Long questionId) {
         HashSet<Answer> answers = new LinkedHashSet<>();
         try {
             log.info(format("Find Answers by Question ID: %d", questionId));
-            answers.addAll(getDao().findAnswersByQuestionId(questionId));
+            answers.addAll(getDao().findByQuestionId(questionId));
             log.info(format("Set of Questions have size: %d", answers.size()));
 
         } catch (Exception e) {

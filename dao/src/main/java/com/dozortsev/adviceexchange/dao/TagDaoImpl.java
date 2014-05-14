@@ -23,7 +23,7 @@ public class TagDaoImpl extends GenericDaoImpl<Long, Tag> implements TagDao {
                 .list();
     }
 
-    @Override public List<Tag> findTagByName(String... names) {
+    @Override public List<Tag> findByName(String... names) {
 
         return getCurrentSession().createCriteria(getEntityClass())
                 .add(Restrictions.in("name", names)).list();

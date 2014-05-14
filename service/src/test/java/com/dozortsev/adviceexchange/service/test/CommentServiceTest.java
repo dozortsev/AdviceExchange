@@ -24,7 +24,7 @@ public class CommentServiceTest extends TestContext {
         assertNotNull(comment);
         assertEquals(Type.COMMENT, comment.getType());
         assertTrue(userService.userActivities(userId).contains(comment));
-        assertTrue(commentService.findCommentsByQuestionId(questionId).contains(comment));
+        assertTrue(commentService.findByQuestionId(questionId).contains(comment));
     }
 
     @Test public void testCreateComment() {
@@ -46,7 +46,7 @@ public class CommentServiceTest extends TestContext {
         assertEquals(Type.COMMENT, expectedComment.getType());
         assertEquals(content, expectedComment.getContent());
         assertTrue(userService.userActivities(userId).contains(expectedComment));
-        assertTrue(commentService.findCommentsByQuestionId(questionId).contains(expectedComment));
+        assertTrue(commentService.findByQuestionId(questionId).contains(expectedComment));
     }
 
     @Test public void testDeleteComment() {
@@ -61,13 +61,13 @@ public class CommentServiceTest extends TestContext {
         final Comment comment = commentService.findById(id);
         assertNotNull(comment);
         assertEquals(Type.COMMENT, comment.getType());
-        assertTrue(commentService.findCommentsByQuestionId(questionId).contains(comment));
+        assertTrue(commentService.findByQuestionId(questionId).contains(comment));
         assertTrue(userService.userActivities(userId).contains(comment));
 
         commentService.delete(comment);
 
         assertNull(commentService.findById(id));
-        assertFalse(commentService.findCommentsByQuestionId(questionId).contains(comment));
+        assertFalse(commentService.findByQuestionId(questionId).contains(comment));
         assertFalse(userService.userActivities(userId).contains(comment));
     }
 }

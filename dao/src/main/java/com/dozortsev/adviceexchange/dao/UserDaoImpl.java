@@ -35,7 +35,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
                 .hashCode();
     }
 
-    @Override public List<User> findUsersByName(String name, Integer offset) {
+    @Override public List<User> findByName(String name, Integer offset) {
 
         return getCurrentSession().createSQLQuery(findUsersByName)
                 .addEntity(getEntityClass())
@@ -44,7 +44,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
                 .list();
     }
 
-    @Override public User findUserByLogin(String login) {
+    @Override public User findByLogin(String login) {
 
         return (User) getCurrentSession().createCriteria(getEntityClass())
                 .add(eq("email", login))

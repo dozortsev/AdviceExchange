@@ -39,11 +39,11 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         return totalCount;
     }
 
-    @Override public Set<User> findUsersByName(String name, Integer offset) {
+    @Override public Set<User> findByName(String name, Integer offset) {
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {
             log.info(format("Load Users by name: '%s'; from: %d; row count: 36", name, offset));
-            users.addAll(getDao().findUsersByName(name, offset));
+            users.addAll(getDao().findByName(name, offset));
             log.info(format("Set of Users have size: %d", users.size()));
 
         } catch (Exception e) {
@@ -52,10 +52,10 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         return users;
     }
 
-    @Override public User findUserByLogin(String login) {
+    @Override public User findByLogin(String login) {
         try {
             log.info(format("Find User by Login: %s", login));
-            User user = getDao().findUserByLogin(login);
+            User user = getDao().findByLogin(login);
 
             if (user != null) {
                 log.info("Success found");

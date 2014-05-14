@@ -22,17 +22,19 @@ public class AnswerDaoImpl extends GenericDaoImpl<Long, Answer> implements Answe
         setEntityClass(Answer.class);
     }
 
-    @Override public List<Answer> findAnswersByUserId(Long userId) {
+    @Override public List<Answer> findByUserId(Long userId) {
 
         return getCurrentSession().createSQLQuery(findAnswersByUserId)
-                .addEntity(getEntityClass()).setLong("userId", userId)
+                .addEntity(getEntityClass())
+                .setLong("userId", userId)
                 .list();
     }
 
-    @Override public List<Answer> findAnswersByQuestionId(Long questionId) {
+    @Override public List<Answer> findByQuestionId(Long questionId) {
 
         return getCurrentSession().createSQLQuery(findAnswersByQuestionId)
-                .addEntity(getEntityClass()).setLong("questionId", questionId)
+                .addEntity(getEntityClass())
+                .setLong("questionId", questionId)
                 .list();
     }
 }

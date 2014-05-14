@@ -26,13 +26,13 @@ public class QuestionServiceTest extends TestContext {
         final Question question = questionService.findById(id);
 
         assertNotNull(userService.findById(userId));
-        assertEquals(3, questionService.findQuestionsByUserId(userId).size());
-        assertEquals(1, answerService.findAnswersByUserId(userId).size());
+        assertEquals(3, questionService.findByUserId(userId).size());
+        assertEquals(1, answerService.findByUserId(userId).size());
 
         assertNotNull(question);
         assertEquals(Type.QUESTION, question.getType());
         assertTrue(userService.userActivities(userId).contains(question));
-        assertTrue(questionService.findQuestionsByUserId(userId).contains(question));
+        assertTrue(questionService.findByUserId(userId).contains(question));
     }
 
     @Test public void testCreateQuestion() {
@@ -95,13 +95,13 @@ public class QuestionServiceTest extends TestContext {
         // expected referenced Question
         final Question question = questionService.findById(14L);
 
-        assertTrue(questionService.findQuestionsByUserId(userId).contains(question));
+        assertTrue(questionService.findByUserId(userId).contains(question));
 
         // deactivate
         question.canActive(Boolean.FALSE);
         questionService.update(question);
 
-        assertFalse(questionService.findQuestionsByUserId(userId).contains(question));
+        assertFalse(questionService.findByUserId(userId).contains(question));
     }
 
     @Test public void testUpdateQuestion() {
@@ -133,7 +133,7 @@ public class QuestionServiceTest extends TestContext {
         // choose exist user Id
         final Long userId = 10L;
 
-        final Set<Question> userQuestions = questionService.findQuestionsByUserId(userId);
+        final Set<Question> userQuestions = questionService.findByUserId(userId);
         assertNotNull(userQuestions);
         assertEquals(1, userQuestions.size());  // expected size should be 1
 
@@ -144,7 +144,7 @@ public class QuestionServiceTest extends TestContext {
     @Ignore("Work only on MySQL")
     @Test public void testFindQuestionsByTagsId() {
 
-        final Set<Question> questions = questionService.findQuestionsByTags("Medicine", "Etymology");
+        final Set<Question> questions = questionService.findByTags("Medicine", "Etymology");
 
         assertNotNull(questions);
         assertFalse(questions.isEmpty());

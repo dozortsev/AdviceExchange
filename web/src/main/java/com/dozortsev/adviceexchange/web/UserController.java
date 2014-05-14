@@ -34,7 +34,7 @@ public class UserController {
     @RequestMapping(value = "/users/login", method = GET)
     public ModelAndView logIn(Principal principal) {
 
-        return new ModelAndView("redirect:/questions", "user", userService.findUserByLogin(principal.getName()));
+        return new ModelAndView("redirect:/questions", "user", userService.findByLogin(principal.getName()));
     }
 
     @RequestMapping(value = "/users", method = GET)
@@ -48,8 +48,8 @@ public class UserController {
                         "userCount", isNameValid ? userService.totalCount(name) : userService.totalCount()
                 )
                 .addObject(
-                        "userSet", userService.findUsersByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
-                )
+                        "userSet", userService.findByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
+                        )
         );
     }
 
@@ -57,14 +57,14 @@ public class UserController {
     public ModelAndView user(@PathVariable Long id) {
 
         return new ModelAndView("user", "member", userService.findById(id))
-                .addObject("questions", questionService.findQuestionsByUserId(id))
-                .addObject("answers", answerService.findAnswersByUserId(id));
+                .addObject("questions", questionService.findByUserId(id))
+                .addObject("answers", answerService.findByUserId(id));
     }
 
     @RequestMapping(value = "/search", method = GET)
     public ModelAndView findQuestions(@RequestParam String tags) {
 
-        Set<Question> questions = questionService.findQuestionsByTags(tags.split(" "));
+        Set<Question> questions = questionService.findByTags(tags.split(" "));
 
         return new ModelAndView("index", "questions", questions);
     }
