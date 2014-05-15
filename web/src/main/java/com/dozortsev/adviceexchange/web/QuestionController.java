@@ -39,6 +39,7 @@ public class QuestionController {
         ModelAndView mav = new ModelAndView("index");
 
         if (words != null && words.length() > 0) {
+            words = words.trim();
 
             if (Pattern.compile("\\[|\\]]").matcher(words).find()) {
 
