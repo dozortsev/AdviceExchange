@@ -77,6 +77,30 @@
     </bean>
 
 
+    <!-- User Activity -->
+
+    <bean id="userActivityQuery" class="java.lang.String">
+        <constructor-arg value="
+            SELECT
+                ua_id, ua_type, ua_created, ua_active, ua_content
+                qs_title, qs_votes,
+                asw_votes, asw_accepted
+
+            FROM user_activity
+
+                LEFT JOIN user ON user_id = ua_user_id
+
+                LEFT JOIN question ON qs_id = ua_id
+
+                LEFT JOIN comment ON cm_id = ua_id
+
+                LEFT JOIN answer ON asw_id = ua_id
+
+            WHERE user_id = ?
+        "/>
+    </bean>
+
+
     <!-- Load limit set of Questions -->
 
     <bean id="loadQuestionsSet" class="java.lang.String">
