@@ -20,10 +20,7 @@
 
                 <div class="ui black small message">
                     <i class="close icon"></i>
-
-                    <div class="ui tiny header">
-                            ${message}
-                    </div>
+                    <div class="ui tiny header">${message}</div>
                 </div>
             </c:if>
 

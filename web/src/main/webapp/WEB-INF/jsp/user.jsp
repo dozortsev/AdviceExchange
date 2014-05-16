@@ -17,52 +17,86 @@
                 <p>
                 <h3>${member.name}</h3>
                 </p>
-                <div class="ui divider"></div>
-            </div>
 
-            <div class="ui grid">
-                <div class="eight wide column">
-                    <div class="ui vertical fluid menu">
-                        <div class="header center item">
-                            Questions
-                        </div>
-                        <div class="item">
-
-                            <table class="ui basic table">
-                                <tbody>
-                                <c:forEach items="${questions}" var="qs">
-                                    <tr>
-                                        <td>${qs.votes}</td>
-                                        <td><a href="${path}/question/${qs.id}">${qs.title}</a></td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="ui horizontal icon divider">
+                    <i class="circular signal icon"></i>
                 </div>
 
-                <div class="eight wide column">
-                    <div class="ui vertical fluid menu">
-                        <div class="header center item">
-                            Answers
-                        </div>
-                        <div class="item">
-                            <table class="ui basic table">
-                                <tbody>
-                                <c:forEach items="${answers}" var="asw">
-                                    <tr>
-                                        <td>${asw.votes}</td>
-                                        <td>
-                                            <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+                    <%-- Tags --%>
+
+                <div class="ui pointing secondary demo menu">
+                    <a class="active red item" data-tab="first">
+                        Activity
+                    </a>
+                    <a class="blue item" data-tab="second">
+                        Questions ${fn:length(questions)}
+                    </a>
+                    <a class="teal item" data-tab="third">
+                        Answers ${fn:length(answers)}
+                    </a>
                 </div>
+
+
+                    <%-- Activity --%>
+
+                <div class="ui active tab" data-tab="first">
+                    <table class="ui basic table">
+                        <tbody>
+                        <c:forEach items="${activity}" var="act">
+
+                            <c:set var="isQuestion" value="${act.type eq 'QUESTION'}"/>
+                            <tr>
+                                <td class="wide one">
+                                    ${act.votes}
+                                </td>
+                                <td class="wide fifteen">
+                                    <a href="${path}/question/${isQuestion ? act.id : act.question.id}">
+                                            ${isQuestion ? act.title : act.question.title}
+                                    </a>
+                                    <fmt:formatDate type="both" value="${act.created}"
+                                                    pattern="yyyy-MM-dd / HH:mm"/>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                    <%-- Questions --%>
+
+                <div class="ui tab" data-tab="second">
+                    <table class="ui basic table">
+                        <tbody>
+                        <c:forEach items="${questions}" var="qs">
+                            <tr>
+                                <td>${qs.votes}</td>
+                                <td><a href="${path}/question/${qs.id}">${qs.title}</a></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                    <%-- Answers --%>
+
+                <div class="ui tab" data-tab="third">
+                    <table class="ui basic table">
+                        <tbody>
+                        <c:forEach items="${answers}" var="asw">
+                            <tr>
+                                <td class="wide one">${asw.votes}</td>
+                                <td class="wide fifteen">
+                                    <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </td>
         <td class="wide two"></td>

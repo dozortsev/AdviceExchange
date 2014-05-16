@@ -7,17 +7,17 @@
         +&ensp;<i class="user icon"></i>
     </a>
     <a class="item" href="${path}/questions">
-        <i class="leaf icon"></i>Questions
+        <i class="leaf icon"></i><fmt:message key="questions"/>
     </a>
     <a class="item" href="${path}/users">
-        <i class="users basic icon"></i>Users
+        <i class="users basic icon"></i><fmt:message key="users"/>
     </a>
     <a class="item" href="<c:url value="/j_spring_security_logout"/>">
-        <i class="url basic icon"></i>Log Out
+        <i class="url basic icon"></i><fmt:message key="logout"/>
     </a>
     <a class="item right" style="background-color: #faea9f;"
        href="${path}/questions/ask">
-        <b><i class="idea basic icon"></i>Ask Question</b>
+        <b><i class="idea basic icon"></i><fmt:message key="ask.qs"/></b>
     </a>
 </div>
 

@@ -3,9 +3,8 @@
 <%@ include file="resources.jsp" %>
 
 <head>
-    <title>
-        Question
-    </title>
+    <title><fmt:message key="questions"/></title>
+
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 
     <script src="${path}/js/showdown.js"></script>
@@ -42,7 +41,7 @@
                 <td class="wide one" align="center" style="vertical-align: text-top;">
                     <h2>${question.votes}</h2>
                     <br/>
-                    <small>votes</small>
+                    <small><fmt:message key="votes"/></small>
                 </td>
                 <td colspan="2">
 
@@ -72,14 +71,18 @@
                 <td></td>
                 <td class="wide seven">
                     <c:if test="${isAdmin || question.user.id eq user.id }">
-                        <a href="${path}/question/delete/${question.id}">delete</a>
+                        <a href="${path}/question/delete/${question.id}">
+                            <fmt:message key="del"/>
+                        </a>
                         &ensp;|&ensp;
-                        <a href="#">edit</a>
+                        <a href="#">
+                            <fmt:message key="edit"/>
+                        </a>
                     </c:if>
                 </td>
                 <td class="wide eight" align="left">
                     <small>
-                        asked&thinsp;
+                        <fmt:message key="asked"/>&thinsp;
                         <a href="${path}/user/${question.user.id}">
                             <b>${question.user.name}</b>
                         </a>
@@ -94,7 +97,7 @@
 
         <%-- Commets --%>
 
-        <h4>Comments</h4>
+        <h4><fmt:message key="qs.lbl.comments"/></h4>
 
         <div class="ui horizontal icon divider">
             <i class="circular chat icon"></i>
@@ -128,7 +131,9 @@
                 </td>
                 <td class="wide two">
                     <div class="ui fluid input">
-                        <a class="ui tiny red button">Add Comment</a>
+                        <a class="ui tiny red button">
+                            <fmt:message key="qs.btn.add.cm"/>
+                        </a>
                     </div>
                 </td>
             </tr>
@@ -142,11 +147,11 @@
         <p>
             <c:choose>
             <c:when test="${question.answerCount > 0}">
-        <h4>${question.answerCount}&thinsp;Answers</h4>
+        <h4>${question.answerCount}&thinsp;<fmt:message key="qs.lbl.answers"/></h4>
         </c:when>
 
         <c:otherwise>
-            <h4>Not answered yet</h4>
+            <h4><fmt:message key="qs.lbl.answers.msg"/></h4>
         </c:otherwise>
         </c:choose>
         <p>
@@ -161,7 +166,7 @@
                 <tr>
                     <td class="wide one" align="center" style="vertical-align: text-top;">
                         <h2>${asw.votes}</h2><br/>
-                        <small>votes</small>
+                        <small><fmt:message key="votes"/></small>
                     </td>
                     <td colspan="2">
 
@@ -176,14 +181,18 @@
                     <td></td>
                     <td class="wide seven">
                         <c:if test="${isAdmin || asw.user.id eq user.id}">
-                            <a href="${path}/answer/delete/${asw.id}">delete</a>
+                            <a href="${path}/answer/delete/${asw.id}">
+                                <fmt:message key="del"/>
+                            </a>
                             &ensp;|&ensp;
-                            <a href="#">edit</a>
+                            <a href="#">
+                                <fmt:message key="edit"/>
+                            </a>
                         </c:if>
                     </td>
                     <td class="wide eight" align="left">
                         <small>
-                            answered&thinsp;
+                            <fmt:message key="answered"/>&thinsp;
                             <a href="${path}/user/${asw.user.id}">
                                 <b>${asw.user.name}</b>
                             </a>
@@ -202,7 +211,7 @@
 
             <form:form action="${path}/answer/create" method="POST" modelAttribute="answer">
                 <p>
-                <h4>Your answer</h4>
+                <h4><fmt:message key="as.lbl.you.asw"/></h4>
 
                 <p>
 
@@ -221,27 +230,28 @@
                 </div>
 
                 <div class="ui form">
-                    <input class="ui small red submit button" type="submit" value="Post Your Answer"/>
+                    <input class="ui small red submit button" type="submit"
+                           value="<fmt:message key="qs.btn.post.asw"/>"/>
                 </div>
             </form:form>
 
             <div class="ui segment">
                 <p>
-                    Browse other questions tagged:&thinsp;
+                    <fmt:message key="as.lbl.browse.1"/>&thinsp;
                     <c:forEach items="${question.tags}" var="tag">
                         <a href="${path}/questions/tagged/${tag.name}"
                            title="${tag.desc}" class="ui teal small label">
                             <i class="tag icon"></i>&nbsp;${tag.name}&nbsp;
                         </a>
                     </c:forEach>
-                    or <a href="${path}/questions/ask">ask your own questions</a>.
+                    or&thinsp;
+                    <a href="${path}/questions/ask">
+                        <fmt:message key="as.lbl.browse.2"/>
+                    </a>
                 </p>
             </div>
-
         </c:if>
-
         </div>
-
         </td>
         <td class="wide three"></td>
     </tr>

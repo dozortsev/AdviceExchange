@@ -3,9 +3,8 @@
 <%@ include file="resources.jsp" %>
 
 <head>
-    <title>
-        Ask a Question
-    </title>
+    <title><fmt:message key="ask.qs"/></title>
+
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
@@ -21,14 +20,14 @@
 
             <div class="ui piled segment">
 
-                <h2>Title</h2>
+                <h3><fmt:message key="aq.lbl.title"/></h3>
 
                 <form:form action="${path}/questions/create" method="POST" modelAttribute="ask">
 
                     <div class="ui form">
                         <div class="field">
                             <input type="text" name="title" required="true" autofocus="true"
-                                   placeholder="What's your human health questions? Be specific.">
+                                   placeholder="<fmt:message key="aq.input.title.ph"/>">
                         </div>
                     </div>
 
@@ -36,7 +35,7 @@
                         <i class="circular quote left link icon"></i>
                         <i class="circular strikethrough link icon"></i>
                         <i class="circular text height link icon"></i>
-                        <i class="circular globe link icon"></i>
+                        <i class="circular url link icon"></i>
                         <i class="circular bold link icon"></i>
                         <i class="circular italic link icon"></i>
                         <i class="circular underline link icon"></i>
@@ -72,7 +71,7 @@
                             </td>
                             <td class="wide fourteen">
                                 <div class="ui segment left" id="tag-view">
-                                    at least one tag such as [stomachache], max 5 tags
+                                    <fmt:message key="aq.lbl.tags.msg"/>
                                 </div>
                             </td>
                         </tr>
@@ -86,7 +85,7 @@
                     <div class="ui small modal">
                         <i class="close icon"></i>
                         <div class="header">
-                            Tags
+                            <fmt:message key="tags"/>
                         </div>
                         <div class="content">
                             <div class="four column doubling ui grid">
@@ -111,7 +110,7 @@
 
                     <div class="ui form">
                         <input class="ui small red submit button" type="submit"
-                               value="Post Your Question"/>
+                               value="<fmt:message key="qs.btn.post.qs"/>"/>
                     </div>
                 </form:form>
             </div>

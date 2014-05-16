@@ -49,7 +49,7 @@ public class UserController {
                 )
                 .addObject(
                         "userSet", userService.findByName(isNameValid ? name : "", page != null ? (page - 1) * 36 : 0
-                        )
+                )
         );
     }
 
@@ -58,6 +58,7 @@ public class UserController {
 
         return new ModelAndView("user", "member", userService.findById(id))
                 .addObject("questions", questionService.findByUserId(id))
+                .addObject("activity", userService.userActivities(id))
                 .addObject("answers", answerService.findByUserId(id));
     }
 

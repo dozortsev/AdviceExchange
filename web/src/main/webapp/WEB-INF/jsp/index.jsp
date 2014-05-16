@@ -18,7 +18,7 @@
 
             <div class="ui piled segment">
                 <p>
-                <h3>ALL QUESTIONS&ensp;${questionCount}</h3>
+                <h3><fmt:message key="index.lbl.all.qs"/>&ensp;${questionCount}</h3>
 
                 <form:form action="${path}/questions" method="GET">
                     <div class="ui action input">
@@ -35,7 +35,7 @@
 
                 <c:if test="${fn:length(questions) eq 0}">
                     <h4 class="ui inverted red block header center aligned">
-                        Your search returned no matches.
+                        <fmt:message key="index.msg.search.err"/>
                     </h4>
                 </c:if>
 
@@ -46,11 +46,11 @@
                         <tr>
                             <td rowspan="2" class="wide one" align="center">
                                 <h2>${qs.answerCount}</h2><br/>
-                                <small>answers</small>
+                                <small><fmt:message key="answers"/></small>
                             </td>
                             <td rowspan="2" class="wide one" align="center">
                                 <h2>${qs.votes}</h2><br/>
-                                <small>votes</small>
+                                <small><fmt:message key="votes"/></small>
                             </td>
                             <td colspan="2" class="wide sixteen">
                                 <h3><a href="${path}/question/${qs.id}">${qs.title}</a></h3>
@@ -74,7 +74,7 @@
                             <td class="wide eight"></td>
                             <td>
                                 <small>
-                                    asked&thinsp;<a href="${path}/user/${qs.user.id}">
+                                    <fmt:message key="asked"/>&thinsp;<a href="${path}/user/${qs.user.id}">
                                         <b>${qs.user.name}</b>
                                     </a>
                                     <fmt:formatDate type="both" value="${qs.created}"
