@@ -30,10 +30,12 @@
                         Activity
                     </a>
                     <a class="blue item" data-tab="second">
-                        Questions ${fn:length(questions)}
+                        <%--<c:set var="countQs" value="${fn:length(questions)}"/>--%>
+                        Questions
                     </a>
                     <a class="teal item" data-tab="third">
-                        Answers ${fn:length(answers)}
+                        <%--<c:set var="countAsw" value="${fn:length(answers)}"/>--%>
+                        Answers
                     </a>
                 </div>
 
@@ -44,18 +46,21 @@
                     <table class="ui basic table">
                         <tbody>
                         <c:forEach items="${activity}" var="act">
-
                             <c:set var="isQuestion" value="${act.type eq 'QUESTION'}"/>
                             <tr>
-                                <td class="wide one">
-                                    ${act.votes}
+                                <td class="wide two" align="right">
+                                    <small>
+                                            ${isQuestion ? "<b>asked</b>" : (act.type eq 'ANSWER') ? "answered" : "commented"}
+                                    </small>
                                 </td>
-                                <td class="wide fifteen">
-                                    <a href="${path}/question/${isQuestion ? act.id : act.question.id}">
-                                            ${isQuestion ? act.title : act.question.title}
-                                    </a>
-                                    <fmt:formatDate type="both" value="${act.created}"
-                                                    pattern="yyyy-MM-dd / HH:mm"/>
+                                <td class="wide fourteen">
+                                    <small>
+                                        <a href="${path}/question/${isQuestion ? act.id : act.question.id}">
+                                                ${isQuestion ? act.title : act.question.title}
+                                        </a>
+                                        <fmt:formatDate type="both" value="${act.created}"
+                                                        pattern="yyyy-MM-dd / HH:mm"/>
+                                    </small>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -69,11 +74,15 @@
                 <div class="ui tab" data-tab="second">
                     <table class="ui basic table">
                         <tbody>
-                        <c:forEach items="${questions}" var="qs">
-                            <tr>
-                                <td>${qs.votes}</td>
-                                <td><a href="${path}/question/${qs.id}">${qs.title}</a></td>
-                            </tr>
+                        <c:forEach items="${activity}" var="qs">
+                            <c:if test="${qs.type eq 'QUESTION'}">
+                                <tr>
+                                    <td class="wide one">${qs.votes}</td>
+                                    <td class="wide fifteen">
+                                        <a href="${path}/question/${qs.id}">${qs.title}</a>
+                                    </td>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -85,13 +94,15 @@
                 <div class="ui tab" data-tab="third">
                     <table class="ui basic table">
                         <tbody>
-                        <c:forEach items="${answers}" var="asw">
-                            <tr>
-                                <td class="wide one">${asw.votes}</td>
-                                <td class="wide fifteen">
-                                    <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
-                                </td>
-                            </tr>
+                        <c:forEach items="${activity}" var="asw">
+                            <c:if test="${asw.type eq 'ANSWER'}">
+                                <tr>
+                                    <td class="wide one">${asw.votes}</td>
+                                    <td class="wide fifteen">
+                                        <a href="${path}/question/${asw.question.id}">${asw.question.title}</a>
+                                    </td>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                         </tbody>
                     </table>

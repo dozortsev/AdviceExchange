@@ -57,9 +57,7 @@ public class UserController {
     public ModelAndView user(@PathVariable Long id) {
 
         return new ModelAndView("user", "member", userService.findById(id))
-                .addObject("questions", questionService.findByUserId(id))
-                .addObject("activity", userService.userActivities(id))
-                .addObject("answers", answerService.findByUserId(id));
+                .addObject("activity", userService.userActivities(id));
     }
 
     @RequestMapping(value = "/search", method = GET)

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.hibernate.criterion.CriteriaSpecification.DISTINCT_ROOT_ENTITY;
+import static org.hibernate.criterion.Order.desc;
 import static org.hibernate.criterion.Restrictions.eq;
 import static org.hibernate.criterion.Restrictions.like;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
@@ -56,6 +57,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
         return getCurrentSession().createCriteria(UserActivity.class)
                 .add(eq("user.id", id))
+                .addOrder(desc("created"))
                 .setResultTransformer(DISTINCT_ROOT_ENTITY)
                 .list();
     }
