@@ -16,10 +16,10 @@ public class Question extends UserActivity {
     private String title;
 
     @Column(name = "qs_votes")
-    private Integer votes;
+    private int votes = 0;
 
     @Column(name = "qs_asw_count", nullable = false)
-    private Integer answerCount;
+    private int answerCount = 0;
 
     @ManyToMany(fetch = EAGER)
     @JoinTable(name = "question_tag",
@@ -34,21 +34,19 @@ public class Question extends UserActivity {
     private List<Comment> comments = new ArrayList<>();
 
     public Question() {
-        super(Type.QUESTION);
-        this.votes = 0;
-        this.answerCount = 0;
+        super();
     }
 
-    public Question(User user, String content, String title, List<Tag> tags) {
+    public Question(String title, String content, User user, int answerCount, int votes, List<Tag> tags) {
         super(user, Type.QUESTION, content);
-        this.votes = 0;
-        this.answerCount = 0;
         this.title = title;
+        this.votes = votes;
+        this.answerCount = answerCount;
         this.tags = tags;
     }
 
-    public Question(User user, String content, String title, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
-        this(user, content, title, tags);
+    public Question(User user, String content, int answerCount, int votes, String title, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+        this(title, content, user, answerCount, votes, tags);
         this.answers = answers;
         this.comments = comments;
     }
@@ -60,10 +58,10 @@ public class Question extends UserActivity {
         this.title = title;
     }
 
-    public Integer getVotes() {
+    public int getVotes() {
         return votes;
     }
-    public void setVotes(Integer votes) {
+    public void setVotes(int votes) {
         this.votes = votes;
     }
 
@@ -74,10 +72,10 @@ public class Question extends UserActivity {
         this.tags = tags;
     }
 
-    public Integer getAnswerCount() {
+    public int getAnswerCount() {
         return answerCount;
     }
-    public void setAnswerCount(Integer answerCount) {
+    public void setAnswerCount(int answerCount) {
         this.answerCount = answerCount;
     }
 
@@ -95,7 +93,7 @@ public class Question extends UserActivity {
         this.comments = comments;
     }
 
-    public Integer changeVotes(Integer votes) {
+    public int changeVotes(int votes) {
         return this.votes += votes;
     }
 }

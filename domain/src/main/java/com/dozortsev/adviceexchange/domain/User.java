@@ -17,14 +17,14 @@ public class User extends AbstractEntity<Long> {
     private String name;
 
     @Column(name = "user_age")
-    private Integer age;
+    private int age;
 
     @Column(name = "user_about_me")
     private String aboutMe;
 
     @Temporal(TIMESTAMP)
     @Column(name = "user_joined", updatable = false)
-    private Date joined;
+    private Date joined = new Date();
 
     @Column(name = "user_location")
     private String location;
@@ -39,10 +39,10 @@ public class User extends AbstractEntity<Long> {
     private String password;
 
     @Column(name = "user_enabled")
-    private Boolean enabled;
+    private boolean enabled = Boolean.TRUE;
 
     @Column(name = "user_reputation")
-    private Integer reputation = 1;
+    private int reputation = 1;
 
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
     @JoinColumn(name = "qs_id")
@@ -63,13 +63,9 @@ public class User extends AbstractEntity<Long> {
     private List<Badge> badges = new ArrayList<>();
 
     public User() {
-        this.reputation = 1;
-        this.enabled = Boolean.TRUE;
-        this.joined = new Date();
     }
 
-    public User(String name, Integer age, String aboutMe, String location, String site, String email, String password, Integer reputation) {
-        this();
+    public User(String name, int age, String aboutMe, String location, String site, String email, String password, int reputation) {
         this.name = name;
         this.age = age;
         this.aboutMe = aboutMe;
@@ -77,10 +73,10 @@ public class User extends AbstractEntity<Long> {
         this.site = site;
         this.email = email;
         this.password = password;
-        this.reputation += reputation;
+        this.reputation = reputation;
     }
 
-    public User(String name, Integer age, String aboutMe, String location, String site, String email, String password, Integer reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
+    public User(String name, int age, String aboutMe, String location, String site, String email, String password, int reputation, List<Question> questions, List<Answer> answers, List<Comment> comments) {
         this(name, age, aboutMe, location, site, email, password, reputation);
         this.questions = questions;
         this.answers = answers;
@@ -94,10 +90,10 @@ public class User extends AbstractEntity<Long> {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -144,17 +140,17 @@ public class User extends AbstractEntity<Long> {
         this.password = password;
     }
 
-    public Integer getReputation() {
+    public int getReputation() {
         return reputation;
     }
-    public void setReputation(Integer reputation) {
+    public void setReputation(int reputation) {
         this.reputation = reputation;
     }
 
-    public Boolean isEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
-    public void canEnabled(Boolean enabled) {
+    public void canEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -186,7 +182,7 @@ public class User extends AbstractEntity<Long> {
         this.badges = badges;
     }
 
-    public Integer changeReputation(Integer reputation) {
+    public int changeReputation(int reputation) {
         return this.reputation += reputation;
     }
 
@@ -197,14 +193,14 @@ public class User extends AbstractEntity<Long> {
 
         User user = (User) o;
 
-        if (aboutMe != null ? !aboutMe.equals(user.aboutMe) : user.aboutMe != null) return false;
-        if (age != null ? !age.equals(user.age) : user.age != null) return false;
+        if (age != user.age) return false;
+        if (enabled != user.enabled) return false;
+        if (reputation != user.reputation) return false;
         if (!email.equals(user.email)) return false;
         if (!joined.equals(user.joined)) return false;
         if (location != null ? !location.equals(user.location) : user.location != null) return false;
         if (!name.equals(user.name)) return false;
         if (!password.equals(user.password)) return false;
-        if (!reputation.equals(user.reputation)) return false;
         if (site != null ? !site.equals(user.site) : user.site != null) return false;
 
         return true;
@@ -213,14 +209,14 @@ public class User extends AbstractEntity<Long> {
     @Override public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (aboutMe != null ? aboutMe.hashCode() : 0);
+        result = 31 * result + age;
         result = 31 * result + joined.hashCode();
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (site != null ? site.hashCode() : 0);
         result = 31 * result + email.hashCode();
         result = 31 * result + password.hashCode();
-        result = 31 * result + reputation.hashCode();
+        result = 31 * result + (enabled ? 1 : 0);
+        result = 31 * result + reputation;
         return result;
     }
 }

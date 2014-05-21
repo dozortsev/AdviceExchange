@@ -29,23 +29,17 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     private String content;
 
     @Column(name = "ua_active", nullable = false)
-    private Boolean active;
+    private boolean active = Boolean.TRUE;
 
     @Temporal(TIMESTAMP)
     @Column(name = "ua_created", updatable = false)
-    private Date created;
+    private Date created = new Date();
 
     public UserActivity() {
     }
 
-    public UserActivity(Type type) {
-        this.type = type;
-        this.active = Boolean.TRUE;
-        this.created = new Date();
-    }
-
     public UserActivity(User user, Type type, String content) {
-        this(type);
+        this.type = type;
         this.user = user;
         this.content = content;
     }
@@ -71,10 +65,10 @@ public abstract class UserActivity extends AbstractEntity<Long> {
         this.content = content;
     }
 
-    public Boolean isActive() {
+    public boolean isActive() {
         return active;
     }
-    public void canActive(Boolean active) {
+    public void canActive(boolean active) {
         this.active = active;
     }
 
@@ -91,12 +85,11 @@ public abstract class UserActivity extends AbstractEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        UserActivity activity = (UserActivity) o;
+        UserActivity that = (UserActivity) o;
 
-        if (!active.equals(activity.active)) return false;
-        if (!content.equals(activity.content)) return false;
-        if (!created.equals(activity.created)) return false;
-        if (type != activity.type) return false;
+        if (active != that.active) return false;
+        if (!created.equals(that.created)) return false;
+        if (type != that.type) return false;
 
         return true;
     }
@@ -104,8 +97,7 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     @Override public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + type.hashCode();
-        result = 31 * result + content.hashCode();
-        result = 31 * result + active.hashCode();
+        result = 31 * result + (active ? 1 : 0);
         result = 31 * result + created.hashCode();
         return result;
     }

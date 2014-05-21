@@ -43,11 +43,13 @@ public class QuestionServiceTest extends TestContext {
         assertEquals(0, userService.userActivities(user.getId()).size());
 
         // prepare Question data
-        final String name = "Do all kids who are available for adoption get adopted?";
+        final String title = "Do all kids who are available for adoption get adopted?";
         final String content = "According to the National Council on Adoption, there is no way to know for sure.";
-        final List<Tag> tags = Arrays.asList(tagService.findById(1L), tagService.findById(5L), tagService.findById(6L));
+        final List<Tag> tags = Arrays.asList(
+                tagService.findById(1L), tagService.findById(5L), tagService.findById(6L)
+        );
 
-        final Question question = new Question(user, content, name, tags);
+        final Question question = new Question(title, content, user, 0, 0, tags);
 
         assertNull(question.getId());
         questionService.create(question);
@@ -57,9 +59,11 @@ public class QuestionServiceTest extends TestContext {
         final Question expectQuestion = questionService.findById(question.getId());
 
         assertEquals(Type.QUESTION, expectQuestion.getType());
-        assertEquals(name, expectQuestion.getTitle());
+        assertEquals(title, expectQuestion.getTitle());
         assertEquals(content, expectQuestion.getContent());
         assertEquals(tags, expectQuestion.getTags());
+        assertEquals(0, expectQuestion.getAnswerCount());
+        assertEquals(0, expectQuestion.getVotes());
         assertEquals(1, userService.userActivities(user.getId()).size());
         assertTrue(userService.userActivities(user.getId()).contains(expectQuestion));
     }

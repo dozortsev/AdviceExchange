@@ -5,7 +5,6 @@ import javax.persistence.*;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "comment")
 @PrimaryKeyJoinColumn(name = "cm_id")
@@ -16,7 +15,7 @@ public class Comment extends UserActivity {
     private Question question;
 
     public Comment() {
-        super(Type.COMMENT);
+        super();
     }
 
     public Comment(User user, String content, Question question) {
