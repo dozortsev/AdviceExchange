@@ -27,7 +27,7 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Comment> findByQuestionId(Long questionId) {
+    @Override public Set<Comment> findByQuestionId(long questionId) {
         Set<Comment> comments = new LinkedHashSet<>();
         try {
             log.info(format("Find Comments by Question ID: %d", questionId));

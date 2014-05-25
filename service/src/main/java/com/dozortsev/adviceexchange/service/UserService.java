@@ -7,11 +7,11 @@ import java.util.Set;
 
 public interface UserService extends GenericService<Long, User> {
 
-    Integer totalCount(String name);
+    int totalCount(String name);
 
-    Set<User> findByName(String name, Integer offset);
+    Set<User> findByName(String name, int offset);
 
     User findByLogin(String login);
 
-    Set<UserActivity> userActivities(Long id);
+    Set<UserActivity> userActivities(long id);
 }

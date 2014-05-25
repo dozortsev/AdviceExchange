@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface CommentService extends GenericService<Long, Comment> {
 
-    Set<Comment> findByQuestionId(Long questionId);
+    Set<Comment> findByQuestionId(long questionId);
 }

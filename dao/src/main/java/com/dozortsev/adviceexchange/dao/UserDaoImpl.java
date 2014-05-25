@@ -26,7 +26,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
         setEntityClass(User.class);
     }
 
-    @Override public Integer totalCount(String name) {
+    @Override public int totalCount(String name) {
 
         return getCurrentSession().createCriteria(getEntityClass())
                 .add(like("name", "%" + name + "%"))
@@ -36,7 +36,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
                 .hashCode();
     }
 
-    @Override public List<User> findByName(String name, Integer offset) {
+    @Override public List<User> findByName(String name, int offset) {
 
         return getCurrentSession().createSQLQuery(findUsersByName)
                 .addEntity(getEntityClass())
@@ -53,7 +53,7 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
                 .uniqueResult();
     }
 
-    @Override public List<UserActivity> userActivities(Long id) {
+    @Override public List<UserActivity> userActivities(long id) {
 
         return getCurrentSession().createCriteria(UserActivity.class)
                 .add(eq("user.id", id))

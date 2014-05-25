@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface BadgeDao extends GenericDao<Long, Badge> {
 
-    List<Badge> findByUserId(Long userId);
+    List<Badge> findByUserId(long userId);
 }

@@ -84,7 +84,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         return entity;
     }
 
-    @Override public Integer totalCount() {
+    @Override public int totalCount() {
         int totalCount = 0;
         try {
             totalCount = getDao().totalCount();

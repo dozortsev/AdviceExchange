@@ -21,7 +21,7 @@ public class BadgeDaoImpl extends GenericDaoImpl<Long, Badge> implements BadgeDa
     }
 
     @SuppressWarnings("unchecked")
-    @Override public List<Badge> findByUserId(Long userId) {
+    @Override public List<Badge> findByUserId(long userId) {
 
         return getCurrentSession().createSQLQuery(findBadgesByUserId)
                 .addEntity(getEntityClass()).setLong("userId", userId)

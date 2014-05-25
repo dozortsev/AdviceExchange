@@ -28,7 +28,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         setEntityClass(Question.class);
     }
 
-    @Override public Integer addAnswer(Question question, Answer answer) {
+    @Override public int addAnswer(Question question, Answer answer) {
 
         question.setAnswerCount(question.getAnswerCount() + 1);
         getCurrentSession().save(answer);
@@ -37,7 +37,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         return question.getAnswerCount();
     }
 
-    @Override public Integer delAnswer(Question question, Answer answer) {
+    @Override public int delAnswer(Question question, Answer answer) {
 
         question.setAnswerCount(question.getAnswerCount() - 1);
         getCurrentSession().delete(answer);
@@ -46,7 +46,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         return question.getAnswerCount();
     }
 
-    @Override public List<Question> loadFrom(Integer offset) {
+    @Override public List<Question> loadFrom(int offset) {
 
         return getCurrentSession().createSQLQuery(loadQuestionsSet)
                 .addEntity(getEntityClass())
@@ -74,7 +74,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements Q
         return sql.list();
     }
 
-    @Override public List<Question> findByUserId(Long userId) {
+    @Override public List<Question> findByUserId(long userId) {
 
         return getCurrentSession().createSQLQuery(findQuestionsByUserId)
                 .addEntity(getEntityClass())

@@ -27,7 +27,7 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
         setEntityClass(Answer.class);
     }
 
-    @Override public Set<Answer> findByUserId(Long userId) {
+    @Override public Set<Answer> findByUserId(long userId) {
         Set<Answer> answers = new LinkedHashSet<>();
         try {
             log.info(format("Find User by ID: %d", userId));
@@ -40,7 +40,7 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
         return answers;
     }
 
-    @Override public Set<Answer> findByQuestionId(Long questionId) {
+    @Override public Set<Answer> findByQuestionId(long questionId) {
         HashSet<Answer> answers = new LinkedHashSet<>();
         try {
             log.info(format("Find Answers by Question ID: %d", questionId));

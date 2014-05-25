@@ -22,7 +22,7 @@ public class AnswerDaoImpl extends GenericDaoImpl<Long, Answer> implements Answe
         setEntityClass(Answer.class);
     }
 
-    @Override public List<Answer> findByUserId(Long userId) {
+    @Override public List<Answer> findByUserId(long userId) {
 
         return getCurrentSession().createSQLQuery(findAnswersByUserId)
                 .addEntity(getEntityClass())
@@ -30,7 +30,7 @@ public class AnswerDaoImpl extends GenericDaoImpl<Long, Answer> implements Answe
                 .list();
     }
 
-    @Override public List<Answer> findByQuestionId(Long questionId) {
+    @Override public List<Answer> findByQuestionId(long questionId) {
 
         return getCurrentSession().createSQLQuery(findAnswersByQuestionId)
                 .addEntity(getEntityClass())

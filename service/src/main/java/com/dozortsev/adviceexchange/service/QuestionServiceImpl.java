@@ -26,7 +26,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         setEntityClass(Question.class);
     }
 
-    @Override public Integer addAnswer(Question question, Answer answer) {
+    @Override public int addAnswer(Question question, Answer answer) {
         try {
             log.info(format("Add Answer to Question ID: %d", question.getId()));
             getDao().addAnswer(question, answer);
@@ -38,7 +38,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         return question.getAnswerCount();
     }
 
-    @Override public Integer delAnswer(Answer answer) {
+    @Override public int delAnswer(Answer answer) {
         Question question = answer.getQuestion();
         try {
             log.info(format("Delete Answer ID: %d form Question ID: %d", answer.getId(), question.getId()));
@@ -65,7 +65,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Transactional(readOnly = true)
-    @Override public LinkedHashSet<Question> loadFrom(Integer offset) {
+    @Override public LinkedHashSet<Question> loadFrom(int offset) {
         LinkedHashSet<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Load Questions from: %d; row count: 10", offset));
@@ -79,7 +79,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Question> findByUserId(Long userId) {
+    @Override public Set<Question> findByUserId(long userId) {
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by User ID: %d", userId));
