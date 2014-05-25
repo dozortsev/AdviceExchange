@@ -69,16 +69,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td class="wide eight"></td>
-                            <td>
+                            <td class="wide six" colspan="3"></td>
+                            <td class="wide ten">
                                 <small>
                                     <fmt:message key="asked"/>&thinsp;<a href="${path}/user/${qs.user.id}">
                                         <b>${qs.user.name}</b>
                                     </a>
-                                    <fmt:formatDate type="both" value="${qs.created}"
-                                                    pattern="yyyy-MM-dd / HH:mm"/>
+                                    <fmt:formatDate type="both" value="${qs.created}" pattern="yyyy-MM-dd / HH:mm"/>
                                 </small>
                             </td>
                         </tr>
