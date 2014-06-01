@@ -1,6 +1,7 @@
 package com.dozortsev.adviceexchange.dao;
 
-import com.dozortsev.adviceexchange.domain.*;
+import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.domain.UserActivity;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.hibernate.criterion.CriteriaSpecification.DISTINCT_ROOT_ENTITY;
+import static org.hibernate.criterion.Order.desc;
 import static org.hibernate.criterion.Restrictions.eq;
 import static org.hibernate.criterion.Restrictions.like;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
@@ -19,8 +22,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     private @Autowired String findUsersByName;
-
-    private @Autowired String userActivityQuery;
 
     private @Autowired JdbcTemplate jdbcTemplate;
 
@@ -57,42 +58,10 @@ public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     @Override public List<UserActivity> userActivities(long id) {
 
-        return jdbcTemplate.query(userActivityQuery, new Object[]{id}, (rs, i) -> {
-            UserActivity act = null;
-
-            while (rs.next()) {
-                switch (Type.valueOf(rs.getString("ua_type"))) {
-                    case ANSWER:
-                        act = new Answer() {{
-                            setId(rs.getLong("ua_id"));
-                            setVotes(rs.getInt("asw_votes"));
-                            canActive(rs.getBoolean("ua_active"));
-                            canAccept(rs.getBoolean("asw_accepted"));
-                            setContent(rs.getString("ua_content"));
-                            setCreated(rs.getDate("ua_created"));
-                        }};
-                        break;
-                    case QUESTION:
-                        act = new Question() {{
-                            setId(rs.getLong("ua_id"));
-                            setVotes(rs.getInt("asw_votes"));
-                            canActive(rs.getBoolean("ua_active"));
-                            setTitle(rs.getString("qs_title"));
-                            setContent(rs.getString("ua_content"));
-                            setCreated(rs.getDate("ua_created"));
-                        }};
-                        break;
-                    case COMMENT:
-                        act = new Comment() {{
-                            setId(rs.getLong("ua_id"));
-                            canActive(rs.getBoolean("ua_active"));
-                            setContent(rs.getString("ua_content"));
-                            setCreated(rs.getDate("ua_created"));
-                        }};
-                        break;
-                }
-            }
-            return act;
-        });
+        return getCurrentSession().createCriteria(UserActivity.class)
+                .add(eq("user.id", id))
+                .addOrder(desc("created"))
+                .setResultTransformer(DISTINCT_ROOT_ENTITY)
+                .list();
     }
 }
