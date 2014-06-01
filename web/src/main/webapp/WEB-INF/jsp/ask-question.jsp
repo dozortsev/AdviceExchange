@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${path}/css/md-style.css"/>
 </head>
 
-<body onload="mdLivePreview('#raw-content', '#preview-content');">
+<body onload="mdLivePreview('#raw-content', '#preview-content'); completion('${tagLine}')">
 
 <table class="ui basic table">
     <tbody>
@@ -97,14 +97,21 @@
                         <i class="close icon"></i>
                         <div class="header">
                             <fmt:message key="tags"/>
+
+                            <div class="ui action input">
+                                <div class="ui icon input">
+                                    <input id="cases" onkeyup="completion('${tagLine}')" type="text" placeholder="Search tag..." autofocus="true">
+                                    <i class="search icon"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="content">
-                            <div class="four column doubling ui grid">
-                                <c:forEach items="${tags}" var="tag">
+                            <div id="all-tags" class="four column doubling ui grid">
+                                <c:forEach items='${fn:split(tagLine, " ")}' var="tag">
                                     <div class="column">
                                         <div class="ui checkbox">
-                                            <input type="checkbox" name="tag" value="${tag.name}">
-                                            <label>${tag.name}</label>
+                                            <input type="checkbox" name="tag" value="${tag}">
+                                            <label>${tag}</label>
                                         </div>
                                     </div>
                                 </c:forEach>

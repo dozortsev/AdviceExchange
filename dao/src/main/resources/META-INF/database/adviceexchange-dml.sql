@@ -260,7 +260,7 @@ INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
   (9, 'leg', 'The human leg is the entire lower extremity or limb of the human body however, the precise definition in human anatomy refers only to the section of the lower limb extending from the knee to the ankle.'),
   (10, 'medicine', 'Medicine is the field of applied science related to the art of healing by diagnosis, treatment, and prevention of disease.'),
   (11, 'human', 'Modern humans are the only remaining species of the hominids, a branch of great apes characterized by erect posture and bipedal locomotion; manual dexterity and increased tool use.'),
-  (12, 'etymology ', 'Etymology is the study of the history of words, their origins, and how their form and meaning have changed over time.'),
+  (12, 'etymology', 'Etymology is the study of the history of words, their origins, and how their form and meaning have changed over time.'),
   (13, 'brain', 'The human brain has the same general structure as the brains of other mammals, but has a more developed cortex than any other.'),
   (14, 'biology', 'Biology is a natural science concerned with the study of life and living organisms, including their structure, function, growth, evolution, distribution, and taxonomy.'),
   (15, 'morphology', 'Morphology is a branch of biology dealing with the study of the form and structure of organisms and their specific structural features.'),

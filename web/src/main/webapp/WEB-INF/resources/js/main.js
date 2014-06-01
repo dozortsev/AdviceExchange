@@ -3,6 +3,8 @@ var getTagNames = function () {
     var tagsView = '<div class="ui teal labels">',
         tagsLine = '';
 
+    console.log('Foo');
+
     $('input:checkbox[name=tag]:checked').each(function () {
         tagsView += '<a class="ui label">' + this.value + '</a>';
         tagsLine += this.value + ' ';
@@ -11,6 +13,29 @@ var getTagNames = function () {
     $('#tag-view').html(tagsView + '</div>');
 
     $('input[name=tags]').val(tagsLine.substring(0, tagsLine.length - 1));
+};
+
+var completion = function (tagLine) {
+    var cases = $("#cases").val(),
+        tagPreview = '',
+        tags = tagLine.split(' ');
+
+    cases = cases !== undefined ? cases.toLowerCase() : '';
+
+    for (var i = 0; i < tags.length; i++) {
+        if (~tags[i].toLowerCase().indexOf(cases)) {
+            tagPreview +=
+                '<div class="column">' +
+                    '<div class="ui checkbox">' +
+                        '<input type="checkbox" name="tag" value="' + tags[i] + '">' +
+                        '<label>' + tags[i] + '</label>' +
+                    '</div>' +
+                '</div>'
+            ;
+        }
+    }
+    $('#all-tags').html(tagPreview);
+    getTagNames();
 };
 
 
@@ -25,11 +50,7 @@ $('.message .close').on('click', function() {
 
 /* tabs */
 $(document).ready(function () {
-    $('.demo.menu .item').tab(
-        {
-            history: false
-        }
-    );
+    $('.demo.menu .item').tab({ history: false });
 });
 
 /* launch modal for add tags */

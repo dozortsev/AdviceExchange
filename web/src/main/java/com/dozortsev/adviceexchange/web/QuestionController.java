@@ -2,6 +2,7 @@ package com.dozortsev.adviceexchange.web;
 
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
+import com.dozortsev.adviceexchange.domain.Tag;
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.CommentService;
@@ -17,6 +18,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -98,7 +100,9 @@ public class QuestionController {
     @RequestMapping(value = "/questions/ask", method = GET)
     public ModelAndView askQuestion() {
 
-        return new ModelAndView("ask-question", "tags", tagService.loadAll());
+        return new ModelAndView("ask-question",
+                "tagLine", String.join(" ", tagService.loadAll().stream().map(Tag::getName).collect(toList()))
+        );
     }
 
     @RequestMapping(value = "/answer/create", method = POST)
