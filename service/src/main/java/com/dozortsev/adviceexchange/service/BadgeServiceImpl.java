@@ -27,7 +27,7 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Badge> findByUserId(Long userId) {
+    @Override public Set<Badge> findByUserId(long userId) {
         Set<Badge> badges = new HashSet<>();
         try {
             log.info(format("Find Badges by User Id: %d", userId));

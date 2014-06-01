@@ -49,7 +49,7 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
     }
 
     @Transactional(readOnly = true)
-    @Override public Integer totalCount() {
+    @Override public int totalCount() {
         return getCurrentSession().createCriteria(getEntityClass())
                 .setProjection(Projections.rowCount())
                 .uniqueResult().hashCode();

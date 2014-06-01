@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AnswerDao extends GenericDao<Long, Answer> {
 
-    List<Answer> findByUserId(Long userId);
+    List<Answer> findByUserId(long userId);
 
-    List<Answer> findByQuestionId(Long questionId);
+    List<Answer> findByQuestionId(long questionId);
 }

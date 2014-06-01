@@ -7,15 +7,15 @@ import java.util.Set;
 
 public interface QuestionService extends GenericService<Long, Question> {
 
-    Integer addAnswer(Question question, Answer answer);
+    int addAnswer(Question question, Answer answer);
 
-    Integer delAnswer(Answer answer);
+    int delAnswer(Answer answer);
 
     Set<Question> findByKeyWords(String... keyWords);
 
-    Set<Question> loadFrom(Integer offset);
+    Set<Question> loadFrom(int offset);
 
-    Set<Question> findByUserId(Long userId);
+    Set<Question> findByUserId(long userId);
 
     Set<Question> findByTags(String... tags);
 }

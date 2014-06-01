@@ -42,7 +42,7 @@ public class AnswerServiceTest extends TestContext {
         // prepare data for test of create
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, obcaecati.";
 
-        final Answer answer = new Answer(user, content, question);
+        final Answer answer = new Answer(user, content, 0, question);
         answer.canAccept(Boolean.TRUE);
 
         assertNull(answer.getId());
@@ -56,7 +56,7 @@ public class AnswerServiceTest extends TestContext {
         // check on the expected data
         assertEquals(Type.ANSWER, expectAnswer.getType());
         assertEquals(content, expectAnswer.getContent());
-        assertEquals(0, expectAnswer.getVotes().intValue());
+        assertEquals(0, expectAnswer.getVotes());
         assertTrue(expectAnswer.isAccept());
         assertTrue(answerService.findByUserId(user.getId()).contains(expectAnswer));
         assertTrue(answerService.findByQuestionId(question.getId()).contains(expectAnswer));
@@ -79,7 +79,7 @@ public class AnswerServiceTest extends TestContext {
 
         final Set<Answer> answers = answerService.findByQuestionId(question.getId());
 
-        assertEquals(answers.size(), question.getAnswerCount().intValue());
+        assertEquals(answers.size(), question.getAnswerCount());
         assertTrue(answers.contains(answer));
         assertTrue(answerService.findByUserId(userId).contains(answer));
 
@@ -87,7 +87,7 @@ public class AnswerServiceTest extends TestContext {
 
         final Set<Answer> expectAnswers = answerService.findByQuestionId(question.getId());
         final Question expectQuestion = questionService.findById(17L);
-        assertEquals(expectAnswers.size(), expectQuestion.getAnswerCount().intValue());
+        assertEquals(expectAnswers.size(), expectQuestion.getAnswerCount());
 
         assertNull(answerService.findById(id));
         assertFalse(answerService.findByQuestionId(question.getId()).contains(answer));

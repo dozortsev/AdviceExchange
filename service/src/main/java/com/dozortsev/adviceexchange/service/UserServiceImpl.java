@@ -27,7 +27,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         setEntityClass(User.class);
     }
 
-    @Override public Integer totalCount(String name) {
+    @Override public int totalCount(String name) {
         int totalCount = 0;
         try {
             totalCount = getDao().totalCount(name);
@@ -39,7 +39,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         return totalCount;
     }
 
-    @Override public Set<User> findByName(String name, Integer offset) {
+    @Override public Set<User> findByName(String name, int offset) {
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {
             log.info(format("Load Users by name: '%s'; from: %d; row count: 36", name, offset));
@@ -68,7 +68,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         return null;
     }
 
-    @Override public Set<UserActivity> userActivities(Long id) {
+    @Override public Set<UserActivity> userActivities(long id) {
         Set<UserActivity> userActivities = new LinkedHashSet<>();
         try {
             log.info(format("User activity by ID: %d", id));

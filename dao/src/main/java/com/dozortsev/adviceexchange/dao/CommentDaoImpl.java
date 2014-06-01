@@ -20,7 +20,7 @@ public class CommentDaoImpl extends GenericDaoImpl<Long, Comment> implements Com
     }
 
     @SuppressWarnings("unchecked")
-    @Override public List<Comment> findByQuestionId(Long questionId) {
+    @Override public List<Comment> findByQuestionId(long questionId) {
 
         return getCurrentSession().createSQLQuery(findCommentsByQuestionId)
                 .addEntity(getEntityClass()).setLong("questionId", questionId)

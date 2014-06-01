@@ -49,13 +49,13 @@ public class UserServiceTest extends TestContext {
 
         // prepare data
         final String name = "Carlos Castaneda";
-        final Integer age = 50;
+        final int age = 50;
         final String aboutMe = "Programmer";
         final String location = "Mexico";
         final String site = "github.com/Castaneda";
         final String email = "castaneda@gmail.com";
         final String password = "helloCastaneda";
-        final Integer reputation = 1000;
+        final int reputation = 1000;
         final Badge badge = badgeService.findById(1L);    // Admin
 
         User user = new User(name, age, aboutMe, location, site, email, password, reputation);
@@ -76,7 +76,7 @@ public class UserServiceTest extends TestContext {
         assertEquals(site, expectUser.getSite());
         assertEquals(email, expectUser.getEmail());
         assertEquals(password, expectUser.getPassword());
-        assertEquals(reputation + 1, expectUser.getReputation().intValue());
+        assertEquals(reputation, expectUser.getReputation());
 
         final Set<Badge> badges = badgeService.findByUserId(user.getId());
 
@@ -106,7 +106,7 @@ public class UserServiceTest extends TestContext {
         final User user = userService.findById(2L);
 
         final String oldEmail = user.getEmail();
-        final Integer oldReputation = user.getReputation();
+        final int oldReputation = user.getReputation();
 
         user.setEmail("new_email@gmail.com");
         user.changeReputation(15);              // up on 15
@@ -118,7 +118,7 @@ public class UserServiceTest extends TestContext {
 
         assertNotEquals(oldEmail, expectedUser.getEmail());
         assertNotEquals(oldReputation, expectedUser.getReputation());
-        assertTrue(expectedUser.getReputation().equals(oldReputation + 15));
+        assertEquals((oldReputation + 15), expectedUser.getReputation());
     }
 
     @Test public void testFindUserByName() {

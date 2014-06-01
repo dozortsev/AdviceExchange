@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface QuestionDao extends GenericDao<Long, Question> {
 
-    Integer addAnswer(Question question, Answer answer);
+    int addAnswer(Question question, Answer answer);
 
-    Integer delAnswer(Question question, Answer answer);
+    int delAnswer(Question question, Answer answer);
 
-    List<Question> loadFrom(Integer offset);
+    List<Question> loadFrom(int offset);
 
     List<Question> findByKeyWord(String... keyWork);
 
-    List<Question> findByUserId(Long userId);
+    List<Question> findByUserId(long userId);
 
     List<Question> findByTags(String... tags);
 }

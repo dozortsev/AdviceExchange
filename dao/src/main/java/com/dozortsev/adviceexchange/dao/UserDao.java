@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface UserDao extends GenericDao<Long, User> {
 
-    Integer totalCount(String name);
+    int totalCount(String name);
 
-    List<User> findByName(String name, Integer offset);
+    List<User> findByName(String name, int offset);
 
     User findByLogin(String login);
 
-    List<UserActivity> userActivities(Long id);
+    List<UserActivity> userActivities(long id);
 }

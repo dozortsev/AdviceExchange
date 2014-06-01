@@ -32,16 +32,27 @@
                     </div>
 
                     <p>
-                        <i class="circular quote left link icon"></i>
-                        <i class="circular strikethrough link icon"></i>
-                        <i class="circular text height link icon"></i>
-                        <i class="circular url link icon"></i>
-                        <i class="circular bold link icon"></i>
-                        <i class="circular italic link icon"></i>
-                        <i class="circular underline link icon"></i>
-                        <i class="circular comment link icon" data-variation="inverted" data-position="top center" data-content="Hello, I am a pop-up."></i>
-                        <i class="circular code link icon"></i>
-                        <i class="circular list link icon"></i>
+                        <i class="circular bold link icon" data-variation="small inverted" data-title="Bold"
+                           data-position="top center" data-content="**This is bold**">
+                        </i>
+                        <i class="circular italic link icon" data-variation="small inverted" data-title="Italic"
+                           data-position="top center" data-content="*This is italic*">
+                        </i>
+                        <i class="circular url link icon" data-variation="small inverted" data-title="Link"
+                           data-position="top center" data-content="[Google](http://www.google.com/)">
+                        </i>
+                        <i class="circular quote left link icon" data-variation="small inverted" data-title="Blockquote"
+                           data-position="top center" data-content="> Lorem ipsum dolor sit amet.">
+                        </i>
+                        <i class="circular text height link icon" data-variation="small inverted" data-title="Header"
+                           data-position="top center" data-content="# Header1<br>## Header2<br>### Header3">
+                        </i>
+                        <i class="circular code link icon" data-variation="small inverted" data-title="Code"
+                           data-position="top center" data-content="`git pull`">
+                        </i>
+                        <i class="circular list link icon" data-variation="small inverted" data-title="Bulleted List"
+                           data-position="top center" data-content="* item1<br> * item2">
+                        </i>
                     </p>
 
                     <div class="ui form">

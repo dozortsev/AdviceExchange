@@ -1,7 +1,6 @@
 package com.dozortsev.adviceexchange.web;
 
 import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.QuestionService;
 import com.dozortsev.adviceexchange.service.UserService;
 import org.apache.log4j.Logger;
@@ -24,8 +23,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class UserController {
 
     private @Autowired UserService userService;
-
-    private @Autowired AnswerService answerService;
 
     private @Autowired QuestionService questionService;
 

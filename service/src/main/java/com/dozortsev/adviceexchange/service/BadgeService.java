@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface BadgeService extends GenericService<Long, Badge> {
 
-    Set<Badge> findByUserId(Long userId);
+    Set<Badge> findByUserId(long userId);
 }
