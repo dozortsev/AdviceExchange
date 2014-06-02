@@ -60,9 +60,11 @@
                             <td colspan="2">
                                 <div class="ui teal labels">
                                     <c:forEach items="${qs.tags}" var="tag">
-                                        <a href="${path}/questions/tagged/${tag.name}"
-                                           title="${tag.desc}" class="ui small label">
-                                            <i class="tag icon"></i>&nbsp;${tag.name}&nbsp;
+                                        <a href="${path}/questions/tagged/${tag.name}" class="ui small label"
+                                           data-variation="small inverted" data-title="${tag.name}"
+                                           data-position="bottom center" data-content="${tag.desc}">
+                                            <i class="tag icon"></i>
+                                            &nbsp;${tag.name}&nbsp;
                                         </a>
                                     </c:forEach>
                                 </div>
@@ -109,6 +111,9 @@
     </tr>
     </tbody>
 </table>
+
+<script src="${path}/js/main.js"></script>
+
 </body>
 
 <jsp:include page="footer.jsp"/>

@@ -59,10 +59,12 @@
                 <td class="wide eight" colspan="3">
                     <div class="ui teal small labels">
                         <c:forEach items="${question.tags}" var="tag">
-                            <a href="${path}/questions/tagged/${tag.name}"
-                               title="${tag.desc}" class="ui label">
-                                <i class="tag icon"></i>&nbsp;${tag.name}&nbsp;
-                            </a>&ensp;
+                            <a href="${path}/questions/tagged/${tag.name}" class="ui label"
+                               data-variation="small inverted" data-title="${tag.name}"
+                               data-position="bottom center" data-content="${tag.desc}">
+                                <i class="tag icon"></i>
+                                &nbsp;${tag.name}&nbsp;
+                            </a>
                         </c:forEach>
                     </div>
                 </td>
@@ -260,9 +262,11 @@
                 <p>
                     <fmt:message key="as.lbl.browse.1"/>&thinsp;
                     <c:forEach items="${question.tags}" var="tag">
-                        <a href="${path}/questions/tagged/${tag.name}"
-                           title="${tag.desc}" class="ui teal small label">
-                            <i class="tag icon"></i>&nbsp;${tag.name}&nbsp;
+                        <a href="${path}/questions/tagged/${tag.name}" class="ui teal small label"
+                           data-variation="small inverted" data-title="${tag.name}"
+                           data-position="bottom center" data-content="${tag.desc}">
+                            <i class="tag icon"></i>
+                            &nbsp;${tag.name}&nbsp;
                         </a>
                     </c:forEach>
                     or&thinsp;

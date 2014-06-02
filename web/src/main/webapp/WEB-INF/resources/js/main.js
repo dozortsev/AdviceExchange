@@ -37,7 +37,13 @@ $(document).ready(function () {
 $('.small.modal').modal('attach events', '#add-tag', 'show');
 
 
+/* help icons */
 $('.icon.link').popup({
+    on: 'hover'
+});
+
+/* Pop-up info about tag */
+$('.label').popup({
     on: 'hover'
 });
 
