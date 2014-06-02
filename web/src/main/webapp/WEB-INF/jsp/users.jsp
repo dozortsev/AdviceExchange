@@ -36,6 +36,12 @@
                     <i class="circular users basic icon"></i>
                 </div>
 
+                <c:if test="${fn:length(userSet) eq 0}">
+                    <h4 class="ui inverted red block header center aligned">
+                        <fmt:message key="index.msg.search.err"/>
+                    </h4>
+                </c:if>
+
                 <%-- Users --%>
 
                 <main class="ui four column grid items">
