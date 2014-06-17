@@ -1,5 +1,6 @@
 
 var getTagNames = function () {
+    'use strict';
     var tagsView = '<div class="ui teal labels">',
         tagsLine = '';
 
@@ -19,12 +20,14 @@ $('.ui.checkbox').checkbox();
 
 /* error message on login */
 $('.message .close').on('click', function() {
+    'use strict';
     $(this).closest('.message').fadeOut();
 });
 
 
 /* tabs */
 $(document).ready(function () {
+    'use strict';
     $('.demo.menu .item').tab(
         {
             history: false

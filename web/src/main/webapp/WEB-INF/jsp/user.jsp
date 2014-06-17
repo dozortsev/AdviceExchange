@@ -14,9 +14,62 @@
             <jsp:include page="header.jsp"/>
 
             <div class="ui piled segment">
-                <p>
-                <h3>${member.name}</h3>
-                </p>
+
+                <table class="table basic">
+                    <tr>
+                        <td class="wide two">
+
+                            <div class="image">
+                                <img src="${path}/img/user.png">
+                            </div>
+                            <div class="content">
+                                <h3>
+                                    <c:choose>
+                                    <c:when test="${fn:length(member.site) > 1}">
+                                        <a href="http://${member.site}">${member.name}</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${member.name}
+                                    <small>
+                                        </c:otherwise>
+                                        </c:choose>
+                                </h3>
+                            </div>
+                        </td>
+
+                        <td class="wide fourteen" style="vertical-align: text-top;">
+                            <div class="ui floating message">
+                                <div class="header">About me</div>
+                                ${member.aboutMe}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <%--
+                    <jsp:useBean id="now" class="java.util.Date"/>
+
+                    <c:set var="fromYearMember" value="${member.joined.year - now.year}"/>
+                    <c:set var="fromMonthMember" value="${member.joined.month - now.month}"/>
+                    <c:set var="fromDayMember" value="${member.joined.day - now.day}"/>
+                    --%>
+
+                    <tr>
+                        <td colspan="2">
+                            Age: ${member.age}
+                            &emsp;
+                            &emsp;
+                            Email: <div class="ui input"><input type="email" value="${member.email}"/></div>
+                            &emsp;
+                            Member form: <fmt:formatDate type="date" value="${member.joined}" pattern="yyyy-MM-dd"/>
+
+                            <%--
+                            <c:if test="${fromYearMember != 0}">${fromYearMember} years</c:if>
+                            <c:if test="${fromMonthMember != 0}">${fromMonthMember} months</c:if>
+                            <c:if test="${fromDayMember != 0}">${fromDayMember} days</c:if>
+                            --%>
+                        </td>
+                    </tr>
+                </table>
 
                 <div class="ui horizontal icon divider">
                     <i class="circular signal icon"></i>
