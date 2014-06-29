@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 import static java.lang.String.format;
+import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -27,6 +29,7 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
 
     @Transactional(readOnly = true)
     @Override public Set<Tag> loadAll() {
+        final long start = nanoTime();
         Set<Tag> tags = new LinkedHashSet<>();
         try {
             log.info("Load all Tags");
@@ -36,11 +39,13 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return tags;
     }
 
     @Transactional(readOnly = true)
     @Override public List<Tag> findByName(String... names) {
+        final long start = nanoTime();
         List<Tag> tags = new ArrayList<>();
         try {
             log.info(format("Find Tabs by names: %s", Arrays.toString(names)));
@@ -49,6 +54,7 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
         } catch (Exception e) {
             log.error("Error: " + e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return tags;
     }
 }

@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static java.lang.String.format;
+import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -28,6 +30,7 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
 
     @Transactional(readOnly = true)
     @Override public Set<Badge> findByUserId(long userId) {
+        final long start = nanoTime();
         Set<Badge> badges = new HashSet<>();
         try {
             log.info(format("Find Badges by User Id: %d", userId));
@@ -37,6 +40,7 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return badges;
     }
 }

@@ -11,6 +11,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static java.lang.String.format;
+import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW, readOnly = true)
@@ -28,6 +30,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
     }
 
     @Override public int totalCount(String name) {
+        final long start = nanoTime();
         int totalCount = 0;
         try {
             totalCount = getDao().totalCount(name);
@@ -36,10 +39,12 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return totalCount;
     }
 
     @Override public Set<User> findByName(String name, int offset) {
+        final long start = nanoTime();
         LinkedHashSet<User> users = new LinkedHashSet<>();
         try {
             log.info(format("Load Users by name: '%s'; from: %d; row count: 36", name, offset));
@@ -49,10 +54,12 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return users;
     }
 
     @Override public User findByLogin(String login) {
+        final long start = nanoTime();
         try {
             log.info(format("Find User by Login: %s", login));
             User user = getDao().findByLogin(login);
@@ -65,10 +72,12 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return null;
     }
 
     @Override public Set<UserActivity> userActivities(long id) {
+        final long start = nanoTime();
         Set<UserActivity> userActivities = new LinkedHashSet<>();
         try {
             log.info(format("User activity by ID: %d", id));
@@ -78,6 +87,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return userActivities;
     }
 }

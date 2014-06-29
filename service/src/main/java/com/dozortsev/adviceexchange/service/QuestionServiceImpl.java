@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import static java.lang.String.format;
+import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -27,6 +31,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
     }
 
     @Override public int addAnswer(Question question, Answer answer) {
+        final long start = nanoTime();
         try {
             log.info(format("Add Answer to Question ID: %d", question.getId()));
             getDao().addAnswer(question, answer);
@@ -35,10 +40,12 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return question.getAnswerCount();
     }
 
     @Override public int delAnswer(Answer answer) {
+        final long start = nanoTime();
         Question question = answer.getQuestion();
         try {
             log.info(format("Delete Answer ID: %d form Question ID: %d", answer.getId(), question.getId()));
@@ -48,10 +55,12 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return question.getAnswerCount();
     }
 
     @Override public Set<Question> findByKeyWords(String... keyWords) {
+        final long start = nanoTime();
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by key words: %s", Arrays.toString(keyWords)));
@@ -61,11 +70,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return questions;
     }
 
     @Transactional(readOnly = true)
     @Override public LinkedHashSet<Question> loadFrom(int offset) {
+        final long start = nanoTime();
         LinkedHashSet<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Load Questions from: %d; row count: 10", offset));
@@ -75,11 +86,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return questions;
     }
 
     @Transactional(readOnly = true)
     @Override public Set<Question> findByUserId(long userId) {
+        final long start = nanoTime();
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by User ID: %d", userId));
@@ -89,11 +102,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return questions;
     }
 
     @Transactional(readOnly = true)
     @Override public Set<Question> findByTags(String... tags) {
+        final long start = nanoTime();
         Set<Question> questions = new LinkedHashSet<>();
         try {
             log.info(format("Find Questions by Tags: %s", Arrays.toString(tags)));
@@ -103,6 +118,7 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return questions;
     }
 }

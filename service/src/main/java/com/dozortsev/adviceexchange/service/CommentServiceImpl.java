@@ -10,6 +10,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static java.lang.String.format;
+import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW)
@@ -28,6 +30,7 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
 
     @Transactional(readOnly = true)
     @Override public Set<Comment> findByQuestionId(long questionId) {
+        final long start = nanoTime();
         Set<Comment> comments = new LinkedHashSet<>();
         try {
             log.info(format("Find Comments by Question ID: %d", questionId));
@@ -37,6 +40,7 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return comments;
     }
 }

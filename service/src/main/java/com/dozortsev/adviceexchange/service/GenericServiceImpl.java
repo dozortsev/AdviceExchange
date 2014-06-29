@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 
 import static java.lang.String.format;
+import static java.lang.System.nanoTime;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Transactional(propagation = REQUIRES_NEW, rollbackFor = Exception.class)
@@ -57,6 +59,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
 
     @Transactional(readOnly = true)
     @Override public T findById(ID id) {
+        final long start = nanoTime();
         try {
             log.info(format("Find %s by ID: %s", getEntityClass().getSimpleName(), id));
             T entity = getDao().findById(id);
@@ -69,6 +72,7 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         } catch (Exception e) {
             log.error("Error: ", e);
         }
+        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         return null;
     }
 
