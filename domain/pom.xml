@@ -15,6 +15,63 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <jooq.version>3.4.0</jooq.version>
+
     </properties>
+
+    <build>
+        <plugins>
+            <!-- jOOQ -->
+
+            <plugin>
+
+                <!-- Specify the maven code generator plugin -->
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${jooq.version}</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <jdbc>
+                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>jdbc:mysql://localhost:3306/adviceexchange</url>
+                        <user>root</user>
+                        <password>anton10</password>
+                    </jdbc>
+
+                    <!-- Generator parameters -->
+                    <generator>
+                        <name>org.jooq.util.DefaultGenerator</name>
+                        <database>
+                            <name>org.jooq.util.mysql.MySQLDatabase</name>
+                            <includes>.*</includes>
+                            <inputSchema>adviceexchange</inputSchema>
+                        </database>
+                        <target>
+                            <packageName>com.dozortsev.adviceexchange.domain.jooq</packageName>
+                            <directory>
+                                src/main/java/
+                            </directory>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
