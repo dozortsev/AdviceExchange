@@ -1,14 +1,17 @@
 
 -- Badge data
 
+ALTER TABLE badge DISABLE KEYS;
 INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
 
   (1, 'ROLE_ADMIN', 'Lorem ipsum dolor.'),
   (2, 'ROLE_USER', 'Lorem ipsum dolor sit amet.');
+ALTER TABLE badge ENABLE KEYS;
 
 
 -- User data
 
+ALTER TABLE user DISABLE KEYS;
 INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user_email, user_password, user_reputation) VALUES
 
 (1, 'Valentine Lynch', 56, '2014-11-23 13:02:53', 'Paupisi', 'urna@Fuscealiquet.com', md5(1), 1463),
@@ -111,10 +114,12 @@ INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user
 (98, 'Jerry Byers', 28, '2014-02-14 23:01:19', 'Boston', 'diam.eu@a.net', md5(3986330), 1472),
 (99, 'Bradley Dodson', 35, '2013-05-10 14:51:23', 'Cap-de-la-Madeleine', 'Donec.felis@enimSednulla.org', md5(4291793), 8795),
 (100, 'Forrest Ortiz', 68, '2015-03-11 17:32:28', 'Chantemelle', 'eleifend@augueid.edu', md5(2269552), 9503);
+ALTER TABLE user ENABLE KEYS;
 
 
 -- User & Badge data
 
+ALTER TABLE user_badge DISABLE KEYS;
 INSERT INTO user_badge (ub_badge_id, ub_user_id) VALUES
 
   (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 99), (2, 100),
@@ -128,10 +133,12 @@ INSERT INTO user_badge (ub_badge_id, ub_user_id) VALUES
   (2, 88), (2, 89), (2, 90), (2, 91), (2, 92), (2, 93), (2, 94), (2, 95), (2, 96), (2, 97), (2, 98),
 
   (1, 1), (1, 10), (1, 2), (1, 5), (1, 100), (1, 50), (1, 20);
+ALTER TABLE user_badge ENABLE KEYS;
 
 
 -- UserActivity Data
 
+ALTER TABLE user_activity DISABLE KEYS;
 INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) VALUES
 
   (1, 'QUESTION', 97, 'A friend forwarded me an e-mail about how tampons are dangerous and can cause cancer. Is there any truth to that?', '2014-01-19 03:17:28'),
@@ -193,11 +200,12 @@ INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) V
   (45, 'QUESTION', 68, 'Right now, there is no clear evidence that the vaccine will protect an already infected person. Because, however, a person may be infected with one of the HPV types covered by the vaccine but not with another, the vaccine will protect against the HPV type(s) that a person does not already have. The new vaccine does not offer protection against all the types of HPV that cause cervical cancer. So authorities urge sexually active women who become vaccinated to continue to have regular Pap tests. These tests can detect cervical cancer in its early, treatable stages.', '2014-03-21 17:45:01'),
   (46, 'QUESTION', 100, 'Right now, there is no clear evidence that the vaccine will protect an already infected person. Because, however, a person may be infected with one of the HPV types covered by the vaccine but not with another, the vaccine will protect against the HPV type(s) that a person does not already have. The new vaccine does not offer protection against all the types of HPV that cause cervical cancer. So authorities urge sexually active women who become vaccinated to continue to have regular Pap tests. These tests can detect cervical cancer in its early, treatable stages.', '2014-02-22 17:48:12'),
   (47, 'QUESTION', 11, 'It''s not true, but it can certainly seem that way. You may have heard people talking about trichomoniasis. Men rarely have symptoms, and they usually don''t know they are infected. But they can be infected during vaginal intercourse. And they can pass their infections to other partners. They can also re-infect women partners who have been treated. Sometimes women have no symptoms, either. Symptoms, when they happen, often take three to 28 days to develop after exposure. But it can take years before they do develop.', '2014-04-21 17:41:12');
-
+ALTER TABLE user_activity ENABLE KEYS;
 
 
 -- Question data
 
+ALTER TABLE question DISABLE KEYS;
 INSERT INTO question (qs_id, qs_title, qs_votes, qs_asw_count) VALUES
 
   (1, 'Is there any truth to that?', 5, 1),
@@ -220,17 +228,21 @@ INSERT INTO question (qs_id, qs_title, qs_votes, qs_asw_count) VALUES
   (45, 'How do I tell my parents I''m thinking of having sex without them freaking out?', 2, 0),
   (46, 'Do all kids who are available for adoption get adopted?', 7, 0),
   (47, 'What would be wrong with making teens ask their parents for permission to use birth control?', 0, 0);
+ALTER TABLE question ENABLE KEYS;
 
 
 -- Comment data
 
+ALTER TABLE comment DISABLE KEYS;
 INSERT INTO comment (cm_id, cm_question_id) VALUES
 
   (5, 3), (6, 3), (17, 15), (18, 15), (23, 19), (24, 19), (35, 32);
+ALTER TABLE comment ENABLE KEYS ;
 
 
 -- Answer data
 
+ALTER TABLE answer DISABLE KEYS;
 INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
 
   (2, 1, 10, true), (4, 3, 12, false), (8, 7, 0, false), (9, 7, 1, true), (12, 11, 4, false), (13, 11, 10, true), (14, 11, 4, false),
@@ -243,10 +255,12 @@ INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
   (33, 32, 6, false ), (34, 32, 1, false),
 
   (37, 36, 6, false), (38, 36, 24, false), (39, 36, 20, false);
+ALTER TABLE answer ENABLE KEYS;
 
 
 -- Tag data
 
+ALTER TABLE tag DISABLE KEYS;
 INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
 
   (1, 'doctor', 'A physician is a professional who practices medicine, which is concerned with promoting, maintaining or restoring human health through the study, diagnosis, and treatment of disease, injury, and other physical and mental impairments.'),
@@ -269,10 +283,12 @@ INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
   (18, 'bipedalism', 'Bipedalism is a form of terrestrial locomotion where an organism moves by means of its two rear limbs, or legs.'),
   (19, 'machine', 'A machine is a tool containing one or more parts that uses energy to perform an intended action.'),
   (20, 'egypt', 'Egypt, is a transcontinental country spanning the northeast corner of Africa and southwest corner of Asia, via a land bridge formed by the Sinai Peninsula. ');
+ALTER TABLE tag ENABLE KEYS ;
 
 
 -- Question & Tag data
 
+ALTER TABLE question_tag DISABLE KEYS;
 INSERT INTO question_tag (qt_question_id, qt_tag_id) VALUES
 
   (1, 1), (1, 10), (1, 12),
@@ -295,4 +311,4 @@ INSERT INTO question_tag (qt_question_id, qt_tag_id) VALUES
   (45, 17), (45, 18),
   (46, 17), (46, 20),
   (47, 11), (47, 17);
-
+ALTER TABLE question_tag ENABLE KEYS;
