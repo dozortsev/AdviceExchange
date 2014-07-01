@@ -133,6 +133,6 @@
 </body>
 
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
-<script src="${pageContext.request.contextPath}/js/semantic.js"></script>
+<script src="${pageContext.request.contextPath}/js/semantic.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/showdown.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>

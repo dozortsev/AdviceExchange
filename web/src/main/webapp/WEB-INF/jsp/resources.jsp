@@ -23,11 +23,11 @@
 <%-- JS --%>
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
-<script src="${path}/js/semantic.js"></script>
+<script src="${path}/js/semantic.min.js"></script>
 <script src="${path}/js/main.js"></script>
 
 
 <%-- CSS --%>
 
-<link rel="stylesheet" href="${path}/css/semantic.css"/>
+<link rel="stylesheet" href="${path}/css/semantic.min.css"/>
 <link rel="stylesheet" href="${path}/css/style.css"/>

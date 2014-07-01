@@ -133,7 +133,7 @@
 
 <script src="${path}/js/jquery-1.11.0.js"></script>
 <script src="${path}/js/showdown.js"></script>
-<script src="${path}/js/semantic.js"></script>
+<script src="${path}/js/semantic.min.js"></script>
 <script src="${path}/js/main.js"></script>
 
 </body>
