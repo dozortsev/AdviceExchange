@@ -36,11 +36,13 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
             log.info(format("Find User by ID: %d", userId));
             answers.addAll(getDao().findByUserId(userId));
             log.info(format("Set of Users have size: %d", answers.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return answers;
     }
 
@@ -51,11 +53,13 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
             log.info(format("Find Answers by Question ID: %d", questionId));
             answers.addAll(getDao().findByQuestionId(questionId));
             log.info(format("Set of Questions have size: %d", answers.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return answers;
     }
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,14 +57,13 @@ public class QuestionController {
 
     @RequestMapping(value = "/questions/tagged/{tag}", method = GET)
     public ModelAndView searchQuestion(@PathVariable String tag) {
-
-        Set<Question> questions = questionService.findByTags(tag.split("\\s+"));
-
-        return new ModelAndView("index", "questions", questions);
+        return new ModelAndView(
+                "index", "questions", questionService.findByTags(tag.split("\\s+"))
+        );
     }
 
     @RequestMapping(value = "/question/{id}")
-    public ModelAndView question(@PathVariable Long id) {
+    public ModelAndView question(@PathVariable long id) {
 
         return new ModelAndView("question", "question", questionService.findById(id))
                 .addObject("answers", answerService.findByQuestionId(id))
@@ -73,7 +71,7 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/answer/delete/{id}", method = GET)
-    public String answerDelete(@PathVariable Long id) {
+    public String answerDelete(@PathVariable long id) {
 
         Answer answer = answerService.findById(id);
 
@@ -97,8 +95,9 @@ public class QuestionController {
 
     @RequestMapping(value = "/questions/ask", method = GET)
     public ModelAndView askQuestion() {
-
-        return new ModelAndView("ask-question", "tags", tagService.loadAll());
+        return new ModelAndView(
+                "ask-question", "tags", tagService.loadAll()
+        );
     }
 
     @RequestMapping(value = "/answer/create", method = POST)
@@ -106,13 +105,13 @@ public class QuestionController {
                                @ModelAttribute Question question,
                                @RequestParam   String aswContent)
     {
-        questionService.addAnswer(question, new Answer(user, aswContent, 0, question));
+        questionService.addAnswer(new Answer(user, aswContent, 0, question));
 
         return "redirect:/question/" + question.getId();
     }
 
     @RequestMapping(value = "/question/delete/{id}", method = GET)
-    public String questionDelete(@PathVariable Long id) {
+    public String questionDelete(@PathVariable long id) {
 
         questionService.deleteById(id);
 

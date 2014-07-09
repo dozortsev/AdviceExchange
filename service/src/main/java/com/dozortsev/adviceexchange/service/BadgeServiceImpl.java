@@ -18,7 +18,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 @Service
 public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements BadgeService {
 
-    @Autowired private BadgeDao badgeDao;
+    private @Autowired BadgeDao badgeDao;
 
     @Override public BadgeDao getDao() {
         return badgeDao;
@@ -36,11 +36,13 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
             log.info(format("Find Badges by User Id: %d", userId));
             badges.addAll(getDao().findByUserId(userId));
             log.info(format("Set of Badges have size: %d", badges.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return badges;
     }
 }

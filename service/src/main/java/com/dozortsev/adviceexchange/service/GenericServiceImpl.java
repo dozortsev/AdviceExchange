@@ -24,36 +24,49 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
     protected abstract GenericDao<ID, T> getDao();
 
     @Override public ID create(T entity) {
+        final long start = nanoTime();
         try {
             log.info(format("Create new %s", getEntityClass().getSimpleName()));
             getDao().create(entity);
             log.info(format("Success create; ID: %s", entity.getId()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
+        }
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
         return entity.getId();
     }
 
     @Override public void delete(T entity) {
+        final long start = nanoTime();
         try {
             log.info(format("Delete %s", getEntityClass().getSimpleName()));
             getDao().delete(entity);
             log.info("Success delete");
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
+        }
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
     }
 
     @Override public void deleteById(ID id) {
+        final long start = nanoTime();
         try {
             log.info(format("Delete %s by ID: %s", getEntityClass().getSimpleName(), id));
             getDao().deleteById(id);
             log.info("Success delete");
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
+        }
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
     }
 
@@ -69,34 +82,44 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
                 return entity;
             }
             log.info(format("%s with this ID not exist", getEntityClass().getSimpleName()));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return null;
     }
 
     @Override public T update(T entity) {
+        final long start = nanoTime();
         try {
             log.info(format("Update %s. ID: %s", getEntityClass().getSimpleName(), entity.getId()));
             getDao().update(entity);
             log.info("Success updated");
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
+        }
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
         return entity;
     }
 
     @Override public int totalCount() {
+        final long start = nanoTime();
         int totalCount = 0;
         try {
             totalCount = getDao().totalCount();
             log.info(format("Total count of %ss is: %d", getEntityClass().getSimpleName(), totalCount));
-            return totalCount;
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
+        }
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
         return totalCount;
     }

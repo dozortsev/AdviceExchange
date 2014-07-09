@@ -30,18 +30,26 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
         setEntityClass(Question.class);
     }
 
-    @Override public int addAnswer(Question question, Answer answer) {
+    @Override public int addAnswer(Answer answer) {
         final long start = nanoTime();
-        try {
-            log.info(format("Add Answer to Question ID: %d", question.getId()));
-            getDao().addAnswer(question, answer);
-            log.info(format("Success create; Answer ID: %d", answer.getId()));
-
-        } catch (Exception e) {
-            log.error("Error: ", e);
+        Question question = answer.getQuestion();
+        if (question != null) {
+            try {
+                log.info(format("Add Answer to Question ID: %d", question.getId()));
+                getDao().addAnswer(question, answer);
+                log.info(format("Success create; Answer ID: %d", answer.getId()));
+            }
+            catch (Exception e) {
+                log.error("Error: ", e);
+            }
+            finally {
+                log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+            }
+            return question.getAnswerCount();
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
-        return question.getAnswerCount();
+        else throw new NullPointerException(
+                "Answer should have related question"
+        );
     }
 
     @Override public int delAnswer(Answer answer) {
@@ -51,11 +59,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
             log.info(format("Delete Answer ID: %d form Question ID: %d", answer.getId(), question.getId()));
             getDao().delAnswer(question, answer);
             log.info("Success delete");
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return question.getAnswerCount();
     }
 
@@ -66,11 +76,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
             log.info(format("Find Questions by key words: %s", Arrays.toString(keyWords)));
             questions.addAll(getDao().findByKeyWord(keyWords));
             log.info(format("Set of Questions have size: %d", questions.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return questions;
     }
 
@@ -82,11 +94,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
             log.info(format("Load Questions from: %d; row count: 10", offset));
             questions.addAll(getDao().loadFrom(offset));
             log.info(format("Set of Questions have size: %d", questions.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return questions;
     }
 
@@ -98,11 +112,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
             log.info(format("Find Questions by User ID: %d", userId));
             questions.addAll(getDao().findByUserId(userId));
             log.info(format("Set of Questions have size: %d", questions.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return questions;
     }
 
@@ -114,11 +130,13 @@ public class QuestionServiceImpl extends GenericServiceImpl<Long, Question> impl
             log.info(format("Find Questions by Tags: %s", Arrays.toString(tags)));
             questions.addAll(getDao().findByTags(tags));
             log.info(format("Set of Questions have size: %d", questions.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return questions;
     }
 }

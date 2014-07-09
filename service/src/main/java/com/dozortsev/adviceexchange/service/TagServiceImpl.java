@@ -35,11 +35,13 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
             log.info("Load all Tags");
             tags.addAll(getDao().loadAll());
             log.info(format("Set of Tags have size: %d", tags.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return tags;
     }
 
@@ -51,10 +53,13 @@ public class TagServiceImpl extends GenericServiceImpl<Long, Tag> implements Tag
             log.info(format("Find Tabs by names: %s", Arrays.toString(names)));
             tags.addAll(getDao().findByName(names));
             log.info(format("Set of Tags have size: %d", tags.size()));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: " + e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return tags;
     }
 }

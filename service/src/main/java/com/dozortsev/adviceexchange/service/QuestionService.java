@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface QuestionService extends GenericService<Long, Question> {
 
-    int addAnswer(Question question, Answer answer);
+    int addAnswer(Answer answer);
 
     int delAnswer(Answer answer);
 

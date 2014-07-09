@@ -46,7 +46,7 @@ public class AnswerServiceTest extends TestContext {
         answer.canAccept(Boolean.TRUE);
 
         assertNull(answer.getId());
-        questionService.addAnswer(question, answer);
+        questionService.addAnswer(answer);
         assertNotNull(answer.getId());
 
         // reload

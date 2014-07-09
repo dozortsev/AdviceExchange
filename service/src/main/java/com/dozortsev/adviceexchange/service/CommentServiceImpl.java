@@ -36,11 +36,13 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
             log.info(format("Find Comments by Question ID: %d", questionId));
             comments.addAll(getDao().findByQuestionId(questionId));
             log.info(format("Set of Comments have size: %d", comments.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return comments;
     }
 }
