@@ -35,11 +35,13 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         try {
             totalCount = getDao().totalCount(name);
             log.info(format("Total count of Users: %d by Name: '%s'", totalCount, name));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return totalCount;
     }
 
@@ -50,11 +52,13 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
             log.info(format("Load Users by name: '%s'; from: %d; row count: 36", name, offset));
             users.addAll(getDao().findByName(name, offset));
             log.info(format("Set of Users have size: %d", users.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return users;
     }
 
@@ -69,10 +73,13 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
                 return user;
             }
             log.info("User not exist");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return null;
     }
 
@@ -83,11 +90,13 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
             log.info(format("User activity by ID: %d", id));
             userActivities.addAll(getDao().userActivities(id));
             log.info(format("Set of Activity have size: %d", userActivities.size()));
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Error: ", e);
         }
-        log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        finally {
+            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
+        }
         return userActivities;
     }
 }
