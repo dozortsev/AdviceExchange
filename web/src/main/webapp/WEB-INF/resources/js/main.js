@@ -1,4 +1,3 @@
-
 var getTagNames = function () {
     'use strict';
     var tagsView = '<div class="ui teal labels">',
@@ -14,8 +13,32 @@ var getTagNames = function () {
     $('input[name=tags]').val(tagsLine.substring(0, tagsLine.length - 1));
 };
 
+var completion = function (tagLine) {
+    'use strict';
 
-$('.ui.checkbox').checkbox();
+    $('.ui.checkbox').checkbox();
+
+    var cases = $("#cases").val(),
+        tagPreview = '',
+        tags = tagLine.split(' ');
+
+    cases = cases !== undefined ? cases.toLowerCase() : '';
+
+    for (var i = 0; i < tags.length; i++) {
+        if (~tags[i].toLowerCase().indexOf(cases)) {
+            tagPreview +=
+                '<div class="column">' +
+                    '<div class="ui checkbox">' +
+                        '<input type="checkbox" name="tag" value="' + tags[i] + '">' +
+                        '<label>' + tags[i] + '</label>' +
+                    '</div>' +
+                '</div>'
+            ;
+        }
+    }
+    $('#all-tags').html(tagPreview);
+    getTagNames();
+};
 
 
 /* error message on login */
@@ -28,11 +51,7 @@ $('.message .close').on('click', function() {
 /* tabs */
 $(document).ready(function () {
     'use strict';
-    $('.demo.menu .item').tab(
-        {
-            history: false
-        }
-    );
+    $('.demo.menu .item').tab({ history: false });
 });
 
 /* launch modal for add tags */
@@ -40,13 +59,7 @@ $(document).ready(function () {
 $('.small.modal').modal('attach events', '#add-tag', 'show');
 
 
-/* help icons */
 $('.icon.link').popup({
-    on: 'hover'
-});
-
-/* Pop-up info about tag */
-$('.label').popup({
     on: 'hover'
 });
 
