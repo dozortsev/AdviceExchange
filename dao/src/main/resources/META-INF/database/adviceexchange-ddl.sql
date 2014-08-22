@@ -28,9 +28,6 @@ CREATE TABLE IF NOT EXISTS user (
   user_reputation INT         NOT NULL DEFAULT 1
 ) ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX Id ON user (user_id);
-CREATE UNIQUE INDEX Email ON user (user_email);
-
 
 -- Table of Badge
 
@@ -41,8 +38,6 @@ CREATE TABLE IF NOT EXISTS badge (
   bdg_name VARCHAR(30) NOT NULL UNIQUE,
   bdg_desc TEXT(100)   NOT NULL
 ) ENGINE = InnoDB;
-
-CREATE UNIQUE INDEX Id ON badge (bdg_id);
 
 
 -- Table reference for User and Badges (many to many)
@@ -68,8 +63,6 @@ CREATE TABLE IF NOT EXISTS user_activity (
   ua_created TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX Id ON user_activity (ua_id);
-
 
 -- Table of Comment
 
@@ -79,8 +72,6 @@ CREATE TABLE IF NOT EXISTS comment (
   cm_id          INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   cm_question_id INT NOT NULL
 ) ENGINE = InnoDB;
-
-CREATE UNIQUE INDEX Id ON comment (cm_id);
 
 
 -- Table of Answer
@@ -94,8 +85,6 @@ CREATE TABLE IF NOT EXISTS answer (
   asw_accepted    BOOLEAN NOT NULL DEFAULT FALSE
 ) ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX Id ON answer (asw_id);
-
 
 -- Table of Question
 
@@ -108,8 +97,6 @@ CREATE TABLE IF NOT EXISTS question (
   qs_asw_count INT          NOT NULL DEFAULT 0
 ) ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX Id ON question (qs_id);
-
 
 -- Table of Tag
 
@@ -120,9 +107,6 @@ CREATE TABLE IF NOT EXISTS tag (
   tag_name VARCHAR(20) NOT NULL UNIQUE,
   tag_desc TEXT        NOT NULL
 ) ENGINE = InnoDB;
-
-CREATE UNIQUE INDEX Id ON tag (tag_id);
-CREATE UNIQUE INDEX Name ON tag (tag_name);
 
 
 -- Table reference with Question and Tags (many to many)
