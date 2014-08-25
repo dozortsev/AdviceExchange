@@ -659,7 +659,6 @@ Showdown.converter = function () {
                 // Turn double returns into triple returns, so that we can make a
                 // paragraph for the last item in a list, if necessary:
                 list = list.replace(/\n{2,}/g, "\n\n\n");
-                ;
                 var result = _ProcessListItems(list);
 
                 // Trim any trailing whitespace, to put the closing `</$list_type>`
@@ -861,6 +860,14 @@ Showdown.converter = function () {
                 c = _EncodeCode(c);
                 return m1 + "<code>" + c + "</code>";
             });
+
+        text = text.replace(/\[tag:([\w+]+)\]/gm, function (wholeMatch, m1) {
+
+                return '<a href="/AdviceExchange/questions/tagged/' + m1 + '" class="ui teal label"' +
+                       'data-variation="small inverted" data-title="'+ m1 +'"' +
+                       'data-position="bottom center" data-content="'+ ${tag.desc} + '">' +
+                       '<i class="tag icon"></i>&nbsp;' + m1 +'&nbsp;</a>';
+        });
 
         return text;
     };
