@@ -58,7 +58,7 @@
                             Age: ${member.age}
                             &emsp;
                             &emsp;
-                            Email: <div class="ui input"><input type="email" value="${member.email}"/></div>
+                            Email: <div class="ui input"><input type="email" value="${member.email}" readonly/></div>
                             &emsp;
                             Member form: <fmt:formatDate type="date" value="${member.joined}" pattern="yyyy-MM-dd"/>
 

@@ -15,9 +15,6 @@ public class Question extends UserActivity {
     @Column(name = "qs_title")
     private String title;
 
-    @Column(name = "qs_votes")
-    private int votes = 0;
-
     @Column(name = "qs_asw_count", nullable = false)
     private int answerCount = 0;
 
@@ -37,15 +34,21 @@ public class Question extends UserActivity {
         super();
     }
 
-    public Question(String title, String content, User user, int answerCount, int votes, List<Tag> tags) {
+    public Question(String title, String content, User user, int answerCount, List<Tag> tags) {
         super(user, Type.QUESTION, content);
         this.title = title;
-        this.votes = votes;
         this.answerCount = answerCount;
         this.tags = tags;
     }
 
-    public Question(User user, String content, int answerCount, int votes, String title, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
+    public Question(String title, String content, User user, int answerCount, List<Vote> votes, List<Tag> tags) {
+        super(user, Type.QUESTION, content, votes);
+        this.title = title;
+        this.answerCount = answerCount;
+        this.tags = tags;
+    }
+
+    public Question(User user, String content, int answerCount, List<Vote> votes, String title, List<Tag> tags, List<Answer> answers, List<Comment> comments) {
         this(title, content, user, answerCount, votes, tags);
         this.answers = answers;
         this.comments = comments;
@@ -56,13 +59,6 @@ public class Question extends UserActivity {
     }
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getVotes() {
-        return votes;
-    }
-    public void setVotes(int votes) {
-        this.votes = votes;
     }
 
     public List<Tag> getTags() {
@@ -91,9 +87,5 @@ public class Question extends UserActivity {
     }
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    public int changeVotes(int votes) {
-        return this.votes += votes;
     }
 }

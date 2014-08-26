@@ -88,7 +88,7 @@ public class QuestionController {
     {
         return "redirect:/question/" + questionService.create(
                 new Question(
-                        title, content, user, 0, 0, tagService.findByName(tags.split(" "))
+                        title, content, user, 0, tagService.findByName(tags.split(" "))
                 )
         );
     }
@@ -105,7 +105,7 @@ public class QuestionController {
                                @ModelAttribute Question question,
                                @RequestParam   String aswContent)
     {
-        questionService.addAnswer(new Answer(user, aswContent, 0, question));
+        questionService.addAnswer(new Answer(user, aswContent, question));
 
         return "redirect:/question/" + question.getId();
     }

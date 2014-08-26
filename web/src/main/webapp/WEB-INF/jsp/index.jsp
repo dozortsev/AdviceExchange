@@ -49,7 +49,7 @@
                                 <small><fmt:message key="answers"/></small>
                             </td>
                             <td rowspan="2" class="wide one" align="center">
-                                <h2>${qs.votes}</h2><br/>
+                                <h2>${fn:length(qs.votes)}</h2><br/>
                                 <small><fmt:message key="votes"/></small>
                             </td>
                             <td colspan="2" class="wide sixteen">

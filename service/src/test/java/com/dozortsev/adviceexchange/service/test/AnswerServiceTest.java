@@ -1,12 +1,11 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Question;
-import com.dozortsev.adviceexchange.domain.Type;
-import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.domain.*;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -42,8 +41,14 @@ public class AnswerServiceTest extends TestContext {
         // prepare data for test of create
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, obcaecati.";
 
-        final Answer answer = new Answer(user, content, 0, question);
-        answer.canAccept(Boolean.TRUE);
+        Answer answer = null;
+        List<Vote> votes = Arrays.asList(
+                new Vote(userService.findById(11L), answer, Vote.UP),
+                new Vote(userService.findById(12L), answer, Vote.UP),
+                new Vote(userService.findById(30L), answer, Vote.DOWN)
+        );
+        answer = new Answer(user, content, votes, question);
+        answer.canAccept(true);
 
         assertNull(answer.getId());
         questionService.addAnswer(answer);

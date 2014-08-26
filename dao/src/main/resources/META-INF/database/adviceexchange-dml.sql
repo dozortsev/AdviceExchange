@@ -206,28 +206,28 @@ ALTER TABLE user_activity ENABLE KEYS;
 -- Question data
 
 ALTER TABLE question DISABLE KEYS;
-INSERT INTO question (qs_id, qs_title, qs_votes, qs_asw_count) VALUES
+INSERT INTO question (qs_id, qs_title, qs_asw_count) VALUES
 
-  (1, 'Is there any truth to that?', 5, 1),
-  (3, 'What is that?', 18, 1),
-  (7, 'Like scabies and pubic lice?', 71, 2),
-  (10, 'I saw an advertisement on the bus for Plan B. What is that?', 29, 0),
-  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 1, 3),
-  (15, 'What about other hormonal methods of birth control?', 12, 1),
-  (19, 'I heard that there is a sexually transmitted infection that can be transmitted by a man to a woman, but not by a woman to a man. Is that true?', 5, 3),
-  (25, 'Sometimes it''s clear. Is it normal? If not, what''s he supposed to do?', 4, 4),
-  (30, 'I am a woman and want to know if I can contract HPV by performing oral sex on a woman who has it?', 4, 0),
-  (31, 'Can the chlamydia be passed on to other staff or customers?', 0, 0),
-  (32, 'A lot of the information available seems to pertain to mostly heterosexual activity.', 2, 2),
-  (36, 'Is it true that younger men are more at risk of testicular cancer than older men?', 61, 3),
-  (40, 'Is it true that younger men are more at risk of testicular cancer than older men?', 0, 0),
-  (41, 'Could my fiancé have picked up my cold sore on his lips and infected me with it sexually?', 1, 0),
-  (42, 'About three weeks ago I had a cold sore on my lip and had sex with my boyfriend ?', 0, 0),
-  (43, 'Today, my vulva is extremely itchy, red, and irritated. Could my fiancé have picked up my cold sore on his lips and infected me with it sexually ?', 0, 0),
-  (44, 'Is there one test I can get to find out if I have any sexually transmitted infections ?', 2, 0),
-  (45, 'How do I tell my parents I''m thinking of having sex without them freaking out?', 2, 0),
-  (46, 'Do all kids who are available for adoption get adopted?', 7, 0),
-  (47, 'What would be wrong with making teens ask their parents for permission to use birth control?', 0, 0);
+  (1, 'Is there any truth to that?', 1),
+  (3, 'What is that?', 1),
+  (7, 'Like scabies and pubic lice?', 2),
+  (10, 'I saw an advertisement on the bus for Plan B. What is that?', 0),
+  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 3),
+  (15, 'What about other hormonal methods of birth control?', 1),
+  (19, 'I heard that there is a sexually transmitted infection that can be transmitted by a man to a woman, but not by a woman to a man. Is that true?', 3),
+  (25, 'Sometimes it''s clear. Is it normal? If not, what''s he supposed to do?', 4),
+  (30, 'I am a woman and want to know if I can contract HPV by performing oral sex on a woman who has it?', 0),
+  (31, 'Can the chlamydia be passed on to other staff or customers?', 0),
+  (32, 'A lot of the information available seems to pertain to mostly heterosexual activity.', 2),
+  (36, 'Is it true that younger men are more at risk of testicular cancer than older men?', 3),
+  (40, 'Is it true that younger men are more at risk of testicular cancer than older men?', 0),
+  (41, 'Could my fiancé have picked up my cold sore on his lips and infected me with it sexually?', 0),
+  (42, 'About three weeks ago I had a cold sore on my lip and had sex with my boyfriend ?', 0),
+  (43, 'Today, my vulva is extremely itchy, red, and irritated. Could my fiancé have picked up my cold sore on his lips and infected me with it sexually ?', 0),
+  (44, 'Is there one test I can get to find out if I have any sexually transmitted infections ?', 0),
+  (45, 'How do I tell my parents I''m thinking of having sex without them freaking out?', 0),
+  (46, 'Do all kids who are available for adoption get adopted?', 0),
+  (47, 'What would be wrong with making teens ask their parents for permission to use birth control?', 0);
 ALTER TABLE question ENABLE KEYS;
 
 
@@ -243,18 +243,18 @@ ALTER TABLE comment ENABLE KEYS ;
 -- Answer data
 
 ALTER TABLE answer DISABLE KEYS;
-INSERT INTO answer (asw_id, asw_question_id, asw_votes, asw_accepted) VALUES
+INSERT INTO answer (asw_id, asw_question_id, asw_accepted) VALUES
 
-  (2, 1, 10, true), (4, 3, 12, false), (8, 7, 0, false), (9, 7, 1, true), (12, 11, 4, false), (13, 11, 10, true), (14, 11, 4, false),
-  (16, 15, 12, true),
+  (2, 1, true), (4, 3, false), (8, 7, false), (9, 7, true), (12, 11, false), (13, 11, true), (14, 11, false),
+  (16, 15, true),
 
-  (20, 19, 5, false), (21, 19, 20, true), (22, 19, 11, false),
+  (20, 19, false), (21, 19, true), (22, 19, false),
 
-  (26, 25, 12, true), (27, 25, 9, false), (28, 25, 1, false), (29, 25, 0, false),
+  (26, 25, true), (27, 25, false), (28, 25, false), (29, 25, false),
 
-  (33, 32, 6, false ), (34, 32, 1, false),
+  (33, 32, false ), (34, 32, false),
 
-  (37, 36, 6, false), (38, 36, 24, false), (39, 36, 20, false);
+  (37, 36, false), (38, 36, false), (39, 36, false);
 ALTER TABLE answer ENABLE KEYS;
 
 

@@ -39,7 +39,7 @@
             <tbody>
             <tr>
                 <td class="wide one" align="center" style="vertical-align: text-top;">
-                    <h2>${question.votes}</h2>
+                    <h2>${fn:length(question.votes)}</h2>
                     <br/>
                     <small><fmt:message key="votes"/></small>
                 </td>
@@ -260,7 +260,7 @@
 
             <div class="ui segment">
                 <p>
-                    <fmt:message key="as.lbl.browse.1"/>&thinsp;
+                    <fmt:message key="as.lbl.browse.prefix"/>&thinsp;
                     <c:forEach items="${question.tags}" var="tag">
                         <a href="${path}/questions/tagged/${tag.name}" class="ui teal small label"
                            data-variation="small inverted" data-title="${tag.name}"
@@ -271,7 +271,7 @@
                     </c:forEach>
                     or&thinsp;
                     <a href="${path}/questions/ask">
-                        <fmt:message key="as.lbl.browse.2"/>
+                        <fmt:message key="as.lbl.browse.suffix"/>
                     </a>
                 </p>
             </div>

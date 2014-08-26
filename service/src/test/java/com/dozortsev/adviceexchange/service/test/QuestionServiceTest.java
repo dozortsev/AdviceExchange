@@ -49,7 +49,7 @@ public class QuestionServiceTest extends TestContext {
                 tagService.findById(1L), tagService.findById(5L), tagService.findById(6L)
         );
 
-        final Question question = new Question(title, content, user, 0, 0, tags);
+        final Question question = new Question(title, content, user, 0, tags);
 
         assertNull(question.getId());
         questionService.create(question);
@@ -63,7 +63,7 @@ public class QuestionServiceTest extends TestContext {
         assertEquals(content, expectQuestion.getContent());
         assertEquals(tags, expectQuestion.getTags());
         assertEquals(0, expectQuestion.getAnswerCount());
-        assertEquals(0, expectQuestion.getVotes());
+        assertEquals(0, expectQuestion.getVotes().size());
         assertEquals(1, userService.userActivities(user.getId()).size());
         assertTrue(userService.userActivities(user.getId()).contains(expectQuestion));
     }

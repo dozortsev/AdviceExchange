@@ -81,7 +81,6 @@ CREATE TABLE IF NOT EXISTS answer (
 
   asw_id          INT     NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   asw_question_id INT     NOT NULL,
-  asw_votes       INT     NOT NULL DEFAULT 0,
   asw_accepted    BOOLEAN NOT NULL DEFAULT FALSE
 ) ENGINE = InnoDB;
 
@@ -93,7 +92,6 @@ CREATE TABLE IF NOT EXISTS question (
 
   qs_id        INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
   qs_title     VARCHAR(200) NOT NULL,
-  qs_votes     INT          NOT NULL,
   qs_asw_count INT          NOT NULL DEFAULT 0
 ) ENGINE = InnoDB;
 
@@ -116,6 +114,19 @@ CREATE TABLE IF NOT EXISTS question_tag (
 
   qt_question_id INT NOT NULL,
   qt_tag_id      INT NOT NULL
+) ENGINE = InnoDB;
+
+
+-- Table of Votes
+
+DROP TABLE IF EXISTS vote;
+CREATE TABLE vote (
+
+  vt_id          INT       NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  vt_user_id     INT       NOT NULL,
+  vt_activity_id INT       NOT NULL,
+  vt_score       INT       NOT NULL,
+  vt_created     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB;
 
 
@@ -159,3 +170,12 @@ ADD CONSTRAINT fk_qs_id FOREIGN KEY (qs_id) REFERENCES user_activity (ua_id)
 ALTER TABLE user_badge
 ADD CONSTRAINT fk_ub_user_id FOREIGN KEY (ub_user_id) REFERENCES user (user_id),
 ADD CONSTRAINT fk_ub_badge_id FOREIGN KEY (ub_badge_id) REFERENCES badge (bdg_id);
+
+
+ALTER TABLE vote
+ADD CONSTRAINT fk_vt_user_id FOREIGN KEY (vt_user_id) REFERENCES user (user_id)
+  ON UPDATE CASCADE
+  ON DELETE CASCADE,
+ADD CONSTRAINT fk_vt_activity_id FOREIGN KEY (vt_activity_id) REFERENCES user_activity (ua_id)
+  ON UPDATE CASCADE
+  ON DELETE CASCADE;

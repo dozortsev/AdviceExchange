@@ -2,6 +2,8 @@ package com.dozortsev.adviceexchange.domain;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.EAGER;
@@ -14,19 +16,20 @@ public class Answer extends UserActivity {
     @JoinColumn(name = "asw_question_id")
     private Question question;
 
-    @Column(name = "asw_votes")
-    private int votes = 0;
-
     @Column(name = "asw_accepted")
-    private boolean accept = Boolean.FALSE;
+    private boolean accept = false;
 
     public Answer() {
         super();
     }
 
-    public Answer(User user, String content, int votes, Question question) {
+    public Answer(User user, String content, Question question) {
         super(user, Type.ANSWER, content);
-        this.votes = votes;
+        this.question = question;
+    }
+
+    public Answer(User user, String content, List<Vote> votes, Question question) {
+        super(user, Type.ANSWER, content, votes);
         this.question = question;
     }
 
@@ -37,21 +40,10 @@ public class Answer extends UserActivity {
         this.question = question;
     }
 
-    public int getVotes() {
-        return votes;
-    }
-    public void setVotes(int votes) {
-        this.votes = votes;
-    }
-
     public boolean isAccept() {
         return accept;
     }
     public void canAccept(boolean accept) {
         this.accept = accept;
-    }
-
-    public int changeVotes(int votes) {
-        return this.votes += votes;
     }
 }

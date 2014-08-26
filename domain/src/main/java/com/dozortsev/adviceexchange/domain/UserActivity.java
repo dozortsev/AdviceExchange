@@ -1,10 +1,11 @@
 package com.dozortsev.adviceexchange.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.*;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.InheritanceType.JOINED;
@@ -29,19 +30,29 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     private String content;
 
     @Column(name = "ua_active", nullable = false)
-    private boolean active = Boolean.TRUE;
+    private boolean active = true;
 
     @Temporal(TIMESTAMP)
     @Column(name = "ua_created", updatable = false)
     private Date created = new Date();
 
+    @OneToMany(fetch = EAGER, cascade = ALL, mappedBy = "activity")
+    private List<Vote> votes = new ArrayList<>();
+
     public UserActivity() {
     }
 
     public UserActivity(User user, Type type, String content) {
+        this.user = user;
+        this.type = type;
+        this.content = content;
+    }
+
+    public UserActivity(User user, Type type, String content, List<Vote> votes) {
         this.type = type;
         this.user = user;
         this.content = content;
+        this.votes = votes;
     }
 
     public User getUser() {
@@ -78,6 +89,13 @@ public abstract class UserActivity extends AbstractEntity<Long> {
     @SuppressWarnings("unused")
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 
     @Override public boolean equals(Object o) {
