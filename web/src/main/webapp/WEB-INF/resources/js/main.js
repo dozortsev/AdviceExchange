@@ -64,6 +64,12 @@ $('.icon.link').popup({
 });
 
 
+/* Pop-up info about tag */
+$('.label').popup({
+    on: 'hover'
+});
+
+
 $('.ui.popup').popup();
 
 $('.ui.accordion').accordion();
