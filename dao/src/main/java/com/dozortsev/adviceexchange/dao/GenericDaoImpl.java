@@ -4,6 +4,7 @@ import com.dozortsev.adviceexchange.domain.AbstractEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public abstract class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
 
     private Class<T> entityClass;
+
+    private @Autowired DSLContext dsl;
 
     private @Autowired SessionFactory factory;
 
