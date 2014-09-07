@@ -15,17 +15,17 @@ USE adviceexchange;
 DROP TABLE IF EXISTS user;
 CREATE TABLE IF NOT EXISTS user (
 
-  user_id         INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  user_name       VARCHAR(50) NOT NULL,
-  user_age        INT,
-  user_about_me   TEXT,
-  user_joined     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  user_location   VARCHAR(120),
-  user_site       VARCHAR(70),
-  user_email      VARCHAR(50) NOT NULL UNIQUE,
-  user_password   VARCHAR(32) NOT NULL,
-  user_enabled    BOOLEAN     NOT NULL DEFAULT TRUE,
-  user_reputation INT         NOT NULL DEFAULT 1
+  id         INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  name       VARCHAR(50) NOT NULL,
+  age        INT,
+  about_me   TEXT,
+  joined     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  location   VARCHAR(120),
+  site       VARCHAR(70),
+  email      VARCHAR(50) NOT NULL UNIQUE,
+  password   VARCHAR(32) NOT NULL,
+  enabled    BOOLEAN     NOT NULL DEFAULT TRUE,
+  reputation INT         NOT NULL DEFAULT 1
 ) ENGINE = InnoDB;
 
 
@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS user (
 DROP TABLE IF EXISTS badge;
 CREATE TABLE IF NOT EXISTS badge (
 
-  bdg_id   INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  bdg_name VARCHAR(30) NOT NULL UNIQUE,
-  bdg_desc TEXT(100)   NOT NULL
+  id     INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  name   VARCHAR(30) NOT NULL UNIQUE,
+  `desc` TEXT(100)   NOT NULL
 ) ENGINE = InnoDB;
 
 
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS badge (
 DROP TABLE IF EXISTS user_badge;
 CREATE TABLE IF NOT EXISTS user_badge (
 
-  ub_badge_id INT NOT NULL,
-  ub_user_id  INT NOT NULL
+  badge_id INT NOT NULL,
+  user_id  INT NOT NULL
 ) ENGINE = InnoDB;
 
 
@@ -55,12 +55,12 @@ CREATE TABLE IF NOT EXISTS user_badge (
 DROP TABLE IF EXISTS user_activity;
 CREATE TABLE IF NOT EXISTS user_activity (
 
-  ua_id      INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  ua_type    VARCHAR(30) NOT NULL,
-  ua_user_id INT         NOT NULL,
-  ua_content TEXT        NOT NULL,
-  ua_active  BOOLEAN     NOT NULL DEFAULT TRUE,
-  ua_created TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+  id      INT                                    NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  type    ENUM ('ANSWER', 'QUESTION', 'COMMENT') NOT NULL,
+  user_id INT                                    NOT NULL,
+  content TEXT                                   NOT NULL,
+  active  BOOLEAN                                NOT NULL DEFAULT TRUE,
+  created TIMESTAMP                              NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB;
 
 
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS user_activity (
 DROP TABLE IF EXISTS comment;
 CREATE TABLE IF NOT EXISTS comment (
 
-  cm_id          INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  cm_question_id INT NOT NULL
+  id    INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  qt_id INT NOT NULL
 ) ENGINE = InnoDB;
 
 
@@ -79,9 +79,9 @@ CREATE TABLE IF NOT EXISTS comment (
 DROP TABLE IF EXISTS answer;
 CREATE TABLE IF NOT EXISTS answer (
 
-  asw_id          INT     NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  asw_question_id INT     NOT NULL,
-  asw_accepted    BOOLEAN NOT NULL DEFAULT FALSE
+  id       INT     NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  qt_id    INT     NOT NULL,
+  accepted BOOLEAN NOT NULL DEFAULT FALSE
 ) ENGINE = InnoDB;
 
 
@@ -90,9 +90,9 @@ CREATE TABLE IF NOT EXISTS answer (
 DROP TABLE IF EXISTS question;
 CREATE TABLE IF NOT EXISTS question (
 
-  qs_id        INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  qs_title     VARCHAR(200) NOT NULL,
-  qs_asw_count INT          NOT NULL DEFAULT 0
+  id        INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  title     VARCHAR(200) NOT NULL,
+  asw_count INT          NOT NULL DEFAULT 0
 ) ENGINE = InnoDB;
 
 
@@ -101,9 +101,9 @@ CREATE TABLE IF NOT EXISTS question (
 DROP TABLE IF EXISTS tag;
 CREATE TABLE IF NOT EXISTS tag (
 
-  tag_id   INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  tag_name VARCHAR(20) NOT NULL UNIQUE,
-  tag_desc TEXT        NOT NULL
+  id     INT         NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  name   VARCHAR(20) NOT NULL UNIQUE,
+  `desc` TEXT        NOT NULL
 ) ENGINE = InnoDB;
 
 
@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS tag (
 DROP TABLE IF EXISTS question_tag;
 CREATE TABLE IF NOT EXISTS question_tag (
 
-  qt_question_id INT NOT NULL,
-  qt_tag_id      INT NOT NULL
+  qt_id  INT NOT NULL,
+  tag_id INT NOT NULL
 ) ENGINE = InnoDB;
 
 
@@ -122,60 +122,60 @@ CREATE TABLE IF NOT EXISTS question_tag (
 DROP TABLE IF EXISTS vote;
 CREATE TABLE vote (
 
-  vt_id          INT       NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  vt_user_id     INT       NOT NULL,
-  vt_activity_id INT       NOT NULL,
-  vt_score       INT       NOT NULL,
-  vt_created     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  id          INT       NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  user_id     INT       NOT NULL,
+  activity_id INT       NOT NULL,
+  score       INT       NOT NULL,
+  created     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB;
 
 
 -- Define references
 
 ALTER TABLE user_activity
-ADD CONSTRAINT fk_ua_user_id FOREIGN KEY (ua_user_id) REFERENCES user (user_id)
+ADD CONSTRAINT fk_ua_user_id FOREIGN KEY (user_id) REFERENCES user (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE;
 
 
 ALTER TABLE comment
-ADD CONSTRAINT fk_cm_id FOREIGN KEY (cm_id) REFERENCES user_activity (ua_id)
+ADD CONSTRAINT fk_cm_id FOREIGN KEY (id) REFERENCES user_activity (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE,
-ADD CONSTRAINT fk_cm_question_id FOREIGN KEY (cm_question_id) REFERENCES question (qs_id)
+ADD CONSTRAINT fk_cm_question_id FOREIGN KEY (qt_id) REFERENCES question (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE;
 
 
 ALTER TABLE answer
-ADD CONSTRAINT fk_asw_id FOREIGN KEY (asw_id) REFERENCES user_activity (ua_id)
+ADD CONSTRAINT fk_asw_id FOREIGN KEY (id) REFERENCES user_activity (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE,
-ADD CONSTRAINT fk_asw_qs_id FOREIGN KEY (asw_question_id) REFERENCES question (qs_id)
+ADD CONSTRAINT fk_asw_qs_id FOREIGN KEY (qt_id) REFERENCES question (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE;
 
 
 ALTER TABLE question_tag
-ADD CONSTRAINT fk_qt_tag_id FOREIGN KEY (qt_tag_id) REFERENCES tag (tag_id),
-ADD CONSTRAINT fk_qt_question_id FOREIGN KEY (qt_question_id) REFERENCES question (qs_id);
+ADD CONSTRAINT fk_qt_tag_id FOREIGN KEY (tag_id) REFERENCES tag (id),
+ADD CONSTRAINT fk_qt_question_id FOREIGN KEY (qt_id) REFERENCES question (id);
 
 
 ALTER TABLE question
-ADD CONSTRAINT fk_qs_id FOREIGN KEY (qs_id) REFERENCES user_activity (ua_id)
+ADD CONSTRAINT fk_qs_id FOREIGN KEY (id) REFERENCES user_activity (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE;
 
 
 ALTER TABLE user_badge
-ADD CONSTRAINT fk_ub_user_id FOREIGN KEY (ub_user_id) REFERENCES user (user_id),
-ADD CONSTRAINT fk_ub_badge_id FOREIGN KEY (ub_badge_id) REFERENCES badge (bdg_id);
+ADD CONSTRAINT fk_ub_user_id FOREIGN KEY (user_id) REFERENCES user (id),
+ADD CONSTRAINT fk_ub_badge_id FOREIGN KEY (badge_id) REFERENCES badge (id);
 
 
 ALTER TABLE vote
-ADD CONSTRAINT fk_vt_user_id FOREIGN KEY (vt_user_id) REFERENCES user (user_id)
+ADD CONSTRAINT fk_vt_user_id FOREIGN KEY (user_id) REFERENCES user (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE,
-ADD CONSTRAINT fk_vt_activity_id FOREIGN KEY (vt_activity_id) REFERENCES user_activity (ua_id)
+ADD CONSTRAINT fk_vt_activity_id FOREIGN KEY (activity_id) REFERENCES user_activity (id)
   ON UPDATE CASCADE
   ON DELETE CASCADE;

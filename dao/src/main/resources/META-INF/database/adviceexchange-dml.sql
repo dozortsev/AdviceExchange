@@ -2,7 +2,7 @@
 -- Badge data
 
 ALTER TABLE badge DISABLE KEYS;
-INSERT INTO badge (bdg_id, bdg_name, bdg_desc) VALUES
+INSERT INTO badge (id, name, `desc`) VALUES
 
   (1, 'ROLE_ADMIN', 'Lorem ipsum dolor.'),
   (2, 'ROLE_USER', 'Lorem ipsum dolor sit amet.');
@@ -12,7 +12,7 @@ ALTER TABLE badge ENABLE KEYS;
 -- User data
 
 ALTER TABLE user DISABLE KEYS;
-INSERT INTO user (user_id, user_name, user_age, user_joined, user_location, user_email, user_password, user_reputation) VALUES
+INSERT INTO user (id, name, age, joined, location, email, password, reputation) VALUES
 
 (1, 'Valentine Lynch', 56, '2014-11-23 13:02:53', 'Paupisi', 'urna@Fuscealiquet.com', md5(1), 1463),
 (2, 'Clayton Fleming', 27, '2013-12-03 05:10:58', 'Opheylissem', 'nisl@mollis.co.uk', md5(8819406), 5727),
@@ -120,7 +120,7 @@ ALTER TABLE user ENABLE KEYS;
 -- User & Badge data
 
 ALTER TABLE user_badge DISABLE KEYS;
-INSERT INTO user_badge (ub_badge_id, ub_user_id) VALUES
+INSERT INTO user_badge (badge_id, user_id) VALUES
 
   (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 99), (2, 100),
   (2, 11), (2, 12), (2, 13), (2, 14), (2, 15), (2, 16), (2, 17), (2, 18), (2, 19), (2, 20), (2, 21),
@@ -139,7 +139,7 @@ ALTER TABLE user_badge ENABLE KEYS;
 -- UserActivity Data
 
 ALTER TABLE user_activity DISABLE KEYS;
-INSERT INTO user_activity (ua_id, ua_type, ua_user_id, ua_content, ua_created) VALUES
+INSERT INTO user_activity (id, type, user_id, content, created) VALUES
 
   (1, 'QUESTION', 97, 'A friend forwarded me an e-mail about how tampons are dangerous and can cause cancer. Is there any truth to that?', '2014-01-19 03:17:28'),
   (2, 'ANSWER', 20, 'No. Tampons do not cause cancer. There have been a number of e-mails going around in the past few years alleging that manufacturers add carcinogens like asbestos to tampons to promote bleeding or that tampons contain fiberglass. Neither is true. In fact, tampons have been found safe by the U.S. Food and Drug Administration. Also, manufacturers no longer use bleaching processes that were found to leave traces of the toxic chemical dioxin. So rest assured, tampons are completely safe to use.', '2015-03-11 19:32:53'),
@@ -206,7 +206,7 @@ ALTER TABLE user_activity ENABLE KEYS;
 -- Question data
 
 ALTER TABLE question DISABLE KEYS;
-INSERT INTO question (qs_id, qs_title, qs_asw_count) VALUES
+INSERT INTO question (id, title, asw_count) VALUES
 
   (1, 'Is there any truth to that?', 1),
   (3, 'What is that?', 1),
@@ -234,7 +234,7 @@ ALTER TABLE question ENABLE KEYS;
 -- Comment data
 
 ALTER TABLE comment DISABLE KEYS;
-INSERT INTO comment (cm_id, cm_question_id) VALUES
+INSERT INTO comment (id, qt_id) VALUES
 
   (5, 3), (6, 3), (17, 15), (18, 15), (23, 19), (24, 19), (35, 32);
 ALTER TABLE comment ENABLE KEYS ;
@@ -243,7 +243,7 @@ ALTER TABLE comment ENABLE KEYS ;
 -- Answer data
 
 ALTER TABLE answer DISABLE KEYS;
-INSERT INTO answer (asw_id, asw_question_id, asw_accepted) VALUES
+INSERT INTO answer (id, qt_id, accepted) VALUES
 
   (2, 1, true), (4, 3, false), (8, 7, false), (9, 7, true), (12, 11, false), (13, 11, true), (14, 11, false),
   (16, 15, true),
@@ -261,7 +261,7 @@ ALTER TABLE answer ENABLE KEYS;
 -- Tag data
 
 ALTER TABLE tag DISABLE KEYS;
-INSERT INTO tag (tag_id, tag_name, tag_desc) VALUES
+INSERT INTO tag (id, name, `desc`) VALUES
 
   (1, 'doctor', 'A physician is a professional who practices medicine, which is concerned with promoting, maintaining or restoring human health through the study, diagnosis, and treatment of disease, injury, and other physical and mental impairments.'),
   (2, 'headache', 'A headache is pain or discomfort in the head, scalp, or neck. Serious causes of headaches are very rare.'),
@@ -289,7 +289,7 @@ ALTER TABLE tag ENABLE KEYS ;
 -- Question & Tag data
 
 ALTER TABLE question_tag DISABLE KEYS;
-INSERT INTO question_tag (qt_question_id, qt_tag_id) VALUES
+INSERT INTO question_tag (qt_id, tag_id) VALUES
 
   (1, 1), (1, 10), (1, 12),
   (3, 1), (1, 20), (1, 12),
