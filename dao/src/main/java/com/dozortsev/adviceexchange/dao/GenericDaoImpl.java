@@ -1,71 +1,64 @@
 package com.dozortsev.adviceexchange.dao;
 
-import com.dozortsev.adviceexchange.domain.AbstractEntity;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
 import org.jooq.DSLContext;
+import org.jooq.Field;
+import org.jooq.Record;
+import org.jooq.UpdatableRecord;
+import org.jooq.impl.DSL;
+import org.jooq.impl.TableImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
+import java.util.Objects;
 
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY)
-@SuppressWarnings("unchecked")
 @Repository
-public abstract class GenericDaoImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericDao<ID, T> {
+public abstract class GenericDaoImpl<R extends Record, T extends TableImpl<R>> implements GenericDao<R, T> {
 
-    private Class<T> entityClass;
+    private Field<Integer> idField;
 
-    private @Autowired DSLContext dsl;
+    private TableImpl<R> table;
 
-    private @Autowired SessionFactory factory;
+    @Autowired DSLContext dsl;
 
-    @Override public ID create(T entity) {
-        getCurrentSession().save(entity);
-
-        return entity.getId();
+    @Override public int create(UpdatableRecord record) {
+        return Objects.requireNonNull(record).store();
     }
 
-    @Override public void delete(T entity) {
-        getCurrentSession().delete(entity);
-    }
-
-    @Override public void deleteById(ID id) {
-        T entity = (T) getCurrentSession().get(getEntityClass(), id);
-
-        getCurrentSession().delete(entity);
+    @Override public void delete(UpdatableRecord record) {
+        dsl.executeDelete(record);
     }
 
     @Transactional(readOnly = true)
-    @Override public T findById(ID id) {
-        return (T) getCurrentSession().get(getEntityClass(), id);
+    @Override public R findById(int id) {
+        return dsl.fetchOne(table, table.field(idField).equal(id));
     }
 
-    @Override public T update(T entity) {
-        getCurrentSession().update(entity);
-
-        return entity;
+    @Override public void update(UpdatableRecord record) {
+        Objects.requireNonNull(record).store();
     }
 
     @Transactional(readOnly = true)
     @Override public int totalCount() {
-        return getCurrentSession().createCriteria(getEntityClass())
-                .setProjection(Projections.rowCount())
-                .uniqueResult().hashCode();
+        return dsl.select(DSL.count(idField)).from(table).fetchOne(0, int.class);
     }
 
-    Session getCurrentSession() {
-        return factory.getCurrentSession();
+    TableImpl<R> getTable() {
+        return table;
     }
 
-    Class<T> getEntityClass() {
-        return entityClass;
+    void setTable(TableImpl<R> table) {
+        this.table = table;
     }
-    void setEntityClass(Class<T> entityClass) {
-        this.entityClass = entityClass;
+
+    Field<Integer> getIdField() {
+        return idField;
+    }
+
+    void setIdField(Field<Integer> idField) {
+        this.idField = idField;
     }
 }

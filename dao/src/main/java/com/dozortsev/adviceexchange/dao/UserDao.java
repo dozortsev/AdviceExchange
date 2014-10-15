@@ -1,17 +1,18 @@
 package com.dozortsev.adviceexchange.dao;
 
-import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.domain.UserActivity;
+import com.dozortsev.adviceexchange.domain.jooq.tables.User;
+import com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord;
+import com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord;
 
 import java.util.List;
 
-public interface UserDao extends GenericDao<Long, User> {
+public interface UserDao extends GenericDao<UserRecord, User> {
 
     int totalCount(String name);
 
-    List<User> findByName(String name, int offset);
+    List<UserRecord> findByName(String name, int offset);
 
-    User findByLogin(String login);
+    UserRecord findByLogin(String login);
 
-    List<UserActivity> userActivities(long id);
+    List<UserActivityRecord> userActivities(int id);
 }

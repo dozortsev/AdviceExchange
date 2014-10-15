@@ -11,159 +11,159 @@ package com.dozortsev.adviceexchange.domain.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord> implements org.jooq.Record11<java.lang.Integer, java.lang.String, java.lang.Integer, java.lang.String, java.sql.Timestamp, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Byte, java.lang.Integer> {
 
-	private static final long serialVersionUID = -1070766690;
+	private static final long serialVersionUID = -101580240;
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_id</code>.
+	 * Setter for <code>adviceexchange.user.id</code>.
 	 */
-	public void setUserId(java.lang.Integer value) {
+	public void setId(java.lang.Integer value) {
 		setValue(0, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_id</code>.
+	 * Getter for <code>adviceexchange.user.id</code>.
 	 */
-	public java.lang.Integer getUserId() {
+	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_name</code>.
+	 * Setter for <code>adviceexchange.user.name</code>.
 	 */
-	public void setUserName(java.lang.String value) {
+	public void setName(java.lang.String value) {
 		setValue(1, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_name</code>.
+	 * Getter for <code>adviceexchange.user.name</code>.
 	 */
-	public java.lang.String getUserName() {
+	public java.lang.String getName() {
 		return (java.lang.String) getValue(1);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_age</code>.
+	 * Setter for <code>adviceexchange.user.age</code>.
 	 */
-	public void setUserAge(java.lang.Integer value) {
+	public void setAge(java.lang.Integer value) {
 		setValue(2, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_age</code>.
+	 * Getter for <code>adviceexchange.user.age</code>.
 	 */
-	public java.lang.Integer getUserAge() {
+	public java.lang.Integer getAge() {
 		return (java.lang.Integer) getValue(2);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_about_me</code>.
+	 * Setter for <code>adviceexchange.user.about_me</code>.
 	 */
-	public void setUserAboutMe(java.lang.String value) {
+	public void setAboutMe(java.lang.String value) {
 		setValue(3, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_about_me</code>.
+	 * Getter for <code>adviceexchange.user.about_me</code>.
 	 */
-	public java.lang.String getUserAboutMe() {
+	public java.lang.String getAboutMe() {
 		return (java.lang.String) getValue(3);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_joined</code>.
+	 * Setter for <code>adviceexchange.user.joined</code>.
 	 */
-	public void setUserJoined(java.sql.Timestamp value) {
+	public void setJoined(java.sql.Timestamp value) {
 		setValue(4, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_joined</code>.
+	 * Getter for <code>adviceexchange.user.joined</code>.
 	 */
-	public java.sql.Timestamp getUserJoined() {
+	public java.sql.Timestamp getJoined() {
 		return (java.sql.Timestamp) getValue(4);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_location</code>.
+	 * Setter for <code>adviceexchange.user.location</code>.
 	 */
-	public void setUserLocation(java.lang.String value) {
+	public void setLocation(java.lang.String value) {
 		setValue(5, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_location</code>.
+	 * Getter for <code>adviceexchange.user.location</code>.
 	 */
-	public java.lang.String getUserLocation() {
+	public java.lang.String getLocation() {
 		return (java.lang.String) getValue(5);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_site</code>.
+	 * Setter for <code>adviceexchange.user.site</code>.
 	 */
-	public void setUserSite(java.lang.String value) {
+	public void setSite(java.lang.String value) {
 		setValue(6, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_site</code>.
+	 * Getter for <code>adviceexchange.user.site</code>.
 	 */
-	public java.lang.String getUserSite() {
+	public java.lang.String getSite() {
 		return (java.lang.String) getValue(6);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_email</code>.
+	 * Setter for <code>adviceexchange.user.email</code>.
 	 */
-	public void setUserEmail(java.lang.String value) {
+	public void setEmail(java.lang.String value) {
 		setValue(7, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_email</code>.
+	 * Getter for <code>adviceexchange.user.email</code>.
 	 */
-	public java.lang.String getUserEmail() {
+	public java.lang.String getEmail() {
 		return (java.lang.String) getValue(7);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_password</code>.
+	 * Setter for <code>adviceexchange.user.password</code>.
 	 */
-	public void setUserPassword(java.lang.String value) {
+	public void setPassword(java.lang.String value) {
 		setValue(8, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_password</code>.
+	 * Getter for <code>adviceexchange.user.password</code>.
 	 */
-	public java.lang.String getUserPassword() {
+	public java.lang.String getPassword() {
 		return (java.lang.String) getValue(8);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_enabled</code>.
+	 * Setter for <code>adviceexchange.user.enabled</code>.
 	 */
-	public void setUserEnabled(java.lang.Byte value) {
+	public void setEnabled(java.lang.Byte value) {
 		setValue(9, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_enabled</code>.
+	 * Getter for <code>adviceexchange.user.enabled</code>.
 	 */
-	public java.lang.Byte getUserEnabled() {
+	public java.lang.Byte getEnabled() {
 		return (java.lang.Byte) getValue(9);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user.user_reputation</code>.
+	 * Setter for <code>adviceexchange.user.reputation</code>.
 	 */
-	public void setUserReputation(java.lang.Integer value) {
+	public void setReputation(java.lang.Integer value) {
 		setValue(10, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user.user_reputation</code>.
+	 * Getter for <code>adviceexchange.user.reputation</code>.
 	 */
-	public java.lang.Integer getUserReputation() {
+	public java.lang.Integer getReputation() {
 		return (java.lang.Integer) getValue(10);
 	}
 
@@ -204,7 +204,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field1() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.ID;
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field2() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_NAME;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.NAME;
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field3() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_AGE;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.AGE;
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field4() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_ABOUT_ME;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.ABOUT_ME;
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.sql.Timestamp> field5() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_JOINED;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.JOINED;
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field6() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_LOCATION;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.LOCATION;
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field7() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_SITE;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.SITE;
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field8() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_EMAIL;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.EMAIL;
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field9() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_PASSWORD;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.PASSWORD;
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Byte> field10() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_ENABLED;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.ENABLED;
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field11() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.USER_REPUTATION;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.User.USER.REPUTATION;
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.Integer value1() {
-		return getUserId();
+		return getId();
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.String value2() {
-		return getUserName();
+		return getName();
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.Integer value3() {
-		return getUserAge();
+		return getAge();
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.String value4() {
-		return getUserAboutMe();
+		return getAboutMe();
 	}
 
 	/**
@@ -324,7 +324,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.sql.Timestamp value5() {
-		return getUserJoined();
+		return getJoined();
 	}
 
 	/**
@@ -332,7 +332,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.String value6() {
-		return getUserLocation();
+		return getLocation();
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.String value7() {
-		return getUserSite();
+		return getSite();
 	}
 
 	/**
@@ -348,7 +348,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.String value8() {
-		return getUserEmail();
+		return getEmail();
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.String value9() {
-		return getUserPassword();
+		return getPassword();
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.Byte value10() {
-		return getUserEnabled();
+		return getEnabled();
 	}
 
 	/**
@@ -372,7 +372,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public java.lang.Integer value11() {
-		return getUserReputation();
+		return getReputation();
 	}
 
 	/**
@@ -380,7 +380,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value1(java.lang.Integer value) {
-		setUserId(value);
+		setId(value);
 		return this;
 	}
 
@@ -389,7 +389,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value2(java.lang.String value) {
-		setUserName(value);
+		setName(value);
 		return this;
 	}
 
@@ -398,7 +398,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value3(java.lang.Integer value) {
-		setUserAge(value);
+		setAge(value);
 		return this;
 	}
 
@@ -407,7 +407,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value4(java.lang.String value) {
-		setUserAboutMe(value);
+		setAboutMe(value);
 		return this;
 	}
 
@@ -416,7 +416,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value5(java.sql.Timestamp value) {
-		setUserJoined(value);
+		setJoined(value);
 		return this;
 	}
 
@@ -425,7 +425,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value6(java.lang.String value) {
-		setUserLocation(value);
+		setLocation(value);
 		return this;
 	}
 
@@ -434,7 +434,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value7(java.lang.String value) {
-		setUserSite(value);
+		setSite(value);
 		return this;
 	}
 
@@ -443,7 +443,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value8(java.lang.String value) {
-		setUserEmail(value);
+		setEmail(value);
 		return this;
 	}
 
@@ -452,7 +452,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value9(java.lang.String value) {
-		setUserPassword(value);
+		setPassword(value);
 		return this;
 	}
 
@@ -461,7 +461,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value10(java.lang.Byte value) {
-		setUserEnabled(value);
+		setEnabled(value);
 		return this;
 	}
 
@@ -470,7 +470,7 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	 */
 	@Override
 	public UserRecord value11(java.lang.Integer value) {
-		setUserReputation(value);
+		setReputation(value);
 		return this;
 	}
 
@@ -496,19 +496,19 @@ public class UserRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.
 	/**
 	 * Create a detached, initialised UserRecord
 	 */
-	public UserRecord(java.lang.Integer userId, java.lang.String userName, java.lang.Integer userAge, java.lang.String userAboutMe, java.sql.Timestamp userJoined, java.lang.String userLocation, java.lang.String userSite, java.lang.String userEmail, java.lang.String userPassword, java.lang.Byte userEnabled, java.lang.Integer userReputation) {
+	public UserRecord(java.lang.Integer id, java.lang.String name, java.lang.Integer age, java.lang.String aboutMe, java.sql.Timestamp joined, java.lang.String location, java.lang.String site, java.lang.String email, java.lang.String password, java.lang.Byte enabled, java.lang.Integer reputation) {
 		super(com.dozortsev.adviceexchange.domain.jooq.tables.User.USER);
 
-		setValue(0, userId);
-		setValue(1, userName);
-		setValue(2, userAge);
-		setValue(3, userAboutMe);
-		setValue(4, userJoined);
-		setValue(5, userLocation);
-		setValue(6, userSite);
-		setValue(7, userEmail);
-		setValue(8, userPassword);
-		setValue(9, userEnabled);
-		setValue(10, userReputation);
+		setValue(0, id);
+		setValue(1, name);
+		setValue(2, age);
+		setValue(3, aboutMe);
+		setValue(4, joined);
+		setValue(5, location);
+		setValue(6, site);
+		setValue(7, email);
+		setValue(8, password);
+		setValue(9, enabled);
+		setValue(10, reputation);
 	}
 }

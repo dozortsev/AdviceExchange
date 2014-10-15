@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tag extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord> {
 
-	private static final long serialVersionUID = 1523043760;
+	private static final long serialVersionUID = 1113043527;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.tag</code>
@@ -27,19 +27,19 @@ public class Tag extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.do
 	}
 
 	/**
-	 * The column <code>adviceexchange.tag.tag_id</code>.
+	 * The column <code>adviceexchange.tag.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord, java.lang.Integer> TAG_ID = createField("tag_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.tag.tag_name</code>.
+	 * The column <code>adviceexchange.tag.name</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord, java.lang.String> TAG_NAME = createField("tag_name", org.jooq.impl.SQLDataType.VARCHAR.length(20).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord, java.lang.String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(20).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.tag.tag_desc</code>.
+	 * The column <code>adviceexchange.tag.desc</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord, java.lang.String> TAG_DESC = createField("tag_desc", org.jooq.impl.SQLDataType.CLOB.length(65535).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord, java.lang.String> DESC = createField("desc", org.jooq.impl.SQLDataType.CLOB.length(65535).nullable(false), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.tag</code> table reference
@@ -84,7 +84,7 @@ public class Tag extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.do
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_TAG_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_TAG_NAME, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_NAME);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_TAG_NAME);
 	}
 
 	/**

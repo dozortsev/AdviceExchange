@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Answer extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord> {
 
-	private static final long serialVersionUID = 981179864;
+	private static final long serialVersionUID = -1624952721;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.answer</code>
@@ -27,24 +27,19 @@ public class Answer extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange
 	}
 
 	/**
-	 * The column <code>adviceexchange.answer.asw_id</code>.
+	 * The column <code>adviceexchange.answer.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Integer> ASW_ID = createField("asw_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.answer.asw_question_id</code>.
+	 * The column <code>adviceexchange.answer.qt_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Integer> ASW_QUESTION_ID = createField("asw_question_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Integer> QT_ID = createField("qt_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.answer.asw_votes</code>.
+	 * The column <code>adviceexchange.answer.accepted</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Integer> ASW_VOTES = createField("asw_votes", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
-
-	/**
-	 * The column <code>adviceexchange.answer.asw_accepted</code>.
-	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Byte> ASW_ACCEPTED = createField("asw_accepted", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord, java.lang.Byte> ACCEPTED = createField("accepted", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.answer</code> table reference
@@ -89,7 +84,7 @@ public class Answer extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_ANSWER_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_ANSWER_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_ANSWER_ASW_ID);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_ANSWER_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_ANSWER_ID);
 	}
 
 	/**

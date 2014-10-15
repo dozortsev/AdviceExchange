@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class User extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord> {
 
-	private static final long serialVersionUID = -1014471310;
+	private static final long serialVersionUID = 1510184539;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.user</code>
@@ -27,59 +27,59 @@ public class User extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.d
 	}
 
 	/**
-	 * The column <code>adviceexchange.user.user_id</code>.
+	 * The column <code>adviceexchange.user.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_name</code>.
+	 * The column <code>adviceexchange.user.name</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> USER_NAME = createField("user_name", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_age</code>.
+	 * The column <code>adviceexchange.user.age</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Integer> USER_AGE = createField("user_age", org.jooq.impl.SQLDataType.INTEGER, this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Integer> AGE = createField("age", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_about_me</code>.
+	 * The column <code>adviceexchange.user.about_me</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> USER_ABOUT_ME = createField("user_about_me", org.jooq.impl.SQLDataType.CLOB.length(65535), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> ABOUT_ME = createField("about_me", org.jooq.impl.SQLDataType.CLOB.length(65535), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_joined</code>.
+	 * The column <code>adviceexchange.user.joined</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.sql.Timestamp> USER_JOINED = createField("user_joined", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.sql.Timestamp> JOINED = createField("joined", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_location</code>.
+	 * The column <code>adviceexchange.user.location</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> USER_LOCATION = createField("user_location", org.jooq.impl.SQLDataType.VARCHAR.length(120), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> LOCATION = createField("location", org.jooq.impl.SQLDataType.VARCHAR.length(120), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_site</code>.
+	 * The column <code>adviceexchange.user.site</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> USER_SITE = createField("user_site", org.jooq.impl.SQLDataType.VARCHAR.length(70), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> SITE = createField("site", org.jooq.impl.SQLDataType.VARCHAR.length(70), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_email</code>.
+	 * The column <code>adviceexchange.user.email</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> USER_EMAIL = createField("user_email", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> EMAIL = createField("email", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_password</code>.
+	 * The column <code>adviceexchange.user.password</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> USER_PASSWORD = createField("user_password", org.jooq.impl.SQLDataType.VARCHAR.length(32).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.String> PASSWORD = createField("password", org.jooq.impl.SQLDataType.VARCHAR.length(32).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_enabled</code>.
+	 * The column <code>adviceexchange.user.enabled</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Byte> USER_ENABLED = createField("user_enabled", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Byte> ENABLED = createField("enabled", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user.user_reputation</code>.
+	 * The column <code>adviceexchange.user.reputation</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Integer> USER_REPUTATION = createField("user_reputation", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord, java.lang.Integer> REPUTATION = createField("reputation", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.user</code> table reference
@@ -124,7 +124,7 @@ public class User extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.d
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_USER_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_USER_EMAIL, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_EMAIL);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_EMAIL);
 	}
 
 	/**

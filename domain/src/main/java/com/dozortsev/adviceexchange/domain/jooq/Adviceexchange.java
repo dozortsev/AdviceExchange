@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Adviceexchange extends org.jooq.impl.SchemaImpl {
 
-	private static final long serialVersionUID = 1310931429;
+	private static final long serialVersionUID = 64765622;
 
 	/**
 	 * The singleton instance of <code>adviceexchange</code>
@@ -42,6 +42,7 @@ public class Adviceexchange extends org.jooq.impl.SchemaImpl {
 			com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG,
 			com.dozortsev.adviceexchange.domain.jooq.tables.User.USER,
 			com.dozortsev.adviceexchange.domain.jooq.tables.UserActivity.USER_ACTIVITY,
-			com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE);
+			com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE,
+			com.dozortsev.adviceexchange.domain.jooq.tables.Vote.VOTE);
 	}
 }

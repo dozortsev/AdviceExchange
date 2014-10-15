@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord> {
 
-	private static final long serialVersionUID = 393548734;
+	private static final long serialVersionUID = 1452494328;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.comment</code>
@@ -27,14 +27,14 @@ public class Comment extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchang
 	}
 
 	/**
-	 * The column <code>adviceexchange.comment.cm_id</code>.
+	 * The column <code>adviceexchange.comment.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord, java.lang.Integer> CM_ID = createField("cm_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.comment.cm_question_id</code>.
+	 * The column <code>adviceexchange.comment.qt_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord, java.lang.Integer> CM_QUESTION_ID = createField("cm_question_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord, java.lang.Integer> QT_ID = createField("qt_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.comment</code> table reference
@@ -79,7 +79,7 @@ public class Comment extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchang
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_COMMENT_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_COMMENT_CM_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_COMMENT_ID);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_COMMENT_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_COMMENT_ID);
 	}
 
 	/**

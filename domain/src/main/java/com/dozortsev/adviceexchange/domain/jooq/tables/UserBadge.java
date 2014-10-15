@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserBadge extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserBadgeRecord> {
 
-	private static final long serialVersionUID = -255460885;
+	private static final long serialVersionUID = 1480368761;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.user_badge</code>
@@ -27,14 +27,14 @@ public class UserBadge extends org.jooq.impl.TableImpl<com.dozortsev.adviceexcha
 	}
 
 	/**
-	 * The column <code>adviceexchange.user_badge.ub_badge_id</code>.
+	 * The column <code>adviceexchange.user_badge.badge_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserBadgeRecord, java.lang.Integer> UB_BADGE_ID = createField("ub_badge_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserBadgeRecord, java.lang.Integer> BADGE_ID = createField("badge_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user_badge.ub_user_id</code>.
+	 * The column <code>adviceexchange.user_badge.user_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserBadgeRecord, java.lang.Integer> UB_USER_ID = createField("ub_user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserBadgeRecord, java.lang.Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.user_badge</code> table reference

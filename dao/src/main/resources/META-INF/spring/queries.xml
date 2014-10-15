@@ -119,22 +119,6 @@
     </bean>
 
 
-    <!-- Load limit set of Questions -->
-
-    <bean id="findUsersByName" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT * FROM user
-
-            WHERE user_enabled = TRUE AND user_name LIKE :username
-
-            ORDER BY user_joined DESC
-
-            LIMIT :offset, 36
-        "/>
-    </bean>
-
-
     <!-- Find all Answers by User id -->
 
     <bean id="findAnswersByUserId" class="java.lang.String">

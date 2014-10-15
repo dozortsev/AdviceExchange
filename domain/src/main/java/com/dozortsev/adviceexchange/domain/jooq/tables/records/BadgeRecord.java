@@ -11,47 +11,47 @@ package com.dozortsev.adviceexchange.domain.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord> implements org.jooq.Record3<java.lang.Integer, java.lang.String, java.lang.String> {
 
-	private static final long serialVersionUID = -326451675;
+	private static final long serialVersionUID = 529758793;
 
 	/**
-	 * Setter for <code>adviceexchange.badge.bdg_id</code>.
+	 * Setter for <code>adviceexchange.badge.id</code>.
 	 */
-	public void setBdgId(java.lang.Integer value) {
+	public void setId(java.lang.Integer value) {
 		setValue(0, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.badge.bdg_id</code>.
+	 * Getter for <code>adviceexchange.badge.id</code>.
 	 */
-	public java.lang.Integer getBdgId() {
+	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.badge.bdg_name</code>.
+	 * Setter for <code>adviceexchange.badge.name</code>.
 	 */
-	public void setBdgName(java.lang.String value) {
+	public void setName(java.lang.String value) {
 		setValue(1, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.badge.bdg_name</code>.
+	 * Getter for <code>adviceexchange.badge.name</code>.
 	 */
-	public java.lang.String getBdgName() {
+	public java.lang.String getName() {
 		return (java.lang.String) getValue(1);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.badge.bdg_desc</code>.
+	 * Setter for <code>adviceexchange.badge.desc</code>.
 	 */
-	public void setBdgDesc(java.lang.String value) {
+	public void setDesc(java.lang.String value) {
 		setValue(2, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.badge.bdg_desc</code>.
+	 * Getter for <code>adviceexchange.badge.desc</code>.
 	 */
-	public java.lang.String getBdgDesc() {
+	public java.lang.String getDesc() {
 		return (java.lang.String) getValue(2);
 	}
 
@@ -92,7 +92,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field1() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE.BDG_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE.ID;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field2() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE.BDG_NAME;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE.NAME;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field3() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE.BDG_DESC;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE.DESC;
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public java.lang.Integer value1() {
-		return getBdgId();
+		return getId();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public java.lang.String value2() {
-		return getBdgName();
+		return getName();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public java.lang.String value3() {
-		return getBdgDesc();
+		return getDesc();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public BadgeRecord value1(java.lang.Integer value) {
-		setBdgId(value);
+		setId(value);
 		return this;
 	}
 
@@ -149,7 +149,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public BadgeRecord value2(java.lang.String value) {
-		setBdgName(value);
+		setName(value);
 		return this;
 	}
 
@@ -158,7 +158,7 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public BadgeRecord value3(java.lang.String value) {
-		setBdgDesc(value);
+		setDesc(value);
 		return this;
 	}
 
@@ -184,11 +184,11 @@ public class BadgeRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev
 	/**
 	 * Create a detached, initialised BadgeRecord
 	 */
-	public BadgeRecord(java.lang.Integer bdgId, java.lang.String bdgName, java.lang.String bdgDesc) {
+	public BadgeRecord(java.lang.Integer id, java.lang.String name, java.lang.String desc) {
 		super(com.dozortsev.adviceexchange.domain.jooq.tables.Badge.BADGE);
 
-		setValue(0, bdgId);
-		setValue(1, bdgName);
-		setValue(2, bdgDesc);
+		setValue(0, id);
+		setValue(1, name);
+		setValue(2, desc);
 	}
 }

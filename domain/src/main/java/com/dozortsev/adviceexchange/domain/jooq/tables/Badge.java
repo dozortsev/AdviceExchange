@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Badge extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord> {
 
-	private static final long serialVersionUID = 749571114;
+	private static final long serialVersionUID = 1352101978;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.badge</code>
@@ -27,19 +27,19 @@ public class Badge extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.
 	}
 
 	/**
-	 * The column <code>adviceexchange.badge.bdg_id</code>.
+	 * The column <code>adviceexchange.badge.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord, java.lang.Integer> BDG_ID = createField("bdg_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.badge.bdg_name</code>.
+	 * The column <code>adviceexchange.badge.name</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord, java.lang.String> BDG_NAME = createField("bdg_name", org.jooq.impl.SQLDataType.VARCHAR.length(30).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord, java.lang.String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(30).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.badge.bdg_desc</code>.
+	 * The column <code>adviceexchange.badge.desc</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord, java.lang.String> BDG_DESC = createField("bdg_desc", org.jooq.impl.SQLDataType.CLOB.length(65535).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord, java.lang.String> DESC = createField("desc", org.jooq.impl.SQLDataType.CLOB.length(65535).nullable(false), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.badge</code> table reference
@@ -84,7 +84,7 @@ public class Badge extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_BDG_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_BDG_NAME);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.BadgeRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_BADGE_NAME);
 	}
 
 	/**

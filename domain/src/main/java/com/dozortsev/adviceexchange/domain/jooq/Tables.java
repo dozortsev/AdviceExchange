@@ -57,4 +57,9 @@ public class Tables {
 	 * The table adviceexchange.user_badge
 	 */
 	public static final com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge USER_BADGE = com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE;
+
+	/**
+	 * The table adviceexchange.vote
+	 */
+	public static final com.dozortsev.adviceexchange.domain.jooq.tables.Vote VOTE = com.dozortsev.adviceexchange.domain.jooq.tables.Vote.VOTE;
 }

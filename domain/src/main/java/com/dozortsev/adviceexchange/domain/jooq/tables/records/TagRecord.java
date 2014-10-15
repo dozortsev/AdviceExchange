@@ -11,47 +11,47 @@ package com.dozortsev.adviceexchange.domain.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.TagRecord> implements org.jooq.Record3<java.lang.Integer, java.lang.String, java.lang.String> {
 
-	private static final long serialVersionUID = -155851316;
+	private static final long serialVersionUID = 302857271;
 
 	/**
-	 * Setter for <code>adviceexchange.tag.tag_id</code>.
+	 * Setter for <code>adviceexchange.tag.id</code>.
 	 */
-	public void setTagId(java.lang.Integer value) {
+	public void setId(java.lang.Integer value) {
 		setValue(0, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.tag.tag_id</code>.
+	 * Getter for <code>adviceexchange.tag.id</code>.
 	 */
-	public java.lang.Integer getTagId() {
+	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.tag.tag_name</code>.
+	 * Setter for <code>adviceexchange.tag.name</code>.
 	 */
-	public void setTagName(java.lang.String value) {
+	public void setName(java.lang.String value) {
 		setValue(1, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.tag.tag_name</code>.
+	 * Getter for <code>adviceexchange.tag.name</code>.
 	 */
-	public java.lang.String getTagName() {
+	public java.lang.String getName() {
 		return (java.lang.String) getValue(1);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.tag.tag_desc</code>.
+	 * Setter for <code>adviceexchange.tag.desc</code>.
 	 */
-	public void setTagDesc(java.lang.String value) {
+	public void setDesc(java.lang.String value) {
 		setValue(2, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.tag.tag_desc</code>.
+	 * Getter for <code>adviceexchange.tag.desc</code>.
 	 */
-	public java.lang.String getTagDesc() {
+	public java.lang.String getDesc() {
 		return (java.lang.String) getValue(2);
 	}
 
@@ -92,7 +92,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field1() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG.TAG_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG.ID;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field2() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG.TAG_NAME;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG.NAME;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public org.jooq.Field<java.lang.String> field3() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG.TAG_DESC;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG.DESC;
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public java.lang.Integer value1() {
-		return getTagId();
+		return getId();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public java.lang.String value2() {
-		return getTagName();
+		return getName();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public java.lang.String value3() {
-		return getTagDesc();
+		return getDesc();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public TagRecord value1(java.lang.Integer value) {
-		setTagId(value);
+		setId(value);
 		return this;
 	}
 
@@ -149,7 +149,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public TagRecord value2(java.lang.String value) {
-		setTagName(value);
+		setName(value);
 		return this;
 	}
 
@@ -158,7 +158,7 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	 */
 	@Override
 	public TagRecord value3(java.lang.String value) {
-		setTagDesc(value);
+		setDesc(value);
 		return this;
 	}
 
@@ -184,11 +184,11 @@ public class TagRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.a
 	/**
 	 * Create a detached, initialised TagRecord
 	 */
-	public TagRecord(java.lang.Integer tagId, java.lang.String tagName, java.lang.String tagDesc) {
+	public TagRecord(java.lang.Integer id, java.lang.String name, java.lang.String desc) {
 		super(com.dozortsev.adviceexchange.domain.jooq.tables.Tag.TAG);
 
-		setValue(0, tagId);
-		setValue(1, tagName);
-		setValue(2, tagDesc);
+		setValue(0, id);
+		setValue(1, name);
+		setValue(2, desc);
 	}
 }

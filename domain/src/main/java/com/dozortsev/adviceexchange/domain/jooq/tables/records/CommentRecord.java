@@ -11,33 +11,33 @@ package com.dozortsev.adviceexchange.domain.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.CommentRecord> implements org.jooq.Record2<java.lang.Integer, java.lang.Integer> {
 
-	private static final long serialVersionUID = -393602258;
+	private static final long serialVersionUID = 200611395;
 
 	/**
-	 * Setter for <code>adviceexchange.comment.cm_id</code>.
+	 * Setter for <code>adviceexchange.comment.id</code>.
 	 */
-	public void setCmId(java.lang.Integer value) {
+	public void setId(java.lang.Integer value) {
 		setValue(0, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.comment.cm_id</code>.
+	 * Getter for <code>adviceexchange.comment.id</code>.
 	 */
-	public java.lang.Integer getCmId() {
+	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.comment.cm_question_id</code>.
+	 * Setter for <code>adviceexchange.comment.qt_id</code>.
 	 */
-	public void setCmQuestionId(java.lang.Integer value) {
+	public void setQtId(java.lang.Integer value) {
 		setValue(1, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.comment.cm_question_id</code>.
+	 * Getter for <code>adviceexchange.comment.qt_id</code>.
 	 */
-	public java.lang.Integer getCmQuestionId() {
+	public java.lang.Integer getQtId() {
 		return (java.lang.Integer) getValue(1);
 	}
 
@@ -78,7 +78,7 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field1() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Comment.COMMENT.CM_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Comment.COMMENT.ID;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field2() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.Comment.COMMENT.CM_QUESTION_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.Comment.COMMENT.QT_ID;
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	 */
 	@Override
 	public java.lang.Integer value1() {
-		return getCmId();
+		return getId();
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	 */
 	@Override
 	public java.lang.Integer value2() {
-		return getCmQuestionId();
+		return getQtId();
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	 */
 	@Override
 	public CommentRecord value1(java.lang.Integer value) {
-		setCmId(value);
+		setId(value);
 		return this;
 	}
 
@@ -119,7 +119,7 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	 */
 	@Override
 	public CommentRecord value2(java.lang.Integer value) {
-		setCmQuestionId(value);
+		setQtId(value);
 		return this;
 	}
 
@@ -145,10 +145,10 @@ public class CommentRecord extends org.jooq.impl.UpdatableRecordImpl<com.dozorts
 	/**
 	 * Create a detached, initialised CommentRecord
 	 */
-	public CommentRecord(java.lang.Integer cmId, java.lang.Integer cmQuestionId) {
+	public CommentRecord(java.lang.Integer id, java.lang.Integer qtId) {
 		super(com.dozortsev.adviceexchange.domain.jooq.tables.Comment.COMMENT);
 
-		setValue(0, cmId);
-		setValue(1, cmQuestionId);
+		setValue(0, id);
+		setValue(1, qtId);
 	}
 }

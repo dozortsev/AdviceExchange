@@ -11,33 +11,33 @@ package com.dozortsev.adviceexchange.domain.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserBadgeRecord> implements org.jooq.Record2<java.lang.Integer, java.lang.Integer> {
 
-	private static final long serialVersionUID = 580941883;
+	private static final long serialVersionUID = 891963101;
 
 	/**
-	 * Setter for <code>adviceexchange.user_badge.ub_badge_id</code>.
+	 * Setter for <code>adviceexchange.user_badge.badge_id</code>.
 	 */
-	public void setUbBadgeId(java.lang.Integer value) {
+	public void setBadgeId(java.lang.Integer value) {
 		setValue(0, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user_badge.ub_badge_id</code>.
+	 * Getter for <code>adviceexchange.user_badge.badge_id</code>.
 	 */
-	public java.lang.Integer getUbBadgeId() {
+	public java.lang.Integer getBadgeId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.user_badge.ub_user_id</code>.
+	 * Setter for <code>adviceexchange.user_badge.user_id</code>.
 	 */
-	public void setUbUserId(java.lang.Integer value) {
+	public void setUserId(java.lang.Integer value) {
 		setValue(1, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.user_badge.ub_user_id</code>.
+	 * Getter for <code>adviceexchange.user_badge.user_id</code>.
 	 */
-	public java.lang.Integer getUbUserId() {
+	public java.lang.Integer getUserId() {
 		return (java.lang.Integer) getValue(1);
 	}
 
@@ -66,7 +66,7 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field1() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE.UB_BADGE_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE.BADGE_ID;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field2() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE.UB_USER_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE.USER_ID;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public java.lang.Integer value1() {
-		return getUbBadgeId();
+		return getBadgeId();
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public java.lang.Integer value2() {
-		return getUbUserId();
+		return getUserId();
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public UserBadgeRecord value1(java.lang.Integer value) {
-		setUbBadgeId(value);
+		setBadgeId(value);
 		return this;
 	}
 
@@ -107,7 +107,7 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	 */
 	@Override
 	public UserBadgeRecord value2(java.lang.Integer value) {
-		setUbUserId(value);
+		setUserId(value);
 		return this;
 	}
 
@@ -133,10 +133,10 @@ public class UserBadgeRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev
 	/**
 	 * Create a detached, initialised UserBadgeRecord
 	 */
-	public UserBadgeRecord(java.lang.Integer ubBadgeId, java.lang.Integer ubUserId) {
+	public UserBadgeRecord(java.lang.Integer badgeId, java.lang.Integer userId) {
 		super(com.dozortsev.adviceexchange.domain.jooq.tables.UserBadge.USER_BADGE);
 
-		setValue(0, ubBadgeId);
-		setValue(1, ubUserId);
+		setValue(0, badgeId);
+		setValue(1, userId);
 	}
 }

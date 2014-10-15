@@ -11,33 +11,33 @@ package com.dozortsev.adviceexchange.domain.jooq.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionTagRecord> implements org.jooq.Record2<java.lang.Integer, java.lang.Integer> {
 
-	private static final long serialVersionUID = 30061999;
+	private static final long serialVersionUID = 1058194704;
 
 	/**
-	 * Setter for <code>adviceexchange.question_tag.qt_question_id</code>.
+	 * Setter for <code>adviceexchange.question_tag.qt_id</code>.
 	 */
-	public void setQtQuestionId(java.lang.Integer value) {
+	public void setQtId(java.lang.Integer value) {
 		setValue(0, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.question_tag.qt_question_id</code>.
+	 * Getter for <code>adviceexchange.question_tag.qt_id</code>.
 	 */
-	public java.lang.Integer getQtQuestionId() {
+	public java.lang.Integer getQtId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>adviceexchange.question_tag.qt_tag_id</code>.
+	 * Setter for <code>adviceexchange.question_tag.tag_id</code>.
 	 */
-	public void setQtTagId(java.lang.Integer value) {
+	public void setTagId(java.lang.Integer value) {
 		setValue(1, value);
 	}
 
 	/**
-	 * Getter for <code>adviceexchange.question_tag.qt_tag_id</code>.
+	 * Getter for <code>adviceexchange.question_tag.tag_id</code>.
 	 */
-	public java.lang.Integer getQtTagId() {
+	public java.lang.Integer getTagId() {
 		return (java.lang.Integer) getValue(1);
 	}
 
@@ -66,7 +66,7 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field1() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.QuestionTag.QUESTION_TAG.QT_QUESTION_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.QuestionTag.QUESTION_TAG.QT_ID;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	 */
 	@Override
 	public org.jooq.Field<java.lang.Integer> field2() {
-		return com.dozortsev.adviceexchange.domain.jooq.tables.QuestionTag.QUESTION_TAG.QT_TAG_ID;
+		return com.dozortsev.adviceexchange.domain.jooq.tables.QuestionTag.QUESTION_TAG.TAG_ID;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	 */
 	@Override
 	public java.lang.Integer value1() {
-		return getQtQuestionId();
+		return getQtId();
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	 */
 	@Override
 	public java.lang.Integer value2() {
-		return getQtTagId();
+		return getTagId();
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	 */
 	@Override
 	public QuestionTagRecord value1(java.lang.Integer value) {
-		setQtQuestionId(value);
+		setQtId(value);
 		return this;
 	}
 
@@ -107,7 +107,7 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	 */
 	@Override
 	public QuestionTagRecord value2(java.lang.Integer value) {
-		setQtTagId(value);
+		setTagId(value);
 		return this;
 	}
 
@@ -133,10 +133,10 @@ public class QuestionTagRecord extends org.jooq.impl.TableRecordImpl<com.dozorts
 	/**
 	 * Create a detached, initialised QuestionTagRecord
 	 */
-	public QuestionTagRecord(java.lang.Integer qtQuestionId, java.lang.Integer qtTagId) {
+	public QuestionTagRecord(java.lang.Integer qtId, java.lang.Integer tagId) {
 		super(com.dozortsev.adviceexchange.domain.jooq.tables.QuestionTag.QUESTION_TAG);
 
-		setValue(0, qtQuestionId);
-		setValue(1, qtTagId);
+		setValue(0, qtId);
+		setValue(1, tagId);
 	}
 }

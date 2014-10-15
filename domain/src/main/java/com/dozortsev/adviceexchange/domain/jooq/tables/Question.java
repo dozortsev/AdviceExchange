@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Question extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord> {
 
-	private static final long serialVersionUID = -2113867426;
+	private static final long serialVersionUID = -982904222;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.question</code>
@@ -27,24 +27,19 @@ public class Question extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchan
 	}
 
 	/**
-	 * The column <code>adviceexchange.question.qs_id</code>.
+	 * The column <code>adviceexchange.question.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.Integer> QS_ID = createField("qs_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.question.qs_title</code>.
+	 * The column <code>adviceexchange.question.title</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.String> QS_TITLE = createField("qs_title", org.jooq.impl.SQLDataType.VARCHAR.length(200).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR.length(200).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.question.qs_votes</code>.
+	 * The column <code>adviceexchange.question.asw_count</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.Integer> QS_VOTES = createField("qs_votes", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
-
-	/**
-	 * The column <code>adviceexchange.question.qs_asw_count</code>.
-	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.Integer> QS_ASW_COUNT = createField("qs_asw_count", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord, java.lang.Integer> ASW_COUNT = createField("asw_count", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.question</code> table reference
@@ -89,7 +84,7 @@ public class Question extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchan
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_QUESTION_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_QUESTION_QS_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_QUESTION_ID);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_QUESTION_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_QUESTION_ID);
 	}
 
 	/**

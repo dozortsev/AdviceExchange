@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserActivity extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord> {
 
-	private static final long serialVersionUID = -1180925410;
+	private static final long serialVersionUID = -679296539;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.user_activity</code>
@@ -27,34 +27,34 @@ public class UserActivity extends org.jooq.impl.TableImpl<com.dozortsev.adviceex
 	}
 
 	/**
-	 * The column <code>adviceexchange.user_activity.ua_id</code>.
+	 * The column <code>adviceexchange.user_activity.id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.Integer> UA_ID = createField("ua_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user_activity.ua_type</code>.
+	 * The column <code>adviceexchange.user_activity.type</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.String> UA_TYPE = createField("ua_type", org.jooq.impl.SQLDataType.VARCHAR.length(30).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, com.dozortsev.adviceexchange.domain.jooq.enums.UserActivityType> TYPE = createField("type", org.jooq.util.mysql.MySQLDataType.VARCHAR.asEnumDataType(com.dozortsev.adviceexchange.domain.jooq.enums.UserActivityType.class), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user_activity.ua_user_id</code>.
+	 * The column <code>adviceexchange.user_activity.user_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.Integer> UA_USER_ID = createField("ua_user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user_activity.ua_content</code>.
+	 * The column <code>adviceexchange.user_activity.content</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.String> UA_CONTENT = createField("ua_content", org.jooq.impl.SQLDataType.CLOB.length(65535).nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.String> CONTENT = createField("content", org.jooq.impl.SQLDataType.CLOB.length(65535).nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user_activity.ua_active</code>.
+	 * The column <code>adviceexchange.user_activity.active</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.Byte> UA_ACTIVE = createField("ua_active", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.lang.Byte> ACTIVE = createField("active", org.jooq.impl.SQLDataType.TINYINT.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>adviceexchange.user_activity.ua_created</code>.
+	 * The column <code>adviceexchange.user_activity.created</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.sql.Timestamp> UA_CREATED = createField("ua_created", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord, java.sql.Timestamp> CREATED = createField("created", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaulted(true), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.user_activity</code> table reference
@@ -99,7 +99,7 @@ public class UserActivity extends org.jooq.impl.TableImpl<com.dozortsev.adviceex
 	 */
 	@Override
 	public java.util.List<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord>> getKeys() {
-		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ACTIVITY_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ACTIVITY_UA_ID, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ACTIVITY_ID);
+		return java.util.Arrays.<org.jooq.UniqueKey<com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord>>asList(com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ACTIVITY_PRIMARY, com.dozortsev.adviceexchange.domain.jooq.Keys.KEY_USER_ACTIVITY_ID);
 	}
 
 	/**

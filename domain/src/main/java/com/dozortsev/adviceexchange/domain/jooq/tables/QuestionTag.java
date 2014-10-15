@@ -11,7 +11,7 @@ package com.dozortsev.adviceexchange.domain.jooq.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class QuestionTag extends org.jooq.impl.TableImpl<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionTagRecord> {
 
-	private static final long serialVersionUID = 968895453;
+	private static final long serialVersionUID = -1137332064;
 
 	/**
 	 * The singleton instance of <code>adviceexchange.question_tag</code>
@@ -27,14 +27,14 @@ public class QuestionTag extends org.jooq.impl.TableImpl<com.dozortsev.adviceexc
 	}
 
 	/**
-	 * The column <code>adviceexchange.question_tag.qt_question_id</code>.
+	 * The column <code>adviceexchange.question_tag.qt_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionTagRecord, java.lang.Integer> QT_QUESTION_ID = createField("qt_question_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionTagRecord, java.lang.Integer> QT_ID = createField("qt_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>adviceexchange.question_tag.qt_tag_id</code>.
+	 * The column <code>adviceexchange.question_tag.tag_id</code>.
 	 */
-	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionTagRecord, java.lang.Integer> QT_TAG_ID = createField("qt_tag_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionTagRecord, java.lang.Integer> TAG_ID = createField("tag_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * Create a <code>adviceexchange.question_tag</code> table reference

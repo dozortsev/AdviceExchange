@@ -1,20 +1,18 @@
 package com.dozortsev.adviceexchange.dao;
 
-import com.dozortsev.adviceexchange.domain.AbstractEntity;
+import org.jooq.Record;
+import org.jooq.UpdatableRecord;
+import org.jooq.impl.TableImpl;
 
-import java.io.Serializable;
+public interface GenericDao<R extends Record, T extends TableImpl<R>> {
 
-public interface GenericDao<ID extends Serializable, T extends AbstractEntity<ID>> {
+    int create(UpdatableRecord record);
 
-    ID create(T entity);
+    void delete(UpdatableRecord record);
 
-    void delete(T entity);
+    R findById(int id);
 
-    void deleteById(ID id);
-
-    T findById(ID id);
-
-    T update(T entity);
+    void update(UpdatableRecord record);
 
     int totalCount();
 }
