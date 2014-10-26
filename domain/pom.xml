@@ -15,12 +15,11 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <jooq.version>3.4.0</jooq.version>
-
     </properties>
 
     <build>
         <plugins>
+
             <!-- jOOQ -->
 
             <plugin>
@@ -44,6 +43,12 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql.version}</version>
                     </dependency>
+
+                    <dependency>
+                        <groupId>com.dozortsev.adviceexchange</groupId>
+                        <artifactId>util</artifactId>
+                        <version>1.0</version>
+                    </dependency>
                 </dependencies>
 
                 <configuration>
@@ -55,8 +60,21 @@
                     </jdbc>
 
                     <!-- Generator parameters -->
+
                     <generator>
+
                         <name>org.jooq.util.DefaultGenerator</name>
+
+                        <strategy>
+                            <name>
+                                com.dozortsev.adviceexchange.util.AsInDatabaseStrategy
+                            </name>
+                        </strategy>
+
+                        <generate>
+                            <pojos>true</pojos>
+                        </generate>
+
                         <database>
                             <name>org.jooq.util.mysql.MySQLDatabase</name>
                             <includes>.*</includes>

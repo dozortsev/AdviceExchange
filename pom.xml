@@ -11,6 +11,7 @@
         <module>dao</module>
         <module>service</module>
         <module>web</module>
+        <module>util</module>
     </modules>
 
     <name>AdviceExchange</name>
