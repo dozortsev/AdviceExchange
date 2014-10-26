@@ -55,12 +55,13 @@ CREATE TABLE IF NOT EXISTS user_badge (
 DROP TABLE IF EXISTS user_activity;
 CREATE TABLE IF NOT EXISTS user_activity (
 
-  id      INT                                    NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  type    ENUM ('ANSWER', 'QUESTION', 'COMMENT') NOT NULL,
-  user_id INT                                    NOT NULL,
-  content TEXT                                   NOT NULL,
-  active  BOOLEAN                                NOT NULL DEFAULT TRUE,
-  created TIMESTAMP                              NOT NULL DEFAULT CURRENT_TIMESTAMP
+  id         INT                                    NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
+  type       ENUM ('ANSWER', 'QUESTION', 'COMMENT') NOT NULL,
+  user_id    INT                                    NOT NULL,
+  content    TEXT                                   NOT NULL,
+  active     BOOLEAN                                NOT NULL DEFAULT TRUE,
+  created    TIMESTAMP                              NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  totalScore INT DEFAULT NULL
 ) ENGINE = InnoDB;
 
 
