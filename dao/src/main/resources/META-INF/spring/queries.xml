@@ -3,22 +3,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <!-- Find all the Badges that were assigned User -->
-
-    <bean id="findBadgesByUserId" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT badge.* FROM badge
-
-                JOIN user_badge ON ub_badge_id = bdg_id
-
-                JOIN user ON ub_user_id = user_id
-
-            WHERE user_id = :userId
-        "/>
-    </bean>
-
-
     <!-- Find all Question by User id -->
 
     <bean id="findQuestionsByUserId" class="java.lang.String">
@@ -152,23 +136,4 @@
         "/>
     </bean>
 
-
-    <!-- Find all Comments by Question id -->
-
-    <bean id="findCommentsByQuestionId" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT comment.*, user_activity.*
-
-            FROM comment
-
-                JOIN user_activity ON ua_id = cm_id
-
-                JOIN question ON qs_id = cm_question_id
-
-            WHERE ua_type = 'COMMENT' AND qs_id = :questionId
-
-            ORDER BY ua_created
-        "/>
-    </bean>
 </beans>
