@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.web;
 import com.dozortsev.adviceexchange.domain.Answer;
 import com.dozortsev.adviceexchange.domain.Question;
 import com.dozortsev.adviceexchange.domain.User;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Question;
 import com.dozortsev.adviceexchange.service.AnswerService;
 import com.dozortsev.adviceexchange.service.CommentService;
 import com.dozortsev.adviceexchange.service.QuestionService;

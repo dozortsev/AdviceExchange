@@ -1,11 +1,11 @@
 package com.dozortsev.adviceexchange.service;
 
-import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.domain.UserActivity;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.User;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.UserActivity;
 
 import java.util.Set;
 
-public interface UserService extends GenericService<Long, User> {
+public interface UserService extends GenericService<User> {
 
     int totalCount(String name);
 
@@ -13,5 +13,5 @@ public interface UserService extends GenericService<Long, User> {
 
     User findByLogin(String login);
 
-    Set<UserActivity> userActivities(long id);
+    Set<UserActivity> userActivities(int id);
 }

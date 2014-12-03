@@ -1,7 +1,7 @@
 package com.dozortsev.adviceexchange.service;
 
 import com.dozortsev.adviceexchange.dao.AnswerDao;
-import com.dozortsev.adviceexchange.domain.Answer;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 
 @Transactional(propagation = REQUIRES_NEW, readOnly = true)
 @Service
-public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implements AnswerService {
+public class AnswerServiceImpl extends GenericServiceImpl<Answer> implements AnswerService {
 
     private @Autowired AnswerDao answerDao;
 
@@ -29,12 +29,12 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
         setEntityClass(Answer.class);
     }
 
-    @Override public Set<Answer> findByUserId(long userId) {
+    @Override public Set<Answer> findByUserId(int userId) {
         final long start = nanoTime();
-        Set<Answer> answers = new LinkedHashSet<>();
+        Set<Answer> answers = null;
         try {
             log.info(format("Find User by ID: %d", userId));
-            answers.addAll(getDao().findByUserId(userId));
+            answers = new LinkedHashSet<>(getDao().findByUserId(userId));
             log.info(format("Set of Users have size: %d", answers.size()));
         }
         catch (Exception e) {
@@ -46,12 +46,12 @@ public class AnswerServiceImpl extends GenericServiceImpl<Long, Answer> implemen
         return answers;
     }
 
-    @Override public Set<Answer> findByQuestionId(long questionId) {
+    @Override public Set<Answer> findByQuestionId(int questionId) {
         final long start = nanoTime();
-        HashSet<Answer> answers = new LinkedHashSet<>();
+        HashSet<Answer> answers = null;
         try {
             log.info(format("Find Answers by Question ID: %d", questionId));
-            answers.addAll(getDao().findByQuestionId(questionId));
+            answers = new LinkedHashSet<>(getDao().findByQuestionId(questionId));
             log.info(format("Set of Questions have size: %d", answers.size()));
         }
         catch (Exception e) {

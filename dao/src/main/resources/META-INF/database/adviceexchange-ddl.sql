@@ -92,8 +92,7 @@ DROP TABLE IF EXISTS question;
 CREATE TABLE IF NOT EXISTS question (
 
   id        INT          NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT,
-  title     VARCHAR(200) NOT NULL,
-  asw_count INT          NOT NULL DEFAULT 0
+  title     VARCHAR(200) NOT NULL
 ) ENGINE = InnoDB;
 
 

@@ -1,10 +1,10 @@
 package com.dozortsev.adviceexchange.service;
 
-import com.dozortsev.adviceexchange.domain.Comment;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Comment;
 
 import java.util.Set;
 
-public interface CommentService extends GenericService<Long, Comment> {
+public interface CommentService extends GenericService<Comment> {
 
-    Set<Comment> findByQuestionId(long questionId);
+    Set<Comment> findByQuestionId(int questionId);
 }

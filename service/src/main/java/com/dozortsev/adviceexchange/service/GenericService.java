@@ -1,20 +1,18 @@
 package com.dozortsev.adviceexchange.service;
 
-import com.dozortsev.adviceexchange.domain.AbstractEntity;
+import org.jooq.UpdatableRecord;
 
 import java.io.Serializable;
 
-public interface GenericService<ID extends Serializable, T extends AbstractEntity<ID>> {
+public interface GenericService<E extends Serializable> {
 
-    ID create(T entity);
+    int create(UpdatableRecord record);
 
-    void delete(T entity);
+    void delete(UpdatableRecord record);
 
-    void deleteById(ID id);
+    E findById(int id);
 
-    T findById(ID id);
-
-    T update(T entity);
+    void update(UpdatableRecord record);
 
     int totalCount();
 }

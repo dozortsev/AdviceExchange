@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
-
+import static java.util.Objects.requireNonNull;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY)
@@ -25,23 +24,21 @@ public abstract class GenericDaoImpl<R extends Record, T extends TableImpl<R>> i
     @Autowired DSLContext dsl;
 
     @Override public int create(UpdatableRecord record) {
-        return Objects.requireNonNull(record).store();
+        return requireNonNull(record).store();
     }
 
     @Override public void delete(UpdatableRecord record) {
         dsl.executeDelete(record);
     }
 
-    @Transactional(readOnly = true)
     @Override public R findById(int id) {
         return dsl.fetchOne(table, table.field(idField).equal(id));
     }
 
     @Override public void update(UpdatableRecord record) {
-        Objects.requireNonNull(record).store();
+        requireNonNull(record).store();
     }
 
-    @Transactional(readOnly = true)
     @Override public int totalCount() {
         return dsl.select(DSL.count(idField)).from(table).fetchOne(0, int.class);
     }

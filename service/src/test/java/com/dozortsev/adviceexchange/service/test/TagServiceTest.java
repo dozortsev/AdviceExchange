@@ -1,6 +1,6 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.Tag;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Tag;
 import org.junit.Test;
 
 import java.util.List;
@@ -14,10 +14,10 @@ public class TagServiceTest extends TestContext {
         final String expectDesc = "A disease is an abnormal condition that affects the body of an organism.";
         final String expectName = "Disease";
 
-        final Tag tag = new Tag(expectName, expectDesc);
+        final Tag tag = new Tag(/*expectName, expectDesc*/);
 
         assertNull(tag.getId());
-        tagService.create(tag);
+//        tagService.create(tag);
         assertNotNull(tag.getId());
 
         // reload Tag

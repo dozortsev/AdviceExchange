@@ -1,7 +1,7 @@
 package com.dozortsev.adviceexchange.service;
 
 import com.dozortsev.adviceexchange.dao.CommentDao;
-import com.dozortsev.adviceexchange.domain.Comment;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 
 @Transactional(propagation = REQUIRES_NEW)
 @Service
-public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implements CommentService {
+public class CommentServiceImpl extends GenericServiceImpl<Comment> implements CommentService {
 
     private @Autowired CommentDao commentDao;
 
@@ -29,7 +29,7 @@ public class CommentServiceImpl extends GenericServiceImpl<Long, Comment> implem
     }
 
     @Transactional(readOnly = true)
-    @Override public Set<Comment> findByQuestionId(long questionId) {
+    @Override public Set<Comment> findByQuestionId(int questionId) {
         final long start = nanoTime();
         Set<Comment> comments = new LinkedHashSet<>();
         try {

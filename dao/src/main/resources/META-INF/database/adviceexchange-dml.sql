@@ -261,28 +261,28 @@ ALTER TABLE vote ENABLE KEYS;
 -- Question data
 
 ALTER TABLE question DISABLE KEYS;
-INSERT INTO question (id, title, asw_count) VALUES
+INSERT INTO question (id, title) VALUES
 
-  (1, 'Is there any truth to that?', 1),
-  (3, 'What is that?', 1),
-  (7, 'Like scabies and pubic lice?', 2),
-  (10, 'I saw an advertisement on the bus for Plan B. What is that?', 0),
-  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?', 3),
-  (15, 'What about other hormonal methods of birth control?', 1),
-  (19, 'I heard that there is a sexually transmitted infection that can be transmitted by a man to a woman, but not by a woman to a man. Is that true?', 3),
-  (25, 'Sometimes it''s clear. Is it normal? If not, what''s he supposed to do?', 4),
-  (30, 'I am a woman and want to know if I can contract HPV by performing oral sex on a woman who has it?', 0),
-  (31, 'Can the chlamydia be passed on to other staff or customers?', 0),
-  (32, 'A lot of the information available seems to pertain to mostly heterosexual activity.', 2),
-  (36, 'Is it true that younger men are more at risk of testicular cancer than older men?', 3),
-  (40, 'Is it true that younger men are more at risk of testicular cancer than older men?', 0),
-  (41, 'Could my fiancé have picked up my cold sore on his lips and infected me with it sexually?', 0),
-  (42, 'About three weeks ago I had a cold sore on my lip and had sex with my boyfriend ?', 0),
-  (43, 'Today, my vulva is extremely itchy, red, and irritated. Could my fiancé have picked up my cold sore on his lips and infected me with it sexually ?', 0),
-  (44, 'Is there one test I can get to find out if I have any sexually transmitted infections ?', 0),
-  (45, 'How do I tell my parents I''m thinking of having sex without them freaking out?', 0),
-  (46, 'Do all kids who are available for adoption get adopted?', 0),
-  (47, 'What would be wrong with making teens ask their parents for permission to use birth control?', 0);
+  (1, 'Is there any truth to that?'),
+  (3, 'What is that?'),
+  (7, 'Like scabies and pubic lice?'),
+  (10, 'I saw an advertisement on the bus for Plan B. What is that?'),
+  (11, 'Is it true that women who use emergency contraception are at increased risk of ectopic pregnancy?'),
+  (15, 'What about other hormonal methods of birth control?'),
+  (19, 'I heard that there is a sexually transmitted infection that can be transmitted by a man to a woman, but not by a woman to a man. Is that true?'),
+  (25, 'Sometimes it''s clear. Is it normal? If not, what''s he supposed to do?'),
+  (30, 'I am a woman and want to know if I can contract HPV by performing oral sex on a woman who has it?'),
+  (31, 'Can the chlamydia be passed on to other staff or customers?'),
+  (32, 'A lot of the information available seems to pertain to mostly heterosexual activity.'),
+  (36, 'Is it true that younger men are more at risk of testicular cancer than older men?'),
+  (40, 'Is it true that younger men are more at risk of testicular cancer than older men?'),
+  (41, 'Could my fiancé have picked up my cold sore on his lips and infected me with it sexually?'),
+  (42, 'About three weeks ago I had a cold sore on my lip and had sex with my boyfriend ?'),
+  (43, 'Today, my vulva is extremely itchy, red, and irritated. Could my fiancé have picked up my cold sore on his lips and infected me with it sexually ?'),
+  (44, 'Is there one test I can get to find out if I have any sexually transmitted infections ?'),
+  (45, 'How do I tell my parents I''m thinking of having sex without them freaking out?'),
+  (46, 'Do all kids who are available for adoption get adopted?'),
+  (47, 'What would be wrong with making teens ask their parents for permission to use birth control?');
 ALTER TABLE question ENABLE KEYS;
 
 

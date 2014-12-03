@@ -1,6 +1,9 @@
 package com.dozortsev.adviceexchange.service.test;
 
-import com.dozortsev.adviceexchange.domain.*;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Answer;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Question;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.User;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Vote;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import static com.dozortsev.adviceexchange.domain.jooq.enums.UserActivityType.ANSWER;
 import static org.junit.Assert.*;
 
 public class AnswerServiceTest extends TestContext {
@@ -15,18 +19,18 @@ public class AnswerServiceTest extends TestContext {
     @Test public void testFindAnswerById() {
 
         // choose exist Answer Id
-        final Long id = 21L;
+        final int id = 21;
 
         // expected User id
-        final Long userId = 19L;
+        final int userId = 19;
 
         // expected Question id
-        final Long questionId = 18L;
+        final int questionId = 18;
 
         final Answer answer = answerService.findById(id);
 
         assertNotNull(answer);
-        assertEquals(Type.ANSWER, answer.getType());
+        assertEquals(ANSWER, answer.getType());
         assertTrue(userService.userActivities(userId).contains(answer));
         assertTrue(answerService.findByUserId(userId).contains(answer));
         assertTrue(answerService.findByQuestionId(questionId).contains(answer));
@@ -35,23 +39,23 @@ public class AnswerServiceTest extends TestContext {
     @Test public void testCreateAnswer() {
 
         // choose exist Question and User
-        final User user = userService.findById(10L);
-        final Question question = questionService.findById(10L);
+        final User user = userService.findById(10);
+        final Question question = questionService.findById(10);
 
         // prepare data for test of create
         final String content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, obcaecati.";
 
         Answer answer = null;
         List<Vote> votes = Arrays.asList(
-                new Vote(userService.findById(11L), answer, Vote.UP),
-                new Vote(userService.findById(12L), answer, Vote.UP),
-                new Vote(userService.findById(30L), answer, Vote.DOWN)
+//                new Vote(userService.findById(11), answer, Vote.UP),
+//                new Vote(userService.findById(12), answer, Vote.UP),
+//                new Vote(userService.findById(30), answer, Vote.DOWN)
         );
-        answer = new Answer(user, content, votes, question);
-        answer.canAccept(true);
-
-        assertNull(answer.getId());
-        questionService.addAnswer(answer);
+//        answer = new Answer(user, content, votes, question);
+//        answer.canAccept(true);
+//
+//        assertNull(answer.getId());
+//        questionService.addAnswer(answer);
         assertNotNull(answer.getId());
 
         // reload
@@ -59,10 +63,10 @@ public class AnswerServiceTest extends TestContext {
         assertNotNull(expectAnswer);
 
         // check on the expected data
-        assertEquals(Type.ANSWER, expectAnswer.getType());
+        assertEquals(ANSWER, expectAnswer.getType());
         assertEquals(content, expectAnswer.getContent());
-        assertEquals(0, expectAnswer.getVotes());
-        assertTrue(expectAnswer.isAccept());
+        assertEquals(0, expectAnswer.getTotalscore().intValue());
+//        assertTrue(expectAnswer.getAccepted());
         assertTrue(answerService.findByUserId(user.getId()).contains(expectAnswer));
         assertTrue(answerService.findByQuestionId(question.getId()).contains(expectAnswer));
     }
@@ -70,29 +74,22 @@ public class AnswerServiceTest extends TestContext {
     @Test public void testDeleteAnswer() {
 
         // choose Answer id
-        final Long id = 36L;
+        final int id = 36;
 
         // expected ref Question
-        final Question question = questionService.findById(17L);
+        final Question question = questionService.findById(17);
 
         // expected User id
-        final Long userId = 78L;
+        final int userId = 78;
 
         final Answer answer = answerService.findById(id);
         assertNotNull(answer);
-        assertEquals(Type.ANSWER, answer.getType());
+        assertEquals(ANSWER, answer.getType());
 
         final Set<Answer> answers = answerService.findByQuestionId(question.getId());
 
-        assertEquals(answers.size(), question.getAnswerCount());
         assertTrue(answers.contains(answer));
         assertTrue(answerService.findByUserId(userId).contains(answer));
-
-        questionService.delAnswer(answer);
-
-        final Set<Answer> expectAnswers = answerService.findByQuestionId(question.getId());
-        final Question expectQuestion = questionService.findById(17L);
-        assertEquals(expectAnswers.size(), expectQuestion.getAnswerCount());
 
         assertNull(answerService.findById(id));
         assertFalse(answerService.findByQuestionId(question.getId()).contains(answer));
@@ -102,7 +99,7 @@ public class AnswerServiceTest extends TestContext {
     @Test public void testUpdateAnswer() {
 
         // choose Answer
-        final Answer answer = answerService.findById(22L);
+        final Answer answer = answerService.findById(22);
 
         final String oldContent = answer.getContent();
         final Date created = answer.getCreated();
@@ -111,7 +108,7 @@ public class AnswerServiceTest extends TestContext {
         answer.setContent("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
 
         // persist changes
-        answerService.update(answer);
+//        answerService.update(answer);
 
         // reload
         final Answer expectedAnswer = answerService.findById(answer.getId());

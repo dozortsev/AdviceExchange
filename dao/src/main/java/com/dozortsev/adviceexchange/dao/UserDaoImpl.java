@@ -2,7 +2,8 @@ package com.dozortsev.adviceexchange.dao;
 
 import com.dozortsev.adviceexchange.domain.jooq.enums.UserActivityType;
 import com.dozortsev.adviceexchange.domain.jooq.tables.*;
-import com.dozortsev.adviceexchange.domain.jooq.tables.records.UserActivityRecord;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.User;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.UserActivity;
 import com.dozortsev.adviceexchange.domain.jooq.tables.records.UserRecord;
 import org.jooq.impl.DSL;
 import org.springframework.stereotype.Repository;
@@ -10,51 +11,56 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.dozortsev.adviceexchange.domain.jooq.tables.Answer.ANSWER;
-import static com.dozortsev.adviceexchange.domain.jooq.tables.Comment.COMMENT;
-import static com.dozortsev.adviceexchange.domain.jooq.tables.Question.QUESTION;
-import static com.dozortsev.adviceexchange.domain.jooq.tables.User.USER;
-import static com.dozortsev.adviceexchange.domain.jooq.tables.UserActivity.USER_ACTIVITY;
+import static com.dozortsev.adviceexchange.domain.jooq.Tables.COMMENT;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TAnswer.ANSWER;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TQuestion.QUESTION;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TUser.USER;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TUserActivity.USER_ACTIVITY;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY, readOnly = true)
 @Repository
-public class UserDaoImpl extends GenericDaoImpl<UserRecord, User> implements UserDao {
+public class UserDaoImpl extends GenericDaoImpl<UserRecord, TUser> implements UserDao {
 
     public UserDaoImpl() {
-        setIdField(USER.ID);
         setTable(USER);
+        setIdField(USER.ID);
     }
 
     @Override public int totalCount(String name) {
-        return dsl.select(DSL.count(USER.ID))
-                .from(USER)
-                .where(USER.NAME.likeIgnoreCase(name))
-                .and(USER.ENABLED.isTrue())
+        TUser u = USER.as("u");
+
+        return dsl.select(DSL.count(u.ID))
+                .from(u)
+                .where(u.NAME.likeIgnoreCase(name))
+                .and(u.ENABLED.isTrue())
+
                 .fetchOne(0, int.class);
     }
 
-    @Override public List<UserRecord> findByName(String name, int offset) {
+    @Override public List<User> findByName(String name, int offset) {
+        TUser u = USER.as("u");
 
-        return dsl.select(USER.ID, USER.NAME, USER.EMAIL, USER.JOINED)
-                .from(USER)
-                .where(USER.NAME.likeIgnoreCase(name))
+        return dsl.select(u.ID, u.NAME, u.EMAIL, u.JOINED)
+                .from(u)
+                .where(u.NAME.likeIgnoreCase(name))
                 .limit(offset, 36)
-                .fetchInto(USER);
+                .fetchInto(User.class);
     }
 
-    @Override public UserRecord findByLogin(String login) {
-        return dsl.fetchOne(USER, USER.EMAIL.eq(login).and(USER.ENABLED.isTrue()));
+    @Override public User findByLogin(String login) {
+        TUser u = USER.as("u");
+
+        return dsl.fetchOne(u, u.EMAIL.eq(login).and(u.ENABLED.isTrue())).into(User.class);
     }
 
-    @Override public List<UserActivityRecord> userActivities(int id) {
+    @Override public List<UserActivity> userActivities(int id) {
+        TUserActivity ua = USER_ACTIVITY.as("ua");
+        TQuestion q = QUESTION.as("q");
+        TAnswer a = ANSWER.as("a");
+        TComment c = COMMENT.as("c");
 
-        UserActivity ua = USER_ACTIVITY.as("ua");
-        Question q = QUESTION.as("q");
-        Answer a = ANSWER.as("a");
-        Comment c = COMMENT.as("c");
-
-        return dsl.select(ua.ID, ua.TYPE, q.TITLE, q.ASW_COUNT, a.ACCEPTED, a.QT_ID)
+        return dsl.select(ua.ID, ua.TYPE, q.TITLE, a.ACCEPTED, a.QT_ID)
                 .from(ua)
 
                 .leftOuterJoin(a)
@@ -67,6 +73,7 @@ public class UserDaoImpl extends GenericDaoImpl<UserRecord, User> implements Use
                     .on(ua.USER_ID.eq(q.ID)).and(ua.TYPE.eq(UserActivityType.QUESTION))
 
                 .where(ua.USER_ID.eq(id))
-                .fetchInto(UserActivityRecord.class);
+
+                .fetchInto(UserActivity.class);
     }
 }

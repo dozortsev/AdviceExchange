@@ -1,7 +1,7 @@
 package com.dozortsev.adviceexchange.service;
 
 import com.dozortsev.adviceexchange.dao.BadgeDao;
-import com.dozortsev.adviceexchange.domain.Badge;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Badge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +16,9 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 
 @Transactional(propagation = REQUIRES_NEW)
 @Service
-public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements BadgeService {
+public class BadgeServiceImpl extends GenericServiceImpl<Badge> implements BadgeService {
 
-    private @Autowired BadgeDao badgeDao;
+    @Autowired private BadgeDao badgeDao;
 
     @Override public BadgeDao getDao() {
         return badgeDao;
@@ -28,8 +28,7 @@ public class BadgeServiceImpl extends GenericServiceImpl<Long, Badge> implements
         setEntityClass(Badge.class);
     }
 
-    @Transactional(readOnly = true)
-    @Override public Set<Badge> findByUserId(long userId) {
+    @Override public Set<Badge> findByUserId(int userId) {
         final long start = nanoTime();
         Set<Badge> badges = new HashSet<>();
         try {

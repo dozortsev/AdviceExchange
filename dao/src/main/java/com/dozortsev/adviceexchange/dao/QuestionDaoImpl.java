@@ -1,93 +1,101 @@
 package com.dozortsev.adviceexchange.dao;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Question;
-import org.hibernate.SQLQuery;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dozortsev.adviceexchange.domain.jooq.enums.UserActivityType;
+import com.dozortsev.adviceexchange.domain.jooq.tables.TQuestion;
+import com.dozortsev.adviceexchange.domain.jooq.tables.TQuestionTag;
+import com.dozortsev.adviceexchange.domain.jooq.tables.TTag;
+import com.dozortsev.adviceexchange.domain.jooq.tables.TUserActivity;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Question;
+import com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TQuestion.QUESTION;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TQuestionTag.QUESTION_TAG;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TTag.TAG;
+import static com.dozortsev.adviceexchange.domain.jooq.tables.TUserActivity.USER_ACTIVITY;
+import static java.lang.String.join;
+import static org.jooq.impl.DSL.concat;
+import static org.jooq.impl.DSL.count;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY)
-@SuppressWarnings("unchecked")
 @Repository
-public class QuestionDaoImpl extends GenericDaoImpl<Long, Question> implements QuestionDao {
-
-    private @Autowired String findQuestionsByUserId;
-
-    private @Autowired String findQuestionsByTags;
-
-    private @Autowired String loadQuestionsSet;
-
-    private @Autowired String findQuestionsByKeyWords;
+public class QuestionDaoImpl extends GenericDaoImpl<QuestionRecord, TQuestion> implements QuestionDao {
 
     public QuestionDaoImpl() {
-        setEntityClass(Question.class);
-    }
-
-    @Override public int addAnswer(Question question, Answer answer) {
-
-        question.setAnswerCount(question.getAnswerCount() + 1);
-        getCurrentSession().save(answer);
-        getCurrentSession().update(question);
-
-        return question.getAnswerCount();
-    }
-
-    @Override public int delAnswer(Question question, Answer answer) {
-
-        question.setAnswerCount(question.getAnswerCount() - 1);
-        getCurrentSession().delete(answer);
-        getCurrentSession().update(question);
-
-        return question.getAnswerCount();
+        setTable(QUESTION);
+        setIdField(QUESTION.ID);
     }
 
     @Override public List<Question> loadFrom(int offset) {
+        TQuestion q = QUESTION.as("q");
+        TUserActivity ua = USER_ACTIVITY.as("ua");
 
-        return getCurrentSession().createSQLQuery(loadQuestionsSet)
-                .addEntity(getEntityClass())
-                .setInteger("offset", offset)
-                .list();
+        return dsl.select(ua.ID, ua.TYPE, ua.USER_ID, q.TITLE, ua.CONTENT, ua.CREATED)
+                .from(q)
+                .join(ua).on(ua.ID.eq(q.ID))
+                .where(ua.TYPE.eq(UserActivityType.QUESTION))
+                    .and(ua.ACTIVE.isTrue())
+                .orderBy(ua.CREATED.desc())
+                .limit(offset, 10)
+
+                .fetchInto(Question.class);
     }
 
     @Override public List<Question> findByKeyWord(String... keyWords) {
+        TQuestion q = QUESTION.as("q");
+        TUserActivity ua = USER_ACTIVITY.as("ua");
 
-        StringBuilder query = new StringBuilder(findQuestionsByKeyWords)
-                .append("HAVING CONCAT(qs_title, ' ', ua_content) REGEXP :word0")
-                .append("\n");
+        return dsl.select(ua.ID, ua.TYPE, ua.USER_ID, q.TITLE, ua.CONTENT, ua.CREATED)
+                .from(q)
+                .join(ua).on(ua.ID.eq(q.ID))
+                .where(ua.TYPE.eq(UserActivityType.QUESTION))
+                    .and(ua.ACTIVE.isTrue())
+                    .and(concat(q.TITLE, ua.CONTENT).likeRegex(join("|", keyWords)))
+                .orderBy(ua.CREATED.desc())
 
-        for (int i = 1; i < keyWords.length; i++) query
-                .append("AND CONCAT(qs_title, ' ', ua_content) REGEXP :word")
-                .append(i).append("\n");
-
-        query.append("ORDER BY ua_created DESC");    // building of the query is finished
-
-        SQLQuery sql = getCurrentSession().createSQLQuery(query.toString()).addEntity(getEntityClass());
-
-        for (int i = 0; i < keyWords.length; i++)
-            sql.setParameter("word" + i, " " + keyWords[i] + " ");
-
-        return sql.list();
+                .fetchInto(Question.class);
     }
 
-    @Override public List<Question> findByUserId(long userId) {
+    @Override public List<Question> findByUserId(int userId) {
+        TQuestion q = QUESTION.as("q");
+        TUserActivity ua = USER_ACTIVITY.as("ua");
 
-        return getCurrentSession().createSQLQuery(findQuestionsByUserId)
-                .addEntity(getEntityClass())
-                .setLong("userId", userId)
-                .list();
+        return dsl.select(ua.ID, ua.TYPE, ua.USER_ID, q.TITLE, ua.CONTENT, ua.CREATED)
+                .from(q)
+                .join(ua).on(ua.ID.eq(q.ID))
+                .where(ua.TYPE.eq(UserActivityType.QUESTION))
+                    .and(ua.ACTIVE.isTrue())
+                    .and(ua.USER_ID.eq(userId))
+                .orderBy(ua.CREATED.desc())
+
+                .fetchInto(Question.class);
     }
 
     @Override public List<Question> findByTags(String... tags) {
+        TTag t = TAG.as("t");
+        TQuestion q = QUESTION.as("q");
+        TQuestionTag qt = QUESTION_TAG.as("qt");
+        TUserActivity ua = USER_ACTIVITY.as("ua");
 
-        return getCurrentSession().createSQLQuery(findQuestionsByTags)
-                .addEntity(getEntityClass())
-                .setParameterList("tags", tags)
-                .setParameter("tagCount", tags.length)
-                .list();
+        return dsl.select(ua.ID, ua.TYPE, ua.USER_ID, q.TITLE, ua.CONTENT, ua.CREATED)
+
+                .from(q)
+                    .join(ua).on(ua.ID.eq(q.ID))
+                    .join(qt).on(qt.QT_ID.eq(q.ID))
+                    .join(t).on(qt.TAG_ID.eq(t.ID))
+
+                .where(t.NAME.in(tags)).and(ua.ACTIVE.isTrue())
+
+                .groupBy(qt.QT_ID)
+
+                .having(count(t.ID).greaterOrEqual(tags.length))
+
+                .orderBy(ua.CREATED.desc())
+
+                .fetchInto(Question.class);
     }
 }

@@ -1,21 +1,18 @@
 package com.dozortsev.adviceexchange.dao;
 
-import com.dozortsev.adviceexchange.domain.Answer;
-import com.dozortsev.adviceexchange.domain.Question;
+import com.dozortsev.adviceexchange.domain.jooq.tables.TQuestion;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Question;
+import com.dozortsev.adviceexchange.domain.jooq.tables.records.QuestionRecord;
 
 import java.util.List;
 
-public interface QuestionDao extends GenericDao<Long, Question> {
-
-    int addAnswer(Question question, Answer answer);
-
-    int delAnswer(Question question, Answer answer);
+public interface QuestionDao extends GenericDao<QuestionRecord, TQuestion> {
 
     List<Question> loadFrom(int offset);
 
-    List<Question> findByKeyWord(String... keyWork);
+    List<Question> findByKeyWord(String... keyWords);
 
-    List<Question> findByUserId(long userId);
+    List<Question> findByUserId(int userId);
 
     List<Question> findByTags(String... tags);
 }

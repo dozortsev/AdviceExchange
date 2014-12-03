@@ -3,64 +3,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <!-- Find all Question by User id -->
-
-    <bean id="findQuestionsByUserId" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT question.*, user_activity.*
-
-            FROM question
-
-                JOIN user_activity ON ua_id = qs_id
-
-            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId AND ua_active = TRUE
-
-            ORDER BY ua_created DESC
-        "/>
-    </bean>
-
-
-    <!-- Find all Question by array of Tag names -->
-
-    <bean id="findQuestionsByTags" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT question.*, user_activity.* FROM question
-
-                JOIN user_activity ON ua_id = qs_id
-
-                JOIN question_tag ON qt_question_id = qs_id
-
-                JOIN tag ON qt_tag_id = tag_id
-
-            WHERE tag_name IN (:tags) AND ua_active = TRUE
-
-            GROUP BY qs_id
-
-            HAVING COUNT(tag_id) >= :tagCount
-
-            ORDER BY ua_created DESC
-        "/>
-    </bean>
-
-
-    <!-- Find Questions by key words -->
-
-    <bean id="findQuestionsByKeyWords" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT question.*, user_activity.*
-
-            FROM question
-
-                JOIN user_activity ON ua_type = 'QUESTION'
-
-            WHERE qs_id = ua_id AND ua_active = TRUE
-        "/>
-    </bean>
-
-
     <!-- User Activity -->
 
     <bean id="userActivityQuery" class="java.lang.String">
@@ -81,58 +23,6 @@
                 LEFT JOIN answer ON asw_id = ua_id
 
             WHERE user_id = ?
-        "/>
-    </bean>
-
-
-    <!-- Load limit set of Questions -->
-
-    <bean id="loadQuestionsSet" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT user_activity.*, question.* FROM question
-
-                JOIN user_activity ON ua_id = qs_id
-
-            WHERE ua_type = 'QUESTION' AND ua_active = TRUE
-
-            ORDER BY ua_created DESC
-
-            LIMIT :offset, 10
-        "/>
-    </bean>
-
-
-    <!-- Find all Answers by User id -->
-
-    <bean id="findAnswersByUserId" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT answer.*, user_activity.* FROM answer
-
-                JOIN user_activity ON ua_id = asw_id
-
-            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId AND ua_active = TRUE
-
-            ORDER BY ua_created DESC
-        "/>
-    </bean>
-
-
-    <!-- Find all Answers by Question id -->
-
-    <bean id="findAnswersByQuestionId" class="java.lang.String">
-        <constructor-arg value="
-
-            SELECT answer.*, user_activity.* FROM answer
-
-                JOIN user_activity ON ua_id = asw_id
-
-                JOIN question ON qs_id = asw_question_id
-
-            WHERE ua_type = 'ANSWER' AND qs_id = :questionId AND ua_active = TRUE
-
-            ORDER BY asw_votes DESC
         "/>
     </bean>
 

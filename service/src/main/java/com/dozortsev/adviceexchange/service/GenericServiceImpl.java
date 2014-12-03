@@ -1,8 +1,8 @@
 package com.dozortsev.adviceexchange.service;
 
 import com.dozortsev.adviceexchange.dao.GenericDao;
-import com.dozortsev.adviceexchange.domain.AbstractEntity;
 import org.apache.log4j.Logger;
+import org.jooq.UpdatableRecord;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,20 +15,20 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 
 @Transactional(propagation = REQUIRES_NEW, rollbackFor = Exception.class)
 @Service
-public abstract class GenericServiceImpl<ID extends Serializable, T extends AbstractEntity<ID>> implements GenericService<ID, T> {
+public abstract class GenericServiceImpl<E extends Serializable> implements GenericService<E> {
 
-    private Class<T> entityClass;
+    private Class<E> entityClass;
 
     final Logger log = Logger.getLogger(this.getClass().getName());
 
-    protected abstract GenericDao<ID, T> getDao();
+    protected abstract GenericDao getDao();
 
-    @Override public ID create(T entity) {
+    @Override public int create(UpdatableRecord record) {
         final long start = nanoTime();
         try {
             log.info(format("Create new %s", getEntityClass().getSimpleName()));
-            getDao().create(entity);
-            log.info(format("Success create; ID: %s", entity.getId()));
+            getDao().create(record);
+//            log.info(format("Success create; ID: %s", record.getId()));
         }
         catch (Exception e) {
             log.error("Error: ", e);
@@ -36,14 +36,14 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         finally {
             log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
-        return entity.getId();
+        return record.getValue(0, int.class);
     }
 
-    @Override public void delete(T entity) {
+    @Override public void delete(UpdatableRecord record) {
         final long start = nanoTime();
         try {
             log.info(format("Delete %s", getEntityClass().getSimpleName()));
-            getDao().delete(entity);
+            getDao().delete(record);
             log.info("Success delete");
         }
         catch (Exception e) {
@@ -54,28 +54,11 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         }
     }
 
-    @Override public void deleteById(ID id) {
-        final long start = nanoTime();
-        try {
-            log.info(format("Delete %s by ID: %s", getEntityClass().getSimpleName(), id));
-            getDao().deleteById(id);
-            log.info("Success delete");
-
-        }
-        catch (Exception e) {
-            log.error("Error: ", e);
-        }
-        finally {
-            log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
-        }
-    }
-
-    @Transactional(readOnly = true)
-    @Override public T findById(ID id) {
+    @Override public E findById(int id) {
         final long start = nanoTime();
         try {
             log.info(format("Find %s by ID: %s", getEntityClass().getSimpleName(), id));
-            T entity = getDao().findById(id);
+            E entity = getDao().findById(id).into(getEntityClass());
 
             if (entity != null) {
                 log.info("Success found");
@@ -92,11 +75,11 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         return null;
     }
 
-    @Override public T update(T entity) {
+    @Override public void update(UpdatableRecord record) {
         final long start = nanoTime();
         try {
-            log.info(format("Update %s. ID: %s", getEntityClass().getSimpleName(), entity.getId()));
-            getDao().update(entity);
+            log.info(format("Update %s. ID: %s", getEntityClass().getSimpleName(), record.getValue(0, int.class)));
+            getDao().update(record);
             log.info("Success updated");
         }
         catch (Exception e) {
@@ -105,7 +88,6 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         finally {
             log.info(format("Time lapse: %d", NANOSECONDS.toMillis(nanoTime() - start)));
         }
-        return entity;
     }
 
     @Override public int totalCount() {
@@ -124,10 +106,10 @@ public abstract class GenericServiceImpl<ID extends Serializable, T extends Abst
         return totalCount;
     }
 
-    public Class<T> getEntityClass() {
+    public Class<E> getEntityClass() {
         return entityClass;
     }
-    public void setEntityClass(Class<T> entityClass) {
+    public void setEntityClass(Class<E> entityClass) {
         this.entityClass = entityClass;
     }
 }

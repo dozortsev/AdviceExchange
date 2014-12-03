@@ -1,8 +1,8 @@
 package com.dozortsev.adviceexchange.service;
 
 import com.dozortsev.adviceexchange.dao.UserDao;
-import com.dozortsev.adviceexchange.domain.User;
-import com.dozortsev.adviceexchange.domain.UserActivity;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.User;
+import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.UserActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +17,9 @@ import static org.springframework.transaction.annotation.Propagation.REQUIRES_NE
 
 @Transactional(propagation = REQUIRES_NEW, readOnly = true)
 @Service
-public class UserServiceImpl extends GenericServiceImpl<Long, User> implements UserService {
+public class UserServiceImpl extends GenericServiceImpl<User> implements UserService {
 
-    private @Autowired UserDao userDao;
+    @Autowired private UserDao userDao;
 
     @Override public UserDao getDao() {
         return userDao;
@@ -83,7 +83,7 @@ public class UserServiceImpl extends GenericServiceImpl<Long, User> implements U
         return null;
     }
 
-    @Override public Set<UserActivity> userActivities(long id) {
+    @Override public Set<UserActivity> userActivities(int id) {
         final long start = nanoTime();
         Set<UserActivity> userActivities = new LinkedHashSet<>();
         try {

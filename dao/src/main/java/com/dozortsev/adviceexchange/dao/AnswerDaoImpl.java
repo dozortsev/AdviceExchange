@@ -8,7 +8,6 @@ import com.dozortsev.adviceexchange.domain.jooq.tables.pojos.Answer;
 import com.dozortsev.adviceexchange.domain.jooq.tables.records.AnswerRecord;
 import org.jooq.Field;
 import org.jooq.impl.DSL;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +22,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 @Transactional(propagation = MANDATORY, readOnly = true)
 @Repository
 public class AnswerDaoImpl extends GenericDaoImpl<AnswerRecord, TAnswer> implements AnswerDao {
-
-    @Autowired private String findAnswersByUserId;
-
-    @Autowired private String findAnswersByQuestionId;
 
     public AnswerDaoImpl() {
         setIdField(ANSWER.ID);

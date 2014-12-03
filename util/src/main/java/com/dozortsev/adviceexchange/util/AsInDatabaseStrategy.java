@@ -4,16 +4,20 @@ import org.jooq.util.DefaultGeneratorStrategy;
 import org.jooq.util.Definition;
 import org.jooq.util.mysql.MySQLTableDefinition;
 
+import java.util.List;
+
 import static java.util.Arrays.asList;
 import static org.jooq.util.GeneratorStrategy.Mode.DEFAULT;
 import static org.jooq.util.GeneratorStrategy.Mode.POJO;
 
 public class AsInDatabaseStrategy extends DefaultGeneratorStrategy {
 
+    private static final List<String> userActivities = asList("answer", "question", "comment");
+
     @Override
     public String getJavaClassExtends(Definition definition, Mode mode) {
         if (POJO.equals(mode)) {
-            if (asList("answer", "question", "comment").contains(definition.getName())) {
+            if (userActivities.contains(definition.getName())) {
                 return "UserActivity";
             }
         }
@@ -25,7 +29,7 @@ public class AsInDatabaseStrategy extends DefaultGeneratorStrategy {
         String name = super.getJavaClassName(definition, mode);
 
         return DEFAULT.equals(mode) && definition.getClass().equals(MySQLTableDefinition.class)
-                ? "T" + name
+                ? "T".concat(name)
                 : name;
     }
 }
