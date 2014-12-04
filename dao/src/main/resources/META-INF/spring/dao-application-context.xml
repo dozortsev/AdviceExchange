@@ -36,10 +36,19 @@
         <constructor-arg ref="config" />
     </bean>
 
-    <bean class="org.jooq.impl.DefaultConfiguration" name="config">
-        <constructor-arg>
+    <bean class="org.jooq.impl.DefaultConfiguration" name="config"
+            >
+        <constructor-arg index="0" ref="connectionProvider" />
+        <constructor-arg index="1"><null /></constructor-arg>
+        <constructor-arg index="2"><null /></constructor-arg>
+        <constructor-arg index="3"><null /></constructor-arg>
+        <constructor-arg index="4"><null /></constructor-arg>
+        <constructor-arg index="5"><null /></constructor-arg>
+        <constructor-arg index="6">
             <value type="org.jooq.SQLDialect">MYSQL</value>
         </constructor-arg>
+        <constructor-arg index="7"><null /></constructor-arg>
+        <constructor-arg index="8"><null /></constructor-arg>
     </bean>
 
 

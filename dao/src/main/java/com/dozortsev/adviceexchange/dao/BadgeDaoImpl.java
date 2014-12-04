@@ -15,8 +15,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class BadgeDaoImpl extends GenericDaoImpl<BadgeRecord, TBadge> implements BadgeDao {
 
     public BadgeDaoImpl() {
-        setTable(b);
-        setIdField(b.ID);
+        setTable(TBadge.BADGE);
+        setIdField(TBadge.BADGE.ID);
     }
 
     @Override public List<Badge> findByUserId(int userId) {

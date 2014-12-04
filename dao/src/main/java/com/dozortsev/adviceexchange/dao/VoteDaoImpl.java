@@ -12,7 +12,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class VoteDaoImpl extends GenericDaoImpl<VoteRecord, TVote> implements VoteDao {
 
     public VoteDaoImpl() {
-        setTable(v);
-        setIdField(v.ID);
+        setTable(TVote.VOTE);
+        setIdField(TVote.VOTE.ID);
     }
 }

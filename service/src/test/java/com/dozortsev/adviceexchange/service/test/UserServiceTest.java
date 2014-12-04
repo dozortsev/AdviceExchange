@@ -15,14 +15,12 @@ public class UserServiceTest extends TestContext {
         final int id = 1;
 
         // expected data
-        final String password = "2465010";
         final String login = "urna@Fuscealiquet.com";
 
         final User user = userService.findById(id);
 
         assertNotNull(user);
         assertEquals(login, user.getEmail());
-        assertEquals(password, user.getPassword());
     }
 
     @Test public void testFindUserByLogin() {

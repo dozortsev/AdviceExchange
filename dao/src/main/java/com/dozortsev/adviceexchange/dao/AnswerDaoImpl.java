@@ -19,8 +19,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class AnswerDaoImpl extends GenericDaoImpl<AnswerRecord, TAnswer> implements AnswerDao {
 
     public AnswerDaoImpl() {
-        setIdField(a.ID);
-        setTable(a);
+        setTable(TAnswer.ANSWER);
+        setIdField(TAnswer.ANSWER.ID);
     }
 
     @Override public List<Answer> findByQuestionId(int questionId) {

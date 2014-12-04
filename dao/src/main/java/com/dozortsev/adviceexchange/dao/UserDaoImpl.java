@@ -18,8 +18,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class UserDaoImpl extends GenericDaoImpl<UserRecord, TUser> implements UserDao {
 
     public UserDaoImpl() {
-        setTable(u);
-        setIdField(u.ID);
+        setTable(TUser.USER);
+        setIdField(TUser.USER.ID);
     }
 
     @Override public int totalCount(String name) {

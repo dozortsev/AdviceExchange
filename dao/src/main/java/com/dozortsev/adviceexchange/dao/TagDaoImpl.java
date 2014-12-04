@@ -15,8 +15,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class TagDaoImpl extends GenericDaoImpl<TagRecord, TTag> implements TagDao {
 
     public TagDaoImpl() {
-        setTable(t);
-        setIdField(t.ID);
+        setTable(TTag.TAG);
+        setIdField(TTag.TAG.ID);
     }
 
     @Override public List<Tag> loadAll() {

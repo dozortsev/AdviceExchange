@@ -14,8 +14,7 @@ public class AsInDatabaseStrategy extends DefaultGeneratorStrategy {
 
     private static final List<String> userActivities = asList("answer", "question", "comment");
 
-    @Override
-    public String getJavaClassExtends(Definition definition, Mode mode) {
+    @Override public String getJavaClassExtends(Definition definition, Mode mode) {
         if (POJO.equals(mode)) {
             if (userActivities.contains(definition.getName())) {
                 return "UserActivity";
@@ -24,8 +23,7 @@ public class AsInDatabaseStrategy extends DefaultGeneratorStrategy {
         return Object.class.getName();
     }
 
-    @Override
-    public String getJavaClassName(Definition definition, Mode mode) {
+    @Override public String getJavaClassName(Definition definition, Mode mode) {
         String name = super.getJavaClassName(definition, mode);
 
         return DEFAULT.equals(mode) && definition.getClass().equals(MySQLTableDefinition.class)

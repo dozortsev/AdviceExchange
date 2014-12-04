@@ -19,8 +19,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class QuestionDaoImpl extends GenericDaoImpl<QuestionRecord, TQuestion> implements QuestionDao {
 
     public QuestionDaoImpl() {
-        setTable(q);
-        setIdField(q.ID);
+        setTable(TQuestion.QUESTION);
+        setIdField(TQuestion.QUESTION.ID);
     }
 
     @Override public List<Question> loadFrom(int offset) {

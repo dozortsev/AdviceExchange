@@ -17,8 +17,8 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class CommentDaoImpl extends GenericDaoImpl<CommentRecord, TComment> implements CommentDao {
 
     public CommentDaoImpl() {
-        setTable(c);
-        setIdField(c.ID);
+        setTable(TComment.COMMENT);
+        setIdField(TComment.COMMENT.ID);
     }
 
     @Override public List<Comment> findByQuestionId(int questionId) {
