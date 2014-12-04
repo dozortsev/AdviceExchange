@@ -4,11 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-    <!-- Queries -->
-
-    <import resource="classpath:/META-INF/spring/queries.xml"/>
-
-
     <!-- Data Source -->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
@@ -47,4 +42,46 @@
         </constructor-arg>
     </bean>
 
+
+    <!-- Table aliases -->
+
+    <bean id="q" class="com.dozortsev.adviceexchange.domain.jooq.tables.TQuestion">
+        <constructor-arg name="alias" value="q"/>
+    </bean>
+
+    <bean id="ua" class="com.dozortsev.adviceexchange.domain.jooq.tables.TUserActivity">
+        <constructor-arg name="alias" value="ua"/>
+    </bean>
+
+    <bean id="u" class="com.dozortsev.adviceexchange.domain.jooq.tables.TUser">
+        <constructor-arg name="alias" value="u"/>
+    </bean>
+
+    <bean id="t" class="com.dozortsev.adviceexchange.domain.jooq.tables.TTag">
+        <constructor-arg name="alias" value="t"/>
+    </bean>
+
+    <bean id="qt" class="com.dozortsev.adviceexchange.domain.jooq.tables.TQuestionTag">
+        <constructor-arg name="alias" value="qt"/>
+    </bean>
+
+    <bean id="a" class="com.dozortsev.adviceexchange.domain.jooq.tables.TAnswer">
+        <constructor-arg name="alias" value="a"/>
+    </bean>
+
+    <bean id="b" class="com.dozortsev.adviceexchange.domain.jooq.tables.TBadge">
+        <constructor-arg name="alias" value="b"/>
+    </bean>
+
+    <bean id="ub" class="com.dozortsev.adviceexchange.domain.jooq.tables.TUserBadge">
+        <constructor-arg name="alias" value="ua"/>
+    </bean>
+
+    <bean id="v" class="com.dozortsev.adviceexchange.domain.jooq.tables.TVote">
+        <constructor-arg name="alias" value="v"/>
+    </bean>
+
+    <bean id="c" class="com.dozortsev.adviceexchange.domain.jooq.tables.TComment">
+        <constructor-arg name="alias" value="c"/>
+    </bean>
 </beans>

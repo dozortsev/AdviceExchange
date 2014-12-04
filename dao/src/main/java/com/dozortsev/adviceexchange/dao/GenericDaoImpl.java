@@ -1,5 +1,6 @@
 package com.dozortsev.adviceexchange.dao;
 
+import com.dozortsev.adviceexchange.domain.jooq.tables.*;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -22,6 +23,17 @@ public abstract class GenericDaoImpl<R extends Record, T extends TableImpl<R>> i
     private TableImpl<R> table;
 
     @Autowired DSLContext dsl;
+
+    @Autowired TTag t;
+    @Autowired TUser u;
+    @Autowired TVote v;
+    @Autowired TBadge b;
+    @Autowired TAnswer a;
+    @Autowired TComment c;
+    @Autowired TQuestion q;
+    @Autowired TUserBadge ub;
+    @Autowired TQuestionTag qt;
+    @Autowired TUserActivity ua;
 
     @Override public int create(UpdatableRecord record) {
         return requireNonNull(record).store();

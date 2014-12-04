@@ -7,10 +7,6 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Queries -->
-
-    <import resource="classpath:/META-INF/spring/queries.xml"/>
-
 
     <!-- Scanning and managed components -->
 

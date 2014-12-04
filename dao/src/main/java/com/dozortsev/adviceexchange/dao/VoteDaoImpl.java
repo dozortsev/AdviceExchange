@@ -5,7 +5,6 @@ import com.dozortsev.adviceexchange.domain.jooq.tables.records.VoteRecord;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.dozortsev.adviceexchange.domain.jooq.tables.TVote.VOTE;
 import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 
 @Transactional(propagation = MANDATORY)
@@ -13,7 +12,7 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class VoteDaoImpl extends GenericDaoImpl<VoteRecord, TVote> implements VoteDao {
 
     public VoteDaoImpl() {
-        setTable(VOTE);
-        setIdField(VOTE.ID);
+        setTable(v);
+        setIdField(v.ID);
     }
 }
