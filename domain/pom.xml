@@ -17,6 +17,14 @@
 
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.dozortsev.adviceexchange</groupId>
+            <artifactId>util</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
 
@@ -70,10 +78,6 @@
                                 com.dozortsev.adviceexchange.util.AsInDatabaseStrategy
                             </name>
                         </strategy>
-
-                        <generate>
-                            <pojos>true</pojos>
-                        </generate>
 
                         <database>
                             <name>org.jooq.util.mysql.MySQLDatabase</name>
