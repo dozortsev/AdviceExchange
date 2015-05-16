@@ -9,42 +9,47 @@
     <import resource="classpath:/META-INF/spring/queries.xml"/>
 
 
+    <!-- Queries -->
+
+    <import resource="classpath:/META-INF/spring/queries.xml"/>
+
+
     <!-- Data Source -->
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://localhost:3306/adviceexchange"
-          p:username="root" p:password="anton10"
-    />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/adviceexchange"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+
+    <!-- Configure the Hibernate SessionFactory -->
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+
+        <property name="packagesToScan" value="com.dozortsev.adviceexchange.domain"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                <prop key="hibernate.format_sql">false</prop>
+                <prop key="hibernate.show_sql">false</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <!-- Define Hibernate Transaction Manager -->
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 
-
-    <bean id="transactionAwareDataSource"
-          class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
-        <constructor-arg ref="dataSource" />
-    </bean>
-
-    <bean class="org.jooq.impl.DataSourceConnectionProvider" name="connectionProvider">
-        <constructor-arg ref="transactionAwareDataSource" />
-    </bean>
-
-
-    <!-- Configure the DSL object, optionally overriding jOOQ Exceptions with Spring Exceptions -->
-
-    <bean id="dsl" class="org.jooq.impl.DefaultDSLContext">
-        <constructor-arg ref="config" />
-    </bean>
-
-    <bean class="org.jooq.impl.DefaultConfiguration" name="config">
-        <constructor-arg>
-            <value type="org.jooq.SQLDialect">MYSQL</value>
-        </constructor-arg>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
 </beans>

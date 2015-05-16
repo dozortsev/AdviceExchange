@@ -3,13 +3,13 @@ package com.dozortsev.adviceexchange.domain;
 import javax.persistence.*;
 
 @Entity @Table(name = "badge")
-@AttributeOverride(name = "id", column = @Column(name = "bdg_id"))
+@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class Badge extends AbstractEntity<Long> {
 
-    @Column(name = "bdg_name")
+    @Column(name = "name")
     private String name;
 
-    @Lob @Column(name = "bdg_desc")
+    @Lob @Column(name = "desc")
     private String desc;
 
     public Badge() { }

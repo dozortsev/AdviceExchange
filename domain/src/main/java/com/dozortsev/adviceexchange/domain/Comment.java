@@ -7,11 +7,11 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity @Table(name = "comment")
-@PrimaryKeyJoinColumn(name = "cm_id")
+@PrimaryKeyJoinColumn(name = "id")
 public class Comment extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = EAGER)
-    @JoinColumn(name = "cm_question_id")
+    @JoinColumn(name = "qt_id")
     private Question question;
 
     public Comment() {

@@ -47,24 +47,24 @@
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="
                                     SELECT
-                                        user_email, user_password, user_enabled
+                                        email, password, enabled
                                     FROM
                                         user
                                     WHERE
-                                        user_email = ?"
+                                        email = ?"
 
 
                                authorities-by-username-query="
                                     SELECT
-                                        user_email, bdg_name
+                                        u.email, b.name
                                     FROM
-                                        user
+                                        user AS u
                                     JOIN
-                                        user_badge ON ub_user_id = user_id
+                                        user_badge AS ub ON ub.user_id = u.id
                                     JOIN
-                                        badge ON ub_badge_id = bdg_id
+                                        badge AS b ON ub.badge_id = b.id
                                     WHERE
-                                        user_email = ?"
+                                        u.email = ?"
             />
         </authentication-provider>
     </authentication-manager>

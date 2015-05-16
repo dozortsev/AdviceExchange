@@ -8,13 +8,13 @@
     <bean id="findBadgesByUserId" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT badge.* FROM badge
+            SELECT badge.* FROM user_badge AS ub
 
-                JOIN user_badge ON ub_badge_id = bdg_id
+                JOIN badge AS b ON ub.badge_id = b.id
 
-                JOIN user ON ub_user_id = user_id
+                JOIN user AS u ON ub.user_id = u.id
 
-            WHERE user_id = :userId
+            WHERE u.id = :userId
         "/>
     </bean>
 
@@ -24,15 +24,15 @@
     <bean id="findQuestionsByUserId" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT question.*, user_activity.*
+            SELECT qs.*, ua.*
 
-            FROM question
+            FROM question AS qs
 
-                JOIN user_activity ON ua_id = qs_id
+                JOIN user_activity AS ua ON ua.id = qs.id
 
-            WHERE ua_type = 'QUESTION' AND ua_user_id = :userId AND ua_active = TRUE
+            WHERE ua.type = 'QUESTION' AND ua.id = :userId AND ua.active = TRUE
 
-            ORDER BY ua_created DESC
+            ORDER BY ua.created DESC
         "/>
     </bean>
 
@@ -42,21 +42,21 @@
     <bean id="findQuestionsByTags" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT question.*, user_activity.* FROM question
+            SELECT qs.*, ua.* FROM question AS qs
 
-                JOIN user_activity ON ua_id = qs_id
+                JOIN user_activity AS ua ON ua.id = qs.id
 
-                JOIN question_tag ON qt_question_id = qs_id
+                JOIN question_tag AS qt ON qt.qt_id = qs.id
 
-                JOIN tag ON qt_tag_id = tag_id
+                JOIN tag AS t ON qt.tag_id = t.id
 
-            WHERE tag_name IN (:tags) AND ua_active = TRUE
+            WHERE t.name IN (:tags) AND ua.active = TRUE
 
-            GROUP BY qs_id
+            GROUP BY qs.id
 
             HAVING COUNT(tag_id) >= :tagCount
 
-            ORDER BY ua_created DESC
+            ORDER BY ua.created DESC
         "/>
     </bean>
 
@@ -66,37 +66,36 @@
     <bean id="findQuestionsByKeyWords" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT question.*, user_activity.*
+            SELECT qs.*, ua.*
 
-            FROM question
+            FROM question AS qs
 
-                JOIN user_activity ON ua_type = 'QUESTION'
+                JOIN user_activity AS ua ON ua.type = 'QUESTION'
 
-            WHERE qs_id = ua_id AND ua_active = TRUE
+            WHERE qs.id = ua.id AND ua.active = TRUE
         "/>
     </bean>
 
 
-    <!-- User Activity -->
+    <!-- User user_activity -->
 
     <bean id="userActivityQuery" class="java.lang.String">
         <constructor-arg value="
             SELECT
-                ua_id, ua_type, ua_created, ua_active, ua_content
-                qs_title, qs_votes,
-                asw_votes, asw_accepted
+                ua.id, ua.type, ua.created, ua.active, ua.content,
+                qs.title, a.accepted
 
-            FROM user_activity
+            FROM user_activity AS ua
 
-                LEFT JOIN user ON user_id = ua_user_id
+                LEFT JOIN user AS u ON u.id = ua.id
 
-                LEFT JOIN question ON qs_id = ua_id
+                LEFT JOIN question AS qs ON qs.id = ua.id
 
-                LEFT JOIN comment ON cm_id = ua_id
+                LEFT JOIN comment AS cm ON cm.id = ua.id
 
-                LEFT JOIN answer ON asw_id = ua_id
+                LEFT JOIN answer AS a ON a.id = ua.id
 
-            WHERE user_id = ?
+            WHERE u.id = ?
         "/>
     </bean>
 
@@ -106,13 +105,13 @@
     <bean id="loadQuestionsSet" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT user_activity.*, question.* FROM question
+            SELECT ua.*, qs.* FROM question AS qs
 
-                JOIN user_activity ON ua_id = qs_id
+                JOIN user_activity AS ua ON ua.id = qs.id
 
-            WHERE ua_type = 'QUESTION' AND ua_active = TRUE
+            WHERE ua.type = 'QUESTION' AND ua.active = TRUE
 
-            ORDER BY ua_created DESC
+            ORDER BY ua.created DESC
 
             LIMIT :offset, 10
         "/>
@@ -126,9 +125,9 @@
 
             SELECT * FROM user
 
-            WHERE user_enabled = TRUE AND user_name LIKE :username
+            WHERE enabled = TRUE AND name LIKE :username
 
-            ORDER BY user_joined DESC
+            ORDER BY joined DESC
 
             LIMIT :offset, 36
         "/>
@@ -140,13 +139,13 @@
     <bean id="findAnswersByUserId" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT answer.*, user_activity.* FROM answer
+            SELECT a.*, ua.* FROM answer AS a
 
-                JOIN user_activity ON ua_id = asw_id
+                JOIN user_activity AS ua ON ua.id = a.id
 
-            WHERE ua_type = 'ANSWER' AND ua_user_id = :userId AND ua_active = TRUE
+            WHERE ua.type = 'ANSWER' AND ua.id = :userId AND ua.active IS TRUE
 
-            ORDER BY ua_created DESC
+            ORDER BY ua.created DESC
         "/>
     </bean>
 
@@ -156,15 +155,13 @@
     <bean id="findAnswersByQuestionId" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT answer.*, user_activity.* FROM answer
+            SELECT a.*, ua.* FROM answer AS a
 
-                JOIN user_activity ON ua_id = asw_id
+                JOIN user_activity AS ua ON ua.id = a.id
 
-                JOIN question ON qs_id = asw_question_id
+                JOIN question AS qs ON qs.id = a.qt_id
 
-            WHERE ua_type = 'ANSWER' AND qs_id = :questionId AND ua_active = TRUE
-
-            ORDER BY asw_votes DESC
+            WHERE ua.type = 'ANSWER' AND qs.id = :questionId AND ua.active IS TRUE
         "/>
     </bean>
 
@@ -174,17 +171,17 @@
     <bean id="findCommentsByQuestionId" class="java.lang.String">
         <constructor-arg value="
 
-            SELECT comment.*, user_activity.*
+            SELECT cm.*, ua.*
 
-            FROM comment
+            FROM comment AS cm
 
-                JOIN user_activity ON ua_id = cm_id
+                JOIN user_activity AS ua ON ua.id = cm.id
 
-                JOIN question ON qs_id = cm_question_id
+                JOIN question AS qs ON qs.id = cm.qt_id
 
-            WHERE ua_type = 'COMMENT' AND qs_id = :questionId
+            WHERE ua.type = 'COMMENT' AND qs.id = :questionId
 
-            ORDER BY ua_created
+            ORDER BY ua.created
         "/>
     </bean>
 </beans>

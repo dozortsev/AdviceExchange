@@ -9,14 +9,14 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity @Table(name = "answer")
-@PrimaryKeyJoinColumn(name = "asw_id")
+@PrimaryKeyJoinColumn(name = "id")
 public class Answer extends UserActivity {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = EAGER)
-    @JoinColumn(name = "asw_question_id")
+    @JoinColumn(name = "qt_id")
     private Question question;
 
-    @Column(name = "asw_accepted")
+    @Column(name = "accepted")
     private boolean accept = false;
 
     public Answer() {

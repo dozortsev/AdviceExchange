@@ -20,8 +20,6 @@ public abstract class GenericDaoImpl<ID extends Serializable, T extends Abstract
 
     private Class<T> entityClass;
 
-    private @Autowired DSLContext dsl;
-
     private @Autowired SessionFactory factory;
 
     @Override public ID create(T entity) {

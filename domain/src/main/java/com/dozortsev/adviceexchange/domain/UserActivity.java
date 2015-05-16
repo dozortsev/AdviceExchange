@@ -14,26 +14,26 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Entity @Table(name = "user_activity")
 @Inheritance(strategy = JOINED)
 @AttributeOverride(
-        name = "id", column = @Column(name = "ua_id")
+        name = "id", column = @Column(name = "id")
 )
 public abstract class UserActivity extends AbstractEntity<Long> {
 
     @ManyToOne(cascade = { MERGE, PERSIST }, fetch = EAGER)
-    @JoinColumn(name = "ua_user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Enumerated(STRING)
-    @Column(name = "ua_type", updatable = false)
+    @Column(name = "type", updatable = false)
     private Type type;
 
-    @Lob @Column(name = "ua_content")
+    @Lob @Column(name = "content")
     private String content;
 
-    @Column(name = "ua_active", nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active = true;
 
     @Temporal(TIMESTAMP)
-    @Column(name = "ua_created", updatable = false)
+    @Column(name = "created", updatable = false)
     private Date created = new Date();
 
     @OneToMany(fetch = EAGER, cascade = ALL, mappedBy = "activity")

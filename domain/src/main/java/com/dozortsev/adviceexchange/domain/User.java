@@ -10,56 +10,56 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "user")
-@AttributeOverride(name = "id", column = @Column(name = "user_id"))
+@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class User extends AbstractEntity<Long> {
 
-    @Column(name = "user_name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "user_age")
+    @Column(name = "age")
     private int age;
 
-    @Column(name = "user_about_me")
+    @Column(name = "about_me")
     private String aboutMe;
 
     @Temporal(TIMESTAMP)
-    @Column(name = "user_joined", updatable = false)
+    @Column(name = "joined", updatable = false)
     private Date joined = new Date();
 
-    @Column(name = "user_location")
+    @Column(name = "location")
     private String location;
 
-    @Column(name = "user_site")
+    @Column(name = "site")
     private String site;
 
-    @Column(name = "user_email", unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "user_password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "user_enabled")
+    @Column(name = "enabled")
     private boolean enabled = Boolean.TRUE;
 
-    @Column(name = "user_reputation")
+    @Column(name = "reputation")
     private int reputation = 1;
 
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
-    @JoinColumn(name = "qs_id")
+    @JoinColumn(name = "id")
     private List<Question> questions = new ArrayList<>();
 
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
-    @JoinColumn(name = "asw_id")
+    @JoinColumn(name = "id")
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(cascade = { MERGE, PERSIST, REMOVE })
-    @JoinColumn(name = "cm_id")
+    @JoinColumn(name = "id")
     private List<Comment> comments = new ArrayList<>();
 
     @ManyToMany(fetch = LAZY)
     @JoinTable(name = "user_badge",
-            joinColumns = @JoinColumn(name = "ub_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "ub_badge_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "badge_id"))
     private List<Badge> badges = new ArrayList<>();
 
     public User() {

@@ -9,19 +9,19 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity @Table(name = "question")
-@PrimaryKeyJoinColumn(name = "qs_id")
+@PrimaryKeyJoinColumn(name = "id")
 public class Question extends UserActivity {
 
-    @Column(name = "qs_title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "qs_asw_count", nullable = false)
+    @Column(name = "asw_count", nullable = false)
     private int answerCount = 0;
 
     @ManyToMany(fetch = EAGER)
     @JoinTable(name = "question_tag",
-            joinColumns = @JoinColumn(name = "qt_question_id"),
-            inverseJoinColumns = @JoinColumn(name = "qt_tag_id"))
+            joinColumns = @JoinColumn(name = "qt_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags = new ArrayList<>();
 
     @OneToMany(fetch = LAZY, cascade = ALL, mappedBy = "question")

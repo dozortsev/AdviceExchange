@@ -7,7 +7,7 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity @Table(name = "vote")
-@AttributeOverride(name = "id", column = @Column(name = "vt_id"))
+@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class Vote extends AbstractEntity<Long> {
 
     public static final int UP = 10;
@@ -15,18 +15,18 @@ public class Vote extends AbstractEntity<Long> {
     public static final int DOWN = -2;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "vt_user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "vt_activity_id")
+    @JoinColumn(name = "activity_id")
     private UserActivity activity;
 
-    @Column(name = "vt_score")
+    @Column(name = "score")
     private int score;
 
     @Temporal(TIMESTAMP)
-    @Column(name = "vt_created", updatable = false)
+    @Column(name = "created", updatable = false)
     private Date created = new Date();
 
     public Vote() {

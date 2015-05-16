@@ -3,6 +3,7 @@ package com.dozortsev.adviceexchange.dao;
 import com.dozortsev.adviceexchange.domain.User;
 import com.dozortsev.adviceexchange.domain.UserActivity;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,8 +23,6 @@ import static org.springframework.transaction.annotation.Propagation.MANDATORY;
 public class UserDaoImpl extends GenericDaoImpl<Long, User> implements UserDao {
 
     private @Autowired String findUsersByName;
-
-    private @Autowired JdbcTemplate jdbcTemplate;
 
     public UserDaoImpl() {
         setEntityClass(User.class);

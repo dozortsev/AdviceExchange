@@ -3,13 +3,13 @@ package com.dozortsev.adviceexchange.domain;
 import javax.persistence.*;
 
 @Entity @Table(name = "tag")
-@AttributeOverride(name = "id", column = @Column(name = "tag_id"))
+@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class Tag extends AbstractEntity<Long> {
 
-    @Column(name = "tag_name")
+    @Column(name = "name")
     private String name;
 
-    @Lob @Column(name = "tag_desc")
+    @Lob @Column(name = "desc")
     private String desc;
 
     public Tag() { }
